@@ -2,3103 +2,1846 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="theme-color" content="#120607" />
-  <title>XA Loyalty Club — Club Console</title>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>XA Member Club — V8.1</title>
   <style>
-    :root {
-      --bg: #0b0304;
-      --bg2: #160708;
-      --wine: #711a22;
-      --wine2: #a7313d;
-      --cream: #fff0c8;
-      --cream2: #ead09a;
-      --muted: rgba(255,240,200,.68);
-      --soft: rgba(255,240,200,.42);
-      --gold: #d7a546;
-      --gold2: #f4d47a;
-      --green: #8fe6a2;
-      --red: #ff7777;
-      --line: rgba(255,240,200,.14);
-      --glass: rgba(255,240,200,.08);
-      --shadow: 0 24px 70px rgba(0,0,0,.42);
-      --safe: env(safe-area-inset-bottom);
+    :root{
+      --bg:#17080b;
+      --bg2:#260d12;
+      --panel:#fff8e8;
+      --panel2:#f5e6c6;
+      --ink:#2b1511;
+      --muted:#7b6254;
+      --wine:#74182a;
+      --wine2:#9a263c;
+      --gold:#d7aa50;
+      --gold2:#f1d18a;
+      --cream:#fff4dc;
+      --danger:#9a1d28;
+      --ok:#2f7d54;
+      --shadow:0 18px 50px rgba(0,0,0,.32);
+      --soft:0 10px 28px rgba(62,16,25,.16);
+      --radius:22px;
+      --radius2:32px;
+      --border:1px solid rgba(116,24,42,.16);
     }
 
-    * {
-      box-sizing: border-box;
-      -webkit-tap-highlight-color: transparent;
-    }
+    *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+    html,body{margin:0;min-height:100%;background:radial-gradient(circle at top,#421522 0,#1b080c 42%,#0d0506 100%);color:var(--ink);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+    body{padding:14px}
+    button,input,select,textarea{font:inherit}
+    button{cursor:pointer}
+    .app{max-width:1180px;margin:0 auto 28px}
 
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      margin: 0;
-      min-height: 100vh;
-      color: var(--cream);
-      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    .hero{
+      position:relative;
+      overflow:hidden;
+      border-radius:36px;
+      padding:22px 18px 18px;
       background:
-        radial-gradient(circle at 12% 0%, rgba(244,212,122,.16), transparent 28%),
-        radial-gradient(circle at 90% 18%, rgba(167,49,61,.24), transparent 34%),
-        radial-gradient(circle at 46% 100%, rgba(215,165,70,.12), transparent 34%),
-        linear-gradient(145deg, #060203 0%, #120607 45%, #260c0f 100%);
-      overflow-x: hidden;
+        linear-gradient(135deg,rgba(255,248,232,.98),rgba(244,219,168,.92)),
+        radial-gradient(circle at top right,rgba(215,170,80,.5),transparent 45%);
+      box-shadow:var(--shadow);
+      border:1px solid rgba(255,241,196,.45);
     }
 
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      pointer-events: none;
+    .hero:before{
+      content:"";
+      position:absolute;
+      inset:10px;
+      border:1px solid rgba(116,24,42,.18);
+      border-radius:28px;
+      pointer-events:none;
+    }
+
+    .topline{
+      position:relative;
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:12px;
+      z-index:1;
+    }
+
+    .brand-mini{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+
+    .xa-mark{
+      width:68px;
+      height:68px;
+      border-radius:22px;
+      display:grid;
+      place-items:center;
+      background:linear-gradient(145deg,#6b1325,#9b243d);
+      color:#fff4dc;
+      font-family:Georgia,serif;
+      font-weight:800;
+      font-size:31px;
+      letter-spacing:-2px;
+      box-shadow:inset 0 0 0 2px rgba(255,232,174,.28),0 12px 25px rgba(76,12,23,.35);
+    }
+
+    .brand-text small{
+      display:block;
+      color:var(--wine);
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:.17em;
+      font-size:11px;
+    }
+
+    .brand-text h1{
+      margin:2px 0 0;
+      font-family:Georgia,serif;
+      color:#431018;
+      font-size:34px;
+      line-height:1;
+      letter-spacing:-1px;
+    }
+
+    .tagline{
+      position:relative;
+      z-index:1;
+      margin:18px 0 0;
+      color:#6a3d34;
+      font-size:15px;
+      line-height:1.45;
+      max-width:680px;
+    }
+
+    .console{
+      position:relative;
+      z-index:1;
+      margin-top:18px;
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:10px;
+    }
+
+    .transport{
+      min-height:72px;
+      border:0;
+      border-radius:20px;
+      padding:10px;
+      background:linear-gradient(180deg,#351016,#1b070b);
+      color:#fff4dc;
+      box-shadow:inset 0 0 0 1px rgba(255,234,177,.16),0 10px 22px rgba(0,0,0,.24);
+    }
+
+    .transport b{
+      display:block;
+      font-size:20px;
+      color:var(--gold2);
+      letter-spacing:.08em;
+    }
+
+    .transport span{
+      display:block;
+      margin-top:4px;
+      font-size:12px;
+      color:#e8d5b7;
+    }
+
+    .transport:active{transform:scale(.98)}
+    .transport.rec b{color:#ffb7b7}
+    .transport.play b{color:#c7ffc9}
+    .transport.stop b{color:#f7d38a}
+
+    .status-pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      border-radius:999px;
+      padding:8px 11px;
+      color:#fff6e0;
+      background:rgba(63,16,25,.88);
+      box-shadow:inset 0 0 0 1px rgba(255,232,174,.12);
+      font-size:12px;
+      white-space:nowrap;
+    }
+
+    .pulse{
+      width:8px;
+      height:8px;
+      background:#e9bb5d;
+      border-radius:50%;
+      box-shadow:0 0 15px #e9bb5d;
+    }
+
+    .nav{
+      display:flex;
+      gap:8px;
+      overflow:auto;
+      padding:14px 2px 10px;
+      scrollbar-width:none;
+    }
+
+    .nav::-webkit-scrollbar{display:none}
+
+    .nav button{
+      flex:0 0 auto;
+      border:0;
+      border-radius:999px;
+      padding:12px 15px;
+      background:rgba(255,248,232,.1);
+      color:#f8e6c0;
+      border:1px solid rgba(255,235,185,.13);
+      box-shadow:0 8px 24px rgba(0,0,0,.18);
+      font-weight:750;
+      font-size:13px;
+    }
+
+    .nav button.active{
+      background:linear-gradient(135deg,#fff6df,#e2bd6b);
+      color:#3b0e16;
+      border-color:rgba(255,255,255,.35);
+    }
+
+    .screen{
+      display:none;
+      margin-top:4px;
+      animation:fade .18s ease;
+    }
+
+    .screen.active{display:block}
+
+    @keyframes fade{
+      from{opacity:.2;transform:translateY(4px)}
+      to{opacity:1;transform:translateY(0)}
+    }
+
+    .grid{
+      display:grid;
+      gap:14px;
+    }
+
+    .grid.two{grid-template-columns:1.05fr .95fr}
+    .grid.three{grid-template-columns:repeat(3,1fr)}
+
+    .panel{
+      background:linear-gradient(180deg,#fff9ea,#f4e2bf);
+      border-radius:var(--radius2);
+      padding:18px;
+      box-shadow:var(--soft);
+      border:var(--border);
+      overflow:hidden;
+    }
+
+    .panel.dark{
+      background:linear-gradient(145deg,#2d0d14,#160609);
+      color:#fff2d5;
+      border-color:rgba(255,226,170,.12);
+      box-shadow:var(--shadow);
+    }
+
+    .panel h2,.panel h3{
+      margin:0 0 10px;
+      font-family:Georgia,serif;
+      color:#4b111b;
+      letter-spacing:-.3px;
+    }
+
+    .panel.dark h2,.panel.dark h3{color:#ffe6aa}
+
+    .panel p{
+      color:var(--muted);
+      margin:0 0 12px;
+      line-height:1.45;
+    }
+
+    .panel.dark p{color:#dcc7a7}
+
+    .stats{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:10px;
+    }
+
+    .stat{
+      border-radius:22px;
+      padding:14px;
+      background:rgba(255,255,255,.52);
+      border:1px solid rgba(116,24,42,.12);
+      min-height:92px;
+    }
+
+    .stat small{
+      display:block;
+      color:#7a5a4c;
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      font-weight:800;
+    }
+
+    .stat b{
+      display:block;
+      margin-top:8px;
+      color:#4b111b;
+      font-size:28px;
+      line-height:1;
+    }
+
+    .member-card{
+      position:relative;
+      min-height:265px;
+      border-radius:30px;
+      padding:20px;
+      color:#fff4dc;
       background:
-        linear-gradient(rgba(255,255,255,.022) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.016) 1px, transparent 1px);
-      background-size: 34px 34px;
-      opacity: .34;
-      mask-image: radial-gradient(circle at center, black 0%, transparent 76%);
-    }
-
-    button, input, textarea, select {
-      font: inherit;
-    }
-
-    button {
-      border: 0;
-      cursor: pointer;
-    }
-
-    textarea {
-      resize: vertical;
-    }
-
-    .app {
-      position: relative;
-      z-index: 1;
-      width: min(100%, 1180px);
-      min-height: 100vh;
-      margin: 0 auto;
-      padding: 14px 14px calc(130px + var(--safe));
-    }
-
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 40;
-      padding: 10px 0 14px;
-      backdrop-filter: blur(20px);
-    }
-
-    .topline {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 10px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      min-width: 0;
-    }
-
-    .seal {
-      width: 52px;
-      height: 52px;
-      border-radius: 19px;
-      display: grid;
-      place-items: center;
-      position: relative;
-      overflow: hidden;
-      background:
-        radial-gradient(circle at 30% 20%, rgba(255,240,200,.18), transparent 28%),
-        linear-gradient(145deg, #7d1d26, #21080a);
-      border: 1px solid rgba(244,212,122,.36);
-      box-shadow: inset 0 0 24px rgba(244,212,122,.09), 0 14px 38px rgba(0,0,0,.4);
-      font-family: Georgia, serif;
-      font-weight: 900;
-      font-size: 20px;
-      letter-spacing: -3px;
-      color: var(--gold2);
-      flex: 0 0 auto;
-    }
-
-    .seal::after {
-      content: "";
-      position: absolute;
-      inset: 6px;
-      border-radius: 14px;
-      border: 1px solid rgba(255,240,200,.16);
-    }
-
-    .brand h1 {
-      margin: 0;
-      font-size: 14px;
-      letter-spacing: .19em;
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
-
-    .brand p {
-      margin: 3px 0 0;
-      color: var(--muted);
-      font-size: 12px;
-      white-space: nowrap;
-    }
-
-    .top-actions {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      min-height: 40px;
-      padding: 9px 12px;
-      border-radius: 999px;
-      color: var(--gold2);
-      background: rgba(244,212,122,.10);
-      border: 1px solid rgba(244,212,122,.26);
-      font-size: 11px;
-      font-weight: 950;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      max-width: 158px;
-    }
-
-    .pill span:last-child {
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-    }
-
-    .dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--green);
-      box-shadow: 0 0 18px var(--green);
-      flex: 0 0 auto;
-    }
-
-    .icon-btn {
-      width: 42px;
-      height: 42px;
-      border-radius: 16px;
-      display: grid;
-      place-items: center;
-      color: var(--cream);
-      background: var(--glass);
-      border: 1px solid rgba(255,240,200,.13);
-      transition: .18s ease;
+        linear-gradient(135deg,rgba(255,224,154,.16),transparent 40%),
+        linear-gradient(145deg,#5d1222,#220910 72%);
+      box-shadow:0 18px 44px rgba(42,7,15,.35);
+      overflow:hidden;
+      border:1px solid rgba(255,224,154,.28);
+    }
+
+    .member-card:before{
+      content:"XA";
+      position:absolute;
+      right:-18px;
+      bottom:-35px;
+      font-family:Georgia,serif;
+      font-size:150px;
+      font-weight:900;
+      color:rgba(255,238,195,.06);
+      letter-spacing:-10px;
+    }
+
+    .member-head{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      position:relative;
+      z-index:1;
+    }
+
+    .member-name{
+      font-family:Georgia,serif;
+      font-size:27px;
+      line-height:1;
+      color:#fff2c8;
+      margin:4px 0;
+    }
+
+    .member-code{
+      color:#dec08a;
+      font-size:12px;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      font-weight:800;
+    }
+
+    .tier{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      border-radius:999px;
+      padding:8px 10px;
+      background:rgba(255,244,220,.11);
+      border:1px solid rgba(255,226,170,.18);
+      color:#ffe5a3;
+      font-weight:800;
+      font-size:12px;
+      white-space:nowrap;
+    }
+
+    .points-big{
+      position:relative;
+      z-index:1;
+      margin-top:30px;
+    }
+
+    .points-big small{
+      color:#d9bd8d;
+      display:block;
+      text-transform:uppercase;
+      letter-spacing:.18em;
+      font-size:11px;
+      font-weight:900;
+    }
+
+    .points-big b{
+      display:block;
+      font-size:56px;
+      color:#fff4dc;
+      line-height:.95;
+      letter-spacing:-2px;
+    }
+
+    .member-foot{
+      position:relative;
+      z-index:1;
+      margin-top:26px;
+      display:flex;
+      justify-content:space-between;
+      align-items:end;
+      gap:10px;
+      color:#e5cc9d;
+      font-size:12px;
     }
-
-    .icon-btn:active {
-      transform: scale(.94);
-    }
 
-    .club-console {
-      padding: 10px;
-      border-radius: 26px;
-      background:
-        linear-gradient(180deg, rgba(255,240,200,.08), rgba(0,0,0,.16)),
-        rgba(11,4,5,.86);
-      border: 1px solid rgba(255,240,200,.14);
-      box-shadow: 0 16px 44px rgba(0,0,0,.34);
+    .qr-wrap{
+      width:86px;
+      height:86px;
+      border-radius:17px;
+      background:#fff8e8;
+      padding:7px;
+      display:grid;
+      place-items:center;
+      box-shadow:0 10px 25px rgba(0,0,0,.22);
     }
 
-    .console-display {
-      min-height: 42px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      padding: 11px 14px;
-      border-radius: 18px;
-      color: var(--green);
-      background: #070505;
-      border: 1px solid rgba(143,230,162,.18);
-      box-shadow: inset 0 0 22px rgba(143,230,162,.05);
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-      font-size: 11px;
-      letter-spacing: .08em;
-      overflow: hidden;
-    }
+    canvas{display:block;max-width:100%}
 
-    .console-display span:first-child {
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
+    .btn-row{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:12px;
     }
 
-    .console-leds {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      flex: 0 0 auto;
+    .btn{
+      border:0;
+      border-radius:18px;
+      padding:12px 14px;
+      background:linear-gradient(135deg,#7c182d,#a72a42);
+      color:#fff8e8;
+      font-weight:850;
+      box-shadow:0 10px 22px rgba(116,24,42,.22);
     }
 
-    .console-leds i {
-      width: 6px;
-      height: 20px;
-      border-radius: 999px;
-      background: rgba(143,230,162,.16);
+    .btn.gold{
+      background:linear-gradient(135deg,#f2d084,#c99637);
+      color:#421019;
     }
 
-    .console-leds i.on {
-      background: var(--green);
-      box-shadow: 0 0 12px rgba(143,230,162,.58);
-    }
-
-    .console-buttons {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
-      margin-top: 9px;
-    }
-
-    .console-btn {
-      min-height: 54px;
-      border-radius: 19px;
-      color: var(--cream);
-      background: linear-gradient(180deg, rgba(255,240,200,.12), rgba(0,0,0,.23));
-      border: 1px solid rgba(255,240,200,.14);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.07), 0 10px 24px rgba(0,0,0,.22);
-      display: grid;
-      place-items: center;
-      gap: 2px;
-      transition: .16s ease;
-    }
-
-    .console-btn:active {
-      transform: scale(.96);
-    }
-
-    .console-btn b {
-      font-size: 14px;
-      letter-spacing: .08em;
-    }
-
-    .console-btn span {
-      color: var(--muted);
-      font-size: 10px;
-      font-weight: 800;
-    }
-
-    .console-btn.rec {
-      color: #21100d;
-      background: linear-gradient(135deg, #fff1bd, #d7a546 64%, #b77b26);
-      border-color: rgba(244,212,122,.48);
-    }
-
-    .console-btn.play b {
-      color: var(--gold2);
-    }
-
-    .console-btn.stop b {
-      color: #ffd9d9;
-    }
-
-    .screen {
-      display: none;
-      animation: enter .32s ease both;
-    }
-
-    .screen.active {
-      display: block;
-    }
-
-    @keyframes enter {
-      from { opacity: 0; transform: translateY(12px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .hero {
-      position: relative;
-      isolation: isolate;
-      overflow: hidden;
-      border-radius: 34px;
-      padding: 22px 18px;
-      background:
-        radial-gradient(circle at 80% 14%, rgba(244,212,122,.27), transparent 28%),
-        radial-gradient(circle at 12% 86%, rgba(167,49,61,.34), transparent 34%),
-        linear-gradient(145deg, rgba(255,240,200,.14), rgba(255,240,200,.04)),
-        linear-gradient(145deg, rgba(113,26,34,.86), rgba(17,6,7,.94));
-      border: 1px solid rgba(244,212,122,.26);
-      box-shadow: var(--shadow);
-      margin-top: 14px;
-    }
-
-    .hero::before {
-      content: "XA";
-      position: absolute;
-      right: -22px;
-      top: -36px;
-      z-index: -1;
-      font-family: Georgia, serif;
-      font-size: clamp(126px,38vw,280px);
-      line-height: .74;
-      font-weight: 900;
-      letter-spacing: -.13em;
-      color: rgba(255,240,200,.095);
+    .btn.ghost{
+      background:rgba(255,248,232,.58);
+      color:#621728;
+      border:1px solid rgba(116,24,42,.16);
+      box-shadow:none;
     }
 
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 11px;
-      border-radius: 999px;
-      background: rgba(0,0,0,.24);
-      border: 1px solid rgba(255,240,200,.15);
-      color: var(--gold2);
-      font-size: 10px;
-      font-weight: 950;
-      text-transform: uppercase;
-      letter-spacing: .16em;
+    .btn.dark{
+      background:linear-gradient(135deg,#321019,#120508);
+      color:#ffe8b2;
     }
 
-    .spark {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--gold2);
-      box-shadow: 0 0 18px rgba(244,212,122,.85);
+    .btn.danger{
+      background:linear-gradient(135deg,#9a1d28,#64101a);
+      color:#fff4dc;
     }
 
-    .hero-title {
-      margin: 18px 0 10px;
-      max-width: 780px;
-      font-size: clamp(31px,8.2vw,68px);
-      line-height: .92;
-      font-weight: 980;
-      letter-spacing: -.07em;
+    .btn.ok{
+      background:linear-gradient(135deg,#2f7d54,#1c5739);
+      color:#fff4dc;
     }
 
-    .gold {
-      color: var(--gold2);
-    }
+    .btn.full{width:100%}
+    .btn:active{transform:scale(.985)}
 
-    .hero-copy {
-      margin: 0;
-      max-width: 720px;
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.52;
+    .field{
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+      margin-bottom:10px;
     }
 
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 18px;
+    .field label{
+      color:#6b3d34;
+      font-size:12px;
+      text-transform:uppercase;
+      letter-spacing:.1em;
+      font-weight:900;
     }
 
-    .btn {
-      min-height: 45px;
-      padding: 11px 15px;
-      border-radius: 999px;
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      gap: 8px;
-      color: var(--cream);
-      font-weight: 950;
-      letter-spacing: .01em;
-      transition: .18s ease;
-      user-select: none;
+    input,select,textarea{
+      width:100%;
+      border:1px solid rgba(116,24,42,.18);
+      background:rgba(255,255,255,.72);
+      color:#321019;
+      border-radius:17px;
+      padding:13px 13px;
+      outline:none;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.8);
     }
 
-    .btn:active {
-      transform: scale(.965);
-    }
+    textarea{min-height:90px;resize:vertical}
+    input:focus,select:focus,textarea:focus{border-color:rgba(154,38,60,.55);box-shadow:0 0 0 3px rgba(154,38,60,.12)}
 
-    .btn-primary {
-      color: #21100d;
-      background: linear-gradient(135deg, #fff1bd, #d7a546 64%, #b77b26);
-      box-shadow: 0 16px 35px rgba(215,165,70,.22);
+    .searchbar{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      margin-bottom:12px;
     }
 
-    .btn-secondary {
-      background: rgba(255,240,200,.08);
-      border: 1px solid rgba(255,240,200,.15);
-    }
+    .searchbar input{flex:1}
 
-    .btn-danger {
-      background: rgba(167,49,61,.22);
-      border: 1px solid rgba(255,119,119,.32);
-      color: #ffe6e6;
+    .client-list{
+      display:grid;
+      gap:10px;
     }
-
-    .btn-small {
-      min-height: 38px;
-      padding: 9px 12px;
-      font-size: 12px;
-    }
-
-    .stats-row {
-      display: grid;
-      grid-template-columns: repeat(2,1fr);
-      gap: 10px;
-      margin-top: 14px;
-    }
-
-    .stat, .metric {
-      position: relative;
-      z-index: 1;
-      padding: 13px;
-      border-radius: 20px;
-      background: rgba(0,0,0,.22);
-      border: 1px solid rgba(255,240,200,.11);
-    }
-
-    .stat span, .metric span {
-      display: block;
-      color: var(--soft);
-      font-size: 10px;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      font-weight: 900;
-    }
-
-    .stat strong, .metric strong {
-      display: block;
-      margin-top: 4px;
-      color: var(--cream);
-      font-size: 19px;
-      letter-spacing: -.04em;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 14px;
-      margin-top: 14px;
-    }
-
-    .card {
-      position: relative;
-      overflow: hidden;
-      border-radius: 28px;
-      background: linear-gradient(145deg, rgba(255,240,200,.105), rgba(255,240,200,.04));
-      border: 1px solid rgba(255,240,200,.13);
-      box-shadow: 0 16px 44px rgba(0,0,0,.30);
-      backdrop-filter: blur(22px);
-    }
-
-    .card-pad {
-      padding: 18px;
-    }
-
-    .card-title {
-      position: relative;
-      z-index: 1;
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      align-items: flex-start;
-      margin-bottom: 14px;
-    }
-
-    .card-title h3 {
-      margin: 0;
-      font-size: 16px;
-      letter-spacing: -.025em;
-    }
-
-    .card-title p {
-      margin: 4px 0 0;
-      color: var(--muted);
-      font-size: 12px;
-      line-height: 1.42;
-    }
-
-    .tag {
-      padding: 7px 9px;
-      border-radius: 999px;
-      color: var(--gold2);
-      background: rgba(215,165,70,.10);
-      border: 1px solid rgba(215,165,70,.22);
-      font-size: 10px;
-      font-weight: 950;
-      text-transform: uppercase;
-      letter-spacing: .12em;
-      white-space: nowrap;
-    }
-
-    .member-card {
-      position: relative;
-      z-index: 1;
-      min-height: 224px;
-      padding: 18px;
-      border-radius: 30px;
-      overflow: hidden;
-      background:
-        radial-gradient(circle at 82% 16%, rgba(244,212,122,.42), transparent 24%),
-        radial-gradient(circle at 18% 100%, rgba(167,49,61,.42), transparent 34%),
-        linear-gradient(145deg, #1a0709, #7c1d25 56%, #160607);
-      border: 1px solid rgba(244,212,122,.38);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.11), 0 28px 70px rgba(0,0,0,.38);
-    }
-
-    .member-card::before {
-      content: "XA";
-      position: absolute;
-      right: -10px;
-      bottom: -28px;
-      font-family: Georgia, serif;
-      font-size: 138px;
-      line-height: .76;
-      font-weight: 900;
-      letter-spacing: -.12em;
-      color: rgba(255,240,200,.13);
-    }
-
-    .member-card::after {
-      content: "";
-      position: absolute;
-      inset: 12px;
-      border-radius: 23px;
-      border: 1px solid rgba(255,240,200,.13);
-      pointer-events: none;
-    }
-
-    .member-top, .member-name, .member-id, .member-bottom {
-      position: relative;
-      z-index: 1;
-    }
-
-    .member-top {
-      display: flex;
-      justify-content: space-between;
-      gap: 14px;
-      align-items: flex-start;
-    }
-
-    .card-logo {
-      font-family: Georgia, serif;
-      font-size: 56px;
-      line-height: .74;
-      font-weight: 900;
-      letter-spacing: -.12em;
-      color: var(--gold2);
-      text-shadow: 0 12px 34px rgba(0,0,0,.46);
-    }
-
-    .card-level {
-      text-align: right;
-      color: var(--cream2);
-      font-size: 10px;
-      font-weight: 950;
-      text-transform: uppercase;
-      letter-spacing: .16em;
-      line-height: 1.35;
-    }
-
-    .member-name {
-      margin-top: 42px;
-      font-size: 26px;
-      font-weight: 980;
-      letter-spacing: -.045em;
-    }
-
-    .member-id {
-      margin-top: 7px;
-      color: var(--muted);
-      font-size: 12px;
-      letter-spacing: .12em;
-      font-weight: 700;
-    }
-
-    .member-bottom {
-      display: flex;
-      justify-content: space-between;
-      gap: 18px;
-      align-items: flex-end;
-      margin-top: 22px;
-    }
-
-    .member-bottom small {
-      display: block;
-      margin-bottom: 3px;
-      color: rgba(255,240,200,.47);
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: .13em;
-      font-weight: 850;
-    }
-
-    .member-bottom strong {
-      display: block;
-      font-size: 13px;
-    }
-
-    .points-big {
-      position: relative;
-      z-index: 1;
-      margin: 2px 0 4px;
-      font-size: clamp(46px,13vw,82px);
-      line-height: .88;
-      font-weight: 1000;
-      letter-spacing: -.085em;
-      color: var(--gold2);
-      text-shadow: 0 18px 44px rgba(0,0,0,.3);
-    }
-
-    .points-label {
-      position: relative;
-      z-index: 1;
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    .progress-wrap {
-      position: relative;
-      z-index: 1;
-      margin-top: 17px;
-    }
-
-    .progress-meta {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-      margin-bottom: 8px;
-      color: var(--muted);
-      font-size: 12px;
-    }
-
-    .bar {
-      position: relative;
-      height: 13px;
-      border-radius: 999px;
-      background: rgba(0,0,0,.25);
-      border: 1px solid rgba(255,240,200,.1);
-      overflow: hidden;
-    }
-
-    .bar span {
-      position: absolute;
-      inset: 0 auto 0 0;
-      width: 25%;
-      border-radius: inherit;
-      background: linear-gradient(90deg, #7f1b23, #d7a546 60%, #fff1bd);
-      box-shadow: 0 0 28px rgba(244,212,122,.38);
-      transition: width .7s cubic-bezier(.16,1,.3,1);
-    }
-
-    .mini-metrics, .shop-stat {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-top: 14px;
-    }
-
-    .qr-layout {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      grid-template-columns: 132px 1fr;
-      align-items: center;
-      gap: 14px;
-    }
-
-    .qr-frame {
-      width: 132px;
-      height: 132px;
-      padding: 10px;
-      border-radius: 24px;
-      background: #fff7e7;
-      box-shadow: inset 0 0 0 1px rgba(0,0,0,.08), 0 18px 42px rgba(0,0,0,.32);
-    }
-
-    #qrCanvas {
-      display: block;
-      width: 112px;
-      height: 112px;
-      image-rendering: pixelated;
-    }
-
-    .qr-info h4 {
-      margin: 0 0 7px;
-      font-size: 16px;
-      letter-spacing: -.02em;
-    }
-
-    .qr-info p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 12px;
-      line-height: 1.48;
-    }
-
-    .section-head {
-      margin: 20px 2px 12px;
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      gap: 14px;
-    }
-
-    .section-head h2 {
-      margin: 0;
-      font-size: 29px;
-      line-height: 1;
-      letter-spacing: -.07em;
-    }
-
-    .section-head p {
-      margin: 5px 0 0;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.4;
-    }
-
-    .filters {
-      display: flex;
-      gap: 8px;
-      overflow-x: auto;
-      padding: 2px 2px 14px;
-      scrollbar-width: none;
-    }
-
-    .filters::-webkit-scrollbar {
-      display: none;
-    }
 
-    .chip {
-      flex: 0 0 auto;
-      min-height: 39px;
-      padding: 10px 13px;
-      border-radius: 999px;
-      color: var(--muted);
-      background: rgba(255,240,200,.07);
-      border: 1px solid rgba(255,240,200,.12);
-      font-size: 12px;
-      font-weight: 900;
-      transition: .18s ease;
-    }
-
-    .chip.active {
-      color: #23100d;
-      background: linear-gradient(135deg, #fff1bd, #d7a546);
-      border-color: rgba(244,212,122,.62);
-      box-shadow: 0 12px 28px rgba(215,165,70,.15);
-    }
-
-    .reward-list, .activity-list, .client-list, .lux-list, .transaction-list {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      gap: 12px;
-    }
-
-    .reward, .client-row, .activity, .transaction-row {
-      position: relative;
-      overflow: hidden;
-      padding: 16px;
-      border-radius: 26px;
-      background:
-        radial-gradient(circle at 92% 10%, rgba(244,212,122,.13), transparent 24%),
-        linear-gradient(145deg, rgba(255,240,200,.102), rgba(255,240,200,.035));
-      border: 1px solid rgba(255,240,200,.13);
-      box-shadow: 0 16px 42px rgba(0,0,0,.24);
-      transition: .18s ease;
-    }
-
-    .reward:active, .client-row:active {
-      transform: scale(.985);
+    .client-item{
+      border:1px solid rgba(116,24,42,.13);
+      background:rgba(255,255,255,.56);
+      border-radius:22px;
+      padding:12px;
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:10px;
+      align-items:center;
     }
-
-    .reward-top, .client-top, .transaction-top {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-      align-items: flex-start;
-    }
 
-    .reward h3, .client-row h3, .transaction-row h3 {
-      margin: 12px 0 7px;
-      font-size: 18px;
-      letter-spacing: -.035em;
-    }
-
-    .reward p, .client-row p, .transaction-row p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.48;
-    }
-
-    .reward-bottom, .client-actions, .transaction-bottom {
-      margin-top: 15px;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 10px;
-      align-items: center;
+    .client-item.active{
+      outline:3px solid rgba(215,170,80,.38);
+      background:#fffaf0;
     }
 
-    .price {
-      display: grid;
-      gap: 2px;
+    .client-item h4{
+      margin:0;
+      color:#46111b;
+      font-size:16px;
     }
-
-    .price strong {
-      color: var(--gold2);
-      font-size: 19px;
-      letter-spacing: -.04em;
+
+    .client-item small{
+      display:block;
+      margin-top:3px;
+      color:#7c6153;
+      font-size:12px;
     }
 
-    .price small {
-      color: var(--soft);
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: .12em;
-      font-weight: 900;
+    .badge-points{
+      background:#421019;
+      color:#ffe4a4;
+      border-radius:18px;
+      padding:9px 10px;
+      text-align:center;
+      min-width:78px;
+      font-weight:900;
     }
 
-    .activity {
-      display: grid;
-      grid-template-columns: 46px 1fr auto;
-      gap: 12px;
-      align-items: center;
+    .badge-points small{
+      color:#dbc194;
+      font-size:10px;
+      margin:0;
     }
 
-    .activity-icon {
-      width: 46px;
-      height: 46px;
-      border-radius: 17px;
-      display: grid;
-      place-items: center;
-      color: var(--gold2);
-      background: rgba(215,165,70,.11);
-      border: 1px solid rgba(215,165,70,.19);
-      font-weight: 950;
-      font-size: 12px;
-    }
-
-    .activity h4 {
-      margin: 0;
-      font-size: 14px;
-      letter-spacing: -.015em;
+    .receipt{
+      background:#fffdf5;
+      border-radius:20px;
+      border:1px dashed rgba(116,24,42,.28);
+      padding:14px;
+      color:#3b1814;
+      font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
+      font-size:12px;
+      white-space:pre-wrap;
+      min-height:118px;
     }
-
-    .activity p {
-      margin: 3px 0 0;
-      color: var(--muted);
-      font-size: 12px;
-      line-height: 1.38;
+
+    .history{
+      display:grid;
+      gap:10px;
     }
 
-    .activity strong {
-      font-size: 14px;
-      white-space: nowrap;
+    .tx{
+      border-radius:20px;
+      padding:12px;
+      background:rgba(255,255,255,.58);
+      border:1px solid rgba(116,24,42,.12);
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:10px;
+      align-items:start;
     }
 
-    .positive { color: var(--green); }
-    .negative { color: var(--red); }
+    .tx b{color:#431018}
+    .tx small{display:block;color:#7b6254;margin-top:3px}
+    .tx .plus{color:var(--ok);font-weight:950}
+    .tx .minus{color:var(--danger);font-weight:950}
 
-    .form-grid {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      gap: 12px;
+    .reward-grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:12px;
     }
 
-    .field label {
-      display: block;
-      margin: 0 0 7px;
-      color: var(--muted);
-      font-size: 11px;
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: .12em;
+    .reward{
+      position:relative;
+      border-radius:25px;
+      padding:15px;
+      background:rgba(255,255,255,.56);
+      border:1px solid rgba(116,24,42,.13);
+      min-height:148px;
     }
-
-    .field input, .field textarea, .field select {
-      width: 100%;
-      border: 1px solid rgba(255,240,200,.14);
-      border-radius: 19px;
-      padding: 14px;
-      color: var(--cream);
-      background: rgba(0,0,0,.23);
-      outline: none;
-      transition: .18s ease;
-    }
-
-    .field textarea {
-      min-height: 96px;
+
+    .reward h4{
+      margin:0 0 6px;
+      color:#49121c;
+      font-family:Georgia,serif;
+      font-size:18px;
     }
 
-    .field input:focus, .field textarea:focus, .field select:focus {
-      border-color: rgba(244,212,122,.58);
-      box-shadow: 0 0 0 4px rgba(215,165,70,.12);
-      background: rgba(0,0,0,.32);
+    .reward p{
+      font-size:13px;
+      margin-bottom:12px;
     }
 
-    .lux-item {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 13px;
-      border-radius: 19px;
-      background: rgba(0,0,0,.20);
-      border: 1px solid rgba(255,240,200,.095);
+    .cost{
+      display:inline-flex;
+      border-radius:999px;
+      padding:7px 9px;
+      background:#421019;
+      color:#ffe5a3;
+      font-weight:900;
+      font-size:12px;
+      margin-bottom:10px;
     }
 
-    .lux-item span {
-      color: var(--muted);
-      font-size: 12px;
+    .empty{
+      padding:18px;
+      text-align:center;
+      color:#765a4d;
+      border:1px dashed rgba(116,24,42,.22);
+      border-radius:22px;
+      background:rgba(255,255,255,.32);
     }
 
-    .lux-item strong {
-      text-align: right;
-      font-size: 13px;
-      line-height: 1.34;
+    .modal{
+      position:fixed;
+      inset:0;
+      background:rgba(12,3,5,.72);
+      display:none;
+      place-items:center;
+      padding:16px;
+      z-index:50;
+      backdrop-filter:blur(8px);
     }
+
+    .modal.active{display:grid}
 
-    .shop-hero {
-      position: relative;
-      overflow: hidden;
-      border-radius: 34px;
-      padding: 20px;
-      background:
-        radial-gradient(circle at 90% 0%, rgba(244,212,122,.22), transparent 28%),
-        radial-gradient(circle at 10% 100%, rgba(167,49,61,.22), transparent 32%),
-        linear-gradient(145deg, rgba(255,240,200,.12), rgba(255,240,200,.04));
-      border: 1px solid rgba(244,212,122,.22);
-      box-shadow: 0 16px 44px rgba(0,0,0,.30);
-      margin-bottom: 14px;
-    }
-
-    .shop-hero h2 {
-      margin: 15px 0 0;
-      font-size: 32px;
-      letter-spacing: -.07em;
-      line-height: 1;
-    }
-
-    .shop-hero p {
-      margin: 9px 0 0;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.5;
-    }
-
-    .divider {
-      height: 1px;
-      background: rgba(255,240,200,.12);
-      margin: 16px 0;
-    }
-
-    .empty {
-      padding: 24px;
-      text-align: center;
-      color: var(--muted);
-      border: 1px dashed rgba(255,240,200,.18);
-      border-radius: 24px;
-    }
-
-    .note {
-      position: relative;
-      z-index: 1;
-      margin-top: 14px;
-      padding: 14px;
-      border-radius: 21px;
-      background: rgba(215,165,70,.10);
-      border: 1px solid rgba(215,165,70,.18);
-      color: var(--cream2);
-      font-size: 12px;
-      line-height: 1.48;
-    }
-
-    .store-lock {
-      display: none;
-      position: relative;
-      z-index: 1;
-      padding: 18px;
-      border-radius: 28px;
-      background: rgba(0,0,0,.24);
-      border: 1px solid rgba(244,212,122,.22);
-      margin-bottom: 14px;
-    }
-
-    .store-lock.show {
-      display: block;
-    }
-
-    .store-area.locked {
-      display: none;
-    }
-
-    .pos-preview {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      gap: 10px;
-      padding: 14px;
-      border-radius: 22px;
-      background: rgba(0,0,0,.22);
-      border: 1px solid rgba(244,212,122,.18);
-    }
-
-    .pos-preview strong {
-      color: var(--gold2);
-    }
-
-    .export-box {
-      width: 100%;
-      min-height: 170px;
-      font-size: 11px;
-      line-height: 1.42;
-      color: var(--cream);
-      white-space: pre-wrap;
-      word-break: break-word;
-    }
-
-    .bottom-nav {
-      position: fixed;
-      left: 50%;
-      bottom: max(13px, var(--safe));
-      transform: translateX(-50%);
-      z-index: 50;
-      width: min(calc(100% - 28px),720px);
-      display: grid;
-      grid-template-columns: repeat(6,1fr);
-      gap: 5px;
-      padding: 7px;
-      border-radius: 26px;
-      background: rgba(16,5,6,.90);
-      border: 1px solid rgba(255,240,200,.14);
-      backdrop-filter: blur(26px);
-      box-shadow: 0 22px 62px rgba(0,0,0,.52);
-    }
-
-    .nav-btn {
-      min-height: 54px;
-      border-radius: 19px;
-      display: grid;
-      place-items: center;
-      gap: 1px;
-      color: rgba(255,240,200,.52);
-      background: transparent;
-      font-size: 8.5px;
-      font-weight: 950;
-      transition: .18s ease;
-    }
-
-    .nav-icon {
-      font-size: 17px;
-      line-height: 1;
-    }
-
-    .nav-btn.active {
-      color: #23100d;
-      background: linear-gradient(135deg, #fff1bd, #d7a546);
-      box-shadow: 0 13px 30px rgba(215,165,70,.16);
-    }
-
-    .toast-wrap {
-      position: fixed;
-      left: 50%;
-      bottom: calc(98px + var(--safe));
-      transform: translateX(-50%);
-      z-index: 90;
-      width: min(calc(100% - 28px),540px);
-      display: grid;
-      gap: 9px;
-      pointer-events: none;
-    }
-
-    .toast {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 13px 14px;
-      border-radius: 19px;
-      color: var(--cream);
-      background: rgba(16,5,6,.94);
-      border: 1px solid rgba(244,212,122,.25);
-      box-shadow: 0 18px 46px rgba(0,0,0,.42);
-      backdrop-filter: blur(18px);
-      font-size: 13px;
-      line-height: 1.35;
-      animation: toastIn .24s ease both;
-    }
-
-    @keyframes toastIn {
-      from { opacity: 0; transform: translateY(14px) scale(.98); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
-    }
-
-    .modal-backdrop {
-      position: fixed;
-      inset: 0;
-      z-index: 80;
-      display: none;
-      align-items: flex-end;
-      justify-content: center;
-      padding: 18px;
-      background: rgba(0,0,0,.56);
-      backdrop-filter: blur(12px);
-    }
-
-    .modal-backdrop.show {
-      display: flex;
-      animation: fadeIn .18s ease both;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    .modal {
-      width: min(100%,540px);
-      border-radius: 32px;
-      padding: 20px;
-      background:
-        radial-gradient(circle at 92% 0%, rgba(244,212,122,.20), transparent 28%),
-        linear-gradient(145deg, #250c0f, #110506);
-      border: 1px solid rgba(244,212,122,.25);
-      box-shadow: 0 30px 100px rgba(0,0,0,.58);
-      animation: modalIn .24s ease both;
-    }
-
-    @keyframes modalIn {
-      from { opacity: 0; transform: translateY(20px) scale(.98); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
-    }
-
-    .modal h3 {
-      margin: 0 0 8px;
-      font-size: 24px;
-      letter-spacing: -.055em;
-    }
-
-    .modal p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.52;
-    }
-
-    .modal-actions {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-top: 18px;
-    }
-
-    .splash {
-      position: fixed;
-      inset: 0;
-      z-index: 100;
-      display: grid;
-      place-items: center;
-      padding: 24px;
-      background:
-        radial-gradient(circle at 50% 16%, rgba(244,212,122,.25), transparent 30%),
-        radial-gradient(circle at 78% 78%, rgba(167,49,61,.27), transparent 31%),
-        linear-gradient(145deg, #060203, #120607 55%, #2a0d10);
-      transition: opacity .48s ease, transform .48s ease, visibility .48s ease;
-    }
-
-    .splash.hide {
-      opacity: 0;
-      transform: scale(1.035);
-      visibility: hidden;
-      pointer-events: none;
-    }
-
-    .splash-inner {
-      width: min(100%,620px);
-      text-align: center;
-    }
-
-    .splash-xa {
-      font-family: Georgia, serif;
-      font-size: clamp(135px,45vw,330px);
-      line-height: .72;
-      font-weight: 900;
-      letter-spacing: -.135em;
-      color: var(--cream);
-      text-shadow: 0 0 42px rgba(244,212,122,.20), 0 30px 86px rgba(0,0,0,.74);
-      animation: monument .95s cubic-bezier(.16,1,.3,1) both;
-    }
-
-    @keyframes monument {
-      from { opacity: 0; transform: translateY(18px) scale(.84); filter: blur(13px); }
-      to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
-    }
-
-    .splash-kicker {
-      margin-top: 19px;
-      color: var(--gold2);
-      font-size: 11px;
-      font-weight: 1000;
-      text-transform: uppercase;
-      letter-spacing: .3em;
-      animation: enter .65s ease .16s both;
-    }
-
-    .splash-title {
-      max-width: 460px;
-      margin: 12px auto 0;
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.55;
-      animation: enter .65s ease .28s both;
-    }
-
-    .splash .btn {
-      margin-top: 25px;
-      animation: enter .65s ease .38s both;
-    }
-
-    @media (min-width: 760px) {
-      .app {
-        padding: 24px 22px calc(138px + var(--safe));
-      }
-
-      .grid.two {
-        grid-template-columns: 1.1fr .9fr;
-      }
-
-      .grid.three {
-        grid-template-columns: repeat(3,1fr);
-      }
-
-      .reward-list, .client-list, .transaction-list {
-        grid-template-columns: repeat(2,1fr);
-      }
-
-      .hero {
-        padding: 32px;
-      }
-
-      .stats-row {
-        grid-template-columns: repeat(4,1fr);
-      }
-
-      .modal-backdrop {
-        align-items: center;
-      }
-
-      .console-buttons {
-        grid-template-columns: repeat(3, 160px);
-        justify-content: center;
-      }
-    }
-
-    @media (min-width: 1040px) {
-      .reward-list, .client-list, .transaction-list {
-        grid-template-columns: repeat(3,1fr);
-      }
-    }
-
-    @media (max-width: 430px) {
-      .brand p {
-        max-width: 128px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-
-      .pill {
-        display: none;
-      }
-
-      .mini-metrics, .shop-stat {
-        grid-template-columns: 1fr;
-      }
-
-      .qr-layout {
-        grid-template-columns: 1fr;
-      }
-
-      .qr-frame {
-        margin: 0 auto;
-      }
-
-      .hero-actions {
-        display: grid;
-      }
-
-      .btn {
-        width: 100%;
-      }
-
-      .activity {
-        grid-template-columns: 42px 1fr;
-      }
-
-      .activity strong {
-        grid-column: 2;
-      }
-
-      .bottom-nav {
-        width: min(calc(100% - 22px),720px);
-        gap: 4px;
-        padding: 7px;
-      }
-
-      .nav-btn {
-        min-height: 54px;
-        font-size: 8px;
-      }
+    .modal-card{
+      width:min(560px,100%);
+      max-height:90vh;
+      overflow:auto;
+      border-radius:32px;
+      background:linear-gradient(180deg,#fff9ea,#f0dcb4);
+      box-shadow:0 26px 80px rgba(0,0,0,.45);
+      border:1px solid rgba(255,238,194,.6);
+      padding:18px;
+    }
+
+    .modal-card h3{
+      margin:0 0 12px;
+      color:#4a111b;
+      font-family:Georgia,serif;
+      font-size:25px;
+    }
+
+    .close-x{
+      float:right;
+      border:0;
+      background:#421019;
+      color:#ffe5a3;
+      border-radius:14px;
+      width:38px;
+      height:38px;
+      font-weight:900;
+    }
+
+    .toast{
+      position:fixed;
+      left:50%;
+      bottom:18px;
+      transform:translateX(-50%) translateY(20px);
+      opacity:0;
+      pointer-events:none;
+      background:#2c0c13;
+      color:#ffe4a4;
+      padding:12px 15px;
+      border-radius:999px;
+      box-shadow:0 16px 50px rgba(0,0,0,.35);
+      z-index:80;
+      transition:.18s ease;
+      font-weight:800;
+      font-size:13px;
+      text-align:center;
+      max-width:92vw;
+    }
+
+    .toast.show{
+      opacity:1;
+      transform:translateX(-50%) translateY(0);
+    }
+
+    .footer-note{
+      text-align:center;
+      color:#d7bd91;
+      font-size:12px;
+      margin:18px 0 4px;
+      opacity:.88;
+    }
+
+    .small-note{
+      color:#7c6252;
+      font-size:12px;
+      line-height:1.45;
+    }
+
+    .divider{
+      height:1px;
+      background:linear-gradient(90deg,transparent,rgba(116,24,42,.22),transparent);
+      margin:14px 0;
+    }
+
+    .hidden-file{display:none}
+
+    @media(max-width:860px){
+      body{padding:10px}
+      .hero{border-radius:30px;padding:18px 14px 14px}
+      .topline{display:block}
+      .status-pill{margin-top:12px}
+      .brand-text h1{font-size:30px}
+      .xa-mark{width:62px;height:62px;font-size:29px}
+      .grid.two,.grid.three{grid-template-columns:1fr}
+      .stats{grid-template-columns:repeat(2,1fr)}
+      .console{grid-template-columns:1fr 1fr 1fr}
+      .transport{min-height:68px;padding:8px}
+      .transport b{font-size:18px}
+      .transport span{font-size:11px}
+      .reward-grid{grid-template-columns:1fr}
+      .searchbar{display:grid}
+      .member-card{min-height:250px}
+      .points-big b{font-size:50px}
+    }
+
+    @media(max-width:420px){
+      .brand-mini{align-items:flex-start}
+      .brand-text h1{font-size:27px}
+      .brand-text small{font-size:10px}
+      .nav button{padding:11px 13px;font-size:12px}
+      .panel{padding:15px;border-radius:26px}
+      .stats{gap:8px}
+      .stat b{font-size:24px}
+      .btn{width:100%}
+      .console{gap:7px}
+      .transport span{display:none}
     }
   </style>
 </head>
 
 <body>
-  <div class="splash" id="splash">
-    <div class="splash-inner">
-      <div class="splash-xa">XA</div>
-      <div class="splash-kicker">V8 Club Console</div>
-      <p class="splash-title">
-        Card cliente, cassa, punti, rewards e gestione clienti con una console semplice: REC, PLAY, STOP.
-      </p>
-      <button class="btn btn-primary" id="enterApp">Entra nel Club XA</button>
-    </div>
-  </div>
-
-  <main class="app">
-    <header class="topbar">
+  <div class="app">
+    <header class="hero">
       <div class="topline">
-        <div class="brand">
-          <div class="seal">XA</div>
-          <div>
-            <h1>XA Club</h1>
-            <p>Fermented Redrinks</p>
+        <div class="brand-mini">
+          <div class="xa-mark">XA</div>
+          <div class="brand-text">
+            <small>Fermented Redrinks</small>
+            <h1>XA Member Club</h1>
           </div>
         </div>
-
-        <div class="top-actions">
-          <div class="pill">
-            <span class="dot"></span>
-            <span id="topStatus">Member</span>
-          </div>
-          <button class="icon-btn" id="resetDemo" title="Reset demo">↺</button>
-        </div>
+        <div class="status-pill"><span class="pulse"></span><span id="activeStatus">Club pronto</span></div>
       </div>
 
-      <div class="club-console">
-        <div class="console-display">
-          <span id="consoleText">XA CLUB CONSOLE · PRONTO</span>
-          <span class="console-leds" aria-hidden="true">
-            <i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i>
-          </span>
-        </div>
+      <p class="tagline">
+        Una console elegante per clienti, punti, cassa e premi premium.  
+        <strong>Not a drink. An experience.</strong>
+      </p>
 
-        <div class="console-buttons">
-          <button class="console-btn rec" id="consoleRec" type="button">
-            <b>REC</b>
-            <span>Nuovo cliente</span>
-          </button>
-
-          <button class="console-btn play" id="consolePlay" type="button">
-            <b>PLAY</b>
-            <span>Scheda cliente</span>
-          </button>
-
-          <button class="console-btn stop" id="consoleStop" type="button">
-            <b>STOP</b>
-            <span>Home / reset</span>
-          </button>
-        </div>
+      <div class="console">
+        <button class="transport rec" onclick="openNewClientModal()">
+          <b>REC</b>
+          <span>Nuovo cliente</span>
+        </button>
+        <button class="transport play" onclick="playOpenClient()">
+          <b>PLAY</b>
+          <span>Scheda cliente</span>
+        </button>
+        <button class="transport stop" onclick="stopHome()">
+          <b>STOP</b>
+          <span>Home / reset</span>
+        </button>
       </div>
     </header>
 
-    <section class="screen active" id="screen-home">
-      <div class="hero">
-        <div class="eyebrow"><span class="spark"></span> XA Club Console</div>
+    <nav class="nav">
+      <button data-tab="home" class="active" onclick="showTab('home')">Home</button>
+      <button data-tab="dashboard" onclick="showTab('dashboard')">Dashboard negozio</button>
+      <button data-tab="clients" onclick="showTab('clients')">Clienti XA</button>
+      <button data-tab="cash" onclick="openCashTab()">Cassa XA</button>
+      <button data-tab="rewards" onclick="showTab('rewards')">Rewards Club</button>
+      <button data-tab="history" onclick="showTab('history')">Storico Club</button>
+      <button data-tab="profile" onclick="playOpenClient()">Profilo Cliente</button>
+      <button data-tab="backup" onclick="showTab('backup')">Backup</button>
+    </nav>
 
-        <h2 class="hero-title">
-          <span class="gold">XA</span> Member Club<br>
-          <span id="helloName">Cliente</span>
-        </h2>
-
-        <p class="hero-copy">
-          Vista cliente premium, gestione negozio multi-cliente e cassa manuale strutturata per futuro
-          POS, database o gestionale. La console in alto serve solo per azioni rapide reali.
-        </p>
-
-        <div class="stats-row">
-          <div class="stat"><span>Status</span><strong id="heroStatus">—</strong></div>
-          <div class="stat"><span>Punti</span><strong id="heroPoints">0</strong></div>
-          <div class="stat"><span>Vendite</span><strong id="heroSales">0</strong></div>
-          <div class="stat"><span>Incasso</span><strong id="heroRevenue">€0</strong></div>
-        </div>
-
-        <div class="hero-actions">
-          <button class="btn btn-primary" data-go="pos">Apri Cassa XA</button>
-          <button class="btn btn-secondary" data-go="clients">Gestisci clienti</button>
-        </div>
-      </div>
-
-      <div class="grid two">
-        <div class="card card-pad">
-          <div class="card-title">
-            <div>
-              <h3>XA Member Card</h3>
-              <p>Card digitale del cliente selezionato</p>
-            </div>
-            <span class="tag">Cliente</span>
-          </div>
-
-          <div class="member-card">
-            <div class="member-top">
-              <div class="card-logo">XA</div>
-              <div class="card-level" id="cardTier">Member</div>
-            </div>
-
-            <div class="member-name" id="cardName">Cliente XA</div>
-            <div class="member-id" id="cardId">XA-2026-0001</div>
-
-            <div class="member-bottom">
-              <div>
-                <small>Membro dal</small>
-                <strong id="cardSince">2026</strong>
-              </div>
-              <div>
-                <small>Spesa totale</small>
-                <strong id="cardSpend">€0</strong>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="card card-pad">
-          <div class="card-title">
-            <div>
-              <h3>Saldo punti</h3>
-              <p>Disponibili per premi, esperienze e privilegi</p>
-            </div>
-            <span class="tag">Live</span>
-          </div>
-
-          <div class="points-big" id="pointsBig">0</div>
-          <div class="points-label">punti XA disponibili</div>
-
-          <div class="progress-wrap">
-            <div class="progress-meta">
-              <span id="currentTierText">Status</span>
-              <span id="nextTierText">Prossimo</span>
-            </div>
-            <div class="bar"><span id="tierBar"></span></div>
-          </div>
-
-          <div class="mini-metrics">
-            <div class="metric"><span>Punti vita</span><strong id="lifetimePoints">0</strong></div>
-            <div class="metric"><span>Al prossimo</span><strong id="toNext">0</strong></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="grid two">
-        <div class="card card-pad">
-          <div class="card-title">
-            <div>
-              <h3>QR cliente</h3>
-              <p>Identificativo per cassa e card</p>
-            </div>
-            <span class="tag">ID</span>
-          </div>
-
-          <div class="qr-layout">
-            <div class="qr-frame">
-              <canvas id="qrCanvas" width="112" height="112"></canvas>
-            </div>
-            <div class="qr-info">
-              <h4 id="qrMemberName">Cliente XA</h4>
-              <p>
-                Codice membro: <strong id="qrMemberCode">XA-0000</strong><br>
-                Pronto per futuro collegamento QR con cassa o database.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div class="card card-pad">
-          <div class="card-title">
-            <div>
-              <h3>Dashboard negozio</h3>
-              <p>Numeri centrali della loyalty</p>
-            </div>
-            <span class="tag">Store</span>
-          </div>
-
-          <div class="lux-list">
-            <div class="lux-item"><span>Clienti totali</span><strong id="dashCustomers">0</strong></div>
-            <div class="lux-item"><span>Punti attivi</span><strong id="dashPoints">0</strong></div>
-            <div class="lux-item"><span>Transazioni</span><strong id="dashTransactions">0</strong></div>
-            <div class="lux-item"><span>Incasso demo</span><strong id="dashRevenue">€0</strong></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="screen" id="screen-pos">
-      <div class="shop-hero">
-        <div class="eyebrow"><span class="spark"></span> Cassa XA</div>
-        <h2>Store Console</h2>
-        <p>
-          Registra vendita, cliente, scontrino, categoria, punti e operatore.
-          PIN demo: <strong>2026</strong>.
-        </p>
-
-        <div class="shop-stat">
-          <div class="metric"><span>Cliente attivo</span><strong id="posCustomer">Cliente XA</strong></div>
-          <div class="metric"><span>Punti attuali</span><strong id="posPoints">0 pt</strong></div>
-        </div>
-      </div>
-
-      <div class="store-lock" id="storeLock">
-        <div class="card-title">
-          <div>
-            <h3>Sblocca cassa</h3>
-            <p>Blocco demo locale. Non è sicurezza server.</p>
-          </div>
-        </div>
-
-        <div class="form-grid">
-          <div class="field">
-            <label for="storePin">PIN negozio</label>
-            <input id="storePin" inputmode="numeric" placeholder="2026" />
-          </div>
-          <button class="btn btn-primary" id="unlockStore">Sblocca cassa</button>
-        </div>
-      </div>
-
-      <div class="store-area" id="storeArea">
+    <main>
+      <section id="home" class="screen active">
         <div class="grid two">
-          <div class="card card-pad">
-            <div class="card-title">
-              <div>
-                <h3>Nuova vendita</h3>
-                <p>Transazione manuale cassa-ready</p>
-              </div>
-              <span class="tag">POS</span>
+          <div class="panel dark">
+            <h2>XA Club Console</h2>
+            <p>
+              La base operativa del club: clienti, saldo punti, vendite, premi, storico e backup.
+              La grafica resta elegante, da club premium, non da supermercato.
+            </p>
+            <div class="btn-row">
+              <button class="btn gold" onclick="openNewClientModal()">Nuovo cliente</button>
+              <button class="btn ghost" onclick="showTab('clients')">Cerca cliente</button>
+              <button class="btn ghost" onclick="openCashTab()">Vai alla cassa</button>
             </div>
-
-            <form class="form-grid" id="posForm">
-              <div class="field">
-                <label for="posClientSelect">Cliente</label>
-                <select id="posClientSelect"></select>
-              </div>
-
-              <div class="field">
-                <label for="posReceipt">Numero scontrino</label>
-                <input id="posReceipt" placeholder="XA-2026-000001" />
-              </div>
-
-              <div class="field">
-                <label for="posAmount">Importo vendita €</label>
-                <input id="posAmount" type="number" min="0" step="0.01" placeholder="38.50" />
-              </div>
-
-              <div class="field">
-                <label for="posCategory">Categoria prodotto</label>
-                <select id="posCategory"></select>
-              </div>
-
-              <div class="field">
-                <label for="posOperator">Operatore</label>
-                <input id="posOperator" placeholder="Negozio XA" />
-              </div>
-
-              <div class="field">
-                <label for="posNote">Nota vendita</label>
-                <input id="posNote" placeholder="Degustazione sidri botanici" />
-              </div>
-
-              <div class="pos-preview">
-                <div>Cliente: <strong id="previewClient">—</strong></div>
-                <div>Moltiplicatore: <strong id="previewMultiplier">1x</strong></div>
-                <div>Punti generati: <strong id="previewPoints">0</strong></div>
-                <div>Fonte: <strong>manual_pos</strong></div>
-              </div>
-
-              <button class="btn btn-primary" type="submit">Conferma vendita</button>
-            </form>
+            <div class="divider"></div>
+            <p class="small-note">
+              PIN demo cassa: <strong>2026</strong>.  
+              I dati sono salvati su questo telefono/browser con localStorage.
+            </p>
           </div>
 
-          <div class="card card-pad">
-            <div class="card-title">
-              <div>
-                <h3>Cliente in cassa</h3>
-                <p>Dati rapidi del cliente selezionato</p>
-              </div>
-            </div>
+          <div class="panel">
+            <h3>Card cliente attiva</h3>
+            <div id="homeMemberCard"></div>
+          </div>
+        </div>
 
-            <div class="lux-list">
-              <div class="lux-item"><span>Codice</span><strong id="posCode">XA</strong></div>
-              <div class="lux-item"><span>Status</span><strong id="posStatus">Member</strong></div>
-              <div class="lux-item"><span>Spesa totale</span><strong id="posSpend">€0</strong></div>
-              <div class="lux-item"><span>Ultima visita</span><strong id="posLastVisit">—</strong></div>
-            </div>
+        <div class="panel" style="margin-top:14px">
+          <h3>Vista rapida club</h3>
+          <div class="stats" id="homeStats"></div>
+        </div>
+      </section>
+
+      <section id="dashboard" class="screen">
+        <div class="panel">
+          <h2>Dashboard negozio</h2>
+          <p>Quadro rapido per vedere clienti, punti emessi, vendite demo e premi riscattati.</p>
+          <div class="stats" id="dashboardStats"></div>
+        </div>
+
+        <div class="grid two" style="margin-top:14px">
+          <div class="panel">
+            <h3>Ultimi clienti</h3>
+            <div id="recentClients" class="client-list"></div>
+          </div>
+          <div class="panel">
+            <h3>Ultime operazioni</h3>
+            <div id="recentTransactions" class="history"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="clients" class="screen">
+        <div class="panel">
+          <h2>Clienti XA</h2>
+          <p>Cerca, apri, manda in cassa o elimina una card cliente.</p>
+
+          <div class="searchbar">
+            <input id="clientSearch" placeholder="Cerca per nome, telefono, email o codice..." oninput="renderClients()" />
+            <button class="btn gold" onclick="openNewClientModal()">Nuovo cliente</button>
+          </div>
+
+          <div id="clientList" class="client-list"></div>
+        </div>
+      </section>
+
+      <section id="cash" class="screen">
+        <div class="grid two">
+          <div class="panel">
+            <h2>Cassa XA</h2>
+            <p>Aggiungi una vendita demo e assegna punti al cliente attivo.</p>
+
+            <div id="cashClientBox"></div>
 
             <div class="divider"></div>
 
-            <div class="form-grid">
-              <button class="btn btn-secondary" id="bonusButton" type="button">+50 punti bonus evento</button>
-              <button class="btn btn-secondary" id="scanDemo" type="button">Simula scansione QR</button>
-              <button class="btn btn-secondary" id="goActiveClient" type="button">Apri card cliente</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="grid two">
-          <div class="card card-pad">
-            <div class="card-title">
-              <div>
-                <h3>Riscatto premio</h3>
-                <p>Scala punti dal cliente selezionato</p>
-              </div>
-            </div>
-
-            <div class="form-grid">
-              <div class="field">
-                <label for="shopRewardSelect">Premio</label>
-                <select id="shopRewardSelect"></select>
-              </div>
-              <button class="btn btn-primary" id="shopRedeemReward" type="button">Riscatta premio</button>
-            </div>
-          </div>
-
-          <div class="card card-pad">
-            <div class="card-title">
-              <div>
-                <h3>Backup dati</h3>
-                <p>Esporta o ripristina il gestionale locale</p>
-              </div>
-            </div>
-
-            <div class="form-grid">
-              <button class="btn btn-secondary" id="exportJSON" type="button">Esporta JSON completo</button>
-              <button class="btn btn-secondary" id="exportCSV" type="button">Esporta vendite CSV</button>
-
-              <div class="field">
-                <label for="importBox">Ripristina da JSON</label>
-                <textarea id="importBox" placeholder="Incolla qui un backup JSON"></textarea>
-              </div>
-
-              <button class="btn btn-secondary" id="importJSON" type="button">Importa backup JSON</button>
-              <button class="btn btn-danger" id="clearTransactions" type="button">Svuota transazioni demo</button>
-            </div>
-
-            <textarea class="export-box note" id="exportBox" style="display:none;"></textarea>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="screen" id="screen-clients">
-      <div class="section-head">
-        <div>
-          <h2>Clienti XA</h2>
-          <p>Gestionale centrale: cerca, apri, crea e porta un cliente in cassa.</p>
-        </div>
-      </div>
-
-      <div class="grid three">
-        <div class="card card-pad">
-          <div class="card-title"><div><h3>Totale clienti</h3><p>Card create nel dispositivo</p></div></div>
-          <div class="points-big" id="clientsTotal">0</div>
-          <div class="points-label">clienti registrati</div>
-        </div>
-
-        <div class="card card-pad">
-          <div class="card-title"><div><h3>Punti attivi</h3><p>Somma punti disponibili</p></div></div>
-          <div class="points-big" id="clientsPoints">0</div>
-          <div class="points-label">punti circolanti</div>
-        </div>
-
-        <div class="card card-pad">
-          <div class="card-title"><div><h3>Top cliente</h3><p>Più punti lifetime</p></div></div>
-          <div class="points-big" id="topClientShort">0</div>
-          <div class="points-label" id="topClientName">—</div>
-        </div>
-      </div>
-
-      <div class="grid two">
-        <div class="card card-pad">
-          <div class="card-title">
-            <div><h3>Cerca cliente</h3><p>Nome, email, telefono o codice XA</p></div>
-          </div>
-
-          <div class="form-grid">
             <div class="field">
-              <label for="clientSearch">Ricerca</label>
-              <input id="clientSearch" placeholder="Maria, XA-2026, telefono..." />
+              <label>Importo vendita</label>
+              <input id="saleAmount" type="number" inputmode="decimal" min="0" step="0.01" placeholder="Esempio: 24.90" />
+            </div>
+
+            <div class="field">
+              <label>Categoria prodotto</label>
+              <select id="saleCategory" onchange="updateReceiptPreview()">
+                <option value="Standard Club" data-mult="1">Standard Club — 1 punto per €</option>
+                <option value="Redrinks Premium" data-mult="1.5">Redrinks Premium — 1,5 punti per €</option>
+                <option value="Degustazione XA" data-mult="2">Degustazione XA — 2 punti per €</option>
+                <option value="Evento / Experience" data-mult="2.5">Evento / Experience — 2,5 punti per €</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label>Nota scontrino</label>
+              <input id="saleNote" placeholder="Esempio: sidro, tonic, degustazione..." oninput="updateReceiptPreview()" />
+            </div>
+
+            <div class="btn-row">
+              <button class="btn ok" onclick="addSale()">Aggiungi vendita</button>
+              <button class="btn ghost" onclick="showTab('clients')">Scegli cliente</button>
+            </div>
+          </div>
+
+          <div class="panel">
+            <h3>Scontrino demo</h3>
+            <div class="receipt" id="receiptPreview"></div>
+            <div class="btn-row">
+              <button class="btn gold" onclick="addBonus()">Bonus +50 punti</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="rewards" class="screen">
+        <div class="panel">
+          <h2>Rewards Club</h2>
+          <p>Premi premium, esperienze e vantaggi riservati ai membri XA.</p>
+          <div id="rewardClientBox"></div>
+          <div class="divider"></div>
+          <div class="reward-grid" id="rewardGrid"></div>
+        </div>
+      </section>
+
+      <section id="history" class="screen">
+        <div class="panel">
+          <h2>Storico Club</h2>
+          <p>Vendite, bonus e riscatti premio. Lo storico può essere esportato in JSON o CSV.</p>
+          <div class="btn-row">
+            <button class="btn ghost" onclick="historyMode='all';renderHistory()">Tutto</button>
+            <button class="btn ghost" onclick="historyMode='active';renderHistory()">Solo cliente attivo</button>
+          </div>
+          <div class="divider"></div>
+          <div id="historyList" class="history"></div>
+        </div>
+      </section>
+
+      <section id="profile" class="screen">
+        <div class="grid two">
+          <div class="panel">
+            <h2>Profilo Cliente</h2>
+            <div id="profileCard"></div>
+          </div>
+
+          <div class="panel">
+            <h3>Dettagli cliente</h3>
+            <div id="profileDetails"></div>
+          </div>
+        </div>
+
+        <div class="panel" style="margin-top:14px">
+          <h3>Storico cliente</h3>
+          <div id="profileHistory" class="history"></div>
+        </div>
+      </section>
+
+      <section id="backup" class="screen">
+        <div class="panel">
+          <h2>Backup JSON/CSV</h2>
+          <p>Esporta o importa i dati demo salvati nel browser.</p>
+
+          <div class="grid two">
+            <div>
+              <h3>Esporta</h3>
+              <p class="small-note">JSON per backup completo. CSV per lista clienti e storico leggibile.</p>
+              <div class="btn-row">
+                <button class="btn gold" onclick="exportJSON()">Esporta JSON</button>
+                <button class="btn ghost" onclick="exportCSV()">Esporta CSV</button>
+              </div>
+            </div>
+
+            <div>
+              <h3>Importa</h3>
+              <p class="small-note">Importa un backup JSON creato da questa app.</p>
+              <input id="importFile" class="hidden-file" type="file" accept="application/json,.json" onchange="importJSON(event)" />
+              <div class="btn-row">
+                <button class="btn dark" onclick="document.getElementById('importFile').click()">Importa backup JSON</button>
+                <button class="btn danger" onclick="resetDemo()">Reset demo</button>
+              </div>
             </div>
           </div>
 
           <div class="divider"></div>
-          <div class="client-list" id="clientList"></div>
+          <p class="small-note">
+            Questa V8.1 è pronta per una futura evoluzione con database, POS o cassa reale.  
+            Per ora resta una demo completa locale, comoda da testare su Android.
+          </p>
         </div>
+      </section>
+    </main>
 
-        <div class="card card-pad">
-          <div class="card-title">
-            <div><h3>Crea nuova card</h3><p>Aggiungi un cliente al gestionale negozio</p></div>
-          </div>
+    <p class="footer-note">XA Fermented Redrinks · Member Club V8.1 · Not a drink. An experience.</p>
+  </div>
 
-          <form class="form-grid" id="newCustomerForm">
-            <div class="field">
-              <label for="newName">Nome cliente</label>
-              <input id="newName" placeholder="Nome e cognome" />
-            </div>
+  <div id="newClientModal" class="modal">
+    <div class="modal-card">
+      <button class="close-x" onclick="closeModal('newClientModal')">×</button>
+      <h3>Nuovo cliente XA</h3>
 
-            <div class="field">
-              <label for="newEmail">Email</label>
-              <input id="newEmail" type="email" placeholder="email cliente" />
-            </div>
-
-            <div class="field">
-              <label for="newPhone">Telefono</label>
-              <input id="newPhone" placeholder="telefono cliente" />
-            </div>
-
-            <div class="field">
-              <label for="newPrefs">Preferenze</label>
-              <textarea id="newPrefs" placeholder="Sidro secco, botaniche, eventi..."></textarea>
-            </div>
-
-            <button class="btn btn-primary" type="submit">Crea card XA</button>
-          </form>
-        </div>
-      </div>
-    </section>
-
-    <section class="screen" id="screen-rewards">
-      <div class="section-head">
-        <div>
-          <h2>Rewards premium</h2>
-          <p>Esperienze, eventi, limited edition e privilegi.</p>
-        </div>
+      <div class="field">
+        <label>Nome cliente</label>
+        <input id="newName" placeholder="Nome e cognome" />
       </div>
 
-      <div class="filters" id="rewardFilters">
-        <button class="chip active" data-filter="all">Tutti</button>
-        <button class="chip" data-filter="experience">Esperienze</button>
-        <button class="chip" data-filter="limited">Limited</button>
-        <button class="chip" data-filter="privilege">Privilegi</button>
-        <button class="chip" data-filter="cellar">Cantina</button>
+      <div class="field">
+        <label>Telefono</label>
+        <input id="newPhone" placeholder="Numero telefono" />
       </div>
 
-      <div class="reward-list" id="rewardList"></div>
-    </section>
-
-    <section class="screen" id="screen-activity">
-      <div class="section-head">
-        <div>
-          <h2>Storico</h2>
-          <p>Movimenti cliente e transazioni vendita cassa-ready.</p>
-        </div>
+      <div class="field">
+        <label>Email</label>
+        <input id="newEmail" placeholder="Email cliente" />
       </div>
 
-      <div class="grid two">
-        <div class="card card-pad">
-          <div class="card-title"><div><h3>Storico cliente</h3><p>Movimenti del cliente selezionato</p></div></div>
-          <div class="activity-list" id="activityList"></div>
-        </div>
-
-        <div class="card card-pad">
-          <div class="card-title"><div><h3>Ultime transazioni</h3><p>Vendite, bonus e riscatti</p></div></div>
-          <div class="transaction-list" id="transactionList"></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="screen" id="screen-profile">
-      <div class="section-head">
-        <div>
-          <h2>Profilo cliente</h2>
-          <p>Modifica dati del cliente selezionato.</p>
-        </div>
+      <div class="field">
+        <label>Livello iniziale</label>
+        <select id="newTier">
+          <option>XA Member</option>
+          <option>XA Gold</option>
+          <option>XA Founder</option>
+          <option>XA Private Cellar</option>
+        </select>
       </div>
 
-      <div class="grid two">
-        <div class="card card-pad">
-          <div class="card-title">
-            <div><h3>Dati membro</h3><p>Personalizzazione card e note negozio</p></div>
-          </div>
-
-          <form class="form-grid" id="profileForm">
-            <div class="field"><label for="profileName">Nome</label><input id="profileName" autocomplete="name" /></div>
-            <div class="field"><label for="profileEmail">Email</label><input id="profileEmail" type="email" autocomplete="email" /></div>
-            <div class="field"><label for="profilePhone">Telefono</label><input id="profilePhone" autocomplete="tel" /></div>
-            <div class="field"><label for="profilePreferences">Preferenze cliente</label><textarea id="profilePreferences"></textarea></div>
-            <div class="field"><label for="profileNotes">Note negozio</label><textarea id="profileNotes" placeholder="Note interne"></textarea></div>
-            <button class="btn btn-primary" type="submit">Salva profilo</button>
-          </form>
-        </div>
-
-        <div class="card card-pad">
-          <div class="card-title">
-            <div><h3>Identità XA</h3><p>Profilo, status e comportamento acquisto</p></div>
-          </div>
-
-          <div class="lux-list">
-            <div class="lux-item"><span>Codice membro</span><strong id="profileMemberCode">XA</strong></div>
-            <div class="lux-item"><span>Status</span><strong id="profileStatus">Member</strong></div>
-            <div class="lux-item"><span>Punti disponibili</span><strong id="profilePoints">0</strong></div>
-            <div class="lux-item"><span>Acquisti</span><strong id="profilePurchases">0</strong></div>
-            <div class="lux-item"><span>Spesa totale</span><strong id="profileSpend">€0</strong></div>
-            <div class="lux-item"><span>Ultima visita</span><strong id="profileLastVisit">—</strong></div>
-          </div>
-
-          <div class="note">
-            V8 usa localStorage. Per usare la stessa base dati su più dispositivi servirà poi database/API.
-          </div>
-        </div>
+      <div class="field">
+        <label>Note</label>
+        <textarea id="newNotes" placeholder="Preferenze, gusti, prodotti preferiti..."></textarea>
       </div>
-    </section>
-  </main>
 
-  <nav class="bottom-nav" aria-label="Navigazione principale">
-    <button class="nav-btn active" data-tab="home"><span class="nav-icon">⌂</span>Home</button>
-    <button class="nav-btn" data-tab="pos"><span class="nav-icon">▣</span>Cassa</button>
-    <button class="nav-btn" data-tab="clients"><span class="nav-icon">◉</span>Clienti</button>
-    <button class="nav-btn" data-tab="rewards"><span class="nav-icon">✦</span>Rewards</button>
-    <button class="nav-btn" data-tab="activity"><span class="nav-icon">≋</span>Storico</button>
-    <button class="nav-btn" data-tab="profile"><span class="nav-icon">◎</span>Profilo</button>
-  </nav>
-
-  <div class="toast-wrap" id="toastWrap"></div>
-
-  <div class="modal-backdrop" id="modalBackdrop">
-    <div class="modal">
-      <h3 id="modalTitle">Conferma</h3>
-      <p id="modalText">Vuoi continuare?</p>
-      <div class="modal-actions">
-        <button class="btn btn-secondary" id="modalCancel">Annulla</button>
-        <button class="btn btn-primary" id="modalConfirm">Conferma</button>
-      </div>
+      <button class="btn gold full" onclick="createClient()">Crea card cliente</button>
     </div>
   </div>
 
+  <div id="pinModal" class="modal">
+    <div class="modal-card">
+      <button class="close-x" onclick="closeModal('pinModal')">×</button>
+      <h3>Accesso Cassa XA</h3>
+      <p>Inserisci il PIN demo per usare la cassa.</p>
+      <div class="field">
+        <label>PIN demo</label>
+        <input id="cashPin" type="password" inputmode="numeric" placeholder="PIN" />
+      </div>
+      <button class="btn gold full" onclick="unlockCash()">Entra in cassa</button>
+      <p class="small-note" style="margin-top:12px">PIN demo: 2026</p>
+    </div>
+  </div>
+
+  <div id="toast" class="toast">Operazione completata</div>
+
   <script>
-    const STORAGE_KEY = "xa_fermented_redrinks_loyalty_v8";
-    const OLD_KEYS = [
-      "xa_fermented_redrinks_loyalty_v7",
-      "xa_fermented_redrinks_loyalty_v6",
-      "xa_fermented_redrinks_loyalty_v5",
-      "xa_fermented_redrinks_loyalty_v4",
-      "xa_fermented_redrinks_loyalty_v3",
-      "xa_fermented_redrinks_loyalty_v2",
-      "xa_fermented_redrinks_loyalty_v1"
-    ];
+    const STORE_KEY = "xa_loyalty_club_v81";
+    const PIN_CASSA = "2026";
 
-    const STORE_PIN = "2026";
-
-    const levels = [
-      { name:"Cellar Guest", min:0 },
-      { name:"Reserve Member", min:750 },
-      { name:"Grand Reserve", min:2200 },
-      { name:"Founder Circle", min:5200 },
-      { name:"XA Inner Cellar", min:9800 }
-    ];
-
-    const categories = [
-      { id:"fermented_redrinks", label:"Fermented Redrinks", multiplier:1 },
-      { id:"limited_edition", label:"Limited Edition", multiplier:2 },
-      { id:"tasting_event", label:"Degustazione / Evento", multiplier:3 },
-      { id:"cellar_bottle", label:"Bottiglia cantina", multiplier:1.5 },
-      { id:"accessory", label:"Accessori", multiplier:.5 },
-      { id:"manual_bonus", label:"Bonus manuale", multiplier:1 }
-    ];
+    let data = loadData();
+    let activeClientId = data.activeClientId || (data.clients[0] ? data.clients[0].id : null);
+    let cashUnlocked = false;
+    let historyMode = "all";
 
     const rewards = [
-      { id:"rw-01", title:"Degustazione privata XA", type:"experience", badge:"Esperienza", cost:850, limit:"Solo 8 posti", desc:"Accesso a una degustazione guidata con sidri moderni, fermentazioni botaniche e prove di laboratorio XA." },
-      { id:"rw-02", title:"Bottiglia Founder Batch", type:"limited", badge:"Limited Edition", cost:1200, limit:"Numerata", desc:"Prenotazione di una release XA in micro lotto, con etichetta dedicata ai membri del club." },
-      { id:"rw-03", title:"Invito tavolo fermentazioni", type:"experience", badge:"Evento", cost:650, limit:"Su calendario", desc:"Partecipazione a un incontro su fermentazioni, sidro e tecniche contemporanee di miscelazione." },
-      { id:"rw-04", title:"Priority Release Access", type:"privilege", badge:"Privilegio", cost:500, limit:"Accesso 48h prima", desc:"Accesso anticipato alle future release XA prima della comunicazione pubblica." },
-      { id:"rw-05", title:"Cellar Note personale", type:"cellar", badge:"Cantina", cost:350, limit:"Profilo gusto", desc:"Creazione di una nota gusto personale con preferenze su acidità, tannino, secco, fruttato e botaniche." },
-      { id:"rw-06", title:"Limited Glass Ritual", type:"limited", badge:"Oggetto Club", cost:950, limit:"Serie privata", desc:"Oggetto rituale XA per degustazione, pensato come segno identitario del club." }
+      {
+        id:"reward_01",
+        title:"Degustazione riservata",
+        desc:"Accesso a una degustazione XA dedicata ai membri del club.",
+        cost:250
+      },
+      {
+        id:"reward_02",
+        title:"Bottiglia selezione XA",
+        desc:"Premio premium su selezione speciale del negozio.",
+        cost:500
+      },
+      {
+        id:"reward_03",
+        title:"Private tasting",
+        desc:"Esperienza privata per cliente fidelizzato.",
+        cost:900
+      },
+      {
+        id:"reward_04",
+        title:"Founder Experience",
+        desc:"Riconoscimento speciale per clienti importanti del club.",
+        cost:1500
+      }
     ];
 
-    const demoState = {
-      activeCustomerId:"XA-2026-0001",
-      rewards,
-      categories,
-      transactions:[
-        seedTransaction({
-          id:"TRX-DEMO-001",
-          type:"sale",
-          customer_id:"XA-2026-0001",
-          customer_name:"Maria Luisa",
-          receipt_number:"XA-2026-000001",
-          amount:78,
-          points:78,
-          product_category:"fermented_redrinks",
-          category_label:"Fermented Redrinks",
-          multiplier:1,
-          operator:"Negozio XA",
-          note:"Degustazione sidro e fermented redrinks",
-          source:"manual_pos"
-        })
-      ],
-      customers:[
-        seedCustomer({ id:"XA-2026-0001", name:"Maria Luisa", email:"member@xaclub.demo", phone:"+39 000 000 0000", points:1260, lifetimePoints:3840, totalSpend:1180, purchases:14, joined:"04 Luglio 2026", lastVisit:"04/07/2026, 09:18", preferences:"Sidri dry, fermentazioni botaniche, limited edition, degustazioni guidate.", notes:"Cliente demo principale." }),
-        seedCustomer({ id:"XA-2026-0002", name:"Giovanni Bianchi", email:"giovanni@example.com", phone:"+39 333 111 2222", points:320, lifetimePoints:320, totalSpend:320, purchases:3, joined:"04 Luglio 2026", lastVisit:"04/07/2026, 10:22", preferences:"Tonica mediterranea, sidro fruttato, eventi serali.", notes:"" }),
-        seedCustomer({ id:"XA-2026-0003", name:"Francesca Rossi", email:"francesca@example.com", phone:"+39 333 222 4444", points:2480, lifetimePoints:2480, totalSpend:1640, purchases:8, joined:"04 Luglio 2026", lastVisit:"04/07/2026, 11:30", preferences:"Limited edition, degustazioni tecniche, bevande secche.", notes:"" }),
-        seedCustomer({ id:"XA-2026-0004", name:"Luca Ferri", email:"luca@example.com", phone:"+39 333 555 7777", points:5600, lifetimePoints:5600, totalSpend:4200, purchases:19, joined:"04 Luglio 2026", lastVisit:"04/07/2026, 12:05", preferences:"Eventi privati, release numerate, sidri tannici.", notes:"" })
-      ]
-    };
-
-    let state = loadState();
-    let currentRewardFilter = "all";
-    let pendingConfirm = null;
-
-    const $ = selector => document.querySelector(selector);
-    const $$ = selector => Array.from(document.querySelectorAll(selector));
-
-    document.addEventListener("DOMContentLoaded", () => {
-      bindUI();
-      renderAll();
-
-      if (sessionStorage.getItem("xa_splash_seen_v8")) {
-        $("#splash").classList.add("hide");
-      }
-
-      updateStoreLock();
-      fillDefaultReceipt();
-    });
-
-    function bindUI() {
-      $("#enterApp").addEventListener("click", () => {
-        sessionStorage.setItem("xa_splash_seen_v8","1");
-        $("#splash").classList.add("hide");
-        toast("Benvenuto nel Club XA.");
-      });
-
-      $$(".nav-btn").forEach(btn => btn.addEventListener("click", () => setTab(btn.dataset.tab)));
-      $$("[data-go]").forEach(btn => btn.addEventListener("click", () => setTab(btn.dataset.go)));
-
-      $("#consoleRec").addEventListener("click", () => {
-        setTab("clients");
-        setConsole("REC · nuovo cliente");
-        setTimeout(() => $("#newName")?.focus(), 300);
-        toast("REC: crea una nuova card cliente.");
-      });
-
-      $("#consolePlay").addEventListener("click", () => {
-        setTab("home");
-        const customer = getActiveCustomer();
-        setConsole(`PLAY · scheda ${customer.name}`);
-        toast(`PLAY: scheda cliente aperta.`);
-      });
-
-      $("#consoleStop").addEventListener("click", () => {
-        clearPosFields();
-        setTab("home");
-        setConsole("STOP · home");
-        toast("STOP: operazione azzerata.");
-      });
-
-      $("#rewardFilters").addEventListener("click", event => {
-        const chip = event.target.closest(".chip");
-        if (!chip) return;
-        currentRewardFilter = chip.dataset.filter;
-        $$("#rewardFilters .chip").forEach(c => c.classList.remove("active"));
-        chip.classList.add("active");
-        renderRewards();
-      });
-
-      $("#clientSearch").addEventListener("input", renderClients);
-
-      $("#newCustomerForm").addEventListener("submit", event => {
-        event.preventDefault();
-        createCustomer();
-      });
-
-      $("#profileForm").addEventListener("submit", event => {
-        event.preventDefault();
-        saveProfile();
-      });
-
-      $("#posClientSelect").addEventListener("change", event => {
-        state.activeCustomerId = event.target.value;
-        saveState();
-        renderAll();
-      });
-
-      $("#posAmount").addEventListener("input", updatePOSPreview);
-      $("#posCategory").addEventListener("change", updatePOSPreview);
-
-      $("#posForm").addEventListener("submit", event => {
-        event.preventDefault();
-        createSaleTransaction();
-      });
-
-      $("#goActiveClient").addEventListener("click", () => setTab("home"));
-      $("#bonusButton").addEventListener("click", assignBonus);
-      $("#scanDemo").addEventListener("click", scanDemo);
-      $("#shopRedeemReward").addEventListener("click", () => redeemReward($("#shopRewardSelect").value));
-
-      $("#exportJSON").addEventListener("click", exportJSON);
-      $("#exportCSV").addEventListener("click", exportCSV);
-      $("#importJSON").addEventListener("click", importJSON);
-      $("#clearTransactions").addEventListener("click", clearTransactions);
-
-      $("#unlockStore").addEventListener("click", unlockStore);
-      $("#resetDemo").addEventListener("click", resetDemo);
-
-      $("#modalCancel").addEventListener("click", closeConfirm);
-      $("#modalBackdrop").addEventListener("click", event => {
-        if (event.target.id === "modalBackdrop") closeConfirm();
-      });
-      $("#modalConfirm").addEventListener("click", () => {
-        if (typeof pendingConfirm === "function") pendingConfirm();
-        closeConfirm();
-      });
+    function $(id){return document.getElementById(id)}
+    function money(n){return "€ " + Number(n || 0).toFixed(2).replace(".", ",")}
+    function points(n){return Math.max(0, Math.round(Number(n || 0)))}
+    function uid(prefix){return prefix + "_" + Date.now().toString(36) + "_" + Math.random().toString(36).slice(2,8)}
+    function today(){return new Date().toISOString()}
+    function niceDate(iso){
+      if(!iso) return "-";
+      return new Date(iso).toLocaleString("it-IT",{day:"2-digit",month:"2-digit",year:"numeric",hour:"2-digit",minute:"2-digit"});
     }
-
-    function setTab(tab) {
-      $$(".nav-btn").forEach(btn => btn.classList.toggle("active", btn.dataset.tab === tab));
-      $$(".screen").forEach(screen => screen.classList.toggle("active", screen.id === `screen-${tab}`));
-      window.scrollTo({top:0, behavior:"smooth"});
-
-      const names = {
-        home:"home",
-        pos:"cassa",
-        clients:"clienti",
-        rewards:"rewards",
-        activity:"storico",
-        profile:"profilo"
-      };
-
-      setConsole(`XA Club Console · ${names[tab] || "pronto"}`);
-
-      if (tab === "pos") {
-        updateStoreLock();
-        fillDefaultReceipt();
-        updatePOSPreview();
-      }
-    }
-
-    function setConsole(text) {
-      $("#consoleText").textContent = text.toUpperCase();
-    }
-
-    function renderAll() {
-      normalizeState();
-
-      const customer = getActiveCustomer();
-      const level = getLevel(customer);
-      const next = getNextLevel(customer);
-      const stats = getStoreStats();
-
-      $("#helloName").textContent = customer.name;
-      $("#topStatus").textContent = level.name;
-
-      $("#heroStatus").textContent = level.name;
-      $("#heroPoints").textContent = formatNumber(customer.points);
-      $("#heroSales").textContent = formatNumber(stats.salesCount);
-      $("#heroRevenue").textContent = formatMoney(stats.revenue);
-
-      $("#cardName").textContent = customer.name;
-      $("#cardId").textContent = customer.id;
-      $("#cardSince").textContent = customer.joined;
-      $("#cardSpend").textContent = formatMoney(customer.totalSpend || 0);
-      $("#cardTier").textContent = level.name;
-
-      $("#pointsBig").textContent = formatNumber(customer.points);
-      $("#lifetimePoints").textContent = formatNumber(customer.lifetimePoints);
-      $("#currentTierText").textContent = level.name;
-      $("#nextTierText").textContent = next ? next.name : "Massimo livello";
-      $("#toNext").textContent = next ? formatNumber(Math.max(0, next.min - customer.lifetimePoints)) : "0";
-      $("#tierBar").style.width = `${getProgressPercent(customer, level, next)}%`;
-
-      $("#qrMemberName").textContent = customer.name;
-      $("#qrMemberCode").textContent = customer.id;
-
-      $("#dashCustomers").textContent = formatNumber(state.customers.length);
-      $("#dashPoints").textContent = formatNumber(stats.activePoints);
-      $("#dashTransactions").textContent = formatNumber(state.transactions.length);
-      $("#dashRevenue").textContent = formatMoney(stats.revenue);
-
-      $("#posCustomer").textContent = customer.name;
-      $("#posPoints").textContent = `${formatNumber(customer.points)} pt`;
-      $("#posCode").textContent = customer.id;
-      $("#posStatus").textContent = level.name;
-      $("#posSpend").textContent = formatMoney(customer.totalSpend || 0);
-      $("#posLastVisit").textContent = customer.lastVisit || "—";
-
-      $("#profileName").value = customer.name;
-      $("#profileEmail").value = customer.email || "";
-      $("#profilePhone").value = customer.phone || "";
-      $("#profilePreferences").value = customer.preferences || "";
-      $("#profileNotes").value = customer.notes || "";
-
-      $("#profileMemberCode").textContent = customer.id;
-      $("#profileStatus").textContent = level.name;
-      $("#profilePoints").textContent = `${formatNumber(customer.points)} pt`;
-      $("#profilePurchases").textContent = formatNumber(customer.purchases || 0);
-      $("#profileSpend").textContent = formatMoney(customer.totalSpend || 0);
-      $("#profileLastVisit").textContent = customer.lastVisit || "—";
-
-      renderRewards();
-      renderActivity();
-      renderTransactions();
-      renderClients();
-      renderStoreSelects();
-      renderClientStats();
-      updatePOSPreview();
-      drawQR(`${customer.id}|${customer.name}|XA Fermented Redrinks`);
-    }
-
-    function renderRewards() {
-      const customer = getActiveCustomer();
-      const list = $("#rewardList");
-      list.innerHTML = "";
-
-      const visibleRewards = state.rewards.filter(reward => currentRewardFilter === "all" || reward.type === currentRewardFilter);
-
-      if (!visibleRewards.length) {
-        list.innerHTML = `<div class="empty">Nessun reward in questa categoria.</div>`;
-        return;
-      }
-
-      visibleRewards.forEach(reward => {
-        const canRedeem = customer.points >= reward.cost;
-        const redeemedCount = customer.redeemed?.[reward.id] || 0;
-
-        const el = document.createElement("article");
-        el.className = "reward";
-        el.innerHTML = `
-          <div class="reward-top">
-            <span class="tag">${escapeHTML(reward.badge)}</span>
-            <span class="tag">${escapeHTML(reward.limit)}</span>
-          </div>
-          <h3>${escapeHTML(reward.title)}</h3>
-          <p>${escapeHTML(reward.desc)}</p>
-          <div class="reward-bottom">
-            <div class="price">
-              <strong>${formatNumber(reward.cost)} pt</strong>
-              <small>${redeemedCount ? `Riscattato ${redeemedCount}x` : "Disponibile"}</small>
-            </div>
-            <button class="btn ${canRedeem ? "btn-primary" : "btn-secondary"} btn-small" data-reward="${reward.id}">
-              ${canRedeem ? "Riscatta" : "Punti insufficienti"}
-            </button>
-          </div>
-        `;
-
-        el.querySelector("[data-reward]").addEventListener("click", () => redeemReward(reward.id));
-        list.appendChild(el);
-      });
-    }
-
-    function renderActivity() {
-      const customer = getActiveCustomer();
-      const list = $("#activityList");
-      list.innerHTML = "";
-
-      if (!customer.history || !customer.history.length) {
-        list.innerHTML = `<div class="empty">Nessun movimento registrato per questo cliente.</div>`;
-        return;
-      }
-
-      customer.history.slice(0,80).forEach(item => {
-        const sign = item.points > 0 ? "+" : "";
-        const pointsClass = item.points > 0 ? "positive" : item.points < 0 ? "negative" : "";
-        const icon = getActivityIcon(item.type);
-
-        const el = document.createElement("article");
-        el.className = "activity";
-        el.innerHTML = `
-          <div class="activity-icon">${icon}</div>
-          <div>
-            <h4>${escapeHTML(item.title)}</h4>
-            <p>${escapeHTML(item.note)}<br>${escapeHTML(item.date)}</p>
-          </div>
-          <strong class="${pointsClass}">${item.points === 0 ? "—" : `${sign}${formatNumber(item.points)}`}</strong>
-        `;
-        list.appendChild(el);
-      });
-    }
-
-    function renderTransactions() {
-      const list = $("#transactionList");
-      list.innerHTML = "";
-
-      if (!state.transactions.length) {
-        list.innerHTML = `<div class="empty">Nessuna transazione registrata.</div>`;
-        return;
-      }
-
-      state.transactions.slice(0,60).forEach(transaction => {
-        const typeLabel = getTransactionTypeLabel(transaction.type);
-        const pointsClass = transaction.points > 0 ? "positive" : transaction.points < 0 ? "negative" : "";
-        const sign = transaction.points > 0 ? "+" : "";
-
-        const el = document.createElement("article");
-        el.className = "transaction-row";
-        el.innerHTML = `
-          <div class="transaction-top">
-            <span class="tag">${escapeHTML(typeLabel)}</span>
-            <span class="tag">${escapeHTML(transaction.source || "manual")}</span>
-          </div>
-          <h3>${escapeHTML(transaction.customer_name || transaction.customer_id)}</h3>
-          <p>
-            Scontrino: ${escapeHTML(transaction.receipt_number || "—")}<br>
-            Categoria: ${escapeHTML(transaction.category_label || "—")}<br>
-            Data: ${escapeHTML(transaction.date_label || "—")}
-          </p>
-          <div class="transaction-bottom">
-            <div class="price">
-              <strong>${formatMoney(transaction.amount || 0)}</strong>
-              <small>${escapeHTML(transaction.operator || "Negozio XA")}</small>
-            </div>
-            <strong class="${pointsClass}">${transaction.points === 0 ? "—" : `${sign}${formatNumber(transaction.points)} pt`}</strong>
-          </div>
-        `;
-        list.appendChild(el);
-      });
-    }
-
-    function renderClients() {
-      const list = $("#clientList");
-      const query = ($("#clientSearch").value || "").trim().toLowerCase();
-      list.innerHTML = "";
-
-      const filtered = state.customers.filter(customer => {
-        const blob = `${customer.name} ${customer.email} ${customer.phone} ${customer.id}`.toLowerCase();
-        return !query || blob.includes(query);
-      });
-
-      if (!filtered.length) {
-        list.innerHTML = `<div class="empty">Nessun cliente trovato.</div>`;
-        return;
-      }
-
-      filtered.forEach(customer => {
-        const level = getLevel(customer);
-        const active = customer.id === state.activeCustomerId;
-
-        const el = document.createElement("article");
-        el.className = "client-row";
-        el.innerHTML = `
-          <div class="client-top">
-            <span class="tag">${active ? "Attivo" : "Cliente"}</span>
-            <span class="tag">${escapeHTML(level.name)}</span>
-          </div>
-          <h3>${escapeHTML(customer.name)}</h3>
-          <p>
-            ${escapeHTML(customer.id)}<br>
-            ${escapeHTML(customer.email || "email non inserita")} · ${escapeHTML(customer.phone || "telefono non inserito")}<br>
-            Acquisti: ${formatNumber(customer.purchases || 0)} · Spesa: ${formatMoney(customer.totalSpend || 0)}
-          </p>
-          <div class="reward-bottom">
-            <div class="price">
-              <strong>${formatNumber(customer.points)} pt</strong>
-              <small>${formatNumber(customer.lifetimePoints)} lifetime</small>
-            </div>
-            <div class="client-actions">
-              <button class="btn btn-primary btn-small" data-open="${customer.id}">Apri</button>
-              <button class="btn btn-secondary btn-small" data-cash="${customer.id}">Cassa</button>
-              <button class="btn btn-danger btn-small" data-delete="${customer.id}">Elimina</button>
-            </div>
-          </div>
-        `;
-
-        el.querySelector("[data-open]").addEventListener("click", () => {
-          state.activeCustomerId = customer.id;
-          saveState();
-          renderAll();
-          setTab("home");
-          toast(`Cliente aperto: ${customer.name}`);
-        });
-
-        el.querySelector("[data-cash]").addEventListener("click", () => {
-          state.activeCustomerId = customer.id;
-          saveState();
-          renderAll();
-          setTab("pos");
-          toast(`Cliente in cassa: ${customer.name}`);
-        });
-
-        el.querySelector("[data-delete]").addEventListener("click", () => deleteCustomer(customer.id));
-        list.appendChild(el);
-      });
-    }
-
-    function renderClientStats() {
-      const totalClients = state.customers.length;
-      const totalPoints = state.customers.reduce((sum, customer) => sum + Number(customer.points || 0),0);
-      const top = [...state.customers].sort((a,b) => b.lifetimePoints - a.lifetimePoints)[0];
-
-      $("#clientsTotal").textContent = formatNumber(totalClients);
-      $("#clientsPoints").textContent = formatNumber(totalPoints);
-      $("#topClientShort").textContent = top ? formatNumber(top.lifetimePoints) : "0";
-      $("#topClientName").textContent = top ? top.name : "—";
-    }
-
-    function renderStoreSelects() {
-      const customerSelect = $("#posClientSelect");
-      const categorySelect = $("#posCategory");
-      const rewardSelect = $("#shopRewardSelect");
-
-      const activeId = state.activeCustomerId;
-
-      customerSelect.innerHTML = "";
-      categorySelect.innerHTML = "";
-      rewardSelect.innerHTML = "";
-
-      state.customers.forEach(customer => {
-        const option = document.createElement("option");
-        option.value = customer.id;
-        option.textContent = `${customer.name} — ${customer.id} — ${formatNumber(customer.points)} pt`;
-        option.selected = customer.id === activeId;
-        customerSelect.appendChild(option);
-      });
-
-      state.categories.forEach(category => {
-        const option = document.createElement("option");
-        option.value = category.id;
-        option.textContent = `${category.label} — ${category.multiplier}x`;
-        categorySelect.appendChild(option);
-      });
-
-      state.rewards.forEach(reward => {
-        const option = document.createElement("option");
-        option.value = reward.id;
-        option.textContent = `${reward.title} — ${formatNumber(reward.cost)} pt`;
-        rewardSelect.appendChild(option);
-      });
-
-      if (!$("#posOperator").value.trim()) {
-        $("#posOperator").value = "Negozio XA";
-      }
-    }
-
-    function createCustomer() {
-      const name = $("#newName").value.trim();
-      if (!name) {
-        toast("Inserisci il nome del cliente.");
-        return;
-      }
-
-      const customer = {
-        id: nextCustomerId(),
-        name,
-        email: $("#newEmail").value.trim(),
-        phone: $("#newPhone").value.trim(),
-        points:0,
-        lifetimePoints:0,
-        totalSpend:0,
-        purchases:0,
-        joined: new Date().toLocaleDateString("it-IT",{day:"2-digit", month:"long", year:"numeric"}),
-        lastVisit:"—",
-        preferences: $("#newPrefs").value.trim() || "Nuovo membro XA.",
-        notes:"",
-        redeemed:{},
-        history:[{
-          id: makeId(),
-          title:"Nuova card XA",
-          note:"Cliente creato nel gestionale negozio",
-          points:0,
-          date: nowLabel(),
-          type:"member"
-        }]
-      };
-
-      state.customers.unshift(customer);
-      state.activeCustomerId = customer.id;
-      saveState();
-
-      $("#newCustomerForm").reset();
-      renderAll();
-      setTab("home");
-      toast(`Card creata: ${customer.name}`);
-    }
-
-    function saveProfile() {
-      const customer = getActiveCustomer();
-      customer.name = $("#profileName").value.trim() || "Membro XA";
-      customer.email = $("#profileEmail").value.trim();
-      customer.phone = $("#profilePhone").value.trim();
-      customer.preferences = $("#profilePreferences").value.trim();
-      customer.notes = $("#profileNotes").value.trim();
-
-      addHistory(customer,{title:"Profilo aggiornato", note:"Dati membro modificati", points:0, type:"profile"});
-      saveState();
-      renderAll();
-      toast("Profilo cliente salvato.");
-    }
-
-    function createSaleTransaction() {
-      const customer = getActiveCustomer();
-      const amount = Number($("#posAmount").value);
-      const category = getCategory($("#posCategory").value);
-
-      if (!amount || amount <= 0) {
-        toast("Inserisci un importo vendita valido.");
-        return;
-      }
-
-      const receipt = $("#posReceipt").value.trim() || nextReceiptNumber();
-      const operator = $("#posOperator").value.trim() || "Negozio XA";
-      const note = $("#posNote").value.trim() || "Vendita XA Store";
-      const points = calculatePoints(amount, category.multiplier);
-
-      openConfirm({
-        title:"Confermare vendita?",
-        text:`${customer.name}: ${formatMoney(amount)} · ${category.label} · ${points} punti · scontrino ${receipt}.`,
-        onConfirm: () => {
-          addPointsTransaction({
-            customer,
-            points,
-            amount,
-            type:"sale",
-            receipt_number:receipt,
-            product_category:category.id,
-            category_label:category.label,
-            multiplier:category.multiplier,
-            operator,
-            note,
-            source:"manual_pos"
-          });
-
-          clearPosFields();
-          $("#posReceipt").value = nextReceiptNumber();
-          updatePOSPreview();
-          toast(`Vendita registrata: +${points} punti a ${customer.name}.`);
-        }
-      });
-    }
-
-    function addPointsTransaction(data) {
-      const customer = data.customer;
-
-      customer.points += data.points;
-      customer.lifetimePoints += Math.max(0,data.points);
-      customer.totalSpend = Number(customer.totalSpend || 0) + Number(data.amount || 0);
-
-      if (data.type === "sale") {
-        customer.purchases = Number(customer.purchases || 0) + 1;
-        customer.lastVisit = nowLabel();
-      }
-
-      const transaction = {
-        id: makeTransactionId(),
-        type:data.type,
-        customer_id:customer.id,
-        customer_name:customer.name,
-        receipt_number:data.receipt_number,
-        amount:Number(data.amount || 0),
-        points:Number(data.points || 0),
-        product_category:data.product_category,
-        category_label:data.category_label,
-        multiplier:Number(data.multiplier || 1),
-        operator:data.operator || "Negozio XA",
-        note:data.note || "",
-        date_iso:new Date().toISOString(),
-        date_label:nowLabel(),
-        source:data.source || "manual_pos",
-        pos_ready:true
-      };
-
-      state.transactions.unshift(transaction);
-
-      addHistory(customer,{
-        title: data.type === "sale" ? "Vendita registrata" : "Bonus punti",
-        note:`${data.note || data.category_label} · ${data.receipt_number}`,
-        points:data.points,
-        type:data.type === "sale" ? "earn" : "bonus"
-      });
-
-      saveState();
-      renderAll();
-    }
-
-    function assignBonus() {
-      const customer = getActiveCustomer();
-
-      openConfirm({
-        title:"Assegnare bonus?",
-        text:`Vuoi assegnare 50 punti bonus a ${customer.name}?`,
-        onConfirm: () => {
-          addPointsTransaction({
-            customer,
-            points:50,
-            amount:0,
-            type:"bonus",
-            receipt_number:nextBonusNumber(),
-            product_category:"manual_bonus",
-            category_label:"Bonus manuale",
-            multiplier:1,
-            operator: $("#posOperator").value.trim() || "Negozio XA",
-            note:"Bonus evento / invito XA",
-            source:"loyalty_app"
-          });
-
-          toast(`+50 punti bonus a ${customer.name}.`);
-        }
-      });
-    }
-
-    function redeemReward(id) {
-      const customer = getActiveCustomer();
-      const reward = state.rewards.find(item => item.id === id);
-
-      if (!reward) return;
-
-      if (customer.points < reward.cost) {
-        toast(`Servono ${formatNumber(reward.cost - customer.points)} punti in più.`);
-        return;
-      }
-
-      openConfirm({
-        title:"Confermare il riscatto?",
-        text:`${reward.title} verrà riscattato per ${customer.name} usando ${formatNumber(reward.cost)} punti XA.`,
-        onConfirm: () => {
-          customer.points -= reward.cost;
-          customer.redeemed = customer.redeemed || {};
-          customer.redeemed[reward.id] = (customer.redeemed[reward.id] || 0) + 1;
-
-          state.transactions.unshift({
-            id:makeTransactionId(),
-            type:"reward_redeem",
-            customer_id:customer.id,
-            customer_name:customer.name,
-            receipt_number:nextRedeemNumber(),
-            amount:0,
-            points:-reward.cost,
-            reward_id:reward.id,
-            reward_title:reward.title,
-            product_category:"reward",
-            category_label:"Riscatto premio",
-            multiplier:0,
-            operator:$("#posOperator").value.trim() || "Negozio XA",
-            note:reward.title,
-            date_iso:new Date().toISOString(),
-            date_label:nowLabel(),
-            source:"loyalty_app",
-            pos_ready:true
-          });
-
-          addHistory(customer,{title:"Riscatto reward", note:reward.title, points:-reward.cost, type:"redeem"});
-          saveState();
-          renderAll();
-          toast(`Reward riscattato: ${reward.title}`);
-        }
-      });
-    }
-
-    function deleteCustomer(id) {
-      const customer = state.customers.find(item => item.id === id);
-      if (!customer) return;
-
-      if (state.customers.length <= 1) {
-        toast("Deve restare almeno un cliente.");
-        return;
-      }
-
-      openConfirm({
-        title:"Eliminare cliente?",
-        text:`Vuoi eliminare la card di ${customer.name}? Questa azione rimuove dati e storico dal dispositivo.`,
-        onConfirm: () => {
-          state.customers = state.customers.filter(item => item.id !== id);
-          if (state.activeCustomerId === id) state.activeCustomerId = state.customers[0].id;
-          saveState();
-          renderAll();
-          toast("Cliente eliminato.");
-        }
-      });
-    }
-
-    function scanDemo() {
-      const customer = getActiveCustomer();
-      toast(`QR riconosciuto: ${customer.id} — ${customer.name}`);
-    }
-
-    function exportJSON() {
-      const box = $("#exportBox");
-      box.style.display = "block";
-      box.value = JSON.stringify(state,null,2);
-      toast("JSON completo esportato nel riquadro.");
-    }
-
-    function exportCSV() {
-      const box = $("#exportBox");
-      box.style.display = "block";
-      box.value = exportTransactionsCSV();
-      toast("CSV vendite esportato nel riquadro.");
-    }
-
-    function importJSON() {
-      const raw = $("#importBox").value.trim();
-
-      if (!raw) {
-        toast("Incolla prima un backup JSON.");
-        return;
-      }
-
-      try {
-        const parsed = JSON.parse(raw);
-
-        if (!Array.isArray(parsed.customers)) {
-          toast("Backup non valido: mancano i clienti.");
-          return;
-        }
-
-        openConfirm({
-          title:"Importare backup?",
-          text:"I dati attuali verranno sostituiti dal backup incollato.",
-          onConfirm: () => {
-            state = {
-              ...clone(demoState),
-              ...parsed,
-              rewards: Array.isArray(parsed.rewards) && parsed.rewards.length ? parsed.rewards : rewards,
-              categories: Array.isArray(parsed.categories) && parsed.categories.length ? parsed.categories : categories,
-              customers: parsed.customers,
-              transactions: Array.isArray(parsed.transactions) ? parsed.transactions : []
-            };
-            saveState();
-            renderAll();
-            toast("Backup importato.");
-          }
-        });
-      } catch (error) {
-        toast("JSON non valido.");
-      }
-    }
-
-    function clearTransactions() {
-      openConfirm({
-        title:"Svuotare transazioni?",
-        text:"Verranno eliminate le transazioni globali. I punti già assegnati ai clienti non verranno ricalcolati.",
-        onConfirm: () => {
-          state.transactions = [];
-          saveState();
-          renderAll();
-          toast("Transazioni svuotate.");
-        }
-      });
-    }
-
-    function unlockStore() {
-      const pin = $("#storePin").value.trim();
-
-      if (pin !== STORE_PIN) {
-        toast("PIN cassa non corretto.");
-        return;
-      }
-
-      sessionStorage.setItem("xa_store_unlocked","1");
-      $("#storePin").value = "";
-      updateStoreLock();
-      toast("Cassa XA sbloccata.");
-    }
-
-    function resetDemo() {
-      openConfirm({
-        title:"Ripristinare la demo XA?",
-        text:"Tutti i clienti e le transazioni locali verranno sostituiti dai dati demo iniziali.",
-        onConfirm: () => {
-          localStorage.removeItem(STORAGE_KEY);
-          OLD_KEYS.forEach(key => localStorage.removeItem(key));
-          sessionStorage.removeItem("xa_store_unlocked");
-          state = clone(demoState);
-          saveState();
-          fillDefaultReceipt();
-          renderAll();
-          updateStoreLock();
-          toast("Demo XA V8 ripristinata.");
-        }
-      });
-    }
-
-    function clearPosFields() {
-      $("#posAmount").value = "";
-      $("#posNote").value = "";
-    }
-
-    function updatePOSPreview() {
-      const customer = getActiveCustomer();
-      const amount = Number($("#posAmount").value || 0);
-      const category = getCategory($("#posCategory").value);
-      const points = calculatePoints(amount, category.multiplier);
-
-      $("#previewClient").textContent = customer.name;
-      $("#previewMultiplier").textContent = `${category.multiplier}x`;
-      $("#previewPoints").textContent = formatNumber(points);
-    }
-
-    function fillDefaultReceipt() {
-      const input = $("#posReceipt");
-      if (input && !input.value.trim()) input.value = nextReceiptNumber();
-    }
-
-    function updateStoreLock() {
-      const unlocked = sessionStorage.getItem("xa_store_unlocked") === "1";
-      $("#storeLock").classList.toggle("show", !unlocked);
-      $("#storeArea").classList.toggle("locked", !unlocked);
-    }
-
-    function getActiveCustomer() {
-      let customer = state.customers.find(item => item.id === state.activeCustomerId);
-
-      if (!customer) {
-        customer = state.customers[0];
-        state.activeCustomerId = customer.id;
-        saveState();
-      }
-
-      customer.points = Number(customer.points || 0);
-      customer.lifetimePoints = Number(customer.lifetimePoints || 0);
-      customer.totalSpend = Number(customer.totalSpend || 0);
-      customer.purchases = Number(customer.purchases || 0);
-      customer.redeemed = customer.redeemed || {};
-      customer.history = customer.history || [];
-      customer.notes = customer.notes || "";
-      customer.lastVisit = customer.lastVisit || "—";
-
-      return customer;
-    }
-
-    function getLevel(customer) {
-      let current = levels[0];
-      levels.forEach(level => {
-        if (customer.lifetimePoints >= level.min) current = level;
-      });
-      return current;
-    }
-
-    function getNextLevel(customer) {
-      return levels.find(level => level.min > customer.lifetimePoints) || null;
-    }
-
-    function getProgressPercent(customer,current,next) {
-      if (!next) return 100;
-      const range = next.min - current.min;
-      const gained = customer.lifetimePoints - current.min;
-      return Math.max(5, Math.min(100, Math.round((gained / range) * 100)));
-    }
-
-    function getStoreStats() {
-      const activePoints = state.customers.reduce((sum, customer) => sum + Number(customer.points || 0),0);
-      const sales = state.transactions.filter(t => t.type === "sale");
-      const revenue = sales.reduce((sum, t) => sum + Number(t.amount || 0),0);
-      return { activePoints, salesCount:sales.length, revenue };
-    }
-
-    function getCategory(id) {
-      return state.categories.find(category => category.id === id) || state.categories[0];
-    }
-
-    function calculatePoints(amount,multiplier) {
-      return Math.max(0, Math.floor(Number(amount || 0) * Number(multiplier || 1)));
-    }
-
-    function addHistory(customer,entry) {
-      customer.history = customer.history || [];
-      customer.history.unshift({
-        id: makeId(),
-        title: entry.title,
-        note: entry.note,
-        points: entry.points,
-        type: entry.type || "generic",
-        date: nowLabel()
-      });
-    }
-
-    function loadState() {
-      try {
-        let raw = localStorage.getItem(STORAGE_KEY);
-
-        if (!raw) {
-          for (const key of OLD_KEYS) {
-            raw = localStorage.getItem(key);
-            if (raw) break;
-          }
-        }
-
-        if (!raw) {
-          const fresh = clone(demoState);
-          localStorage.setItem(STORAGE_KEY, JSON.stringify(fresh));
-          return fresh;
-        }
-
-        const parsed = JSON.parse(raw);
-
-        const loaded = {
-          ...clone(demoState),
-          ...parsed,
-          rewards: Array.isArray(parsed.rewards) && parsed.rewards.length ? parsed.rewards : rewards,
-          categories: Array.isArray(parsed.categories) && parsed.categories.length ? parsed.categories : categories,
-          customers: Array.isArray(parsed.customers) && parsed.customers.length ? parsed.customers : clone(demoState.customers),
-          transactions: Array.isArray(parsed.transactions) ? parsed.transactions : []
-        };
-
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(loaded));
-        return loaded;
-      } catch (error) {
-        console.warn("XA localStorage reset", error);
-        return clone(demoState);
-      }
-    }
-
-    function normalizeState() {
-      state.rewards = Array.isArray(state.rewards) && state.rewards.length ? state.rewards : rewards;
-      state.categories = Array.isArray(state.categories) && state.categories.length ? state.categories : categories;
-      state.transactions = Array.isArray(state.transactions) ? state.transactions : [];
-      state.customers = Array.isArray(state.customers) && state.customers.length ? state.customers : clone(demoState.customers);
-
-      state.customers.forEach(customer => {
-        customer.points = Number(customer.points || 0);
-        customer.lifetimePoints = Number(customer.lifetimePoints || 0);
-        customer.totalSpend = Number(customer.totalSpend || 0);
-        customer.purchases = Number(customer.purchases || 0);
-        customer.lastVisit = customer.lastVisit || "—";
-        customer.notes = customer.notes || "";
-        customer.redeemed = customer.redeemed || {};
-        customer.history = customer.history || [];
-      });
-    }
-
-    function saveState() {
-      normalizeState();
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-    }
-
-    function seedCustomer(data) {
-      return {
-        id:data.id,
-        name:data.name,
-        email:data.email || "",
-        phone:data.phone || "",
-        points:Number(data.points || 0),
-        lifetimePoints:Number(data.lifetimePoints || 0),
-        totalSpend:Number(data.totalSpend || 0),
-        purchases:Number(data.purchases || 0),
-        joined:data.joined || "04 Luglio 2026",
-        lastVisit:data.lastVisit || "—",
-        preferences:data.preferences || "",
-        notes:data.notes || "",
-        redeemed:{},
-        history:[
-          { id:makeId(), title:"Ingresso Club XA", note:"Profilo membro attivato", points:0, date:"04/07/2026, 09:10", type:"member" },
-          { id:makeId(), title:"Saldo iniziale demo", note:"Punti caricati nel gestionale", points:Number(data.points || 0), date:"04/07/2026, 09:18", type:"earn" }
-        ]
-      };
-    }
-
-    function seedTransaction(data) {
-      return {
-        id:data.id || makeTransactionId(),
-        type:data.type,
-        customer_id:data.customer_id,
-        customer_name:data.customer_name,
-        receipt_number:data.receipt_number,
-        amount:Number(data.amount || 0),
-        points:Number(data.points || 0),
-        product_category:data.product_category,
-        category_label:data.category_label,
-        multiplier:Number(data.multiplier || 1),
-        operator:data.operator || "Negozio XA",
-        note:data.note || "",
-        date_iso:new Date().toISOString(),
-        date_label:"04/07/2026, 09:18",
-        source:data.source || "manual_pos",
-        pos_ready:true
-      };
-    }
-
-    function nextCustomerId() {
-      const year = new Date().getFullYear();
-      const numbers = state.customers.map(customer => Number(String(customer.id).split("-").slice(-1)[0])).filter(Number.isFinite);
-      const next = Math.max(0,...numbers) + 1;
-      return `XA-${year}-${String(next).padStart(4,"0")}`;
-    }
-
-    function nextReceiptNumber() {
-      const year = new Date().getFullYear();
-      const count = state.transactions.filter(t => t.type === "sale").length + 1;
-      return `XA-${year}-${String(count).padStart(6,"0")}`;
-    }
-
-    function nextBonusNumber() {
-      const year = new Date().getFullYear();
-      const count = state.transactions.filter(t => t.type === "bonus").length + 1;
-      return `BONUS-${year}-${String(count).padStart(6,"0")}`;
-    }
-
-    function nextRedeemNumber() {
-      const year = new Date().getFullYear();
-      const count = state.transactions.filter(t => t.type === "reward_redeem").length + 1;
-      return `REWARD-${year}-${String(count).padStart(6,"0")}`;
-    }
-
-    function makeTransactionId() {
-      return `TRX-${Date.now()}-${Math.random().toString(16).slice(2,8).toUpperCase()}`;
-    }
-
-    function exportTransactionsCSV() {
-      const headers = [
-        "transaction_id","type","customer_id","customer_name","receipt_number","amount","points",
-        "product_category","category_label","multiplier","operator","note","date_iso","date_label","source"
-      ];
-
-      const rows = state.transactions.map(t => headers.map(key => csvCell(t[key] ?? "")).join(","));
-      return [headers.join(","),...rows].join("\n");
-    }
-
-    function csvCell(value) {
-      const text = String(value).replaceAll('"','""');
-      return `"${text}"`;
-    }
-
-    function toast(message) {
-      const wrap = $("#toastWrap");
-      const el = document.createElement("div");
-      el.className = "toast";
-      el.innerHTML = `<span>✦</span><span>${escapeHTML(message)}</span>`;
-      wrap.appendChild(el);
-
-      setTimeout(() => {
-        el.style.opacity = "0";
-        el.style.transform = "translateY(10px)";
-        el.style.transition = "opacity .22s ease, transform .22s ease";
-      },2600);
-
-      setTimeout(() => el.remove(),2920);
-    }
-
-    function openConfirm({title,text,onConfirm}) {
-      $("#modalTitle").textContent = title;
-      $("#modalText").textContent = text;
-      pendingConfirm = onConfirm;
-      $("#modalBackdrop").classList.add("show");
-    }
-
-    function closeConfirm() {
-      $("#modalBackdrop").classList.remove("show");
-      pendingConfirm = null;
-    }
-
-    function drawQR(payload) {
-      const canvas = $("#qrCanvas");
-      const ctx = canvas.getContext("2d");
-      const size = 112;
-      const cells = 29;
-      const cell = Math.floor(size / cells);
-      const actual = cell * cells;
-      const offset = Math.floor((size - actual) / 2);
-
-      ctx.fillStyle = "#fff7e7";
-      ctx.fillRect(0,0,size,size);
-
-      const seed = hashString(payload);
-
-      function randomDark(x,y) {
-        const n = Math.sin((x * 928371 + y * 364479 + seed) * .00017) * 10000;
-        return (n - Math.floor(n)) > .535;
-      }
-
-      function drawCell(x,y,dark = true) {
-        ctx.fillStyle = dark ? "#170708" : "#fff7e7";
-        ctx.fillRect(offset + x * cell, offset + y * cell, cell, cell);
-      }
-
-      function finder(x,y) {
-        for (let yy = 0; yy < 7; yy++) {
-          for (let xx = 0; xx < 7; xx++) {
-            const edge = xx === 0 || yy === 0 || xx === 6 || yy === 6;
-            const center = xx >= 2 && xx <= 4 && yy >= 2 && yy <= 4;
-            drawCell(x + xx, y + yy, edge || center);
-          }
-        }
-      }
-
-      for (let y = 0; y < cells; y++) {
-        for (let x = 0; x < cells; x++) {
-          const inFinder = (x < 8 && y < 8) || (x > 20 && y < 8) || (x < 8 && y > 20);
-          if (!inFinder && randomDark(x,y)) drawCell(x,y,true);
-        }
-      }
-
-      finder(0,0);
-      finder(22,0);
-      finder(0,22);
-
-      ctx.fillStyle = "#7e1e24";
-      ctx.fillRect(offset + 13 * cell, offset + 13 * cell, cell * 3, cell * 3);
-      ctx.fillStyle = "#fff7e7";
-      ctx.font = "bold 8px Georgia";
-      ctx.textAlign = "center";
-      ctx.textBaseline = "middle";
-      ctx.fillText("XA", offset + 14.5 * cell, offset + 14.5 * cell);
-    }
-
-    function hashString(value) {
-      let hash = 0;
-      for (let i = 0; i < value.length; i++) {
-        hash = ((hash << 5) - hash) + value.charCodeAt(i);
-        hash |= 0;
-      }
-      return Math.abs(hash);
-    }
-
-    function nowLabel() {
-      return new Date().toLocaleString("it-IT",{
-        day:"2-digit",
-        month:"2-digit",
-        year:"numeric",
-        hour:"2-digit",
-        minute:"2-digit"
-      });
-    }
-
-    function formatNumber(number) {
-      return Number(number || 0).toLocaleString("it-IT");
-    }
-
-    function formatMoney(number) {
-      return Number(number || 0).toLocaleString("it-IT",{style:"currency", currency:"EUR"});
-    }
-
-    function escapeHTML(value) {
-      return String(value ?? "").replace(/[&<>"']/g, char => ({
+    function escapeHTML(str){
+      return String(str || "").replace(/[&<>"']/g, s => ({
         "&":"&amp;",
         "<":"&lt;",
         ">":"&gt;",
         '"':"&quot;",
         "'":"&#039;"
-      }[char]));
+      }[s]));
     }
 
-    function clone(value) {
-      if (typeof structuredClone === "function") return structuredClone(value);
-      return JSON.parse(JSON.stringify(value));
+    function loadData(){
+      const raw = localStorage.getItem(STORE_KEY);
+      if(raw){
+        try{
+          const parsed = JSON.parse(raw);
+          if(parsed && Array.isArray(parsed.clients) && Array.isArray(parsed.transactions)) return parsed;
+        }catch(e){}
+      }
+
+      const demoClient = {
+        id:uid("client"),
+        code:"XA-" + Math.floor(100000 + Math.random()*899999),
+        name:"Cliente Demo XA",
+        phone:"",
+        email:"",
+        tier:"XA Member",
+        notes:"Cliente demo per provare punti, cassa e rewards.",
+        points:180,
+        totalSpend:86.50,
+        visits:2,
+        createdAt:today(),
+        lastVisit:today()
+      };
+
+      return {
+        version:"8.1",
+        activeClientId:demoClient.id,
+        clients:[demoClient],
+        transactions:[
+          {
+            id:uid("tx"),
+            clientId:demoClient.id,
+            type:"bonus",
+            title:"Benvenuto nel club",
+            amount:0,
+            points:180,
+            category:"Bonus iniziale",
+            multiplier:0,
+            note:"Demo V8.1",
+            date:today(),
+            receipt:"XA MEMBER CLUB\\nBonus iniziale demo\\n+180 punti"
+          }
+        ]
+      };
     }
 
-    function makeId() {
-      if (window.crypto && crypto.randomUUID) return crypto.randomUUID();
-      return `xa-${Date.now()}-${Math.random().toString(16).slice(2)}`;
+    function saveData(){
+      data.activeClientId = activeClientId;
+      localStorage.setItem(STORE_KEY, JSON.stringify(data));
+      renderAll();
     }
 
-    function getActivityIcon(type) {
-      const icons = { earn:"+", sale:"+", bonus:"+", redeem:"✓", member:"XA", profile:"◎", generic:"•" };
-      return icons[type] || icons.generic;
+    function activeClient(){
+      return data.clients.find(c => c.id === activeClientId) || null;
     }
 
-    function getTransactionTypeLabel(type) {
-      const labels = { sale:"Vendita", bonus:"Bonus", reward_redeem:"Riscatto" };
-      return labels[type] || "Movimento";
+    function showToast(msg){
+      const t = $("toast");
+      t.textContent = msg;
+      t.classList.add("show");
+      setTimeout(()=>t.classList.remove("show"),1900);
     }
+
+    function showTab(tab){
+      document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
+      document.querySelectorAll(".nav button").forEach(b => b.classList.remove("active"));
+      $(tab).classList.add("active");
+      const btn = document.querySelector('.nav button[data-tab="'+tab+'"]');
+      if(btn) btn.classList.add("active");
+      renderAll();
+      window.scrollTo({top:0,behavior:"smooth"});
+    }
+
+    function stopHome(){
+      $("clientSearch").value = "";
+      $("saleAmount").value = "";
+      $("saleNote").value = "";
+      showTab("home");
+      showToast("Home / reset operazione");
+    }
+
+    function playOpenClient(){
+      if(!activeClient()){
+        openNewClientModal();
+        showToast("Crea prima un cliente");
+        return;
+      }
+      showTab("profile");
+    }
+
+    function openNewClientModal(){
+      $("newName").value = "";
+      $("newPhone").value = "";
+      $("newEmail").value = "";
+      $("newTier").value = "XA Member";
+      $("newNotes").value = "";
+      $("newClientModal").classList.add("active");
+      setTimeout(()=>$("newName").focus(),150);
+    }
+
+    function closeModal(id){
+      $(id).classList.remove("active");
+    }
+
+    function createClient(){
+      const name = $("newName").value.trim();
+      if(!name){
+        showToast("Inserisci il nome cliente");
+        return;
+      }
+
+      const client = {
+        id:uid("client"),
+        code:"XA-" + Math.floor(100000 + Math.random()*899999),
+        name:name,
+        phone:$("newPhone").value.trim(),
+        email:$("newEmail").value.trim(),
+        tier:$("newTier").value,
+        notes:$("newNotes").value.trim(),
+        points:0,
+        totalSpend:0,
+        visits:0,
+        createdAt:today(),
+        lastVisit:null
+      };
+
+      data.clients.unshift(client);
+      activeClientId = client.id;
+
+      data.transactions.unshift({
+        id:uid("tx"),
+        clientId:client.id,
+        type:"create",
+        title:"Nuova card cliente",
+        amount:0,
+        points:0,
+        category:"Club",
+        multiplier:0,
+        note:"Creazione card " + client.code,
+        date:today(),
+        receipt:"XA MEMBER CLUB\\nNuova card cliente\\n" + client.name + "\\n" + client.code
+      });
+
+      closeModal("newClientModal");
+      saveData();
+      showTab("profile");
+      showToast("Card cliente creata");
+    }
+
+    function selectClient(id, goProfile=false){
+      activeClientId = id;
+      data.activeClientId = id;
+      localStorage.setItem(STORE_KEY, JSON.stringify(data));
+      renderAll();
+      const c = activeClient();
+      if(c) $("activeStatus").textContent = "Cliente attivo: " + c.name;
+      if(goProfile) showTab("profile");
+      else showToast("Cliente selezionato");
+    }
+
+    function sendToCash(id){
+      selectClient(id,false);
+      openCashTab();
+    }
+
+    function deleteClient(id){
+      const c = data.clients.find(x=>x.id===id);
+      if(!c) return;
+      if(!confirm("Eliminare il cliente " + c.name + "?")) return;
+
+      data.clients = data.clients.filter(x=>x.id!==id);
+      data.transactions = data.transactions.filter(t=>t.clientId!==id);
+
+      if(activeClientId === id){
+        activeClientId = data.clients[0] ? data.clients[0].id : null;
+      }
+
+      saveData();
+      showToast("Cliente eliminato");
+      showTab("clients");
+    }
+
+    function openCashTab(){
+      if(!cashUnlocked){
+        $("cashPin").value = "";
+        $("pinModal").classList.add("active");
+        setTimeout(()=>$("cashPin").focus(),150);
+        return;
+      }
+      showTab("cash");
+    }
+
+    function unlockCash(){
+      if($("cashPin").value.trim() === PIN_CASSA){
+        cashUnlocked = true;
+        closeModal("pinModal");
+        showTab("cash");
+        showToast("Cassa XA sbloccata");
+      }else{
+        showToast("PIN non corretto");
+      }
+    }
+
+    function currentMultiplier(){
+      const sel = $("saleCategory");
+      const opt = sel.options[sel.selectedIndex];
+      return Number(opt.dataset.mult || 1);
+    }
+
+    function currentCategory(){
+      return $("saleCategory").value;
+    }
+
+    function updateReceiptPreview(){
+      const c = activeClient();
+      const amount = Number($("saleAmount").value || 0);
+      const mult = currentMultiplier();
+      const p = Math.floor(amount * mult);
+      const note = $("saleNote").value.trim();
+
+      $("receiptPreview").textContent =
+`XA MEMBER CLUB
+------------------------------
+Cliente: ${c ? c.name : "Nessun cliente selezionato"}
+Codice:  ${c ? c.code : "-"}
+Categoria: ${currentCategory()}
+Importo: ${money(amount)}
+Moltiplicatore: x${String(mult).replace(".", ",")}
+Punti generati: +${p}
+
+Nota:
+${note || "-"}
+
+${new Date().toLocaleString("it-IT")}`;
+    }
+
+    function addSale(){
+      const c = activeClient();
+      if(!c){
+        showToast("Seleziona prima un cliente");
+        showTab("clients");
+        return;
+      }
+
+      const amount = Number($("saleAmount").value || 0);
+      if(!amount || amount <= 0){
+        showToast("Inserisci importo vendita");
+        return;
+      }
+
+      const mult = currentMultiplier();
+      const p = Math.floor(amount * mult);
+      const note = $("saleNote").value.trim();
+      const receipt = $("receiptPreview").textContent;
+
+      c.points = points(c.points + p);
+      c.totalSpend = Number(c.totalSpend || 0) + amount;
+      c.visits = Number(c.visits || 0) + 1;
+      c.lastVisit = today();
+      c.tier = calculateTier(c);
+
+      data.transactions.unshift({
+        id:uid("tx"),
+        clientId:c.id,
+        type:"sale",
+        title:"Vendita in Cassa XA",
+        amount:amount,
+        points:p,
+        category:currentCategory(),
+        multiplier:mult,
+        note:note,
+        date:today(),
+        receipt:receipt
+      });
+
+      $("saleAmount").value = "";
+      $("saleNote").value = "";
+
+      saveData();
+      showToast("Vendita registrata: +" + p + " punti");
+      showTab("profile");
+    }
+
+    function addBonus(){
+      const c = activeClient();
+      if(!c){
+        showToast("Seleziona prima un cliente");
+        return;
+      }
+
+      c.points = points(c.points + 50);
+      c.tier = calculateTier(c);
+
+      data.transactions.unshift({
+        id:uid("tx"),
+        clientId:c.id,
+        type:"bonus",
+        title:"Bonus Club",
+        amount:0,
+        points:50,
+        category:"Bonus +50",
+        multiplier:0,
+        note:"Bonus manuale cassa",
+        date:today(),
+        receipt:"XA MEMBER CLUB\\nBonus manuale\\nCliente: " + c.name + "\\n+50 punti"
+      });
+
+      saveData();
+      showToast("Bonus +50 punti aggiunto");
+    }
+
+    function redeemReward(rewardId){
+      const c = activeClient();
+      if(!c){
+        showToast("Seleziona prima un cliente");
+        return;
+      }
+
+      const r = rewards.find(x=>x.id===rewardId);
+      if(!r) return;
+
+      if(points(c.points) < r.cost){
+        showToast("Punti insufficienti");
+        return;
+      }
+
+      if(!confirm("Riscattare premio: " + r.title + " per " + r.cost + " punti?")) return;
+
+      c.points = points(c.points - r.cost);
+      c.tier = calculateTier(c);
+
+      data.transactions.unshift({
+        id:uid("tx"),
+        clientId:c.id,
+        type:"redeem",
+        title:"Premio riscattato",
+        amount:0,
+        points:-r.cost,
+        category:"Rewards Club",
+        multiplier:0,
+        note:r.title,
+        date:today(),
+        receipt:"XA MEMBER CLUB\\nPremio riscattato\\n" + r.title + "\\n-" + r.cost + " punti\\nCliente: " + c.name
+      });
+
+      saveData();
+      showToast("Premio riscattato");
+      showTab("profile");
+    }
+
+    function calculateTier(c){
+      const p = points(c.points);
+      const spent = Number(c.totalSpend || 0);
+      if(p >= 1500 || spent >= 900) return "XA Private Cellar";
+      if(p >= 900 || spent >= 500) return "XA Founder";
+      if(p >= 350 || spent >= 180) return "XA Gold";
+      return "XA Member";
+    }
+
+    function renderAll(){
+      ensureActiveClient();
+      renderStatus();
+      renderHome();
+      renderDashboard();
+      renderClients();
+      renderCash();
+      renderRewards();
+      renderHistory();
+      renderProfile();
+    }
+
+    function ensureActiveClient(){
+      if(activeClientId && data.clients.some(c=>c.id===activeClientId)) return;
+      activeClientId = data.clients[0] ? data.clients[0].id : null;
+    }
+
+    function renderStatus(){
+      const c = activeClient();
+      $("activeStatus").textContent = c ? "Cliente attivo: " + c.name : "Nessun cliente attivo";
+    }
+
+    function renderHome(){
+      $("homeMemberCard").innerHTML = renderMemberCard(activeClient(), "homeQr");
+      drawQR("homeQr", activeClient());
+
+      const totalPoints = data.clients.reduce((s,c)=>s+points(c.points),0);
+      const totalSpend = data.clients.reduce((s,c)=>s+Number(c.totalSpend||0),0);
+      const sales = data.transactions.filter(t=>t.type==="sale").length;
+      const redeemed = data.transactions.filter(t=>t.type==="redeem").length;
+
+      $("homeStats").innerHTML = `
+        ${statBox("Clienti Club", data.clients.length)}
+        ${statBox("Punti attivi", totalPoints)}
+        ${statBox("Vendite demo", sales)}
+        ${statBox("Premi riscattati", redeemed)}
+      `;
+
+      updateReceiptPreview();
+    }
+
+    function renderDashboard(){
+      const totalPoints = data.clients.reduce((s,c)=>s+points(c.points),0);
+      const totalSpend = data.clients.reduce((s,c)=>s+Number(c.totalSpend||0),0);
+      const avg = data.clients.length ? Math.round(totalPoints / data.clients.length) : 0;
+      const rewardsCount = data.transactions.filter(t=>t.type==="redeem").length;
+
+      $("dashboardStats").innerHTML = `
+        ${statBox("Clienti", data.clients.length)}
+        ${statBox("Punti totali", totalPoints)}
+        ${statBox("Vendite", money(totalSpend))}
+        ${statBox("Media punti", avg)}
+      `;
+
+      $("recentClients").innerHTML = data.clients.slice(0,5).map(c=>clientItem(c)).join("") || emptyBox("Nessun cliente ancora.");
+      $("recentTransactions").innerHTML = data.transactions.slice(0,6).map(txItem).join("") || emptyBox("Nessuna operazione ancora.");
+    }
+
+    function renderClients(){
+      const q = ($("clientSearch") ? $("clientSearch").value : "").toLowerCase().trim();
+      const list = data.clients.filter(c=>{
+        const hay = [c.name,c.phone,c.email,c.code,c.tier].join(" ").toLowerCase();
+        return hay.includes(q);
+      });
+
+      $("clientList").innerHTML = list.map(c=>clientItem(c,true)).join("") || emptyBox("Nessun cliente trovato.");
+    }
+
+    function renderCash(){
+      const c = activeClient();
+      $("cashClientBox").innerHTML = c ? `
+        <div class="client-item active">
+          <div>
+            <h4>${escapeHTML(c.name)}</h4>
+            <small>${escapeHTML(c.code)} · ${escapeHTML(c.tier)} · ${points(c.points)} punti</small>
+          </div>
+          <div class="badge-points">${points(c.points)}<small>punti</small></div>
+        </div>
+      ` : emptyBox("Nessun cliente selezionato. Vai su Clienti XA e scegli una card.");
+
+      updateReceiptPreview();
+    }
+
+    function renderRewards(){
+      const c = activeClient();
+      $("rewardClientBox").innerHTML = c ? `
+        <div class="client-item active">
+          <div>
+            <h4>${escapeHTML(c.name)}</h4>
+            <small>${escapeHTML(c.code)} · saldo disponibile</small>
+          </div>
+          <div class="badge-points">${points(c.points)}<small>punti</small></div>
+        </div>
+      ` : emptyBox("Seleziona un cliente prima di riscattare un premio.");
+
+      $("rewardGrid").innerHTML = rewards.map(r=>`
+        <div class="reward">
+          <span class="cost">${r.cost} punti</span>
+          <h4>${escapeHTML(r.title)}</h4>
+          <p>${escapeHTML(r.desc)}</p>
+          <button class="btn gold full" onclick="redeemReward('${r.id}')">Riscatta premio</button>
+        </div>
+      `).join("");
+    }
+
+    function renderHistory(){
+      let txs = [...data.transactions];
+
+      if(historyMode === "active" && activeClient()){
+        txs = txs.filter(t=>t.clientId === activeClientId);
+      }
+
+      $("historyList").innerHTML = txs.map(txItem).join("") || emptyBox("Nessuna operazione nello storico.");
+    }
+
+    function renderProfile(){
+      const c = activeClient();
+      $("profileCard").innerHTML = renderMemberCard(c, "profileQr");
+      drawQR("profileQr", c);
+
+      if(!c){
+        $("profileDetails").innerHTML = emptyBox("Nessun cliente selezionato.");
+        $("profileHistory").innerHTML = emptyBox("Nessun cliente selezionato.");
+        return;
+      }
+
+      $("profileDetails").innerHTML = `
+        <div class="stats" style="grid-template-columns:repeat(2,1fr)">
+          ${statBox("Saldo punti", points(c.points))}
+          ${statBox("Totale speso", money(c.totalSpend))}
+          ${statBox("Visite", c.visits || 0)}
+          ${statBox("Livello", c.tier)}
+        </div>
+
+        <div class="divider"></div>
+
+        <p><strong>Codice:</strong> ${escapeHTML(c.code)}</p>
+        <p><strong>Telefono:</strong> ${escapeHTML(c.phone || "-")}</p>
+        <p><strong>Email:</strong> ${escapeHTML(c.email || "-")}</p>
+        <p><strong>Creato:</strong> ${niceDate(c.createdAt)}</p>
+        <p><strong>Ultima visita:</strong> ${c.lastVisit ? niceDate(c.lastVisit) : "-"}</p>
+        <p><strong>Note:</strong><br>${escapeHTML(c.notes || "-")}</p>
+
+        <div class="btn-row">
+          <button class="btn ok" onclick="sendToCash('${c.id}')">Manda in cassa</button>
+          <button class="btn gold" onclick="addBonus()">Bonus +50 punti</button>
+          <button class="btn danger" onclick="deleteClient('${c.id}')">Elimina cliente</button>
+        </div>
+      `;
+
+      const txs = data.transactions.filter(t=>t.clientId === c.id);
+      $("profileHistory").innerHTML = txs.map(txItem).join("") || emptyBox("Nessuna operazione per questo cliente.");
+    }
+
+    function renderMemberCard(c, canvasId){
+      if(!c){
+        return `
+          <div class="empty">
+            Nessun cliente attivo.<br><br>
+            <button class="btn gold" onclick="openNewClientModal()">Crea nuovo cliente</button>
+          </div>
+        `;
+      }
+
+      return `
+        <div class="member-card">
+          <div class="member-head">
+            <div>
+              <div class="member-code">XA Member Club</div>
+              <div class="member-name">${escapeHTML(c.name)}</div>
+              <div class="member-code">${escapeHTML(c.code)}</div>
+            </div>
+            <div class="tier">◆ ${escapeHTML(c.tier)}</div>
+          </div>
+
+          <div class="points-big">
+            <small>Saldo punti</small>
+            <b>${points(c.points)}</b>
+          </div>
+
+          <div class="member-foot">
+            <div>
+              <strong>Not a drink.</strong><br>
+              An experience.
+            </div>
+            <div class="qr-wrap">
+              <canvas id="${canvasId}" width="72" height="72"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <div class="btn-row">
+          <button class="btn gold" onclick="showTab('profile')">Apri scheda cliente</button>
+          <button class="btn ghost" onclick="sendToCash('${c.id}')">Manda in cassa</button>
+        </div>
+      `;
+    }
+
+    function clientItem(c, full=false){
+      return `
+        <div class="client-item ${c.id===activeClientId ? "active" : ""}">
+          <div onclick="selectClient('${c.id}',true)">
+            <h4>${escapeHTML(c.name)}</h4>
+            <small>${escapeHTML(c.code)} · ${escapeHTML(c.tier)} · ${escapeHTML(c.phone || "telefono non inserito")}</small>
+          </div>
+          <div>
+            <div class="badge-points">${points(c.points)}<small>punti</small></div>
+            ${full ? `
+              <div class="btn-row" style="margin-top:8px;justify-content:flex-end">
+                <button class="btn ghost" onclick="selectClient('${c.id}',true)">Apri</button>
+                <button class="btn ok" onclick="sendToCash('${c.id}')">Cassa</button>
+                <button class="btn danger" onclick="deleteClient('${c.id}')">Elimina</button>
+              </div>
+            ` : ""}
+          </div>
+        </div>
+      `;
+    }
+
+    function txItem(t){
+      const c = data.clients.find(x=>x.id===t.clientId);
+      const signClass = Number(t.points) >= 0 ? "plus" : "minus";
+      const sign = Number(t.points) >= 0 ? "+" : "";
+      return `
+        <div class="tx">
+          <div>
+            <b>${escapeHTML(t.title || t.type)}</b>
+            <small>${escapeHTML(c ? c.name : "Cliente eliminato")} · ${escapeHTML(t.category || "-")} · ${niceDate(t.date)}</small>
+            <small>${escapeHTML(t.note || "")}</small>
+          </div>
+          <div class="${signClass}">${sign}${points(t.points)} pt</div>
+        </div>
+      `;
+    }
+
+    function statBox(label,value){
+      return `
+        <div class="stat">
+          <small>${escapeHTML(label)}</small>
+          <b>${escapeHTML(value)}</b>
+        </div>
+      `;
+    }
+
+    function emptyBox(text){
+      return `<div class="empty">${escapeHTML(text)}</div>`;
+    }
+
+    function drawQR(canvasId, client){
+      const canvas = $(canvasId);
+      if(!canvas || !client) return;
+
+      const ctx = canvas.getContext("2d");
+      const size = canvas.width;
+      const cells = 13;
+      const cell = Math.floor(size / cells);
+      const seed = String(client.code + client.name);
+      let hash = 0;
+
+      for(let i=0;i<seed.length;i++){
+        hash = ((hash << 5) - hash) + seed.charCodeAt(i);
+        hash |= 0;
+      }
+
+      ctx.fillStyle = "#fff8e8";
+      ctx.fillRect(0,0,size,size);
+      ctx.fillStyle = "#2b0d12";
+
+      function bit(x,y){
+        const n = Math.abs(Math.sin((x+1)*19.19 + (y+1)*7.31 + hash) * 10000);
+        return Math.floor(n) % 2 === 0;
+      }
+
+      function finder(x,y){
+        ctx.fillRect(x*cell,y*cell,cell*4,cell*4);
+        ctx.fillStyle = "#fff8e8";
+        ctx.fillRect((x+1)*cell,(y+1)*cell,cell*2,cell*2);
+        ctx.fillStyle = "#2b0d12";
+        ctx.fillRect((x+1.5)*cell,(y+1.5)*cell,cell,cell);
+      }
+
+      finder(0,0);
+      finder(9,0);
+      finder(0,9);
+
+      for(let y=0;y<cells;y++){
+        for(let x=0;x<cells;x++){
+          const inFinder =
+            (x<4 && y<4) ||
+            (x>8 && y<4) ||
+            (x<4 && y>8);
+
+          if(inFinder) continue;
+          if(bit(x,y)){
+            ctx.fillRect(x*cell,y*cell,cell,cell);
+          }
+        }
+      }
+    }
+
+    function exportJSON(){
+      const blob = new Blob([JSON.stringify(data,null,2)], {type:"application/json"});
+      downloadBlob(blob, "xa-member-club-backup-v81.json");
+      showToast("Backup JSON esportato");
+    }
+
+    function exportCSV(){
+      const rows = [];
+
+      rows.push(["TIPO","DATA","CLIENTE","CODICE","CATEGORIA","IMPORTO","PUNTI","NOTA"]);
+      data.transactions.forEach(t=>{
+        const c = data.clients.find(x=>x.id===t.clientId);
+        rows.push([
+          t.type,
+          niceDate(t.date),
+          c ? c.name : "Cliente eliminato",
+          c ? c.code : "",
+          t.category || "",
+          t.amount || 0,
+          t.points || 0,
+          t.note || ""
+        ]);
+      });
+
+      rows.push([]);
+      rows.push(["CLIENTI"]);
+      rows.push(["NOME","CODICE","TELEFONO","EMAIL","LIVELLO","PUNTI","TOTALE SPESO","VISITE","CREATO","ULTIMA VISITA","NOTE"]);
+      data.clients.forEach(c=>{
+        rows.push([
+          c.name,c.code,c.phone,c.email,c.tier,c.points,c.totalSpend,c.visits,niceDate(c.createdAt),c.lastVisit ? niceDate(c.lastVisit) : "",c.notes
+        ]);
+      });
+
+      const csv = rows.map(r => r.map(v => `"${String(v ?? "").replace(/"/g,'""')}"`).join(";")).join("\n");
+      const blob = new Blob([csv], {type:"text/csv;charset=utf-8"});
+      downloadBlob(blob, "xa-member-club-v81.csv");
+      showToast("CSV esportato");
+    }
+
+    function downloadBlob(blob, filename){
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(()=>{
+        URL.revokeObjectURL(a.href);
+        a.remove();
+      },300);
+    }
+
+    function importJSON(event){
+      const file = event.target.files[0];
+      if(!file) return;
+
+      const reader = new FileReader();
+      reader.onload = e => {
+        try{
+          const imported = JSON.parse(e.target.result);
+          if(!imported.clients || !imported.transactions) throw new Error("Formato non valido");
+
+          data = imported;
+          activeClientId = data.activeClientId || (data.clients[0] ? data.clients[0].id : null);
+          localStorage.setItem(STORE_KEY, JSON.stringify(data));
+          renderAll();
+          showToast("Backup importato");
+          showTab("dashboard");
+        }catch(err){
+          showToast("File JSON non valido");
+        }
+      };
+      reader.readAsText(file);
+      event.target.value = "";
+    }
+
+    function resetDemo(){
+      if(!confirm("Cancellare tutti i dati demo salvati in questo browser?")) return;
+      localStorage.removeItem(STORE_KEY);
+      data = loadData();
+      activeClientId = data.activeClientId;
+      cashUnlocked = false;
+      saveData();
+      showToast("Demo resettata");
+      showTab("home");
+    }
+
+    document.addEventListener("input", e=>{
+      if(e.target && e.target.id === "saleAmount") updateReceiptPreview();
+    });
+
+    document.addEventListener("keydown", e=>{
+      if(e.key === "Escape"){
+        document.querySelectorAll(".modal").forEach(m=>m.classList.remove("active"));
+      }
+      if(e.key === "Enter" && $("pinModal").classList.contains("active")){
+        unlockCash();
+      }
+    });
+
+    renderAll();
   </script>
 </body>
 </html>
