@@ -3,30 +3,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="theme-color" content="#080405" />
-  <title>XA Loyalty Club — DAW Store Console</title>
+  <meta name="theme-color" content="#120607" />
+  <title>XA Loyalty Club — Club Console</title>
 
   <style>
     :root {
-      --bg: #080405;
-      --bg2: #12080a;
-      --rack: #1a1110;
-      --rack2: #271817;
-      --panel: rgba(255, 236, 194, .075);
-      --panel2: rgba(255, 236, 194, .12);
-      --cream: #ffedc2;
-      --cream2: #e6c985;
-      --muted: rgba(255, 237, 194, .64);
-      --soft: rgba(255, 237, 194, .36);
-      --gold: #d5a24a;
-      --gold2: #f4d37a;
-      --wine: #741923;
-      --wine2: #a92f3d;
-      --green: #91ec9f;
-      --red: #ff7676;
-      --blue: #84c7ff;
-      --line: rgba(255, 237, 194, .14);
-      --shadow: 0 28px 90px rgba(0,0,0,.48);
+      --bg: #0b0304;
+      --bg2: #160708;
+      --wine: #711a22;
+      --wine2: #a7313d;
+      --cream: #fff0c8;
+      --cream2: #ead09a;
+      --muted: rgba(255,240,200,.68);
+      --soft: rgba(255,240,200,.42);
+      --gold: #d7a546;
+      --gold2: #f4d47a;
+      --green: #8fe6a2;
+      --red: #ff7777;
+      --line: rgba(255,240,200,.14);
+      --glass: rgba(255,240,200,.08);
+      --shadow: 0 24px 70px rgba(0,0,0,.42);
       --safe: env(safe-area-inset-bottom);
     }
 
@@ -45,9 +41,10 @@
       color: var(--cream);
       font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background:
-        radial-gradient(circle at 12% 0%, rgba(244,211,122,.14), transparent 30%),
-        radial-gradient(circle at 92% 14%, rgba(169,47,61,.22), transparent 34%),
-        linear-gradient(145deg, #050203 0%, #100707 45%, #211010 100%);
+        radial-gradient(circle at 12% 0%, rgba(244,212,122,.16), transparent 28%),
+        radial-gradient(circle at 90% 18%, rgba(167,49,61,.24), transparent 34%),
+        radial-gradient(circle at 46% 100%, rgba(215,165,70,.12), transparent 34%),
+        linear-gradient(145deg, #060203 0%, #120607 45%, #260c0f 100%);
       overflow-x: hidden;
     }
 
@@ -58,17 +55,14 @@
       z-index: 0;
       pointer-events: none;
       background:
-        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px);
-      background-size: 28px 28px;
-      opacity: .38;
-      mask-image: radial-gradient(circle at center, black 0%, transparent 78%);
+        linear-gradient(rgba(255,255,255,.022) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.016) 1px, transparent 1px);
+      background-size: 34px 34px;
+      opacity: .34;
+      mask-image: radial-gradient(circle at center, black 0%, transparent 76%);
     }
 
-    button,
-    input,
-    select,
-    textarea {
+    button, input, textarea, select {
       font: inherit;
     }
 
@@ -84,18 +78,18 @@
     .app {
       position: relative;
       z-index: 1;
-      width: min(100%, 1220px);
+      width: min(100%, 1180px);
       min-height: 100vh;
       margin: 0 auto;
-      padding: 12px 12px calc(128px + var(--safe));
+      padding: 14px 14px calc(130px + var(--safe));
     }
 
     .topbar {
       position: sticky;
       top: 0;
       z-index: 40;
-      padding: 8px 0 10px;
-      backdrop-filter: blur(22px);
+      padding: 10px 0 14px;
+      backdrop-filter: blur(20px);
     }
 
     .topline {
@@ -109,43 +103,43 @@
     .brand {
       display: flex;
       align-items: center;
-      gap: 11px;
+      gap: 12px;
       min-width: 0;
     }
 
     .seal {
-      width: 50px;
-      height: 50px;
-      flex: 0 0 auto;
-      border-radius: 17px;
+      width: 52px;
+      height: 52px;
+      border-radius: 19px;
       display: grid;
       place-items: center;
       position: relative;
       overflow: hidden;
       background:
-        radial-gradient(circle at 28% 18%, rgba(255,237,194,.2), transparent 28%),
-        linear-gradient(145deg, #7c1d26, #1e080a);
-      border: 1px solid rgba(244,211,122,.34);
-      box-shadow: inset 0 0 22px rgba(244,211,122,.1), 0 14px 36px rgba(0,0,0,.42);
+        radial-gradient(circle at 30% 20%, rgba(255,240,200,.18), transparent 28%),
+        linear-gradient(145deg, #7d1d26, #21080a);
+      border: 1px solid rgba(244,212,122,.36);
+      box-shadow: inset 0 0 24px rgba(244,212,122,.09), 0 14px 38px rgba(0,0,0,.4);
       font-family: Georgia, serif;
-      font-size: 20px;
       font-weight: 900;
+      font-size: 20px;
       letter-spacing: -3px;
       color: var(--gold2);
+      flex: 0 0 auto;
     }
 
     .seal::after {
       content: "";
       position: absolute;
       inset: 6px;
-      border-radius: 13px;
-      border: 1px solid rgba(255,237,194,.18);
+      border-radius: 14px;
+      border: 1px solid rgba(255,240,200,.16);
     }
 
     .brand h1 {
       margin: 0;
-      font-size: 13px;
-      letter-spacing: .18em;
+      font-size: 14px;
+      letter-spacing: .19em;
       text-transform: uppercase;
       white-space: nowrap;
     }
@@ -153,10 +147,8 @@
     .brand p {
       margin: 3px 0 0;
       color: var(--muted);
-      font-size: 11px;
+      font-size: 12px;
       white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
     }
 
     .top-actions {
@@ -169,17 +161,17 @@
       display: inline-flex;
       align-items: center;
       gap: 7px;
-      min-height: 38px;
-      padding: 8px 11px;
+      min-height: 40px;
+      padding: 9px 12px;
       border-radius: 999px;
       color: var(--gold2);
-      background: rgba(244,211,122,.1);
-      border: 1px solid rgba(244,211,122,.24);
-      font-size: 10px;
+      background: rgba(244,212,122,.10);
+      border: 1px solid rgba(244,212,122,.26);
+      font-size: 11px;
       font-weight: 950;
       letter-spacing: .08em;
       text-transform: uppercase;
-      max-width: 150px;
+      max-width: 158px;
     }
 
     .pill span:last-child {
@@ -188,117 +180,136 @@
       text-overflow: ellipsis;
     }
 
-    .led {
+    .dot {
       width: 8px;
       height: 8px;
       border-radius: 50%;
       background: var(--green);
-      box-shadow: 0 0 16px var(--green);
+      box-shadow: 0 0 18px var(--green);
+      flex: 0 0 auto;
     }
 
     .icon-btn {
-      width: 40px;
-      height: 40px;
-      border-radius: 14px;
-      display: grid;
-      place-items: center;
-      color: var(--cream);
-      background: rgba(255,237,194,.07);
-      border: 1px solid rgba(255,237,194,.13);
-    }
-
-    .transport {
-      display: grid;
-      grid-template-columns: auto 1fr auto;
-      gap: 8px;
-      align-items: center;
-      padding: 8px;
-      border-radius: 24px;
-      background:
-        linear-gradient(180deg, rgba(255,237,194,.08), rgba(0,0,0,.12)),
-        #110909;
-      border: 1px solid rgba(255,237,194,.12);
-      box-shadow: 0 14px 40px rgba(0,0,0,.35);
-    }
-
-    .transport-left,
-    .transport-right {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .transport-btn {
-      width: 37px;
-      height: 34px;
-      border-radius: 12px;
-      display: grid;
-      place-items: center;
-      color: var(--cream);
-      background: linear-gradient(180deg, rgba(255,237,194,.12), rgba(0,0,0,.25));
-      border: 1px solid rgba(255,237,194,.13);
-      font-size: 11px;
-      font-weight: 950;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.08);
-    }
-
-    .transport-btn.rec {
-      color: #ffd6d6;
-      background: linear-gradient(180deg, rgba(255,118,118,.22), rgba(80,0,0,.22));
-      border-color: rgba(255,118,118,.26);
-    }
-
-    .transport-btn.active {
-      color: #1e100c;
-      background: linear-gradient(135deg, #fff1bd, #d7a546);
-    }
-
-    .transport-display {
-      min-width: 0;
-      padding: 9px 12px;
+      width: 42px;
+      height: 42px;
       border-radius: 16px;
-      background: #080505;
-      border: 1px solid rgba(145,236,159,.2);
-      box-shadow: inset 0 0 22px rgba(145,236,159,.06);
+      display: grid;
+      place-items: center;
+      color: var(--cream);
+      background: var(--glass);
+      border: 1px solid rgba(255,240,200,.13);
+      transition: .18s ease;
+    }
+
+    .icon-btn:active {
+      transform: scale(.94);
+    }
+
+    .club-console {
+      padding: 10px;
+      border-radius: 26px;
+      background:
+        linear-gradient(180deg, rgba(255,240,200,.08), rgba(0,0,0,.16)),
+        rgba(11,4,5,.86);
+      border: 1px solid rgba(255,240,200,.14);
+      box-shadow: 0 16px 44px rgba(0,0,0,.34);
+    }
+
+    .console-display {
+      min-height: 42px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 10px;
+      padding: 11px 14px;
+      border-radius: 18px;
       color: var(--green);
+      background: #070505;
+      border: 1px solid rgba(143,230,162,.18);
+      box-shadow: inset 0 0 22px rgba(143,230,162,.05);
       font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
       font-size: 11px;
       letter-spacing: .08em;
       overflow: hidden;
     }
 
-    .display-main {
-      white-space: nowrap;
+    .console-display span:first-child {
       overflow: hidden;
       text-overflow: ellipsis;
+      white-space: nowrap;
     }
 
-    .vu {
+    .console-leds {
       display: flex;
       align-items: center;
-      gap: 3px;
+      gap: 4px;
       flex: 0 0 auto;
     }
 
-    .vu i {
-      width: 5px;
-      height: 18px;
+    .console-leds i {
+      width: 6px;
+      height: 20px;
       border-radius: 999px;
-      background: rgba(145,236,159,.16);
+      background: rgba(143,230,162,.16);
     }
 
-    .vu i.on {
+    .console-leds i.on {
       background: var(--green);
-      box-shadow: 0 0 10px rgba(145,236,159,.55);
+      box-shadow: 0 0 12px rgba(143,230,162,.58);
+    }
+
+    .console-buttons {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-top: 9px;
+    }
+
+    .console-btn {
+      min-height: 54px;
+      border-radius: 19px;
+      color: var(--cream);
+      background: linear-gradient(180deg, rgba(255,240,200,.12), rgba(0,0,0,.23));
+      border: 1px solid rgba(255,240,200,.14);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.07), 0 10px 24px rgba(0,0,0,.22);
+      display: grid;
+      place-items: center;
+      gap: 2px;
+      transition: .16s ease;
+    }
+
+    .console-btn:active {
+      transform: scale(.96);
+    }
+
+    .console-btn b {
+      font-size: 14px;
+      letter-spacing: .08em;
+    }
+
+    .console-btn span {
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 800;
+    }
+
+    .console-btn.rec {
+      color: #21100d;
+      background: linear-gradient(135deg, #fff1bd, #d7a546 64%, #b77b26);
+      border-color: rgba(244,212,122,.48);
+    }
+
+    .console-btn.play b {
+      color: var(--gold2);
+    }
+
+    .console-btn.stop b {
+      color: #ffd9d9;
     }
 
     .screen {
       display: none;
-      animation: enter .3s ease both;
+      animation: enter .32s ease both;
     }
 
     .screen.active {
@@ -312,31 +323,32 @@
 
     .hero {
       position: relative;
-      overflow: hidden;
       isolation: isolate;
-      border-radius: 32px;
-      padding: 20px 16px;
+      overflow: hidden;
+      border-radius: 34px;
+      padding: 22px 18px;
       background:
-        radial-gradient(circle at 78% 10%, rgba(244,211,122,.22), transparent 28%),
-        radial-gradient(circle at 12% 90%, rgba(169,47,61,.34), transparent 34%),
-        linear-gradient(145deg, rgba(255,237,194,.12), rgba(255,237,194,.035)),
-        linear-gradient(145deg, rgba(40,22,20,.95), rgba(12,6,6,.96));
-      border: 1px solid rgba(244,211,122,.24);
+        radial-gradient(circle at 80% 14%, rgba(244,212,122,.27), transparent 28%),
+        radial-gradient(circle at 12% 86%, rgba(167,49,61,.34), transparent 34%),
+        linear-gradient(145deg, rgba(255,240,200,.14), rgba(255,240,200,.04)),
+        linear-gradient(145deg, rgba(113,26,34,.86), rgba(17,6,7,.94));
+      border: 1px solid rgba(244,212,122,.26);
       box-shadow: var(--shadow);
+      margin-top: 14px;
     }
 
     .hero::before {
       content: "XA";
       position: absolute;
-      right: -20px;
-      top: -34px;
+      right: -22px;
+      top: -36px;
       z-index: -1;
       font-family: Georgia, serif;
-      font-size: clamp(118px, 36vw, 270px);
-      line-height: .75;
+      font-size: clamp(126px,38vw,280px);
+      line-height: .74;
       font-weight: 900;
       letter-spacing: -.13em;
-      color: rgba(255,237,194,.08);
+      color: rgba(255,240,200,.095);
     }
 
     .eyebrow {
@@ -346,7 +358,7 @@
       padding: 8px 11px;
       border-radius: 999px;
       background: rgba(0,0,0,.24);
-      border: 1px solid rgba(255,237,194,.14);
+      border: 1px solid rgba(255,240,200,.15);
       color: var(--gold2);
       font-size: 10px;
       font-weight: 950;
@@ -354,102 +366,110 @@
       letter-spacing: .16em;
     }
 
-    .hero-title {
-      margin: 16px 0 8px;
-      font-size: clamp(30px, 8vw, 66px);
-      line-height: .92;
-      letter-spacing: -.07em;
-      font-weight: 980;
+    .spark {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--gold2);
+      box-shadow: 0 0 18px rgba(244,212,122,.85);
     }
 
-    .gold { color: var(--gold2); }
+    .hero-title {
+      margin: 18px 0 10px;
+      max-width: 780px;
+      font-size: clamp(31px,8.2vw,68px);
+      line-height: .92;
+      font-weight: 980;
+      letter-spacing: -.07em;
+    }
+
+    .gold {
+      color: var(--gold2);
+    }
 
     .hero-copy {
       margin: 0;
-      max-width: 740px;
+      max-width: 720px;
       color: var(--muted);
-      font-size: 13px;
-      line-height: 1.5;
+      font-size: 14px;
+      line-height: 1.52;
     }
 
     .hero-actions {
       display: flex;
       flex-wrap: wrap;
-      gap: 9px;
-      margin-top: 16px;
+      gap: 10px;
+      margin-top: 18px;
     }
 
     .btn {
-      min-height: 44px;
+      min-height: 45px;
       padding: 11px 15px;
       border-radius: 999px;
       display: inline-flex;
-      align-items: center;
       justify-content: center;
+      align-items: center;
       gap: 8px;
       color: var(--cream);
       font-weight: 950;
       letter-spacing: .01em;
-      transition: .16s ease;
+      transition: .18s ease;
       user-select: none;
     }
 
-    .btn:active { transform: scale(.965); }
+    .btn:active {
+      transform: scale(.965);
+    }
 
     .btn-primary {
       color: #21100d;
-      background: linear-gradient(135deg, #fff0bd, #d7a546 64%, #b77b26);
-      box-shadow: 0 14px 32px rgba(215,165,70,.2);
+      background: linear-gradient(135deg, #fff1bd, #d7a546 64%, #b77b26);
+      box-shadow: 0 16px 35px rgba(215,165,70,.22);
     }
 
     .btn-secondary {
-      background: rgba(255,237,194,.08);
-      border: 1px solid rgba(255,237,194,.15);
+      background: rgba(255,240,200,.08);
+      border: 1px solid rgba(255,240,200,.15);
     }
 
     .btn-danger {
-      background: rgba(169,47,61,.22);
-      border: 1px solid rgba(255,118,118,.32);
-      color: #ffe4e4;
+      background: rgba(167,49,61,.22);
+      border: 1px solid rgba(255,119,119,.32);
+      color: #ffe6e6;
     }
 
     .btn-small {
-      min-height: 36px;
-      padding: 8px 11px;
+      min-height: 38px;
+      padding: 9px 12px;
       font-size: 12px;
     }
 
     .stats-row {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(2,1fr);
       gap: 10px;
-      margin-top: 13px;
+      margin-top: 14px;
     }
 
-    .stat,
-    .metric {
+    .stat, .metric {
       position: relative;
+      z-index: 1;
       padding: 13px;
-      border-radius: 18px;
-      background:
-        linear-gradient(180deg, rgba(255,237,194,.08), rgba(0,0,0,.18)),
-        rgba(0,0,0,.18);
-      border: 1px solid rgba(255,237,194,.1);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.05);
+      border-radius: 20px;
+      background: rgba(0,0,0,.22);
+      border: 1px solid rgba(255,240,200,.11);
     }
 
-    .stat span,
-    .metric span {
+    .stat span, .metric span {
       display: block;
       color: var(--soft);
       font-size: 10px;
-      text-transform: uppercase;
       letter-spacing: .12em;
+      text-transform: uppercase;
       font-weight: 900;
     }
 
-    .stat strong,
-    .metric strong {
+    .stat strong, .metric strong {
       display: block;
       margin-top: 4px;
       color: var(--cream);
@@ -460,59 +480,41 @@
     .grid {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 12px;
-      margin-top: 12px;
+      gap: 14px;
+      margin-top: 14px;
     }
 
-    .rack {
+    .card {
       position: relative;
       overflow: hidden;
-      border-radius: 26px;
-      background:
-        linear-gradient(180deg, rgba(255,237,194,.08), rgba(0,0,0,.18)),
-        linear-gradient(145deg, var(--rack2), var(--rack));
-      border: 1px solid rgba(255,237,194,.13);
-      box-shadow: 0 18px 48px rgba(0,0,0,.32);
+      border-radius: 28px;
+      background: linear-gradient(145deg, rgba(255,240,200,.105), rgba(255,240,200,.04));
+      border: 1px solid rgba(255,240,200,.13);
+      box-shadow: 0 16px 44px rgba(0,0,0,.30);
+      backdrop-filter: blur(22px);
     }
 
-    .rack::before,
-    .rack::after {
-      content: "";
-      position: absolute;
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: radial-gradient(circle, #cab27d, #4b3821);
-      box-shadow: inset 0 1px 1px rgba(255,255,255,.4);
-      opacity: .7;
-      z-index: 2;
+    .card-pad {
+      padding: 18px;
     }
 
-    .rack::before { left: 12px; top: 12px; }
-    .rack::after { right: 12px; top: 12px; }
-
-    .rack-pad {
-      padding: 17px;
-    }
-
-    .rack-title {
+    .card-title {
       position: relative;
       z-index: 1;
       display: flex;
       justify-content: space-between;
-      align-items: flex-start;
       gap: 12px;
-      margin-bottom: 13px;
+      align-items: flex-start;
+      margin-bottom: 14px;
     }
 
-    .rack-title h3 {
+    .card-title h3 {
       margin: 0;
-      font-size: 15px;
-      letter-spacing: .05em;
-      text-transform: uppercase;
+      font-size: 16px;
+      letter-spacing: -.025em;
     }
 
-    .rack-title p {
+    .card-title p {
       margin: 4px 0 0;
       color: var(--muted);
       font-size: 12px;
@@ -523,28 +525,28 @@
       padding: 7px 9px;
       border-radius: 999px;
       color: var(--gold2);
-      background: rgba(215,165,70,.1);
-      border: 1px solid rgba(215,165,70,.2);
-      font-size: 9px;
+      background: rgba(215,165,70,.10);
+      border: 1px solid rgba(215,165,70,.22);
+      font-size: 10px;
       font-weight: 950;
-      letter-spacing: .13em;
       text-transform: uppercase;
+      letter-spacing: .12em;
       white-space: nowrap;
     }
 
     .member-card {
       position: relative;
       z-index: 1;
-      min-height: 220px;
+      min-height: 224px;
       padding: 18px;
-      border-radius: 28px;
+      border-radius: 30px;
       overflow: hidden;
       background:
-        radial-gradient(circle at 82% 16%, rgba(244,211,122,.4), transparent 25%),
-        radial-gradient(circle at 18% 100%, rgba(169,47,61,.42), transparent 34%),
-        linear-gradient(145deg, #160707, #7c1d25 56%, #120606);
-      border: 1px solid rgba(244,211,122,.36);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.12), 0 24px 64px rgba(0,0,0,.36);
+        radial-gradient(circle at 82% 16%, rgba(244,212,122,.42), transparent 24%),
+        radial-gradient(circle at 18% 100%, rgba(167,49,61,.42), transparent 34%),
+        linear-gradient(145deg, #1a0709, #7c1d25 56%, #160607);
+      border: 1px solid rgba(244,212,122,.38);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.11), 0 28px 70px rgba(0,0,0,.38);
     }
 
     .member-card::before {
@@ -553,26 +555,23 @@
       right: -10px;
       bottom: -28px;
       font-family: Georgia, serif;
-      font-size: 136px;
-      line-height: .75;
+      font-size: 138px;
+      line-height: .76;
       font-weight: 900;
       letter-spacing: -.12em;
-      color: rgba(255,237,194,.13);
+      color: rgba(255,240,200,.13);
     }
 
     .member-card::after {
       content: "";
       position: absolute;
       inset: 12px;
-      border-radius: 21px;
-      border: 1px solid rgba(255,237,194,.13);
+      border-radius: 23px;
+      border: 1px solid rgba(255,240,200,.13);
       pointer-events: none;
     }
 
-    .member-top,
-    .member-name,
-    .member-id,
-    .member-bottom {
+    .member-top, .member-name, .member-id, .member-bottom {
       position: relative;
       z-index: 1;
     }
@@ -587,11 +586,11 @@
     .card-logo {
       font-family: Georgia, serif;
       font-size: 56px;
-      line-height: .72;
+      line-height: .74;
       font-weight: 900;
       letter-spacing: -.12em;
       color: var(--gold2);
-      text-shadow: 0 12px 34px rgba(0,0,0,.48);
+      text-shadow: 0 12px 34px rgba(0,0,0,.46);
     }
 
     .card-level {
@@ -606,7 +605,7 @@
 
     .member-name {
       margin-top: 42px;
-      font-size: 25px;
+      font-size: 26px;
       font-weight: 980;
       letter-spacing: -.045em;
     }
@@ -630,10 +629,10 @@
     .member-bottom small {
       display: block;
       margin-bottom: 3px;
-      color: rgba(255,237,194,.46);
+      color: rgba(255,240,200,.47);
       font-size: 10px;
-      letter-spacing: .13em;
       text-transform: uppercase;
+      letter-spacing: .13em;
       font-weight: 850;
     }
 
@@ -645,13 +644,13 @@
     .points-big {
       position: relative;
       z-index: 1;
-      margin: 0 0 4px;
-      color: var(--gold2);
-      font-size: clamp(46px, 13vw, 82px);
+      margin: 2px 0 4px;
+      font-size: clamp(46px,13vw,82px);
       line-height: .88;
       font-weight: 1000;
       letter-spacing: -.085em;
-      text-shadow: 0 18px 44px rgba(0,0,0,.32);
+      color: var(--gold2);
+      text-shadow: 0 18px 44px rgba(0,0,0,.3);
     }
 
     .points-label {
@@ -664,24 +663,24 @@
     .progress-wrap {
       position: relative;
       z-index: 1;
-      margin-top: 16px;
+      margin-top: 17px;
     }
 
     .progress-meta {
       display: flex;
       justify-content: space-between;
       gap: 10px;
-      margin-bottom: 7px;
+      margin-bottom: 8px;
       color: var(--muted);
-      font-size: 11px;
+      font-size: 12px;
     }
 
     .bar {
       position: relative;
-      height: 12px;
+      height: 13px;
       border-radius: 999px;
-      background: rgba(0,0,0,.3);
-      border: 1px solid rgba(255,237,194,.1);
+      background: rgba(0,0,0,.25);
+      border: 1px solid rgba(255,240,200,.1);
       overflow: hidden;
     }
 
@@ -691,42 +690,41 @@
       width: 25%;
       border-radius: inherit;
       background: linear-gradient(90deg, #7f1b23, #d7a546 60%, #fff1bd);
-      box-shadow: 0 0 24px rgba(244,211,122,.34);
+      box-shadow: 0 0 28px rgba(244,212,122,.38);
       transition: width .7s cubic-bezier(.16,1,.3,1);
     }
 
-    .mini-metrics,
-    .shop-stat {
+    .mini-metrics, .shop-stat {
       position: relative;
       z-index: 1;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 9px;
-      margin-top: 13px;
+      gap: 10px;
+      margin-top: 14px;
     }
 
     .qr-layout {
       position: relative;
       z-index: 1;
       display: grid;
-      grid-template-columns: 130px 1fr;
+      grid-template-columns: 132px 1fr;
       align-items: center;
-      gap: 13px;
+      gap: 14px;
     }
 
     .qr-frame {
-      width: 130px;
-      height: 130px;
+      width: 132px;
+      height: 132px;
       padding: 10px;
-      border-radius: 22px;
+      border-radius: 24px;
       background: #fff7e7;
       box-shadow: inset 0 0 0 1px rgba(0,0,0,.08), 0 18px 42px rgba(0,0,0,.32);
     }
 
     #qrCanvas {
       display: block;
-      width: 110px;
-      height: 110px;
+      width: 112px;
+      height: 112px;
       image-rendering: pixelated;
     }
 
@@ -743,108 +741,6 @@
       line-height: 1.48;
     }
 
-    .console-strip {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(120px, 1fr));
-      gap: 9px;
-      overflow-x: auto;
-      padding-bottom: 2px;
-      scrollbar-width: none;
-    }
-
-    .console-strip::-webkit-scrollbar { display: none; }
-
-    .channel {
-      min-width: 132px;
-      padding: 13px;
-      border-radius: 20px;
-      background:
-        linear-gradient(180deg, rgba(255,237,194,.08), rgba(0,0,0,.18)),
-        #100a09;
-      border: 1px solid rgba(255,237,194,.11);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.05);
-    }
-
-    .channel h4 {
-      margin: 0 0 10px;
-      font-size: 11px;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-      color: var(--cream2);
-    }
-
-    .knobs {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 12px;
-    }
-
-    .knob {
-      width: 34px;
-      height: 34px;
-      border-radius: 50%;
-      background:
-        radial-gradient(circle at center, #211413 0 42%, transparent 44%),
-        conic-gradient(from 215deg, #50302b, #d7a546 70%, #2a1b18 71%);
-      border: 1px solid rgba(255,237,194,.16);
-      position: relative;
-      box-shadow: inset 0 2px 4px rgba(255,255,255,.08), 0 6px 16px rgba(0,0,0,.3);
-    }
-
-    .knob::after {
-      content: "";
-      position: absolute;
-      width: 3px;
-      height: 9px;
-      left: 50%;
-      top: 4px;
-      transform: translateX(-50%);
-      border-radius: 999px;
-      background: var(--gold2);
-      box-shadow: 0 0 8px rgba(244,211,122,.5);
-    }
-
-    .fader {
-      height: 88px;
-      border-radius: 999px;
-      background: linear-gradient(90deg, rgba(0,0,0,.38), rgba(255,237,194,.05), rgba(0,0,0,.38));
-      border: 1px solid rgba(255,237,194,.1);
-      width: 22px;
-      margin: 0 auto;
-      position: relative;
-    }
-
-    .fader::after {
-      content: "";
-      position: absolute;
-      left: 50%;
-      bottom: 32%;
-      width: 42px;
-      height: 14px;
-      transform: translateX(-50%);
-      border-radius: 6px;
-      background: linear-gradient(180deg, #f4d37a, #7b5522);
-      box-shadow: 0 7px 18px rgba(0,0,0,.36);
-    }
-
-    .meter {
-      height: 8px;
-      border-radius: 999px;
-      margin-top: 10px;
-      background: rgba(0,0,0,.32);
-      overflow: hidden;
-      border: 1px solid rgba(255,237,194,.08);
-    }
-
-    .meter span {
-      display: block;
-      height: 100%;
-      width: 50%;
-      border-radius: inherit;
-      background: linear-gradient(90deg, var(--green), var(--gold2), var(--red));
-      box-shadow: 0 0 14px rgba(145,236,159,.25);
-    }
-
     .section-head {
       margin: 20px 2px 12px;
       display: flex;
@@ -855,7 +751,7 @@
 
     .section-head h2 {
       margin: 0;
-      font-size: 28px;
+      font-size: 29px;
       line-height: 1;
       letter-spacing: -.07em;
     }
@@ -871,90 +767,84 @@
       display: flex;
       gap: 8px;
       overflow-x: auto;
-      padding: 2px 2px 13px;
+      padding: 2px 2px 14px;
       scrollbar-width: none;
     }
 
-    .filters::-webkit-scrollbar { display: none; }
+    .filters::-webkit-scrollbar {
+      display: none;
+    }
 
     .chip {
       flex: 0 0 auto;
-      min-height: 38px;
-      padding: 9px 12px;
+      min-height: 39px;
+      padding: 10px 13px;
       border-radius: 999px;
       color: var(--muted);
-      background: rgba(255,237,194,.07);
-      border: 1px solid rgba(255,237,194,.12);
+      background: rgba(255,240,200,.07);
+      border: 1px solid rgba(255,240,200,.12);
       font-size: 12px;
       font-weight: 900;
+      transition: .18s ease;
     }
 
     .chip.active {
-      color: #21100d;
-      background: linear-gradient(135deg, #fff0bd, #d7a546);
-      border-color: rgba(244,211,122,.6);
+      color: #23100d;
+      background: linear-gradient(135deg, #fff1bd, #d7a546);
+      border-color: rgba(244,212,122,.62);
+      box-shadow: 0 12px 28px rgba(215,165,70,.15);
     }
 
-    .reward-list,
-    .activity-list,
-    .client-list,
-    .lux-list,
-    .transaction-list {
+    .reward-list, .activity-list, .client-list, .lux-list, .transaction-list {
       position: relative;
       z-index: 1;
       display: grid;
-      gap: 11px;
+      gap: 12px;
     }
 
-    .reward,
-    .client-row,
-    .activity,
-    .transaction-row {
+    .reward, .client-row, .activity, .transaction-row {
       position: relative;
       overflow: hidden;
-      padding: 15px;
-      border-radius: 24px;
+      padding: 16px;
+      border-radius: 26px;
       background:
-        radial-gradient(circle at 92% 10%, rgba(244,211,122,.12), transparent 25%),
-        linear-gradient(145deg, rgba(255,237,194,.095), rgba(255,237,194,.03));
-      border: 1px solid rgba(255,237,194,.12);
-      box-shadow: 0 14px 36px rgba(0,0,0,.24);
+        radial-gradient(circle at 92% 10%, rgba(244,212,122,.13), transparent 24%),
+        linear-gradient(145deg, rgba(255,240,200,.102), rgba(255,240,200,.035));
+      border: 1px solid rgba(255,240,200,.13);
+      box-shadow: 0 16px 42px rgba(0,0,0,.24);
+      transition: .18s ease;
     }
 
-    .reward-top,
-    .client-top,
-    .transaction-top {
+    .reward:active, .client-row:active {
+      transform: scale(.985);
+    }
+
+    .reward-top, .client-top, .transaction-top {
       display: flex;
       justify-content: space-between;
-      gap: 9px;
+      gap: 10px;
       align-items: flex-start;
     }
 
-    .reward h3,
-    .client-row h3,
-    .transaction-row h3 {
-      margin: 11px 0 6px;
-      font-size: 17px;
+    .reward h3, .client-row h3, .transaction-row h3 {
+      margin: 12px 0 7px;
+      font-size: 18px;
       letter-spacing: -.035em;
     }
 
-    .reward p,
-    .client-row p,
-    .transaction-row p {
+    .reward p, .client-row p, .transaction-row p {
       margin: 0;
       color: var(--muted);
       font-size: 13px;
-      line-height: 1.46;
+      line-height: 1.48;
     }
 
-    .reward-bottom,
-    .client-actions,
-    .transaction-bottom {
-      margin-top: 14px;
+    .reward-bottom, .client-actions, .transaction-bottom {
+      margin-top: 15px;
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
-      gap: 9px;
+      gap: 10px;
       align-items: center;
     }
 
@@ -965,7 +855,7 @@
 
     .price strong {
       color: var(--gold2);
-      font-size: 18px;
+      font-size: 19px;
       letter-spacing: -.04em;
     }
 
@@ -979,20 +869,20 @@
 
     .activity {
       display: grid;
-      grid-template-columns: 44px 1fr auto;
-      gap: 11px;
+      grid-template-columns: 46px 1fr auto;
+      gap: 12px;
       align-items: center;
     }
 
     .activity-icon {
-      width: 44px;
-      height: 44px;
-      border-radius: 16px;
+      width: 46px;
+      height: 46px;
+      border-radius: 17px;
       display: grid;
       place-items: center;
       color: var(--gold2);
-      background: rgba(215,165,70,.1);
-      border: 1px solid rgba(215,165,70,.18);
+      background: rgba(215,165,70,.11);
+      border: 1px solid rgba(215,165,70,.19);
       font-weight: 950;
       font-size: 12px;
     }
@@ -1007,7 +897,7 @@
       margin: 3px 0 0;
       color: var(--muted);
       font-size: 12px;
-      line-height: 1.36;
+      line-height: 1.38;
     }
 
     .activity strong {
@@ -1022,51 +912,48 @@
       position: relative;
       z-index: 1;
       display: grid;
-      gap: 11px;
+      gap: 12px;
     }
 
     .field label {
       display: block;
       margin: 0 0 7px;
       color: var(--muted);
-      font-size: 10px;
+      font-size: 11px;
       font-weight: 900;
       text-transform: uppercase;
-      letter-spacing: .13em;
+      letter-spacing: .12em;
     }
 
-    .field input,
-    .field textarea,
-    .field select {
+    .field input, .field textarea, .field select {
       width: 100%;
-      border: 1px solid rgba(255,237,194,.14);
-      border-radius: 17px;
-      padding: 13px;
+      border: 1px solid rgba(255,240,200,.14);
+      border-radius: 19px;
+      padding: 14px;
       color: var(--cream);
       background: rgba(0,0,0,.23);
       outline: none;
+      transition: .18s ease;
     }
 
     .field textarea {
-      min-height: 94px;
+      min-height: 96px;
     }
 
-    .field input:focus,
-    .field textarea:focus,
-    .field select:focus {
-      border-color: rgba(244,211,122,.56);
+    .field input:focus, .field textarea:focus, .field select:focus {
+      border-color: rgba(244,212,122,.58);
       box-shadow: 0 0 0 4px rgba(215,165,70,.12);
-      background: rgba(0,0,0,.3);
+      background: rgba(0,0,0,.32);
     }
 
     .lux-item {
       display: flex;
       justify-content: space-between;
-      gap: 11px;
-      padding: 12px;
-      border-radius: 18px;
-      background: rgba(0,0,0,.2);
-      border: 1px solid rgba(255,237,194,.09);
+      gap: 12px;
+      padding: 13px;
+      border-radius: 19px;
+      background: rgba(0,0,0,.20);
+      border: 1px solid rgba(255,240,200,.095);
     }
 
     .lux-item span {
@@ -1077,95 +964,101 @@
     .lux-item strong {
       text-align: right;
       font-size: 13px;
-      line-height: 1.33;
+      line-height: 1.34;
     }
 
     .shop-hero {
       position: relative;
       overflow: hidden;
-      border-radius: 32px;
-      padding: 19px;
+      border-radius: 34px;
+      padding: 20px;
       background:
-        radial-gradient(circle at 90% 0%, rgba(244,211,122,.2), transparent 28%),
-        radial-gradient(circle at 10% 100%, rgba(169,47,61,.21), transparent 32%),
-        linear-gradient(145deg, rgba(255,237,194,.11), rgba(255,237,194,.035));
-      border: 1px solid rgba(244,211,122,.2);
-      box-shadow: 0 16px 44px rgba(0,0,0,.3);
-      margin-bottom: 12px;
+        radial-gradient(circle at 90% 0%, rgba(244,212,122,.22), transparent 28%),
+        radial-gradient(circle at 10% 100%, rgba(167,49,61,.22), transparent 32%),
+        linear-gradient(145deg, rgba(255,240,200,.12), rgba(255,240,200,.04));
+      border: 1px solid rgba(244,212,122,.22);
+      box-shadow: 0 16px 44px rgba(0,0,0,.30);
+      margin-bottom: 14px;
     }
 
     .shop-hero h2 {
-      margin: 14px 0 0;
-      font-size: 31px;
+      margin: 15px 0 0;
+      font-size: 32px;
       letter-spacing: -.07em;
       line-height: 1;
     }
 
     .shop-hero p {
-      margin: 8px 0 0;
+      margin: 9px 0 0;
       color: var(--muted);
       font-size: 13px;
-      line-height: 1.48;
+      line-height: 1.5;
     }
 
     .divider {
       height: 1px;
-      background: rgba(255,237,194,.12);
-      margin: 15px 0;
+      background: rgba(255,240,200,.12);
+      margin: 16px 0;
     }
 
     .empty {
-      padding: 22px;
+      padding: 24px;
       text-align: center;
       color: var(--muted);
-      border: 1px dashed rgba(255,237,194,.18);
-      border-radius: 22px;
+      border: 1px dashed rgba(255,240,200,.18);
+      border-radius: 24px;
     }
 
     .note {
       position: relative;
       z-index: 1;
-      margin-top: 12px;
-      padding: 13px;
-      border-radius: 20px;
-      background: rgba(215,165,70,.09);
-      border: 1px solid rgba(215,165,70,.17);
+      margin-top: 14px;
+      padding: 14px;
+      border-radius: 21px;
+      background: rgba(215,165,70,.10);
+      border: 1px solid rgba(215,165,70,.18);
       color: var(--cream2);
       font-size: 12px;
-      line-height: 1.46;
+      line-height: 1.48;
     }
 
     .store-lock {
       display: none;
       position: relative;
       z-index: 1;
-      padding: 17px;
-      border-radius: 26px;
+      padding: 18px;
+      border-radius: 28px;
       background: rgba(0,0,0,.24);
-      border: 1px solid rgba(244,211,122,.2);
-      margin-bottom: 12px;
+      border: 1px solid rgba(244,212,122,.22);
+      margin-bottom: 14px;
     }
 
-    .store-lock.show { display: block; }
-    .store-area.locked { display: none; }
+    .store-lock.show {
+      display: block;
+    }
+
+    .store-area.locked {
+      display: none;
+    }
 
     .pos-preview {
       position: relative;
       z-index: 1;
       display: grid;
-      gap: 9px;
-      padding: 13px;
-      border-radius: 20px;
-      background: rgba(0,0,0,.23);
-      border: 1px solid rgba(244,211,122,.17);
-      font-size: 13px;
+      gap: 10px;
+      padding: 14px;
+      border-radius: 22px;
+      background: rgba(0,0,0,.22);
+      border: 1px solid rgba(244,212,122,.18);
     }
 
-    .pos-preview strong { color: var(--gold2); }
+    .pos-preview strong {
+      color: var(--gold2);
+    }
 
     .export-box {
       width: 100%;
-      min-height: 168px;
+      min-height: 170px;
       font-size: 11px;
       line-height: 1.42;
       color: var(--cream);
@@ -1176,31 +1069,32 @@
     .bottom-nav {
       position: fixed;
       left: 50%;
-      bottom: max(12px, var(--safe));
+      bottom: max(13px, var(--safe));
       transform: translateX(-50%);
       z-index: 50;
-      width: min(calc(100% - 22px), 730px);
+      width: min(calc(100% - 28px),720px);
       display: grid;
-      grid-template-columns: repeat(6, 1fr);
+      grid-template-columns: repeat(6,1fr);
       gap: 5px;
       padding: 7px;
-      border-radius: 25px;
-      background: rgba(12,6,6,.92);
-      border: 1px solid rgba(255,237,194,.14);
+      border-radius: 26px;
+      background: rgba(16,5,6,.90);
+      border: 1px solid rgba(255,240,200,.14);
       backdrop-filter: blur(26px);
-      box-shadow: 0 22px 62px rgba(0,0,0,.55);
+      box-shadow: 0 22px 62px rgba(0,0,0,.52);
     }
 
     .nav-btn {
-      min-height: 53px;
-      border-radius: 18px;
+      min-height: 54px;
+      border-radius: 19px;
       display: grid;
       place-items: center;
       gap: 1px;
-      color: rgba(255,237,194,.52);
+      color: rgba(255,240,200,.52);
       background: transparent;
-      font-size: 8px;
+      font-size: 8.5px;
       font-weight: 950;
+      transition: .18s ease;
     }
 
     .nav-icon {
@@ -1209,18 +1103,18 @@
     }
 
     .nav-btn.active {
-      color: #21100d;
-      background: linear-gradient(135deg, #fff0bd, #d7a546);
-      box-shadow: 0 12px 28px rgba(215,165,70,.15);
+      color: #23100d;
+      background: linear-gradient(135deg, #fff1bd, #d7a546);
+      box-shadow: 0 13px 30px rgba(215,165,70,.16);
     }
 
     .toast-wrap {
       position: fixed;
       left: 50%;
-      bottom: calc(96px + var(--safe));
+      bottom: calc(98px + var(--safe));
       transform: translateX(-50%);
       z-index: 90;
-      width: min(calc(100% - 28px), 540px);
+      width: min(calc(100% - 28px),540px);
       display: grid;
       gap: 9px;
       pointer-events: none;
@@ -1231,13 +1125,14 @@
       align-items: center;
       gap: 10px;
       padding: 13px 14px;
-      border-radius: 18px;
+      border-radius: 19px;
       color: var(--cream);
-      background: rgba(12,6,6,.95);
-      border: 1px solid rgba(244,211,122,.24);
+      background: rgba(16,5,6,.94);
+      border: 1px solid rgba(244,212,122,.25);
       box-shadow: 0 18px 46px rgba(0,0,0,.42);
       backdrop-filter: blur(18px);
       font-size: 13px;
+      line-height: 1.35;
       animation: toastIn .24s ease both;
     }
 
@@ -1269,13 +1164,13 @@
     }
 
     .modal {
-      width: min(100%, 540px);
-      border-radius: 30px;
+      width: min(100%,540px);
+      border-radius: 32px;
       padding: 20px;
       background:
-        radial-gradient(circle at 92% 0%, rgba(244,211,122,.18), transparent 28%),
-        linear-gradient(145deg, #241211, #0c0606);
-      border: 1px solid rgba(244,211,122,.24);
+        radial-gradient(circle at 92% 0%, rgba(244,212,122,.20), transparent 28%),
+        linear-gradient(145deg, #250c0f, #110506);
+      border: 1px solid rgba(244,212,122,.25);
       box-shadow: 0 30px 100px rgba(0,0,0,.58);
       animation: modalIn .24s ease both;
     }
@@ -1287,22 +1182,22 @@
 
     .modal h3 {
       margin: 0 0 8px;
-      font-size: 23px;
-      letter-spacing: -.05em;
+      font-size: 24px;
+      letter-spacing: -.055em;
     }
 
     .modal p {
       margin: 0;
       color: var(--muted);
       font-size: 13px;
-      line-height: 1.5;
+      line-height: 1.52;
     }
 
     .modal-actions {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 10px;
-      margin-top: 17px;
+      margin-top: 18px;
     }
 
     .splash {
@@ -1313,9 +1208,9 @@
       place-items: center;
       padding: 24px;
       background:
-        radial-gradient(circle at 50% 16%, rgba(244,211,122,.24), transparent 31%),
-        radial-gradient(circle at 78% 78%, rgba(169,47,61,.26), transparent 32%),
-        linear-gradient(145deg, #050202, #100707 55%, #251111);
+        radial-gradient(circle at 50% 16%, rgba(244,212,122,.25), transparent 30%),
+        radial-gradient(circle at 78% 78%, rgba(167,49,61,.27), transparent 31%),
+        linear-gradient(145deg, #060203, #120607 55%, #2a0d10);
       transition: opacity .48s ease, transform .48s ease, visibility .48s ease;
     }
 
@@ -1327,18 +1222,18 @@
     }
 
     .splash-inner {
-      width: min(100%, 620px);
+      width: min(100%,620px);
       text-align: center;
     }
 
     .splash-xa {
       font-family: Georgia, serif;
-      font-size: clamp(135px, 45vw, 330px);
+      font-size: clamp(135px,45vw,330px);
       line-height: .72;
       font-weight: 900;
       letter-spacing: -.135em;
       color: var(--cream);
-      text-shadow: 0 0 42px rgba(244,211,122,.2), 0 30px 86px rgba(0,0,0,.74);
+      text-shadow: 0 0 42px rgba(244,212,122,.20), 0 30px 86px rgba(0,0,0,.74);
       animation: monument .95s cubic-bezier(.16,1,.3,1) both;
     }
 
@@ -1373,7 +1268,7 @@
 
     @media (min-width: 760px) {
       .app {
-        padding: 20px 20px calc(138px + var(--safe));
+        padding: 24px 22px calc(138px + var(--safe));
       }
 
       .grid.two {
@@ -1381,39 +1276,40 @@
       }
 
       .grid.three {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(3,1fr);
       }
 
-      .reward-list,
-      .client-list,
-      .transaction-list {
-        grid-template-columns: repeat(2, 1fr);
+      .reward-list, .client-list, .transaction-list {
+        grid-template-columns: repeat(2,1fr);
       }
 
       .hero {
-        padding: 30px;
+        padding: 32px;
       }
 
       .stats-row {
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(4,1fr);
       }
 
       .modal-backdrop {
         align-items: center;
       }
+
+      .console-buttons {
+        grid-template-columns: repeat(3, 160px);
+        justify-content: center;
+      }
     }
 
     @media (min-width: 1040px) {
-      .reward-list,
-      .client-list,
-      .transaction-list {
-        grid-template-columns: repeat(3, 1fr);
+      .reward-list, .client-list, .transaction-list {
+        grid-template-columns: repeat(3,1fr);
       }
     }
 
     @media (max-width: 430px) {
       .brand p {
-        max-width: 126px;
+        max-width: 128px;
         overflow: hidden;
         text-overflow: ellipsis;
       }
@@ -1422,21 +1318,7 @@
         display: none;
       }
 
-      .transport {
-        grid-template-columns: 1fr;
-      }
-
-      .transport-left,
-      .transport-right {
-        justify-content: center;
-      }
-
-      .transport-display {
-        order: -1;
-      }
-
-      .mini-metrics,
-      .shop-stat {
+      .mini-metrics, .shop-stat {
         grid-template-columns: 1fr;
       }
 
@@ -1465,14 +1347,14 @@
       }
 
       .bottom-nav {
-        width: min(calc(100% - 18px), 730px);
+        width: min(calc(100% - 22px),720px);
         gap: 4px;
         padding: 7px;
       }
 
       .nav-btn {
-        min-height: 52px;
-        font-size: 7.5px;
+        min-height: 54px;
+        font-size: 8px;
       }
     }
   </style>
@@ -1482,9 +1364,9 @@
   <div class="splash" id="splash">
     <div class="splash-inner">
       <div class="splash-xa">XA</div>
-      <div class="splash-kicker">V7 DAW Store Console</div>
+      <div class="splash-kicker">V8 Club Console</div>
       <p class="splash-title">
-        Loyalty club, cassa manuale, clienti, rewards e transazioni in stile console DAW professionale.
+        Card cliente, cassa, punti, rewards e gestione clienti con una console semplice: REC, PLAY, STOP.
       </p>
       <button class="btn btn-primary" id="enterApp">Entra nel Club XA</button>
     </div>
@@ -1503,42 +1385,52 @@
 
         <div class="top-actions">
           <div class="pill">
-            <span class="led"></span>
+            <span class="dot"></span>
             <span id="topStatus">Member</span>
           </div>
           <button class="icon-btn" id="resetDemo" title="Reset demo">↺</button>
         </div>
       </div>
 
-      <div class="transport">
-        <div class="transport-left">
-          <button class="transport-btn rec" data-transport="rec">REC</button>
-          <button class="transport-btn" data-transport="play">▶</button>
-          <button class="transport-btn" data-transport="stop">■</button>
-        </div>
-
-        <div class="transport-display">
-          <span class="display-main" id="transportText">XA LOYALTY ENGINE · READY</span>
-          <span class="vu" aria-hidden="true">
-            <i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i>
+      <div class="club-console">
+        <div class="console-display">
+          <span id="consoleText">XA CLUB CONSOLE · PRONTO</span>
+          <span class="console-leds" aria-hidden="true">
+            <i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i>
           </span>
         </div>
 
-        <div class="transport-right">
-          <button class="transport-btn" data-go="pos">POS</button>
-          <button class="transport-btn" data-go="clients">CLT</button>
-          <button class="transport-btn" data-go="rewards">RW</button>
+        <div class="console-buttons">
+          <button class="console-btn rec" id="consoleRec" type="button">
+            <b>REC</b>
+            <span>Nuovo cliente</span>
+          </button>
+
+          <button class="console-btn play" id="consolePlay" type="button">
+            <b>PLAY</b>
+            <span>Scheda cliente</span>
+          </button>
+
+          <button class="console-btn stop" id="consoleStop" type="button">
+            <b>STOP</b>
+            <span>Home / reset</span>
+          </button>
         </div>
       </div>
     </header>
 
     <section class="screen active" id="screen-home">
       <div class="hero">
-        <div class="eyebrow"><span class="spark"></span> DAW Loyalty Console</div>
-        <h2 class="hero-title"><span class="gold">XA</span> Member Bus<br><span id="helloName">Cliente</span></h2>
+        <div class="eyebrow"><span class="spark"></span> XA Club Console</div>
+
+        <h2 class="hero-title">
+          <span class="gold">XA</span> Member Club<br>
+          <span id="helloName">Cliente</span>
+        </h2>
+
         <p class="hero-copy">
-          Card cliente, cassa, punti, status e gestione negozio con estetica da workstation audio:
-          rack, fader, VU, transport e canali operativi.
+          Vista cliente premium, gestione negozio multi-cliente e cassa manuale strutturata per futuro
+          POS, database o gestionale. La console in alto serve solo per azioni rapide reali.
         </p>
 
         <div class="stats-row">
@@ -1555,13 +1447,13 @@
       </div>
 
       <div class="grid two">
-        <div class="rack rack-pad">
-          <div class="rack-title">
+        <div class="card card-pad">
+          <div class="card-title">
             <div>
-              <h3>Member Card Deck</h3>
+              <h3>XA Member Card</h3>
               <p>Card digitale del cliente selezionato</p>
             </div>
-            <span class="tag">CARD BUS</span>
+            <span class="tag">Cliente</span>
           </div>
 
           <div class="member-card">
@@ -1586,13 +1478,13 @@
           </div>
         </div>
 
-        <div class="rack rack-pad">
-          <div class="rack-title">
+        <div class="card card-pad">
+          <div class="card-title">
             <div>
-              <h3>Points Compressor</h3>
-              <p>Saldo, lifetime e progressione status</p>
+              <h3>Saldo punti</h3>
+              <p>Disponibili per premi, esperienze e privilegi</p>
             </div>
-            <span class="tag">LIVE</span>
+            <span class="tag">Live</span>
           </div>
 
           <div class="points-big" id="pointsBig">0</div>
@@ -1614,36 +1506,36 @@
       </div>
 
       <div class="grid two">
-        <div class="rack rack-pad">
-          <div class="rack-title">
+        <div class="card card-pad">
+          <div class="card-title">
             <div>
-              <h3>QR Input Gate</h3>
-              <p>Identificativo cliente per cassa e card</p>
+              <h3>QR cliente</h3>
+              <p>Identificativo per cassa e card</p>
             </div>
-            <span class="tag">SCAN</span>
+            <span class="tag">ID</span>
           </div>
 
           <div class="qr-layout">
             <div class="qr-frame">
-              <canvas id="qrCanvas" width="110" height="110"></canvas>
+              <canvas id="qrCanvas" width="112" height="112"></canvas>
             </div>
             <div class="qr-info">
               <h4 id="qrMemberName">Cliente XA</h4>
               <p>
                 Codice membro: <strong id="qrMemberCode">XA-0000</strong><br>
-                Pronto per futura lettura QR con cassa, database o gestionale.
+                Pronto per futuro collegamento QR con cassa o database.
               </p>
             </div>
           </div>
         </div>
 
-        <div class="rack rack-pad">
-          <div class="rack-title">
+        <div class="card card-pad">
+          <div class="card-title">
             <div>
-              <h3>Store Master Bus</h3>
-              <p>Metriche principali del negozio</p>
+              <h3>Dashboard negozio</h3>
+              <p>Numeri centrali della loyalty</p>
             </div>
-            <span class="tag">MASTER</span>
+            <span class="tag">Store</span>
           </div>
 
           <div class="lux-list">
@@ -1654,52 +1546,12 @@
           </div>
         </div>
       </div>
-
-      <div class="rack rack-pad">
-        <div class="rack-title">
-          <div>
-            <h3>XA Channel Strip</h3>
-            <p>Canali operativi loyalty / cassa / rewards / backup</p>
-          </div>
-          <span class="tag">MIXER</span>
-        </div>
-
-        <div class="console-strip">
-          <div class="channel">
-            <h4>CLIENT</h4>
-            <div class="knobs"><span class="knob"></span><span class="knob"></span></div>
-            <div class="fader"></div>
-            <div class="meter"><span id="meterClients"></span></div>
-          </div>
-
-          <div class="channel">
-            <h4>POS</h4>
-            <div class="knobs"><span class="knob"></span><span class="knob"></span></div>
-            <div class="fader"></div>
-            <div class="meter"><span id="meterSales"></span></div>
-          </div>
-
-          <div class="channel">
-            <h4>POINTS</h4>
-            <div class="knobs"><span class="knob"></span><span class="knob"></span></div>
-            <div class="fader"></div>
-            <div class="meter"><span id="meterPoints"></span></div>
-          </div>
-
-          <div class="channel">
-            <h4>REWARDS</h4>
-            <div class="knobs"><span class="knob"></span><span class="knob"></span></div>
-            <div class="fader"></div>
-            <div class="meter"><span id="meterRewards"></span></div>
-          </div>
-        </div>
-      </div>
     </section>
 
     <section class="screen" id="screen-pos">
       <div class="shop-hero">
-        <div class="eyebrow"><span class="spark"></span> POS Input Channel</div>
-        <h2>XA Store Console</h2>
+        <div class="eyebrow"><span class="spark"></span> Cassa XA</div>
+        <h2>Store Console</h2>
         <p>
           Registra vendita, cliente, scontrino, categoria, punti e operatore.
           PIN demo: <strong>2026</strong>.
@@ -1712,7 +1564,7 @@
       </div>
 
       <div class="store-lock" id="storeLock">
-        <div class="rack-title">
+        <div class="card-title">
           <div>
             <h3>Sblocca cassa</h3>
             <p>Blocco demo locale. Non è sicurezza server.</p>
@@ -1730,8 +1582,8 @@
 
       <div class="store-area" id="storeArea">
         <div class="grid two">
-          <div class="rack rack-pad">
-            <div class="rack-title">
+          <div class="card card-pad">
+            <div class="card-title">
               <div>
                 <h3>Nuova vendita</h3>
                 <p>Transazione manuale cassa-ready</p>
@@ -1781,13 +1633,12 @@
             </form>
           </div>
 
-          <div class="rack rack-pad">
-            <div class="rack-title">
+          <div class="card card-pad">
+            <div class="card-title">
               <div>
                 <h3>Cliente in cassa</h3>
                 <p>Dati rapidi del cliente selezionato</p>
               </div>
-              <span class="tag">CHANNEL</span>
             </div>
 
             <div class="lux-list">
@@ -1808,13 +1659,12 @@
         </div>
 
         <div class="grid two">
-          <div class="rack rack-pad">
-            <div class="rack-title">
+          <div class="card card-pad">
+            <div class="card-title">
               <div>
-                <h3>Reward Send FX</h3>
-                <p>Riscatto premio dal cliente selezionato</p>
+                <h3>Riscatto premio</h3>
+                <p>Scala punti dal cliente selezionato</p>
               </div>
-              <span class="tag">FX</span>
             </div>
 
             <div class="form-grid">
@@ -1826,13 +1676,12 @@
             </div>
           </div>
 
-          <div class="rack rack-pad">
-            <div class="rack-title">
+          <div class="card card-pad">
+            <div class="card-title">
               <div>
-                <h3>Backup Recorder</h3>
+                <h3>Backup dati</h3>
                 <p>Esporta o ripristina il gestionale locale</p>
               </div>
-              <span class="tag">DATA</span>
             </div>
 
             <div class="form-grid">
@@ -1863,29 +1712,29 @@
       </div>
 
       <div class="grid three">
-        <div class="rack rack-pad">
-          <div class="rack-title"><div><h3>Client Counter</h3><p>Card create nel dispositivo</p></div></div>
+        <div class="card card-pad">
+          <div class="card-title"><div><h3>Totale clienti</h3><p>Card create nel dispositivo</p></div></div>
           <div class="points-big" id="clientsTotal">0</div>
           <div class="points-label">clienti registrati</div>
         </div>
 
-        <div class="rack rack-pad">
-          <div class="rack-title"><div><h3>Points Pool</h3><p>Somma punti disponibili</p></div></div>
+        <div class="card card-pad">
+          <div class="card-title"><div><h3>Punti attivi</h3><p>Somma punti disponibili</p></div></div>
           <div class="points-big" id="clientsPoints">0</div>
           <div class="points-label">punti circolanti</div>
         </div>
 
-        <div class="rack rack-pad">
-          <div class="rack-title"><div><h3>Top Member</h3><p>Più punti lifetime</p></div></div>
+        <div class="card card-pad">
+          <div class="card-title"><div><h3>Top cliente</h3><p>Più punti lifetime</p></div></div>
           <div class="points-big" id="topClientShort">0</div>
           <div class="points-label" id="topClientName">—</div>
         </div>
       </div>
 
       <div class="grid two">
-        <div class="rack rack-pad">
-          <div class="rack-title">
-            <div><h3>Client Finder</h3><p>Nome, email, telefono o codice XA</p></div>
+        <div class="card card-pad">
+          <div class="card-title">
+            <div><h3>Cerca cliente</h3><p>Nome, email, telefono o codice XA</p></div>
           </div>
 
           <div class="form-grid">
@@ -1899,9 +1748,9 @@
           <div class="client-list" id="clientList"></div>
         </div>
 
-        <div class="rack rack-pad">
-          <div class="rack-title">
-            <div><h3>New Card Input</h3><p>Aggiungi un cliente al gestionale negozio</p></div>
+        <div class="card card-pad">
+          <div class="card-title">
+            <div><h3>Crea nuova card</h3><p>Aggiungi un cliente al gestionale negozio</p></div>
           </div>
 
           <form class="form-grid" id="newCustomerForm">
@@ -1959,13 +1808,13 @@
       </div>
 
       <div class="grid two">
-        <div class="rack rack-pad">
-          <div class="rack-title"><div><h3>Client History</h3><p>Movimenti del cliente selezionato</p></div></div>
+        <div class="card card-pad">
+          <div class="card-title"><div><h3>Storico cliente</h3><p>Movimenti del cliente selezionato</p></div></div>
           <div class="activity-list" id="activityList"></div>
         </div>
 
-        <div class="rack rack-pad">
-          <div class="rack-title"><div><h3>Transaction Tape</h3><p>Vendite, bonus e riscatti</p></div></div>
+        <div class="card card-pad">
+          <div class="card-title"><div><h3>Ultime transazioni</h3><p>Vendite, bonus e riscatti</p></div></div>
           <div class="transaction-list" id="transactionList"></div>
         </div>
       </div>
@@ -1980,9 +1829,9 @@
       </div>
 
       <div class="grid two">
-        <div class="rack rack-pad">
-          <div class="rack-title">
-            <div><h3>Member Editor</h3><p>Personalizzazione card e note negozio</p></div>
+        <div class="card card-pad">
+          <div class="card-title">
+            <div><h3>Dati membro</h3><p>Personalizzazione card e note negozio</p></div>
           </div>
 
           <form class="form-grid" id="profileForm">
@@ -1995,9 +1844,9 @@
           </form>
         </div>
 
-        <div class="rack rack-pad">
-          <div class="rack-title">
-            <div><h3>Identity Rack</h3><p>Profilo, status e comportamento acquisto</p></div>
+        <div class="card card-pad">
+          <div class="card-title">
+            <div><h3>Identità XA</h3><p>Profilo, status e comportamento acquisto</p></div>
           </div>
 
           <div class="lux-list">
@@ -2010,7 +1859,7 @@
           </div>
 
           <div class="note">
-            V7 usa localStorage. Per avere dati condivisi su più dispositivi servirà database/API.
+            V8 usa localStorage. Per usare la stessa base dati su più dispositivi servirà poi database/API.
           </div>
         </div>
       </div>
@@ -2040,8 +1889,9 @@
   </div>
 
   <script>
-    const STORAGE_KEY = "xa_fermented_redrinks_loyalty_v7";
+    const STORAGE_KEY = "xa_fermented_redrinks_loyalty_v8";
     const OLD_KEYS = [
+      "xa_fermented_redrinks_loyalty_v7",
       "xa_fermented_redrinks_loyalty_v6",
       "xa_fermented_redrinks_loyalty_v5",
       "xa_fermented_redrinks_loyalty_v4",
@@ -2053,11 +1903,11 @@
     const STORE_PIN = "2026";
 
     const levels = [
-      { name:"Cellar Guest", min:0, privileges:["Card digitale XA attiva","Punti su ogni acquisto","Accesso alle prime novità del club"] },
-      { name:"Reserve Member", min:750, privileges:["Anteprime su limited edition","Priorità su degustazioni selezionate","Badge Reserve sulla card XA"] },
-      { name:"Grand Reserve", min:2200, privileges:["Accesso anticipato agli eventi XA","Reward esperienziali riservati","Priorità sulle release stagionali"] },
-      { name:"Founder Circle", min:5200, privileges:["Inviti a tavoli di degustazione privati","Privilegi su bottiglie numerate","Accesso alle prove di laboratorio XA"] },
-      { name:"XA Inner Cellar", min:9800, privileges:["Massimo status membro","Accesso a release ultra limitate","Inviti a esperienze private XA"] }
+      { name:"Cellar Guest", min:0 },
+      { name:"Reserve Member", min:750 },
+      { name:"Grand Reserve", min:2200 },
+      { name:"Founder Circle", min:5200 },
+      { name:"XA Inner Cellar", min:9800 }
     ];
 
     const categories = [
@@ -2097,21 +1947,6 @@
           operator:"Negozio XA",
           note:"Degustazione sidro e fermented redrinks",
           source:"manual_pos"
-        }),
-        seedTransaction({
-          id:"TRX-DEMO-002",
-          type:"bonus",
-          customer_id:"XA-2026-0001",
-          customer_name:"Maria Luisa",
-          receipt_number:"BONUS-2026-000001",
-          amount:0,
-          points:200,
-          product_category:"manual_bonus",
-          category_label:"Bonus manuale",
-          multiplier:1,
-          operator:"Negozio XA",
-          note:"Bonus anteprima Club XA",
-          source:"loyalty_app"
         })
       ],
       customers:[
@@ -2133,7 +1968,7 @@
       bindUI();
       renderAll();
 
-      if (sessionStorage.getItem("xa_splash_seen_v7")) {
+      if (sessionStorage.getItem("xa_splash_seen_v8")) {
         $("#splash").classList.add("hide");
       }
 
@@ -2141,9 +1976,9 @@
       fillDefaultReceipt();
     });
 
-    function bindUI(){
+    function bindUI() {
       $("#enterApp").addEventListener("click", () => {
-        sessionStorage.setItem("xa_splash_seen_v7","1");
+        sessionStorage.setItem("xa_splash_seen_v8","1");
         $("#splash").classList.add("hide");
         toast("Benvenuto nel Club XA.");
       });
@@ -2151,13 +1986,25 @@
       $$(".nav-btn").forEach(btn => btn.addEventListener("click", () => setTab(btn.dataset.tab)));
       $$("[data-go]").forEach(btn => btn.addEventListener("click", () => setTab(btn.dataset.go)));
 
-      $$("[data-transport]").forEach(btn => {
-        btn.addEventListener("click", () => {
-          $$("[data-transport]").forEach(b => b.classList.remove("active"));
-          btn.classList.add("active");
-          $("#transportText").textContent = `XA LOYALTY ENGINE · ${btn.dataset.transport.toUpperCase()}`;
-          toast(`Transport: ${btn.dataset.transport.toUpperCase()}`);
-        });
+      $("#consoleRec").addEventListener("click", () => {
+        setTab("clients");
+        setConsole("REC · nuovo cliente");
+        setTimeout(() => $("#newName")?.focus(), 300);
+        toast("REC: crea una nuova card cliente.");
+      });
+
+      $("#consolePlay").addEventListener("click", () => {
+        setTab("home");
+        const customer = getActiveCustomer();
+        setConsole(`PLAY · scheda ${customer.name}`);
+        toast(`PLAY: scheda cliente aperta.`);
+      });
+
+      $("#consoleStop").addEventListener("click", () => {
+        clearPosFields();
+        setTab("home");
+        setConsole("STOP · home");
+        toast("STOP: operazione azzerata.");
       });
 
       $("#rewardFilters").addEventListener("click", event => {
@@ -2218,13 +2065,21 @@
       });
     }
 
-    function setTab(tab){
+    function setTab(tab) {
       $$(".nav-btn").forEach(btn => btn.classList.toggle("active", btn.dataset.tab === tab));
       $$(".screen").forEach(screen => screen.classList.toggle("active", screen.id === `screen-${tab}`));
-      window.scrollTo({top:0,behavior:"smooth"});
+      window.scrollTo({top:0, behavior:"smooth"});
 
-      const names = {home:"HOME BUS", pos:"POS INPUT", clients:"CLIENT MATRIX", rewards:"REWARD FX", activity:"TAPE HISTORY", profile:"PROFILE EDITOR"};
-      $("#transportText").textContent = `XA LOYALTY ENGINE · ${names[tab] || "READY"}`;
+      const names = {
+        home:"home",
+        pos:"cassa",
+        clients:"clienti",
+        rewards:"rewards",
+        activity:"storico",
+        profile:"profilo"
+      };
+
+      setConsole(`XA Club Console · ${names[tab] || "pronto"}`);
 
       if (tab === "pos") {
         updateStoreLock();
@@ -2233,7 +2088,11 @@
       }
     }
 
-    function renderAll(){
+    function setConsole(text) {
+      $("#consoleText").textContent = text.toUpperCase();
+    }
+
+    function renderAll() {
       normalizeState();
 
       const customer = getActiveCustomer();
@@ -2290,11 +2149,6 @@
       $("#profileSpend").textContent = formatMoney(customer.totalSpend || 0);
       $("#profileLastVisit").textContent = customer.lastVisit || "—";
 
-      $("#meterClients").style.width = `${Math.min(100, state.customers.length * 15)}%`;
-      $("#meterSales").style.width = `${Math.min(100, stats.salesCount * 12)}%`;
-      $("#meterPoints").style.width = `${Math.min(100, stats.activePoints / 120)}%`;
-      $("#meterRewards").style.width = `${Math.min(100, rewards.length * 12)}%`;
-
       renderRewards();
       renderActivity();
       renderTransactions();
@@ -2305,7 +2159,7 @@
       drawQR(`${customer.id}|${customer.name}|XA Fermented Redrinks`);
     }
 
-    function renderRewards(){
+    function renderRewards() {
       const customer = getActiveCustomer();
       const list = $("#rewardList");
       list.innerHTML = "";
@@ -2346,7 +2200,7 @@
       });
     }
 
-    function renderActivity(){
+    function renderActivity() {
       const customer = getActiveCustomer();
       const list = $("#activityList");
       list.innerHTML = "";
@@ -2375,7 +2229,7 @@
       });
     }
 
-    function renderTransactions(){
+    function renderTransactions() {
       const list = $("#transactionList");
       list.innerHTML = "";
 
@@ -2414,7 +2268,7 @@
       });
     }
 
-    function renderClients(){
+    function renderClients() {
       const list = $("#clientList");
       const query = ($("#clientSearch").value || "").trim().toLowerCase();
       list.innerHTML = "";
@@ -2480,7 +2334,7 @@
       });
     }
 
-    function renderClientStats(){
+    function renderClientStats() {
       const totalClients = state.customers.length;
       const totalPoints = state.customers.reduce((sum, customer) => sum + Number(customer.points || 0),0);
       const top = [...state.customers].sort((a,b) => b.lifetimePoints - a.lifetimePoints)[0];
@@ -2491,7 +2345,7 @@
       $("#topClientName").textContent = top ? top.name : "—";
     }
 
-    function renderStoreSelects(){
+    function renderStoreSelects() {
       const customerSelect = $("#posClientSelect");
       const categorySelect = $("#posCategory");
       const rewardSelect = $("#shopRewardSelect");
@@ -2529,7 +2383,7 @@
       }
     }
 
-    function createCustomer(){
+    function createCustomer() {
       const name = $("#newName").value.trim();
       if (!name) {
         toast("Inserisci il nome del cliente.");
@@ -2545,7 +2399,7 @@
         lifetimePoints:0,
         totalSpend:0,
         purchases:0,
-        joined: new Date().toLocaleDateString("it-IT",{day:"2-digit",month:"long",year:"numeric"}),
+        joined: new Date().toLocaleDateString("it-IT",{day:"2-digit", month:"long", year:"numeric"}),
         lastVisit:"—",
         preferences: $("#newPrefs").value.trim() || "Nuovo membro XA.",
         notes:"",
@@ -2570,7 +2424,7 @@
       toast(`Card creata: ${customer.name}`);
     }
 
-    function saveProfile(){
+    function saveProfile() {
       const customer = getActiveCustomer();
       customer.name = $("#profileName").value.trim() || "Membro XA";
       customer.email = $("#profileEmail").value.trim();
@@ -2578,13 +2432,13 @@
       customer.preferences = $("#profilePreferences").value.trim();
       customer.notes = $("#profileNotes").value.trim();
 
-      addHistory(customer,{title:"Profilo aggiornato",note:"Dati membro modificati",points:0,type:"profile"});
+      addHistory(customer,{title:"Profilo aggiornato", note:"Dati membro modificati", points:0, type:"profile"});
       saveState();
       renderAll();
       toast("Profilo cliente salvato.");
     }
 
-    function createSaleTransaction(){
+    function createSaleTransaction() {
       const customer = getActiveCustomer();
       const amount = Number($("#posAmount").value);
       const category = getCategory($("#posCategory").value);
@@ -2617,8 +2471,7 @@
             source:"manual_pos"
           });
 
-          $("#posAmount").value = "";
-          $("#posNote").value = "";
+          clearPosFields();
           $("#posReceipt").value = nextReceiptNumber();
           updatePOSPreview();
           toast(`Vendita registrata: +${points} punti a ${customer.name}.`);
@@ -2626,7 +2479,7 @@
       });
     }
 
-    function addPointsTransaction(data){
+    function addPointsTransaction(data) {
       const customer = data.customer;
 
       customer.points += data.points;
@@ -2670,7 +2523,7 @@
       renderAll();
     }
 
-    function assignBonus(){
+    function assignBonus() {
       const customer = getActiveCustomer();
 
       openConfirm({
@@ -2696,7 +2549,7 @@
       });
     }
 
-    function redeemReward(id){
+    function redeemReward(id) {
       const customer = getActiveCustomer();
       const reward = state.rewards.find(item => item.id === id);
 
@@ -2736,7 +2589,7 @@
             pos_ready:true
           });
 
-          addHistory(customer,{title:"Riscatto reward",note:reward.title,points:-reward.cost,type:"redeem"});
+          addHistory(customer,{title:"Riscatto reward", note:reward.title, points:-reward.cost, type:"redeem"});
           saveState();
           renderAll();
           toast(`Reward riscattato: ${reward.title}`);
@@ -2744,7 +2597,7 @@
       });
     }
 
-    function deleteCustomer(id){
+    function deleteCustomer(id) {
       const customer = state.customers.find(item => item.id === id);
       if (!customer) return;
 
@@ -2766,26 +2619,26 @@
       });
     }
 
-    function scanDemo(){
+    function scanDemo() {
       const customer = getActiveCustomer();
       toast(`QR riconosciuto: ${customer.id} — ${customer.name}`);
     }
 
-    function exportJSON(){
+    function exportJSON() {
       const box = $("#exportBox");
       box.style.display = "block";
       box.value = JSON.stringify(state,null,2);
       toast("JSON completo esportato nel riquadro.");
     }
 
-    function exportCSV(){
+    function exportCSV() {
       const box = $("#exportBox");
       box.style.display = "block";
       box.value = exportTransactionsCSV();
       toast("CSV vendite esportato nel riquadro.");
     }
 
-    function importJSON(){
+    function importJSON() {
       const raw = $("#importBox").value.trim();
 
       if (!raw) {
@@ -2823,7 +2676,7 @@
       }
     }
 
-    function clearTransactions(){
+    function clearTransactions() {
       openConfirm({
         title:"Svuotare transazioni?",
         text:"Verranno eliminate le transazioni globali. I punti già assegnati ai clienti non verranno ricalcolati.",
@@ -2836,7 +2689,7 @@
       });
     }
 
-    function unlockStore(){
+    function unlockStore() {
       const pin = $("#storePin").value.trim();
 
       if (pin !== STORE_PIN) {
@@ -2850,7 +2703,7 @@
       toast("Cassa XA sbloccata.");
     }
 
-    function resetDemo(){
+    function resetDemo() {
       openConfirm({
         title:"Ripristinare la demo XA?",
         text:"Tutti i clienti e le transazioni locali verranno sostituiti dai dati demo iniziali.",
@@ -2863,12 +2716,17 @@
           fillDefaultReceipt();
           renderAll();
           updateStoreLock();
-          toast("Demo XA V7 ripristinata.");
+          toast("Demo XA V8 ripristinata.");
         }
       });
     }
 
-    function updatePOSPreview(){
+    function clearPosFields() {
+      $("#posAmount").value = "";
+      $("#posNote").value = "";
+    }
+
+    function updatePOSPreview() {
       const customer = getActiveCustomer();
       const amount = Number($("#posAmount").value || 0);
       const category = getCategory($("#posCategory").value);
@@ -2879,18 +2737,18 @@
       $("#previewPoints").textContent = formatNumber(points);
     }
 
-    function fillDefaultReceipt(){
+    function fillDefaultReceipt() {
       const input = $("#posReceipt");
       if (input && !input.value.trim()) input.value = nextReceiptNumber();
     }
 
-    function updateStoreLock(){
+    function updateStoreLock() {
       const unlocked = sessionStorage.getItem("xa_store_unlocked") === "1";
       $("#storeLock").classList.toggle("show", !unlocked);
       $("#storeArea").classList.toggle("locked", !unlocked);
     }
 
-    function getActiveCustomer(){
+    function getActiveCustomer() {
       let customer = state.customers.find(item => item.id === state.activeCustomerId);
 
       if (!customer) {
@@ -2911,7 +2769,7 @@
       return customer;
     }
 
-    function getLevel(customer){
+    function getLevel(customer) {
       let current = levels[0];
       levels.forEach(level => {
         if (customer.lifetimePoints >= level.min) current = level;
@@ -2919,33 +2777,33 @@
       return current;
     }
 
-    function getNextLevel(customer){
+    function getNextLevel(customer) {
       return levels.find(level => level.min > customer.lifetimePoints) || null;
     }
 
-    function getProgressPercent(customer,current,next){
+    function getProgressPercent(customer,current,next) {
       if (!next) return 100;
       const range = next.min - current.min;
       const gained = customer.lifetimePoints - current.min;
       return Math.max(5, Math.min(100, Math.round((gained / range) * 100)));
     }
 
-    function getStoreStats(){
+    function getStoreStats() {
       const activePoints = state.customers.reduce((sum, customer) => sum + Number(customer.points || 0),0);
       const sales = state.transactions.filter(t => t.type === "sale");
       const revenue = sales.reduce((sum, t) => sum + Number(t.amount || 0),0);
       return { activePoints, salesCount:sales.length, revenue };
     }
 
-    function getCategory(id){
+    function getCategory(id) {
       return state.categories.find(category => category.id === id) || state.categories[0];
     }
 
-    function calculatePoints(amount,multiplier){
+    function calculatePoints(amount,multiplier) {
       return Math.max(0, Math.floor(Number(amount || 0) * Number(multiplier || 1)));
     }
 
-    function addHistory(customer,entry){
+    function addHistory(customer,entry) {
       customer.history = customer.history || [];
       customer.history.unshift({
         id: makeId(),
@@ -2957,7 +2815,7 @@
       });
     }
 
-    function loadState(){
+    function loadState() {
       try {
         let raw = localStorage.getItem(STORAGE_KEY);
 
@@ -2993,7 +2851,7 @@
       }
     }
 
-    function normalizeState(){
+    function normalizeState() {
       state.rewards = Array.isArray(state.rewards) && state.rewards.length ? state.rewards : rewards;
       state.categories = Array.isArray(state.categories) && state.categories.length ? state.categories : categories;
       state.transactions = Array.isArray(state.transactions) ? state.transactions : [];
@@ -3011,12 +2869,12 @@
       });
     }
 
-    function saveState(){
+    function saveState() {
       normalizeState();
       localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
     }
 
-    function seedCustomer(data){
+    function seedCustomer(data) {
       return {
         id:data.id,
         name:data.name,
@@ -3038,7 +2896,7 @@
       };
     }
 
-    function seedTransaction(data){
+    function seedTransaction(data) {
       return {
         id:data.id || makeTransactionId(),
         type:data.type,
@@ -3059,36 +2917,36 @@
       };
     }
 
-    function nextCustomerId(){
+    function nextCustomerId() {
       const year = new Date().getFullYear();
       const numbers = state.customers.map(customer => Number(String(customer.id).split("-").slice(-1)[0])).filter(Number.isFinite);
       const next = Math.max(0,...numbers) + 1;
       return `XA-${year}-${String(next).padStart(4,"0")}`;
     }
 
-    function nextReceiptNumber(){
+    function nextReceiptNumber() {
       const year = new Date().getFullYear();
       const count = state.transactions.filter(t => t.type === "sale").length + 1;
       return `XA-${year}-${String(count).padStart(6,"0")}`;
     }
 
-    function nextBonusNumber(){
+    function nextBonusNumber() {
       const year = new Date().getFullYear();
       const count = state.transactions.filter(t => t.type === "bonus").length + 1;
       return `BONUS-${year}-${String(count).padStart(6,"0")}`;
     }
 
-    function nextRedeemNumber(){
+    function nextRedeemNumber() {
       const year = new Date().getFullYear();
       const count = state.transactions.filter(t => t.type === "reward_redeem").length + 1;
       return `REWARD-${year}-${String(count).padStart(6,"0")}`;
     }
 
-    function makeTransactionId(){
+    function makeTransactionId() {
       return `TRX-${Date.now()}-${Math.random().toString(16).slice(2,8).toUpperCase()}`;
     }
 
-    function exportTransactionsCSV(){
+    function exportTransactionsCSV() {
       const headers = [
         "transaction_id","type","customer_id","customer_name","receipt_number","amount","points",
         "product_category","category_label","multiplier","operator","note","date_iso","date_label","source"
@@ -3098,12 +2956,12 @@
       return [headers.join(","),...rows].join("\n");
     }
 
-    function csvCell(value){
+    function csvCell(value) {
       const text = String(value).replaceAll('"','""');
       return `"${text}"`;
     }
 
-    function toast(message){
+    function toast(message) {
       const wrap = $("#toastWrap");
       const el = document.createElement("div");
       el.className = "toast";
@@ -3119,22 +2977,22 @@
       setTimeout(() => el.remove(),2920);
     }
 
-    function openConfirm({title,text,onConfirm}){
+    function openConfirm({title,text,onConfirm}) {
       $("#modalTitle").textContent = title;
       $("#modalText").textContent = text;
       pendingConfirm = onConfirm;
       $("#modalBackdrop").classList.add("show");
     }
 
-    function closeConfirm(){
+    function closeConfirm() {
       $("#modalBackdrop").classList.remove("show");
       pendingConfirm = null;
     }
 
-    function drawQR(payload){
+    function drawQR(payload) {
       const canvas = $("#qrCanvas");
       const ctx = canvas.getContext("2d");
-      const size = 110;
+      const size = 112;
       const cells = 29;
       const cell = Math.floor(size / cells);
       const actual = cell * cells;
@@ -3145,17 +3003,17 @@
 
       const seed = hashString(payload);
 
-      function randomDark(x,y){
+      function randomDark(x,y) {
         const n = Math.sin((x * 928371 + y * 364479 + seed) * .00017) * 10000;
         return (n - Math.floor(n)) > .535;
       }
 
-      function drawCell(x,y,dark = true){
+      function drawCell(x,y,dark = true) {
         ctx.fillStyle = dark ? "#170708" : "#fff7e7";
         ctx.fillRect(offset + x * cell, offset + y * cell, cell, cell);
       }
 
-      function finder(x,y){
+      function finder(x,y) {
         for (let yy = 0; yy < 7; yy++) {
           for (let xx = 0; xx < 7; xx++) {
             const edge = xx === 0 || yy === 0 || xx === 6 || yy === 6;
@@ -3185,7 +3043,7 @@
       ctx.fillText("XA", offset + 14.5 * cell, offset + 14.5 * cell);
     }
 
-    function hashString(value){
+    function hashString(value) {
       let hash = 0;
       for (let i = 0; i < value.length; i++) {
         hash = ((hash << 5) - hash) + value.charCodeAt(i);
@@ -3194,7 +3052,7 @@
       return Math.abs(hash);
     }
 
-    function nowLabel(){
+    function nowLabel() {
       return new Date().toLocaleString("it-IT",{
         day:"2-digit",
         month:"2-digit",
@@ -3204,15 +3062,15 @@
       });
     }
 
-    function formatNumber(number){
+    function formatNumber(number) {
       return Number(number || 0).toLocaleString("it-IT");
     }
 
-    function formatMoney(number){
-      return Number(number || 0).toLocaleString("it-IT",{style:"currency",currency:"EUR"});
+    function formatMoney(number) {
+      return Number(number || 0).toLocaleString("it-IT",{style:"currency", currency:"EUR"});
     }
 
-    function escapeHTML(value){
+    function escapeHTML(value) {
       return String(value ?? "").replace(/[&<>"']/g, char => ({
         "&":"&amp;",
         "<":"&lt;",
@@ -3222,22 +3080,22 @@
       }[char]));
     }
 
-    function clone(value){
+    function clone(value) {
       if (typeof structuredClone === "function") return structuredClone(value);
       return JSON.parse(JSON.stringify(value));
     }
 
-    function makeId(){
+    function makeId() {
       if (window.crypto && crypto.randomUUID) return crypto.randomUUID();
       return `xa-${Date.now()}-${Math.random().toString(16).slice(2)}`;
     }
 
-    function getActivityIcon(type){
+    function getActivityIcon(type) {
       const icons = { earn:"+", sale:"+", bonus:"+", redeem:"✓", member:"XA", profile:"◎", generic:"•" };
       return icons[type] || icons.generic;
     }
 
-    function getTransactionTypeLabel(type){
+    function getTransactionTypeLabel(type) {
       const labels = { sale:"Vendita", bonus:"Bonus", reward_redeem:"Riscatto" };
       return labels[type] || "Movimento";
     }
