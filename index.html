@@ -8,26 +8,24 @@
 
   <style>
     :root {
-      --bg: #100506;
-      --bg2: #1b090b;
-      --panel: rgba(255, 240, 200, .075);
-      --panel2: rgba(255, 240, 200, .12);
-      --wine: #741923;
-      --wine2: #a52c38;
+      --bg: #0e0405;
+      --bg2: #1a080a;
+      --wine: #731922;
+      --wine2: #a52b36;
       --cream: #fff0c8;
       --cream2: #ead09a;
-      --muted: rgba(255, 240, 200, .68);
-      --soft: rgba(255, 240, 200, .42);
+      --muted: rgba(255,240,200,.68);
+      --soft: rgba(255,240,200,.42);
       --gold: #d7a546;
-      --gold2: #f3cf75;
+      --gold2: #f4d47a;
       --green: #8fe6a2;
       --red: #ff7777;
-      --line: rgba(255, 240, 200, .14);
-      --line2: rgba(243, 207, 117, .28);
-      --shadow: 0 28px 90px rgba(0,0,0,.46);
-      --shadow2: 0 18px 46px rgba(0,0,0,.32);
-      --radius: 28px;
-      --safe-bottom: env(safe-area-inset-bottom);
+      --line: rgba(255,240,200,.14);
+      --glass: rgba(255,240,200,.08);
+      --glass2: rgba(255,240,200,.13);
+      --shadow: 0 26px 80px rgba(0,0,0,.44);
+      --shadow2: 0 16px 44px rgba(0,0,0,.30);
+      --safe: env(safe-area-inset-bottom);
     }
 
     * {
@@ -45,9 +43,9 @@
       color: var(--cream);
       font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background:
-        radial-gradient(circle at 12% 0%, rgba(243,207,117,.18), transparent 28%),
-        radial-gradient(circle at 92% 18%, rgba(165,44,56,.25), transparent 32%),
-        radial-gradient(circle at 45% 92%, rgba(215,165,70,.13), transparent 30%),
+        radial-gradient(circle at 12% 0%, rgba(244,212,122,.16), transparent 28%),
+        radial-gradient(circle at 90% 18%, rgba(165,43,54,.24), transparent 34%),
+        radial-gradient(circle at 46% 100%, rgba(215,165,70,.12), transparent 34%),
         linear-gradient(145deg, #070203 0%, #120607 42%, #260c0f 100%);
       overflow-x: hidden;
     }
@@ -57,32 +55,13 @@
       position: fixed;
       inset: 0;
       pointer-events: none;
+      z-index: 0;
       background:
-        linear-gradient(rgba(255,255,255,.024) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.017) 1px, transparent 1px);
+        linear-gradient(rgba(255,255,255,.022) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.016) 1px, transparent 1px);
       background-size: 34px 34px;
       opacity: .34;
       mask-image: radial-gradient(circle at center, black 0%, transparent 76%);
-      z-index: 0;
-    }
-
-    body::after {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      background:
-        radial-gradient(circle at 20% 26%, rgba(255,240,200,.035) 0 1px, transparent 2px),
-        radial-gradient(circle at 70% 56%, rgba(255,240,200,.03) 0 1px, transparent 2px),
-        radial-gradient(circle at 42% 82%, rgba(255,240,200,.025) 0 1px, transparent 2px);
-      background-size: 90px 90px, 130px 130px, 170px 170px;
-      animation: grainFloat 12s linear infinite;
-      z-index: 0;
-    }
-
-    @keyframes grainFloat {
-      from { transform: translateY(0); }
-      to { transform: translateY(-90px); }
     }
 
     button,
@@ -100,10 +79,10 @@
     .app {
       position: relative;
       z-index: 1;
-      width: min(100%, 1180px);
+      width: min(100%, 1160px);
       min-height: 100vh;
       margin: 0 auto;
-      padding: 14px 14px calc(116px + var(--safe-bottom));
+      padding: 14px 14px calc(132px + var(--safe));
     }
 
     .topbar {
@@ -121,15 +100,14 @@
     .brand {
       display: flex;
       align-items: center;
-      gap: 11px;
+      gap: 12px;
       min-width: 0;
     }
 
     .brand-seal {
-      width: 50px;
-      height: 50px;
-      flex: 0 0 auto;
-      border-radius: 18px;
+      width: 52px;
+      height: 52px;
+      border-radius: 19px;
       display: grid;
       place-items: center;
       position: relative;
@@ -137,13 +115,14 @@
       background:
         radial-gradient(circle at 30% 20%, rgba(255,240,200,.18), transparent 28%),
         linear-gradient(145deg, #7d1d26, #21080a);
-      border: 1px solid rgba(243,207,117,.34);
-      box-shadow: inset 0 0 24px rgba(243,207,117,.09), 0 14px 38px rgba(0,0,0,.4);
+      border: 1px solid rgba(244,212,122,.36);
+      box-shadow: inset 0 0 24px rgba(244,212,122,.09), 0 14px 38px rgba(0,0,0,.4);
       font-family: Georgia, serif;
       font-weight: 900;
       font-size: 20px;
       letter-spacing: -3px;
       color: var(--gold2);
+      flex: 0 0 auto;
     }
 
     .brand-seal::after {
@@ -154,44 +133,37 @@
       border: 1px solid rgba(255,240,200,.16);
     }
 
-    .brand-text {
-      min-width: 0;
-    }
-
-    .brand-text h1 {
+    .brand h1 {
       margin: 0;
       font-size: 14px;
       text-transform: uppercase;
-      letter-spacing: .18em;
+      letter-spacing: .19em;
       white-space: nowrap;
     }
 
-    .brand-text p {
-      margin: 2px 0 0;
+    .brand p {
+      margin: 3px 0 0;
       color: var(--muted);
       font-size: 12px;
       white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
     }
 
     .top-actions {
       display: flex;
       gap: 8px;
       align-items: center;
-      flex: 0 0 auto;
     }
 
-    .level-pill {
+    .pill {
       display: inline-flex;
       align-items: center;
       gap: 7px;
       min-height: 40px;
       padding: 9px 12px;
       border-radius: 999px;
-      background: rgba(243,207,117,.11);
-      border: 1px solid rgba(243,207,117,.26);
       color: var(--gold2);
+      background: rgba(244,212,122,.10);
+      border: 1px solid rgba(244,212,122,.26);
       font-size: 11px;
       font-weight: 950;
       text-transform: uppercase;
@@ -199,18 +171,19 @@
       max-width: 156px;
     }
 
-    .level-pill span:last-child {
+    .pill span:last-child {
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
     }
 
-    .live-dot {
+    .dot {
       width: 8px;
       height: 8px;
       border-radius: 50%;
       background: var(--green);
       box-shadow: 0 0 18px var(--green);
+      flex: 0 0 auto;
     }
 
     .icon-btn {
@@ -220,7 +193,7 @@
       display: grid;
       place-items: center;
       color: var(--cream);
-      background: rgba(255,240,200,.075);
+      background: var(--glass);
       border: 1px solid rgba(255,240,200,.13);
       transition: transform .18s ease, background .18s ease;
     }
@@ -231,17 +204,17 @@
 
     .screen {
       display: none;
-      animation: screenIn .36s ease both;
+      animation: in .32s ease both;
     }
 
     .screen.active {
       display: block;
     }
 
-    @keyframes screenIn {
+    @keyframes in {
       from {
         opacity: 0;
-        transform: translateY(14px);
+        transform: translateY(12px);
       }
       to {
         opacity: 1;
@@ -253,40 +226,30 @@
       position: relative;
       isolation: isolate;
       overflow: hidden;
-      min-height: 344px;
-      border-radius: 38px;
-      padding: 24px 18px;
+      border-radius: 36px;
+      padding: 22px 18px;
+      min-height: 292px;
       background:
-        radial-gradient(circle at 78% 13%, rgba(243,207,117,.28), transparent 26%),
-        radial-gradient(circle at 14% 88%, rgba(165,44,56,.36), transparent 34%),
+        radial-gradient(circle at 80% 14%, rgba(244,212,122,.28), transparent 28%),
+        radial-gradient(circle at 12% 86%, rgba(165,43,54,.34), transparent 34%),
         linear-gradient(145deg, rgba(255,240,200,.14), rgba(255,240,200,.04)),
-        linear-gradient(145deg, rgba(111,23,32,.86), rgba(17,6,7,.94));
-      border: 1px solid rgba(243,207,117,.26);
+        linear-gradient(145deg, rgba(115,25,34,.86), rgba(17,6,7,.94));
+      border: 1px solid rgba(244,212,122,.26);
       box-shadow: var(--shadow);
     }
 
     .hero::before {
       content: "XA";
       position: absolute;
-      right: -28px;
-      top: -44px;
+      right: -22px;
+      top: -38px;
       z-index: -1;
       font-family: Georgia, serif;
-      font-size: clamp(150px, 43vw, 310px);
-      line-height: .72;
+      font-size: clamp(128px, 39vw, 280px);
+      line-height: .74;
       font-weight: 900;
-      letter-spacing: -.12em;
-      color: rgba(255,240,200,.102);
-      filter: drop-shadow(0 28px 45px rgba(0,0,0,.32));
-    }
-
-    .hero::after {
-      content: "";
-      position: absolute;
-      inset: auto -20% -38% -20%;
-      height: 210px;
-      z-index: -1;
-      background: radial-gradient(ellipse at center, rgba(243,207,117,.24), transparent 65%);
+      letter-spacing: -.13em;
+      color: rgba(255,240,200,.095);
     }
 
     .eyebrow {
@@ -309,14 +272,14 @@
       height: 7px;
       border-radius: 50%;
       background: var(--gold2);
-      box-shadow: 0 0 18px rgba(243,207,117,.85);
+      box-shadow: 0 0 18px rgba(244,212,122,.85);
     }
 
     .hero-title {
-      margin: 20px 0 10px;
+      margin: 18px 0 10px;
       max-width: 780px;
-      font-size: clamp(35px, 9vw, 76px);
-      line-height: .9;
+      font-size: clamp(31px, 8.2vw, 68px);
+      line-height: .92;
       font-weight: 980;
       letter-spacing: -.07em;
     }
@@ -327,56 +290,22 @@
 
     .hero-copy {
       margin: 0;
-      max-width: 680px;
+      max-width: 720px;
       color: var(--muted);
       font-size: 14px;
-      line-height: 1.56;
-    }
-
-    .hero-strip {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-top: 22px;
-    }
-
-    .hero-metric,
-    .metric {
-      padding: 14px;
-      border-radius: 20px;
-      background: rgba(0,0,0,.22);
-      border: 1px solid rgba(255,240,200,.12);
-    }
-
-    .hero-metric span,
-    .metric span {
-      display: block;
-      color: var(--soft);
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: .12em;
-      font-weight: 900;
-    }
-
-    .hero-metric strong,
-    .metric strong {
-      display: block;
-      margin-top: 4px;
-      color: var(--cream);
-      font-size: 20px;
-      letter-spacing: -.04em;
+      line-height: 1.52;
     }
 
     .hero-actions {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      margin-top: 22px;
+      margin-top: 18px;
     }
 
     .btn {
-      min-height: 46px;
-      padding: 12px 16px;
+      min-height: 45px;
+      padding: 11px 15px;
       border-radius: 999px;
       display: inline-flex;
       justify-content: center;
@@ -384,7 +313,7 @@
       gap: 8px;
       color: var(--cream);
       font-weight: 950;
-      letter-spacing: .015em;
+      letter-spacing: .01em;
       transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
       user-select: none;
     }
@@ -405,7 +334,7 @@
     }
 
     .btn-danger {
-      background: rgba(165,44,56,.22);
+      background: rgba(165,43,54,.22);
       border: 1px solid rgba(255,119,119,.32);
       color: #ffe6e6;
     }
@@ -414,6 +343,41 @@
       min-height: 38px;
       padding: 9px 12px;
       font-size: 12px;
+    }
+
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .stat {
+      position: relative;
+      z-index: 1;
+      padding: 13px;
+      border-radius: 20px;
+      background: rgba(0,0,0,.22);
+      border: 1px solid rgba(255,240,200,.11);
+    }
+
+    .stat span,
+    .metric span {
+      display: block;
+      color: var(--soft);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      font-weight: 900;
+    }
+
+    .stat strong,
+    .metric strong {
+      display: block;
+      margin-top: 4px;
+      color: var(--cream);
+      font-size: 19px;
+      letter-spacing: -.04em;
     }
 
     .grid {
@@ -426,27 +390,11 @@
     .card {
       position: relative;
       overflow: hidden;
-      border-radius: var(--radius);
+      border-radius: 28px;
       background: linear-gradient(145deg, rgba(255,240,200,.105), rgba(255,240,200,.04));
       border: 1px solid rgba(255,240,200,.13);
       box-shadow: var(--shadow2);
       backdrop-filter: blur(22px);
-    }
-
-    .card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(120deg, transparent, rgba(255,255,255,.05), transparent);
-      transform: translateX(-120%);
-      animation: sheen 8s ease-in-out infinite;
-      pointer-events: none;
-    }
-
-    @keyframes sheen {
-      0%, 38% { transform: translateX(-120%); }
-      52% { transform: translateX(120%); }
-      100% { transform: translateX(120%); }
     }
 
     .card-pad {
@@ -476,11 +424,11 @@
       line-height: 1.42;
     }
 
-    .tiny-tag {
+    .tag {
       padding: 7px 9px;
       border-radius: 999px;
       color: var(--gold2);
-      background: rgba(215,165,70,.1);
+      background: rgba(215,165,70,.10);
       border: 1px solid rgba(215,165,70,.22);
       font-size: 10px;
       font-weight: 950;
@@ -492,25 +440,25 @@
     .member-card {
       position: relative;
       z-index: 1;
-      min-height: 238px;
+      min-height: 224px;
       padding: 18px;
       border-radius: 30px;
       overflow: hidden;
       background:
-        radial-gradient(circle at 82% 16%, rgba(243,207,117,.42), transparent 24%),
-        radial-gradient(circle at 18% 100%, rgba(165,44,56,.42), transparent 34%),
+        radial-gradient(circle at 82% 16%, rgba(244,212,122,.42), transparent 24%),
+        radial-gradient(circle at 18% 100%, rgba(165,43,54,.42), transparent 34%),
         linear-gradient(145deg, #1a0709, #7c1d25 56%, #160607);
-      border: 1px solid rgba(243,207,117,.38);
+      border: 1px solid rgba(244,212,122,.38);
       box-shadow: inset 0 1px 0 rgba(255,255,255,.11), 0 28px 70px rgba(0,0,0,.38);
     }
 
     .member-card::before {
       content: "XA";
       position: absolute;
-      right: -12px;
-      bottom: -31px;
+      right: -10px;
+      bottom: -28px;
       font-family: Georgia, serif;
-      font-size: 148px;
+      font-size: 138px;
       line-height: .76;
       font-weight: 900;
       letter-spacing: -.12em;
@@ -527,9 +475,9 @@
     }
 
     .member-top,
-    .member-bottom,
     .member-name,
-    .member-id {
+    .member-id,
+    .member-bottom {
       position: relative;
       z-index: 1;
     }
@@ -543,7 +491,7 @@
 
     .card-logo {
       font-family: Georgia, serif;
-      font-size: 58px;
+      font-size: 56px;
       line-height: .74;
       font-weight: 900;
       letter-spacing: -.12em;
@@ -562,8 +510,8 @@
     }
 
     .member-name {
-      margin-top: 48px;
-      font-size: 27px;
+      margin-top: 42px;
+      font-size: 26px;
       font-weight: 980;
       letter-spacing: -.045em;
     }
@@ -581,7 +529,7 @@
       justify-content: space-between;
       gap: 18px;
       align-items: flex-end;
-      margin-top: 26px;
+      margin-top: 22px;
     }
 
     .member-bottom small {
@@ -602,8 +550,8 @@
     .points-big {
       position: relative;
       z-index: 1;
-      margin: 4px 0 4px;
-      font-size: clamp(48px, 14vw, 86px);
+      margin: 2px 0 4px;
+      font-size: clamp(46px, 13vw, 82px);
       line-height: .88;
       font-weight: 1000;
       letter-spacing: -.085em;
@@ -621,7 +569,7 @@
     .progress-wrap {
       position: relative;
       z-index: 1;
-      margin-top: 18px;
+      margin-top: 17px;
     }
 
     .progress-meta {
@@ -635,7 +583,7 @@
 
     .bar {
       position: relative;
-      height: 14px;
+      height: 13px;
       border-radius: 999px;
       background: rgba(0,0,0,.25);
       border: 1px solid rgba(255,240,200,.1);
@@ -648,7 +596,7 @@
       width: 25%;
       border-radius: inherit;
       background: linear-gradient(90deg, #7f1b23, #d7a546 60%, #fff1bd);
-      box-shadow: 0 0 28px rgba(243,207,117,.38);
+      box-shadow: 0 0 28px rgba(244,212,122,.38);
       transition: width .7s cubic-bezier(.16,1,.3,1);
     }
 
@@ -662,19 +610,26 @@
       margin-top: 14px;
     }
 
+    .metric {
+      padding: 13px;
+      border-radius: 20px;
+      background: rgba(0,0,0,.22);
+      border: 1px solid rgba(255,240,200,.11);
+    }
+
     .qr-layout {
       position: relative;
       z-index: 1;
       display: grid;
-      grid-template-columns: 138px 1fr;
+      grid-template-columns: 132px 1fr;
       align-items: center;
       gap: 14px;
     }
 
     .qr-frame {
-      width: 138px;
-      height: 138px;
-      padding: 11px;
+      width: 132px;
+      height: 132px;
+      padding: 10px;
       border-radius: 24px;
       background: #fff7e7;
       box-shadow: inset 0 0 0 1px rgba(0,0,0,.08), 0 18px 42px rgba(0,0,0,.32);
@@ -682,8 +637,8 @@
 
     #qrCanvas {
       display: block;
-      width: 116px;
-      height: 116px;
+      width: 112px;
+      height: 112px;
       image-rendering: pixelated;
     }
 
@@ -750,7 +705,7 @@
     .chip.active {
       color: #23100d;
       background: linear-gradient(135deg, #fff1bd, #d7a546);
-      border-color: rgba(243,207,117,.62);
+      border-color: rgba(244,212,122,.62);
       box-shadow: 0 12px 28px rgba(215,165,70,.15);
     }
 
@@ -772,7 +727,7 @@
       padding: 16px;
       border-radius: 26px;
       background:
-        radial-gradient(circle at 92% 10%, rgba(243,207,117,.13), transparent 24%),
+        radial-gradient(circle at 92% 10%, rgba(244,212,122,.13), transparent 24%),
         linear-gradient(145deg, rgba(255,240,200,.102), rgba(255,240,200,.035));
       border: 1px solid rgba(255,240,200,.13);
       box-shadow: 0 16px 42px rgba(0,0,0,.24);
@@ -920,7 +875,7 @@
     .field input:focus,
     .field textarea:focus,
     .field select:focus {
-      border-color: rgba(243,207,117,.58);
+      border-color: rgba(244,212,122,.58);
       box-shadow: 0 0 0 4px rgba(215,165,70,.12);
       background: rgba(0,0,0,.32);
     }
@@ -931,7 +886,7 @@
       gap: 12px;
       padding: 13px;
       border-radius: 19px;
-      background: rgba(0,0,0,.2);
+      background: rgba(0,0,0,.20);
       border: 1px solid rgba(255,240,200,.095);
     }
 
@@ -952,10 +907,10 @@
       border-radius: 34px;
       padding: 20px;
       background:
-        radial-gradient(circle at 90% 0%, rgba(243,207,117,.22), transparent 28%),
-        radial-gradient(circle at 10% 100%, rgba(165,44,56,.22), transparent 32%),
+        radial-gradient(circle at 90% 0%, rgba(244,212,122,.22), transparent 28%),
+        radial-gradient(circle at 10% 100%, rgba(165,43,54,.22), transparent 32%),
         linear-gradient(145deg, rgba(255,240,200,.12), rgba(255,240,200,.04));
-      border: 1px solid rgba(243,207,117,.22);
+      border: 1px solid rgba(244,212,122,.22);
       box-shadow: var(--shadow2);
       margin-bottom: 14px;
     }
@@ -994,7 +949,7 @@
       margin-top: 14px;
       padding: 14px;
       border-radius: 21px;
-      background: rgba(215,165,70,.1);
+      background: rgba(215,165,70,.10);
       border: 1px solid rgba(215,165,70,.18);
       color: var(--cream2);
       font-size: 12px;
@@ -1008,7 +963,7 @@
       padding: 18px;
       border-radius: 28px;
       background: rgba(0,0,0,.24);
-      border: 1px solid rgba(243,207,117,.22);
+      border: 1px solid rgba(244,212,122,.22);
       margin-bottom: 14px;
     }
 
@@ -1023,15 +978,15 @@
     .bottom-nav {
       position: fixed;
       left: 50%;
-      bottom: max(12px, var(--safe-bottom));
+      bottom: max(13px, var(--safe));
       transform: translateX(-50%);
       z-index: 40;
-      width: min(calc(100% - 22px), 720px);
+      width: min(calc(100% - 28px), 710px);
       display: grid;
       grid-template-columns: repeat(6, 1fr);
       gap: 5px;
-      padding: 8px;
-      border-radius: 28px;
+      padding: 7px;
+      border-radius: 26px;
       background: rgba(16,5,6,.88);
       border: 1px solid rgba(255,240,200,.14);
       backdrop-filter: blur(26px);
@@ -1039,20 +994,20 @@
     }
 
     .nav-btn {
-      min-height: 58px;
-      border-radius: 20px;
+      min-height: 54px;
+      border-radius: 19px;
       display: grid;
       place-items: center;
-      gap: 2px;
+      gap: 1px;
       color: rgba(255,240,200,.52);
       background: transparent;
-      font-size: 9px;
+      font-size: 8.5px;
       font-weight: 950;
       transition: .18s ease;
     }
 
-    .nav-btn .nav-icon {
-      font-size: 18px;
+    .nav-icon {
+      font-size: 17px;
       line-height: 1;
     }
 
@@ -1069,7 +1024,7 @@
     .toast-wrap {
       position: fixed;
       left: 50%;
-      bottom: calc(102px + var(--safe-bottom));
+      bottom: calc(98px + var(--safe));
       transform: translateX(-50%);
       z-index: 90;
       width: min(calc(100% - 28px), 540px);
@@ -1086,7 +1041,7 @@
       border-radius: 19px;
       color: var(--cream);
       background: rgba(16,5,6,.94);
-      border: 1px solid rgba(243,207,117,.25);
+      border: 1px solid rgba(244,212,122,.25);
       box-shadow: 0 18px 46px rgba(0,0,0,.42);
       backdrop-filter: blur(18px);
       font-size: 13px;
@@ -1132,9 +1087,9 @@
       border-radius: 32px;
       padding: 20px;
       background:
-        radial-gradient(circle at 92% 0%, rgba(243,207,117,.2), transparent 28%),
+        radial-gradient(circle at 92% 0%, rgba(244,212,122,.20), transparent 28%),
         linear-gradient(145deg, #250c0f, #110506);
-      border: 1px solid rgba(243,207,117,.25);
+      border: 1px solid rgba(244,212,122,.25);
       box-shadow: 0 30px 100px rgba(0,0,0,.58);
       animation: modalIn .24s ease both;
     }
@@ -1178,8 +1133,8 @@
       place-items: center;
       padding: 24px;
       background:
-        radial-gradient(circle at 50% 16%, rgba(243,207,117,.25), transparent 30%),
-        radial-gradient(circle at 78% 78%, rgba(165,44,56,.27), transparent 31%),
+        radial-gradient(circle at 50% 16%, rgba(244,212,122,.25), transparent 30%),
+        radial-gradient(circle at 78% 78%, rgba(165,43,54,.27), transparent 31%),
         linear-gradient(145deg, #060203, #120607 55%, #2a0d10);
       transition: opacity .48s ease, transform .48s ease, visibility .48s ease;
     }
@@ -1203,7 +1158,7 @@
       font-weight: 900;
       letter-spacing: -.135em;
       color: var(--cream);
-      text-shadow: 0 0 42px rgba(243,207,117,.20), 0 30px 86px rgba(0,0,0,.74);
+      text-shadow: 0 0 42px rgba(244,212,122,.20), 0 30px 86px rgba(0,0,0,.74);
       animation: monument .95s cubic-bezier(.16,1,.3,1) both;
     }
 
@@ -1227,7 +1182,7 @@
       font-weight: 1000;
       text-transform: uppercase;
       letter-spacing: .3em;
-      animation: screenIn .65s ease .16s both;
+      animation: in .65s ease .16s both;
     }
 
     .splash-title {
@@ -1236,21 +1191,21 @@
       color: var(--muted);
       font-size: 14px;
       line-height: 1.55;
-      animation: screenIn .65s ease .28s both;
+      animation: in .65s ease .28s both;
     }
 
     .splash .btn {
       margin-top: 25px;
-      animation: screenIn .65s ease .38s both;
+      animation: in .65s ease .38s both;
     }
 
     @media (min-width: 760px) {
       .app {
-        padding: 24px 22px calc(124px + var(--safe-bottom));
+        padding: 24px 22px calc(138px + var(--safe));
       }
 
       .grid.two {
-        grid-template-columns: 1.13fr .87fr;
+        grid-template-columns: 1.1fr .9fr;
       }
 
       .grid.three {
@@ -1263,10 +1218,10 @@
       }
 
       .hero {
-        padding: 34px;
+        padding: 32px;
       }
 
-      .hero-strip {
+      .stats-row {
         grid-template-columns: repeat(4, 1fr);
       }
 
@@ -1283,15 +1238,16 @@
     }
 
     @media (max-width: 430px) {
-      .brand-text p {
-        max-width: 118px;
+      .brand p {
+        max-width: 128px;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
 
-      .level-pill {
+      .pill {
         display: none;
       }
 
-      .hero-strip,
       .mini-metrics,
       .shop-stat {
         grid-template-columns: 1fr;
@@ -1322,12 +1278,13 @@
       }
 
       .bottom-nav {
+        width: min(calc(100% - 22px), 710px);
         gap: 4px;
         padding: 7px;
       }
 
       .nav-btn {
-        min-height: 56px;
+        min-height: 54px;
         font-size: 8px;
       }
     }
@@ -1340,7 +1297,7 @@
       <div class="splash-xa">XA</div>
       <div class="splash-kicker">Fermented Redrinks Club</div>
       <p class="splash-title">
-        Card cliente, status, punti, QR e gestione negozio multi-cliente in un’unica web app.
+        Card cliente, gestione negozio, punti, premi e status in una web app mobile-first.
       </p>
       <button class="btn btn-primary" id="enterApp">Entra nel Club XA</button>
     </div>
@@ -1350,15 +1307,15 @@
     <header class="topbar">
       <div class="brand">
         <div class="brand-seal">XA</div>
-        <div class="brand-text">
+        <div>
           <h1>XA Club</h1>
           <p>Fermented Redrinks</p>
         </div>
       </div>
 
       <div class="top-actions">
-        <div class="level-pill">
-          <span class="live-dot"></span>
+        <div class="pill">
+          <span class="dot"></span>
           <span id="topStatus">Member</span>
         </div>
         <button class="icon-btn" id="resetDemo" title="Reset demo">↺</button>
@@ -1370,37 +1327,37 @@
         <div class="eyebrow"><span class="spark"></span> Private Member Access</div>
 
         <h2 class="hero-title">
-          Ciao, <span class="gold" id="helloName">Membro</span>.<br>
-          Questo è il tuo club XA.
+          <span class="gold">XA</span> Member Club<br>
+          <span id="helloName">Maria</span>
         </h2>
 
         <p class="hero-copy">
-          Questa è la vista cliente: card digitale, punti, status, QR e privilegi. 
-          Dal pannello negozio puoi invece gestire tutti i clienti, creare card, aggiungere punti e riscattare premi.
+          Card digitale, punti, status e privilegi. La vista cliente resta elegante e semplice;
+          la gestione completa delle card è nel pannello negozio.
         </p>
 
-        <div class="hero-strip">
-          <div class="hero-metric">
+        <div class="stats-row">
+          <div class="stat">
             <span>Status</span>
             <strong id="heroStatus">Reserve</strong>
           </div>
-          <div class="hero-metric">
+          <div class="stat">
             <span>Punti</span>
             <strong id="heroPoints">0</strong>
           </div>
-          <div class="hero-metric">
+          <div class="stat">
             <span>Clienti</span>
             <strong id="heroClients">0</strong>
           </div>
-          <div class="hero-metric">
-            <span>Next</span>
+          <div class="stat">
+            <span>Prossimo</span>
             <strong id="heroNext">Club</strong>
           </div>
         </div>
 
         <div class="hero-actions">
           <button class="btn btn-primary" data-go="clients">Gestisci clienti</button>
-          <button class="btn btn-secondary" data-go="shop">Pannello negozio</button>
+          <button class="btn btn-secondary" data-go="shop">Apri negozio</button>
         </div>
       </div>
 
@@ -1411,7 +1368,7 @@
               <h3>XA Member Card</h3>
               <p>Card digitale del cliente selezionato</p>
             </div>
-            <span class="tiny-tag">Cliente</span>
+            <span class="tag">Cliente</span>
           </div>
 
           <div class="member-card">
@@ -1442,7 +1399,7 @@
               <h3>Saldo punti</h3>
               <p>Disponibili per esperienze e privilegi</p>
             </div>
-            <span class="tiny-tag">Live</span>
+            <span class="tag">Live</span>
           </div>
 
           <div class="points-big" id="pointsBig">0</div>
@@ -1474,14 +1431,14 @@
           <div class="card-title">
             <div>
               <h3>QR cliente</h3>
-              <p>Identificativo cliente per la cassa</p>
+              <p>Identificativo per la cassa</p>
             </div>
-            <span class="tiny-tag">ID</span>
+            <span class="tag">ID</span>
           </div>
 
           <div class="qr-layout">
             <div class="qr-frame">
-              <canvas id="qrCanvas" width="116" height="116"></canvas>
+              <canvas id="qrCanvas" width="112" height="112"></canvas>
             </div>
             <div class="qr-info">
               <h4 id="qrMemberName">Cliente XA</h4>
@@ -1499,7 +1456,7 @@
               <h3>Privilegi attivi</h3>
               <p>Vantaggi collegati allo status</p>
             </div>
-            <span class="tiny-tag">Club</span>
+            <span class="tag">Club</span>
           </div>
 
           <div class="lux-list" id="privilegesList"></div>
@@ -1541,7 +1498,7 @@
       <div class="section-head">
         <div>
           <h2>Clienti XA</h2>
-          <p>Gestione centrale delle card: cerca, apri, crea e passa un cliente in cassa.</p>
+          <p>Gestionale centrale: cerca, apri, crea e porta un cliente in cassa.</p>
         </div>
       </div>
 
@@ -1560,22 +1517,22 @@
         <div class="card card-pad">
           <div class="card-title">
             <div>
-              <h3>Punti circolanti</h3>
+              <h3>Punti attivi</h3>
               <p>Somma dei punti disponibili</p>
             </div>
           </div>
           <div class="points-big" id="clientsPoints">0</div>
-          <div class="points-label">punti attivi</div>
+          <div class="points-label">punti circolanti</div>
         </div>
 
         <div class="card card-pad">
           <div class="card-title">
             <div>
               <h3>Top cliente</h3>
-              <p>Cliente con più lifetime points</p>
+              <p>Più punti lifetime</p>
             </div>
           </div>
-          <div class="points-big" id="topClientShort">XA</div>
+          <div class="points-big" id="topClientShort">0</div>
           <div class="points-label" id="topClientName">—</div>
         </div>
       </div>
@@ -1597,7 +1554,6 @@
           </div>
 
           <div class="divider"></div>
-
           <div class="client-list" id="clientList"></div>
         </div>
 
@@ -1638,10 +1594,10 @@
 
     <section class="screen" id="screen-shop">
       <div class="shop-hero">
-        <div class="eyebrow"><span class="spark"></span> Area negozio separata</div>
-        <h2>Pannello XA Store</h2>
+        <div class="eyebrow"><span class="spark"></span> Area negozio</div>
+        <h2>XA Store Console</h2>
         <p>
-          Seleziona un cliente, aggiungi punti in base alla spesa, assegna bonus, riscatta premi,
+          Seleziona un cliente, aggiungi punti, assegna bonus, riscatta premi,
           esporta dati e consulta lo storico. PIN demo negozio: <strong>2026</strong>.
         </p>
 
@@ -1733,7 +1689,6 @@
             </form>
 
             <div class="divider"></div>
-
             <button class="btn btn-secondary" id="bonusButton">+50 punti invito evento</button>
           </div>
         </div>
@@ -1901,7 +1856,8 @@
   </div>
 
   <script>
-    const STORAGE_KEY = "xa_fermented_redrinks_loyalty_v3";
+    const STORAGE_KEY = "xa_fermented_redrinks_loyalty_v4";
+    const OLD_STORAGE_KEY = "xa_fermented_redrinks_loyalty_v3";
     const STORE_PIN = "2026";
 
     const levels = [
@@ -2067,7 +2023,7 @@
       bindUI();
       renderAll();
 
-      if (sessionStorage.getItem("xa_splash_seen_v3")) {
+      if (sessionStorage.getItem("xa_splash_seen_v4")) {
         $("#splash").classList.add("hide");
       }
 
@@ -2076,7 +2032,7 @@
 
     function bindUI() {
       $("#enterApp").addEventListener("click", () => {
-        sessionStorage.setItem("xa_splash_seen_v3", "1");
+        sessionStorage.setItem("xa_splash_seen_v4", "1");
         $("#splash").classList.add("hide");
         toast("Benvenuto nel Club XA.");
       });
@@ -2212,6 +2168,7 @@
 
       $("#bonusButton").addEventListener("click", () => {
         const customer = getActiveCustomer();
+
         customer.points += 50;
         customer.lifetimePoints += 50;
 
@@ -2260,6 +2217,7 @@
 
       $("#unlockStore").addEventListener("click", () => {
         const pin = $("#storePin").value.trim();
+
         if (pin !== STORE_PIN) {
           toast("PIN negozio non corretto.");
           return;
@@ -2277,6 +2235,7 @@
           text: "Tutti i clienti locali verranno sostituiti dai dati demo iniziali.",
           onConfirm: () => {
             localStorage.removeItem(STORAGE_KEY);
+            localStorage.removeItem(OLD_STORAGE_KEY);
             sessionStorage.removeItem("xa_store_unlocked");
             state = clone(demoState);
             saveState();
@@ -2309,6 +2268,7 @@
       });
 
       window.scrollTo({ top: 0, behavior: "smooth" });
+
       if (tab === "shop") updateStoreLock();
     }
 
@@ -2317,7 +2277,7 @@
       const level = getLevel(customer);
       const next = getNextLevel(customer);
 
-      $("#helloName").textContent = firstName(customer.name);
+      $("#helloName").textContent = customer.name;
       $("#topStatus").textContent = level.name;
 
       $("#heroStatus").textContent = level.name;
@@ -2401,8 +2361,8 @@
         el.className = "reward";
         el.innerHTML = `
           <div class="reward-top">
-            <span class="tiny-tag">${escapeHTML(reward.badge)}</span>
-            <span class="tiny-tag">${escapeHTML(reward.limit)}</span>
+            <span class="tag">${escapeHTML(reward.badge)}</span>
+            <span class="tag">${escapeHTML(reward.limit)}</span>
           </div>
 
           <h3>${escapeHTML(reward.title)}</h3>
@@ -2479,8 +2439,8 @@
         el.className = "client-row";
         el.innerHTML = `
           <div class="client-top">
-            <span class="tiny-tag">${active ? "Attivo" : "Cliente"}</span>
-            <span class="tiny-tag">${escapeHTML(level.name)}</span>
+            <span class="tag">${active ? "Attivo" : "Cliente"}</span>
+            <span class="tag">${escapeHTML(level.name)}</span>
           </div>
 
           <h3>${escapeHTML(customer.name)}</h3>
@@ -2673,7 +2633,7 @@
 
     function loadState() {
       try {
-        const raw = localStorage.getItem(STORAGE_KEY);
+        const raw = localStorage.getItem(STORAGE_KEY) || localStorage.getItem(OLD_STORAGE_KEY);
 
         if (!raw) {
           const fresh = clone(demoState);
@@ -2683,12 +2643,15 @@
 
         const parsed = JSON.parse(raw);
 
-        return {
+        const loaded = {
           ...clone(demoState),
           ...parsed,
           rewards: Array.isArray(parsed.rewards) && parsed.rewards.length ? parsed.rewards : rewards,
           customers: Array.isArray(parsed.customers) && parsed.customers.length ? parsed.customers : clone(demoState.customers)
         };
+
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(loaded));
+        return loaded;
       } catch (error) {
         console.warn("XA localStorage reset", error);
         return clone(demoState);
@@ -2702,6 +2665,7 @@
     function toast(message) {
       const wrap = $("#toastWrap");
       const el = document.createElement("div");
+
       el.className = "toast";
       el.innerHTML = `<span>✦</span><span>${escapeHTML(message)}</span>`;
       wrap.appendChild(el);
@@ -2730,7 +2694,7 @@
     function drawQR(payload) {
       const canvas = $("#qrCanvas");
       const ctx = canvas.getContext("2d");
-      const size = 116;
+      const size = 112;
       const cells = 29;
       const cell = Math.floor(size / cells);
       const actual = cell * cells;
@@ -2819,6 +2783,7 @@
 
     function nextCustomerId() {
       const year = new Date().getFullYear();
+
       const numbers = state.customers
         .map(customer => Number(String(customer.id).split("-").at(-1)))
         .filter(Number.isFinite);
@@ -2829,10 +2794,12 @@
 
     function hashString(value) {
       let hash = 0;
+
       for (let i = 0; i < value.length; i++) {
         hash = ((hash << 5) - hash) + value.charCodeAt(i);
         hash |= 0;
       }
+
       return Math.abs(hash);
     }
 
@@ -2844,10 +2811,6 @@
         hour: "2-digit",
         minute: "2-digit"
       });
-    }
-
-    function firstName(name) {
-      return String(name || "Membro").trim().split(/\s+/)[0];
     }
 
     function formatNumber(number) {
