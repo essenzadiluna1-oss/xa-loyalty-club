@@ -10,37 +10,23 @@
     :root {
       --bg: #100506;
       --bg2: #1b090b;
-      --bg3: #290d10;
-
-      --wine: #6f1720;
-      --wine2: #9d2731;
-      --wine3: #3a0f13;
-
+      --panel: rgba(255, 240, 200, .075);
+      --panel2: rgba(255, 240, 200, .12);
+      --wine: #741923;
+      --wine2: #a52c38;
       --cream: #fff0c8;
       --cream2: #ead09a;
       --muted: rgba(255, 240, 200, .68);
       --soft: rgba(255, 240, 200, .42);
-
       --gold: #d7a546;
       --gold2: #f3cf75;
-      --gold3: #8b6422;
-
       --green: #8fe6a2;
       --red: #ff7777;
-
       --line: rgba(255, 240, 200, .14);
       --line2: rgba(243, 207, 117, .28);
-
-      --glass: rgba(255, 240, 200, .075);
-      --glass2: rgba(255, 240, 200, .12);
-      --blackglass: rgba(5, 2, 3, .32);
-
+      --shadow: 0 28px 90px rgba(0,0,0,.46);
+      --shadow2: 0 18px 46px rgba(0,0,0,.32);
       --radius: 28px;
-      --radius2: 20px;
-
-      --shadow: 0 28px 90px rgba(0,0,0,.48);
-      --shadow2: 0 18px 46px rgba(0,0,0,.34);
-
       --safe-bottom: env(safe-area-inset-bottom);
     }
 
@@ -59,10 +45,10 @@
       color: var(--cream);
       font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background:
-        radial-gradient(circle at 15% 0%, rgba(243,207,117,.18), transparent 28%),
-        radial-gradient(circle at 90% 18%, rgba(157,39,49,.25), transparent 32%),
-        radial-gradient(circle at 45% 92%, rgba(215,165,70,.14), transparent 28%),
-        linear-gradient(145deg, #070203 0%, #120607 42%, #240b0e 100%);
+        radial-gradient(circle at 12% 0%, rgba(243,207,117,.18), transparent 28%),
+        radial-gradient(circle at 92% 18%, rgba(165,44,56,.25), transparent 32%),
+        radial-gradient(circle at 45% 92%, rgba(215,165,70,.13), transparent 30%),
+        linear-gradient(145deg, #070203 0%, #120607 42%, #260c0f 100%);
       overflow-x: hidden;
     }
 
@@ -72,8 +58,8 @@
       inset: 0;
       pointer-events: none;
       background:
-        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px);
+        linear-gradient(rgba(255,255,255,.024) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.017) 1px, transparent 1px);
       background-size: 34px 34px;
       opacity: .34;
       mask-image: radial-gradient(circle at center, black 0%, transparent 76%);
@@ -117,7 +103,7 @@
       width: min(100%, 1180px);
       min-height: 100vh;
       margin: 0 auto;
-      padding: 14px 14px calc(112px + var(--safe-bottom));
+      padding: 14px 14px calc(116px + var(--safe-bottom));
     }
 
     .topbar {
@@ -152,9 +138,7 @@
         radial-gradient(circle at 30% 20%, rgba(255,240,200,.18), transparent 28%),
         linear-gradient(145deg, #7d1d26, #21080a);
       border: 1px solid rgba(243,207,117,.34);
-      box-shadow:
-        inset 0 0 24px rgba(243,207,117,.09),
-        0 14px 38px rgba(0,0,0,.4);
+      box-shadow: inset 0 0 24px rgba(243,207,117,.09), 0 14px 38px rgba(0,0,0,.4);
       font-family: Georgia, serif;
       font-weight: 900;
       font-size: 20px;
@@ -212,7 +196,7 @@
       font-weight: 950;
       text-transform: uppercase;
       letter-spacing: .08em;
-      max-width: 148px;
+      max-width: 156px;
     }
 
     .level-pill span:last-child {
@@ -238,7 +222,7 @@
       color: var(--cream);
       background: rgba(255,240,200,.075);
       border: 1px solid rgba(255,240,200,.13);
-      transition: transform .18s ease, background .18s ease, border-color .18s ease;
+      transition: transform .18s ease, background .18s ease;
     }
 
     .icon-btn:active {
@@ -274,7 +258,7 @@
       padding: 24px 18px;
       background:
         radial-gradient(circle at 78% 13%, rgba(243,207,117,.28), transparent 26%),
-        radial-gradient(circle at 14% 88%, rgba(157,39,49,.36), transparent 34%),
+        radial-gradient(circle at 14% 88%, rgba(165,44,56,.36), transparent 34%),
         linear-gradient(145deg, rgba(255,240,200,.14), rgba(255,240,200,.04)),
         linear-gradient(145deg, rgba(111,23,32,.86), rgba(17,6,7,.94));
       border: 1px solid rgba(243,207,117,.26);
@@ -330,20 +314,20 @@
 
     .hero-title {
       margin: 20px 0 10px;
-      max-width: 760px;
+      max-width: 780px;
       font-size: clamp(35px, 9vw, 76px);
       line-height: .9;
       font-weight: 980;
       letter-spacing: -.07em;
     }
 
-    .hero-title .gold {
+    .gold {
       color: var(--gold2);
     }
 
     .hero-copy {
       margin: 0;
-      max-width: 660px;
+      max-width: 680px;
       color: var(--muted);
       font-size: 14px;
       line-height: 1.56;
@@ -356,14 +340,16 @@
       margin-top: 22px;
     }
 
-    .hero-metric {
+    .hero-metric,
+    .metric {
       padding: 14px;
       border-radius: 20px;
       background: rgba(0,0,0,.22);
       border: 1px solid rgba(255,240,200,.12);
     }
 
-    .hero-metric span {
+    .hero-metric span,
+    .metric span {
       display: block;
       color: var(--soft);
       font-size: 10px;
@@ -372,7 +358,8 @@
       font-weight: 900;
     }
 
-    .hero-metric strong {
+    .hero-metric strong,
+    .metric strong {
       display: block;
       margin-top: 4px;
       color: var(--cream);
@@ -398,7 +385,7 @@
       color: var(--cream);
       font-weight: 950;
       letter-spacing: .015em;
-      transition: transform .18s ease, box-shadow .18s ease, background .18s ease, border-color .18s ease;
+      transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
       user-select: none;
     }
 
@@ -418,7 +405,7 @@
     }
 
     .btn-danger {
-      background: rgba(157,39,49,.22);
+      background: rgba(165,44,56,.22);
       border: 1px solid rgba(255,119,119,.32);
       color: #ffe6e6;
     }
@@ -440,8 +427,7 @@
       position: relative;
       overflow: hidden;
       border-radius: var(--radius);
-      background:
-        linear-gradient(145deg, rgba(255,240,200,.105), rgba(255,240,200,.04));
+      background: linear-gradient(145deg, rgba(255,240,200,.105), rgba(255,240,200,.04));
       border: 1px solid rgba(255,240,200,.13);
       box-shadow: var(--shadow2);
       backdrop-filter: blur(22px);
@@ -512,12 +498,10 @@
       overflow: hidden;
       background:
         radial-gradient(circle at 82% 16%, rgba(243,207,117,.42), transparent 24%),
-        radial-gradient(circle at 18% 100%, rgba(157,39,49,.42), transparent 34%),
+        radial-gradient(circle at 18% 100%, rgba(165,44,56,.42), transparent 34%),
         linear-gradient(145deg, #1a0709, #7c1d25 56%, #160607);
       border: 1px solid rgba(243,207,117,.38);
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.11),
-        0 28px 70px rgba(0,0,0,.38);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.11), 0 28px 70px rgba(0,0,0,.38);
     }
 
     .member-card::before {
@@ -542,9 +526,15 @@
       pointer-events: none;
     }
 
-    .member-top {
+    .member-top,
+    .member-bottom,
+    .member-name,
+    .member-id {
       position: relative;
       z-index: 1;
+    }
+
+    .member-top {
       display: flex;
       justify-content: space-between;
       gap: 14px;
@@ -572,8 +562,6 @@
     }
 
     .member-name {
-      position: relative;
-      z-index: 1;
       margin-top: 48px;
       font-size: 27px;
       font-weight: 980;
@@ -581,8 +569,6 @@
     }
 
     .member-id {
-      position: relative;
-      z-index: 1;
       margin-top: 7px;
       color: var(--muted);
       font-size: 12px;
@@ -591,8 +577,6 @@
     }
 
     .member-bottom {
-      position: relative;
-      z-index: 1;
       display: flex;
       justify-content: space-between;
       gap: 18px;
@@ -615,12 +599,9 @@
       font-size: 13px;
     }
 
-    .points-panel {
+    .points-big {
       position: relative;
       z-index: 1;
-    }
-
-    .points-big {
       margin: 4px 0 4px;
       font-size: clamp(48px, 14vw, 86px);
       line-height: .88;
@@ -631,11 +612,15 @@
     }
 
     .points-label {
+      position: relative;
+      z-index: 1;
       color: var(--muted);
       font-size: 13px;
     }
 
     .progress-wrap {
+      position: relative;
+      z-index: 1;
       margin-top: 18px;
     }
 
@@ -662,43 +647,19 @@
       inset: 0 auto 0 0;
       width: 25%;
       border-radius: inherit;
-      background:
-        linear-gradient(90deg, #7f1b23, #d7a546 60%, #fff1bd);
+      background: linear-gradient(90deg, #7f1b23, #d7a546 60%, #fff1bd);
       box-shadow: 0 0 28px rgba(243,207,117,.38);
       transition: width .7s cubic-bezier(.16,1,.3,1);
     }
 
-    .mini-metrics {
+    .mini-metrics,
+    .shop-stat {
+      position: relative;
+      z-index: 1;
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 10px;
       margin-top: 14px;
-    }
-
-    .metric {
-      position: relative;
-      z-index: 1;
-      min-height: 74px;
-      padding: 13px;
-      border-radius: 20px;
-      background: rgba(0,0,0,.2);
-      border: 1px solid rgba(255,240,200,.1);
-    }
-
-    .metric span {
-      display: block;
-      color: var(--soft);
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: .11em;
-      font-weight: 900;
-    }
-
-    .metric strong {
-      display: block;
-      margin-top: 5px;
-      font-size: 20px;
-      letter-spacing: -.04em;
     }
 
     .qr-layout {
@@ -716,9 +677,7 @@
       padding: 11px;
       border-radius: 24px;
       background: #fff7e7;
-      box-shadow:
-        inset 0 0 0 1px rgba(0,0,0,.08),
-        0 18px 42px rgba(0,0,0,.32);
+      box-shadow: inset 0 0 0 1px rgba(0,0,0,.08), 0 18px 42px rgba(0,0,0,.32);
     }
 
     #qrCanvas {
@@ -795,12 +754,19 @@
       box-shadow: 0 12px 28px rgba(215,165,70,.15);
     }
 
-    .reward-list {
+    .reward-list,
+    .activity-list,
+    .client-list,
+    .lux-list {
+      position: relative;
+      z-index: 1;
       display: grid;
       gap: 12px;
     }
 
-    .reward {
+    .reward,
+    .client-row,
+    .activity {
       position: relative;
       overflow: hidden;
       padding: 16px;
@@ -810,38 +776,44 @@
         linear-gradient(145deg, rgba(255,240,200,.102), rgba(255,240,200,.035));
       border: 1px solid rgba(255,240,200,.13);
       box-shadow: 0 16px 42px rgba(0,0,0,.24);
-      transition: transform .18s ease, border-color .18s ease, background .18s ease;
+      transition: transform .18s ease;
     }
 
-    .reward:active {
+    .reward:active,
+    .client-row:active {
       transform: scale(.985);
     }
 
-    .reward-top {
+    .reward-top,
+    .client-top {
       display: flex;
       justify-content: space-between;
       gap: 10px;
       align-items: flex-start;
     }
 
-    .reward h3 {
+    .reward h3,
+    .client-row h3 {
       margin: 12px 0 7px;
       font-size: 18px;
       letter-spacing: -.035em;
     }
 
-    .reward p {
+    .reward p,
+    .client-row p {
       margin: 0;
       color: var(--muted);
       font-size: 13px;
       line-height: 1.48;
     }
 
-    .reward-bottom {
+    .reward-bottom,
+    .client-actions {
       margin-top: 15px;
       display: flex;
+      flex-wrap: wrap;
       justify-content: space-between;
-      gap: 12px;
+      gap: 10px;
       align-items: center;
     }
 
@@ -864,20 +836,11 @@
       font-weight: 900;
     }
 
-    .activity-list {
-      display: grid;
-      gap: 12px;
-    }
-
     .activity {
       display: grid;
       grid-template-columns: 46px 1fr auto;
       gap: 12px;
       align-items: center;
-      padding: 14px;
-      border-radius: 24px;
-      background: rgba(255,240,200,.065);
-      border: 1px solid rgba(255,240,200,.11);
     }
 
     .activity-icon {
@@ -962,13 +925,6 @@
       background: rgba(0,0,0,.32);
     }
 
-    .lux-list {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      gap: 10px;
-    }
-
     .lux-item {
       display: flex;
       justify-content: space-between;
@@ -997,7 +953,7 @@
       padding: 20px;
       background:
         radial-gradient(circle at 90% 0%, rgba(243,207,117,.22), transparent 28%),
-        radial-gradient(circle at 10% 100%, rgba(157,39,49,.22), transparent 32%),
+        radial-gradient(circle at 10% 100%, rgba(165,44,56,.22), transparent 32%),
         linear-gradient(145deg, rgba(255,240,200,.12), rgba(255,240,200,.04));
       border: 1px solid rgba(243,207,117,.22);
       box-shadow: var(--shadow2);
@@ -1016,13 +972,6 @@
       color: var(--muted);
       font-size: 13px;
       line-height: 1.5;
-    }
-
-    .shop-stat {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-top: 15px;
     }
 
     .divider {
@@ -1052,19 +1001,38 @@
       line-height: 1.48;
     }
 
+    .store-lock {
+      display: none;
+      position: relative;
+      z-index: 1;
+      padding: 18px;
+      border-radius: 28px;
+      background: rgba(0,0,0,.24);
+      border: 1px solid rgba(243,207,117,.22);
+      margin-bottom: 14px;
+    }
+
+    .store-lock.show {
+      display: block;
+    }
+
+    .store-area.locked {
+      display: none;
+    }
+
     .bottom-nav {
       position: fixed;
       left: 50%;
       bottom: max(12px, var(--safe-bottom));
       transform: translateX(-50%);
       z-index: 40;
-      width: min(calc(100% - 22px), 660px);
+      width: min(calc(100% - 22px), 720px);
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 6px;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 5px;
       padding: 8px;
       border-radius: 28px;
-      background: rgba(16,5,6,.86);
+      background: rgba(16,5,6,.88);
       border: 1px solid rgba(255,240,200,.14);
       backdrop-filter: blur(26px);
       box-shadow: 0 22px 62px rgba(0,0,0,.52);
@@ -1072,20 +1040,20 @@
 
     .nav-btn {
       min-height: 58px;
-      border-radius: 21px;
+      border-radius: 20px;
       display: grid;
       place-items: center;
       gap: 2px;
       color: rgba(255,240,200,.52);
       background: transparent;
-      font-size: 10px;
+      font-size: 9px;
       font-weight: 950;
       transition: .18s ease;
     }
 
-    .nav-btn svg {
-      width: 21px;
-      height: 21px;
+    .nav-btn .nav-icon {
+      font-size: 18px;
+      line-height: 1;
     }
 
     .nav-btn.active {
@@ -1101,7 +1069,7 @@
     .toast-wrap {
       position: fixed;
       left: 50%;
-      bottom: calc(98px + var(--safe-bottom));
+      bottom: calc(102px + var(--safe-bottom));
       transform: translateX(-50%);
       z-index: 90;
       width: min(calc(100% - 28px), 540px);
@@ -1211,7 +1179,7 @@
       padding: 24px;
       background:
         radial-gradient(circle at 50% 16%, rgba(243,207,117,.25), transparent 30%),
-        radial-gradient(circle at 78% 78%, rgba(157,39,49,.27), transparent 31%),
+        radial-gradient(circle at 78% 78%, rgba(165,44,56,.27), transparent 31%),
         linear-gradient(145deg, #060203, #120607 55%, #2a0d10);
       transition: opacity .48s ease, transform .48s ease, visibility .48s ease;
     }
@@ -1235,9 +1203,7 @@
       font-weight: 900;
       letter-spacing: -.135em;
       color: var(--cream);
-      text-shadow:
-        0 0 42px rgba(243,207,117,.20),
-        0 30px 86px rgba(0,0,0,.74);
+      text-shadow: 0 0 42px rgba(243,207,117,.20), 0 30px 86px rgba(0,0,0,.74);
       animation: monument .95s cubic-bezier(.16,1,.3,1) both;
     }
 
@@ -1291,7 +1257,8 @@
         grid-template-columns: repeat(3, 1fr);
       }
 
-      .reward-list {
+      .reward-list,
+      .client-list {
         grid-template-columns: repeat(2, 1fr);
       }
 
@@ -1309,12 +1276,13 @@
     }
 
     @media (min-width: 1040px) {
-      .reward-list {
+      .reward-list,
+      .client-list {
         grid-template-columns: repeat(3, 1fr);
       }
     }
 
-    @media (max-width: 410px) {
+    @media (max-width: 430px) {
       .brand-text p {
         max-width: 118px;
       }
@@ -1352,6 +1320,16 @@
       .activity strong {
         grid-column: 2;
       }
+
+      .bottom-nav {
+        gap: 4px;
+        padding: 7px;
+      }
+
+      .nav-btn {
+        min-height: 56px;
+        font-size: 8px;
+      }
     }
   </style>
 </head>
@@ -1362,7 +1340,7 @@
       <div class="splash-xa">XA</div>
       <div class="splash-kicker">Fermented Redrinks Club</div>
       <p class="splash-title">
-        Card digitale, status membro, punti, esperienze, limited edition e privilegi XA.
+        Card cliente, status, punti, QR e gestione negozio multi-cliente in un’unica web app.
       </p>
       <button class="btn btn-primary" id="enterApp">Entra nel Club XA</button>
     </div>
@@ -1397,8 +1375,8 @@
         </h2>
 
         <p class="hero-copy">
-          Una loyalty app elegante, pensata come appartenenza a un club privato:
-          punti, status, card digitale, QR cliente, premi esperienziali e privilegi sulle future release XA.
+          Questa è la vista cliente: card digitale, punti, status, QR e privilegi. 
+          Dal pannello negozio puoi invece gestire tutti i clienti, creare card, aggiungere punti e riscattare premi.
         </p>
 
         <div class="hero-strip">
@@ -1411,8 +1389,8 @@
             <strong id="heroPoints">0</strong>
           </div>
           <div class="hero-metric">
-            <span>Lifetime</span>
-            <strong id="heroLifetime">0</strong>
+            <span>Clienti</span>
+            <strong id="heroClients">0</strong>
           </div>
           <div class="hero-metric">
             <span>Next</span>
@@ -1421,7 +1399,7 @@
         </div>
 
         <div class="hero-actions">
-          <button class="btn btn-primary" data-go="rewards">Scopri Rewards</button>
+          <button class="btn btn-primary" data-go="clients">Gestisci clienti</button>
           <button class="btn btn-secondary" data-go="shop">Pannello negozio</button>
         </div>
       </div>
@@ -1431,9 +1409,9 @@
           <div class="card-title">
             <div>
               <h3>XA Member Card</h3>
-              <p>Identità digitale personale</p>
+              <p>Card digitale del cliente selezionato</p>
             </div>
-            <span class="tiny-tag">Digital</span>
+            <span class="tiny-tag">Cliente</span>
           </div>
 
           <div class="member-card">
@@ -1467,27 +1445,25 @@
             <span class="tiny-tag">Live</span>
           </div>
 
-          <div class="points-panel">
-            <div class="points-big" id="pointsBig">0</div>
-            <div class="points-label">punti XA disponibili</div>
+          <div class="points-big" id="pointsBig">0</div>
+          <div class="points-label">punti XA disponibili</div>
 
-            <div class="progress-wrap">
-              <div class="progress-meta">
-                <span id="currentTierText">Status attuale</span>
-                <span id="nextTierText">Prossimo livello</span>
-              </div>
-              <div class="bar"><span id="tierBar"></span></div>
+          <div class="progress-wrap">
+            <div class="progress-meta">
+              <span id="currentTierText">Status attuale</span>
+              <span id="nextTierText">Prossimo livello</span>
             </div>
+            <div class="bar"><span id="tierBar"></span></div>
+          </div>
 
-            <div class="mini-metrics">
-              <div class="metric">
-                <span>Punti vita</span>
-                <strong id="lifetimePoints">0</strong>
-              </div>
-              <div class="metric">
-                <span>Al prossimo</span>
-                <strong id="toNext">0</strong>
-              </div>
+          <div class="mini-metrics">
+            <div class="metric">
+              <span>Punti vita</span>
+              <strong id="lifetimePoints">0</strong>
+            </div>
+            <div class="metric">
+              <span>Al prossimo</span>
+              <strong id="toNext">0</strong>
             </div>
           </div>
         </div>
@@ -1498,7 +1474,7 @@
           <div class="card-title">
             <div>
               <h3>QR cliente</h3>
-              <p>Da mostrare in negozio</p>
+              <p>Identificativo cliente per la cassa</p>
             </div>
             <span class="tiny-tag">ID</span>
           </div>
@@ -1511,7 +1487,7 @@
               <h4 id="qrMemberName">Cliente XA</h4>
               <p>
                 Codice membro: <strong id="qrMemberCode">XA-0000</strong><br>
-                Il negozio può aggiungere punti, registrare attività o riscattare premi.
+                Il negozio può usare questo codice per aggiungere punti o riscattare premi.
               </p>
             </div>
           </div>
@@ -1553,19 +1529,259 @@
     <section class="screen" id="screen-activity">
       <div class="section-head">
         <div>
-          <h2>Storico attività</h2>
-          <p>Movimenti, acquisti, bonus, riscatti e aggiornamenti profilo.</p>
+          <h2>Storico cliente</h2>
+          <p>Movimenti del cliente selezionato: acquisti, bonus, riscatti, modifiche.</p>
         </div>
       </div>
 
       <div class="activity-list" id="activityList"></div>
     </section>
 
+    <section class="screen" id="screen-clients">
+      <div class="section-head">
+        <div>
+          <h2>Clienti XA</h2>
+          <p>Gestione centrale delle card: cerca, apri, crea e passa un cliente in cassa.</p>
+        </div>
+      </div>
+
+      <div class="grid three">
+        <div class="card card-pad">
+          <div class="card-title">
+            <div>
+              <h3>Totale clienti</h3>
+              <p>Card create nel dispositivo negozio</p>
+            </div>
+          </div>
+          <div class="points-big" id="clientsTotal">0</div>
+          <div class="points-label">clienti registrati</div>
+        </div>
+
+        <div class="card card-pad">
+          <div class="card-title">
+            <div>
+              <h3>Punti circolanti</h3>
+              <p>Somma dei punti disponibili</p>
+            </div>
+          </div>
+          <div class="points-big" id="clientsPoints">0</div>
+          <div class="points-label">punti attivi</div>
+        </div>
+
+        <div class="card card-pad">
+          <div class="card-title">
+            <div>
+              <h3>Top cliente</h3>
+              <p>Cliente con più lifetime points</p>
+            </div>
+          </div>
+          <div class="points-big" id="topClientShort">XA</div>
+          <div class="points-label" id="topClientName">—</div>
+        </div>
+      </div>
+
+      <div class="grid two">
+        <div class="card card-pad">
+          <div class="card-title">
+            <div>
+              <h3>Cerca cliente</h3>
+              <p>Nome, email, telefono o codice XA</p>
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div class="field">
+              <label for="clientSearch">Ricerca</label>
+              <input id="clientSearch" placeholder="Esempio: Maria, XA-2026, telefono..." />
+            </div>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="client-list" id="clientList"></div>
+        </div>
+
+        <div class="card card-pad">
+          <div class="card-title">
+            <div>
+              <h3>Crea nuova card</h3>
+              <p>Aggiungi un cliente al gestionale negozio</p>
+            </div>
+          </div>
+
+          <form class="form-grid" id="newCustomerForm">
+            <div class="field">
+              <label for="newName">Nome cliente</label>
+              <input id="newName" placeholder="Nome e cognome" />
+            </div>
+
+            <div class="field">
+              <label for="newEmail">Email</label>
+              <input id="newEmail" type="email" placeholder="email cliente" />
+            </div>
+
+            <div class="field">
+              <label for="newPhone">Telefono</label>
+              <input id="newPhone" placeholder="telefono cliente" />
+            </div>
+
+            <div class="field">
+              <label for="newPrefs">Preferenze</label>
+              <textarea id="newPrefs" placeholder="Sidro secco, fermentazioni botaniche, eventi..."></textarea>
+            </div>
+
+            <button class="btn btn-primary" type="submit">Crea card XA</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen" id="screen-shop">
+      <div class="shop-hero">
+        <div class="eyebrow"><span class="spark"></span> Area negozio separata</div>
+        <h2>Pannello XA Store</h2>
+        <p>
+          Seleziona un cliente, aggiungi punti in base alla spesa, assegna bonus, riscatta premi,
+          esporta dati e consulta lo storico. PIN demo negozio: <strong>2026</strong>.
+        </p>
+
+        <div class="shop-stat">
+          <div class="metric">
+            <span>Cliente attivo</span>
+            <strong id="shopCustomer">Cliente XA</strong>
+          </div>
+          <div class="metric">
+            <span>Saldo attuale</span>
+            <strong id="shopPoints">0 pt</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="store-lock" id="storeLock">
+        <div class="card-title">
+          <div>
+            <h3>Sblocca pannello negozio</h3>
+            <p>Blocco demo locale. Non è sicurezza reale server-side.</p>
+          </div>
+        </div>
+
+        <div class="form-grid">
+          <div class="field">
+            <label for="storePin">PIN negozio</label>
+            <input id="storePin" inputmode="numeric" placeholder="2026" />
+          </div>
+          <button class="btn btn-primary" id="unlockStore">Sblocca negozio</button>
+        </div>
+      </div>
+
+      <div class="store-area" id="storeArea">
+        <div class="grid two">
+          <div class="card card-pad">
+            <div class="card-title">
+              <div>
+                <h3>Cliente in cassa</h3>
+                <p>Scegli il cliente su cui lavorare</p>
+              </div>
+            </div>
+
+            <div class="form-grid">
+              <div class="field">
+                <label for="storeClientSelect">Cliente</label>
+                <select id="storeClientSelect"></select>
+              </div>
+              <button class="btn btn-secondary" id="goActiveClient">Apri card cliente</button>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="lux-list">
+              <div class="lux-item">
+                <span>Codice</span>
+                <strong id="shopCode">XA</strong>
+              </div>
+              <div class="lux-item">
+                <span>Status</span>
+                <strong id="shopStatus">Member</strong>
+              </div>
+              <div class="lux-item">
+                <span>Lifetime</span>
+                <strong id="shopLifetime">0</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="card card-pad">
+            <div class="card-title">
+              <div>
+                <h3>Aggiungi punti</h3>
+                <p>Regola demo: 1 punto XA per ogni euro speso</p>
+              </div>
+            </div>
+
+            <form class="form-grid" id="addPointsForm">
+              <div class="field">
+                <label for="spendAmount">Spesa cliente €</label>
+                <input id="spendAmount" type="number" min="0" step="0.01" placeholder="Esempio: 38.50" />
+              </div>
+
+              <div class="field">
+                <label for="purchaseNote">Nota movimento</label>
+                <input id="purchaseNote" placeholder="Esempio: degustazione sidri botanici" />
+              </div>
+
+              <button class="btn btn-primary" type="submit">Aggiungi punti</button>
+            </form>
+
+            <div class="divider"></div>
+
+            <button class="btn btn-secondary" id="bonusButton">+50 punti invito evento</button>
+          </div>
+        </div>
+
+        <div class="grid two">
+          <div class="card card-pad">
+            <div class="card-title">
+              <div>
+                <h3>Riscatto premio</h3>
+                <p>Scala punti dal cliente selezionato</p>
+              </div>
+            </div>
+
+            <div class="form-grid">
+              <div class="field">
+                <label for="shopRewardSelect">Premio</label>
+                <select id="shopRewardSelect"></select>
+              </div>
+
+              <button class="btn btn-primary" id="shopRedeemReward">Riscatta premio</button>
+            </div>
+          </div>
+
+          <div class="card card-pad">
+            <div class="card-title">
+              <div>
+                <h3>Strumenti negozio</h3>
+                <p>Azioni rapide per gestione demo</p>
+              </div>
+            </div>
+
+            <div class="lux-list">
+              <button class="btn btn-secondary" id="scanDemo">Simula scansione QR</button>
+              <button class="btn btn-secondary" id="exportData">Esporta dati demo</button>
+              <button class="btn btn-danger" id="clearHistory">Svuota storico cliente</button>
+            </div>
+
+            <div class="note" id="exportBox" style="display:none; word-break: break-word;"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="screen" id="screen-profile">
       <div class="section-head">
         <div>
           <h2>Profilo cliente</h2>
-          <p>Dati demo modificabili e salvati nel telefono/browser.</p>
+          <p>Modifica dati del cliente selezionato. Salvataggio locale nel dispositivo.</p>
         </div>
       </div>
 
@@ -1631,76 +1847,9 @@
           </div>
 
           <div class="note">
-            I dati sono salvati con <strong>localStorage</strong>. Funziona su GitHub Pages senza server.
+            Questa versione gestisce più clienti nello stesso dispositivo negozio tramite <strong>localStorage</strong>.
+            Per sincronizzare cliente e negozio su telefoni diversi servirà poi un database.
           </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="screen" id="screen-shop">
-      <div class="shop-hero">
-        <div class="eyebrow"><span class="spark"></span> Area negozio separata</div>
-        <h2>Pannello XA Store</h2>
-        <p>
-          Usa questo pannello per simulare la cassa: aggiunta punti in base alla spesa,
-          bonus evento, scansione QR, esportazione dati e gestione storico.
-        </p>
-
-        <div class="shop-stat">
-          <div class="metric">
-            <span>Cliente</span>
-            <strong id="shopCustomer">Cliente XA</strong>
-          </div>
-          <div class="metric">
-            <span>Saldo attuale</span>
-            <strong id="shopPoints">0 pt</strong>
-          </div>
-        </div>
-      </div>
-
-      <div class="grid two">
-        <div class="card card-pad">
-          <div class="card-title">
-            <div>
-              <h3>Aggiungi punti</h3>
-              <p>Regola demo: 1 punto XA per ogni euro speso</p>
-            </div>
-          </div>
-
-          <form class="form-grid" id="addPointsForm">
-            <div class="field">
-              <label for="spendAmount">Spesa cliente €</label>
-              <input id="spendAmount" type="number" min="0" step="0.01" placeholder="Esempio: 38.50" />
-            </div>
-
-            <div class="field">
-              <label for="purchaseNote">Nota movimento</label>
-              <input id="purchaseNote" placeholder="Esempio: degustazione sidri botanici" />
-            </div>
-
-            <button class="btn btn-primary" type="submit">Aggiungi punti</button>
-          </form>
-
-          <div class="divider"></div>
-
-          <button class="btn btn-secondary" id="bonusButton">+50 punti invito evento</button>
-        </div>
-
-        <div class="card card-pad">
-          <div class="card-title">
-            <div>
-              <h3>Strumenti negozio</h3>
-              <p>Azioni rapide per gestione demo</p>
-            </div>
-          </div>
-
-          <div class="lux-list">
-            <button class="btn btn-secondary" id="scanDemo">Simula scansione QR</button>
-            <button class="btn btn-secondary" id="exportData">Esporta dati demo</button>
-            <button class="btn btn-danger" id="clearHistory">Svuota storico</button>
-          </div>
-
-          <div class="note" id="exportBox" style="display:none; word-break: break-word;"></div>
         </div>
       </div>
     </section>
@@ -1708,28 +1857,33 @@
 
   <nav class="bottom-nav" aria-label="Navigazione principale">
     <button class="nav-btn active" data-tab="home">
-      <svg viewBox="0 0 24 24" fill="none"><path d="M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-5v-6h-4v6H5a1 1 0 0 1-1-1v-9.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+      <span class="nav-icon">⌂</span>
       Home
     </button>
 
     <button class="nav-btn" data-tab="rewards">
-      <svg viewBox="0 0 24 24" fill="none"><path d="M20 12v8H4v-8M3 8h18v4H3V8ZM12 20V8M12 8H8.5A2.5 2.5 0 1 1 11 5.5L12 8Zm0 0h3.5A2.5 2.5 0 1 0 13 5.5L12 8Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="nav-icon">✦</span>
       Rewards
     </button>
 
     <button class="nav-btn" data-tab="activity">
-      <svg viewBox="0 0 24 24" fill="none"><path d="M5 5v14h14M8 16l3-4 3 2 4-7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="nav-icon">≋</span>
       Storico
     </button>
 
-    <button class="nav-btn" data-tab="profile">
-      <svg viewBox="0 0 24 24" fill="none"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM4.5 20a7.5 7.5 0 0 1 15 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-      Profilo
+    <button class="nav-btn" data-tab="clients">
+      <span class="nav-icon">◉</span>
+      Clienti
     </button>
 
     <button class="nav-btn" data-tab="shop">
-      <svg viewBox="0 0 24 24" fill="none"><path d="M5 9h14l-1 12H6L5 9ZM8 9a4 4 0 0 1 8 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="nav-icon">▣</span>
       Negozio
+    </button>
+
+    <button class="nav-btn" data-tab="profile">
+      <span class="nav-icon">◎</span>
+      Profilo
     </button>
   </nav>
 
@@ -1747,7 +1901,8 @@
   </div>
 
   <script>
-    const STORAGE_KEY = "xa_fermented_redrinks_loyalty_v2";
+    const STORAGE_KEY = "xa_fermented_redrinks_loyalty_v3";
+    const STORE_PIN = "2026";
 
     const levels = [
       {
@@ -1797,108 +1952,108 @@
       }
     ];
 
-    const demoState = {
-      customer: {
-        name: "Maria Luisa",
-        email: "member@xaclub.demo",
-        phone: "+39 000 000 0000",
-        id: "XA-2026-0001",
-        joined: "04 Luglio 2026",
-        preferences: "Sidri dry, fermentazioni botaniche, limited edition, degustazioni guidate."
+    const rewards = [
+      {
+        id: "rw-01",
+        title: "Degustazione privata XA",
+        type: "experience",
+        badge: "Esperienza",
+        cost: 850,
+        limit: "Solo 8 posti",
+        desc: "Accesso a una degustazione guidata con sidri moderni, fermentazioni botaniche e prove di laboratorio XA."
       },
-      points: 1260,
-      lifetimePoints: 3840,
-      rewards: [
-        {
-          id: "rw-01",
-          title: "Degustazione privata XA",
-          type: "experience",
-          badge: "Esperienza",
-          cost: 850,
-          limit: "Solo 8 posti",
-          desc: "Accesso a una degustazione guidata con sidri moderni, fermentazioni botaniche e prove di laboratorio XA."
-        },
-        {
-          id: "rw-02",
-          title: "Bottiglia Founder Batch",
-          type: "limited",
-          badge: "Limited Edition",
-          cost: 1200,
-          limit: "Numerata",
-          desc: "Prenotazione di una release XA in micro lotto, con etichetta dedicata ai membri del club."
-        },
-        {
-          id: "rw-03",
-          title: "Invito tavolo fermentazioni",
-          type: "experience",
-          badge: "Evento",
-          cost: 650,
-          limit: "Su calendario",
-          desc: "Partecipazione a un incontro su fermentazioni, sidro e tecniche contemporanee di miscelazione."
-        },
-        {
-          id: "rw-04",
-          title: "Priority Release Access",
-          type: "privilege",
-          badge: "Privilegio",
-          cost: 500,
-          limit: "Accesso 48h prima",
-          desc: "Accesso anticipato alle future release XA prima della comunicazione pubblica."
-        },
-        {
-          id: "rw-05",
-          title: "Cellar Note personale",
-          type: "cellar",
-          badge: "Cantina",
-          cost: 350,
-          limit: "Profilo gusto",
-          desc: "Creazione di una nota gusto personale con preferenze su acidità, tannino, secco, fruttato e botaniche."
-        },
-        {
-          id: "rw-06",
-          title: "Limited Glass Ritual",
-          type: "limited",
-          badge: "Oggetto Club",
-          cost: 950,
-          limit: "Serie privata",
-          desc: "Oggetto rituale XA per degustazione, pensato come segno identitario del club."
-        }
-      ],
-      history: [
-        {
-          id: makeId(),
-          title: "Ingresso Club XA",
-          note: "Profilo membro attivato",
-          points: 0,
-          date: "04/07/2026, 09:10",
-          type: "member"
-        },
-        {
-          id: makeId(),
-          title: "Acquisto in negozio",
-          note: "Degustazione sidro e fermented redrinks",
-          points: 78,
-          date: "04/07/2026, 09:18",
-          type: "earn"
-        },
-        {
-          id: makeId(),
-          title: "Bonus anteprima",
-          note: "Accesso demo al programma loyalty XA",
-          points: 200,
-          date: "04/07/2026, 09:24",
-          type: "earn"
-        },
-        {
-          id: makeId(),
-          title: "Riscatto reward",
-          note: "Cellar Note personale",
-          points: -350,
-          date: "04/07/2026, 09:32",
-          type: "redeem"
-        }
-      ],
-      redeemed: {}
+      {
+        id: "rw-02",
+        title: "Bottiglia Founder Batch",
+        type: "limited",
+        badge: "Limited Edition",
+        cost: 1200,
+        limit: "Numerata",
+        desc: "Prenotazione di una release XA in micro lotto, con etichetta dedicata ai membri del club."
+      },
+      {
+        id: "rw-03",
+        title: "Invito tavolo fermentazioni",
+        type: "experience",
+        badge: "Evento",
+        cost: 650,
+        limit: "Su calendario",
+        desc: "Partecipazione a un incontro su fermentazioni, sidro e tecniche contemporanee di miscelazione."
+      },
+      {
+        id: "rw-04",
+        title: "Priority Release Access",
+        type: "privilege",
+        badge: "Privilegio",
+        cost: 500,
+        limit: "Accesso 48h prima",
+        desc: "Accesso anticipato alle future release XA prima della comunicazione pubblica."
+      },
+      {
+        id: "rw-05",
+        title: "Cellar Note personale",
+        type: "cellar",
+        badge: "Cantina",
+        cost: 350,
+        limit: "Profilo gusto",
+        desc: "Creazione di una nota gusto personale con preferenze su acidità, tannino, secco, fruttato e botaniche."
+      },
+      {
+        id: "rw-06",
+        title: "Limited Glass Ritual",
+        type: "limited",
+        badge: "Oggetto Club",
+        cost: 950,
+        limit: "Serie privata",
+        desc: "Oggetto rituale XA per degustazione, pensato come segno identitario del club."
+      }
+    ];
+
+    const demoState = {
+      activeCustomerId: "XA-2026-0001",
+      rewards,
+      customers: [
+        createCustomerSeed({
+          id: "XA-2026-0001",
+          name: "Maria Luisa",
+          email: "member@xaclub.demo",
+          phone: "+39 000 000 0000",
+          points: 1260,
+          lifetimePoints: 3840,
+          joined: "04 Luglio 2026",
+          preferences: "Sidri dry, fermentazioni botaniche, limited edition, degustazioni guidate."
+        }),
+        createCustomerSeed({
+          id: "XA-2026-0002",
+          name: "Giovanni Bianchi",
+          email: "giovanni@example.com",
+          phone: "+39 333 111 2222",
+          points: 320,
+          lifetimePoints: 320,
+          joined: "04 Luglio 2026",
+          preferences: "Tonica mediterranea, sidro fruttato, eventi serali."
+        }),
+        createCustomerSeed({
+          id: "XA-2026-0003",
+          name: "Francesca Rossi",
+          email: "francesca@example.com",
+          phone: "+39 333 222 4444",
+          points: 2480,
+          lifetimePoints: 2480,
+          joined: "04 Luglio 2026",
+          preferences: "Limited edition, degustazioni tecniche, bevande secche."
+        }),
+        createCustomerSeed({
+          id: "XA-2026-0004",
+          name: "Luca Ferri",
+          email: "luca@example.com",
+          phone: "+39 333 555 7777",
+          points: 5600,
+          lifetimePoints: 5600,
+          joined: "04 Luglio 2026",
+          preferences: "Eventi privati, release numerate, sidri tannici."
+        })
+      ]
     };
 
     let state = loadState();
@@ -1912,14 +2067,16 @@
       bindUI();
       renderAll();
 
-      if (sessionStorage.getItem("xa_splash_seen_v2")) {
+      if (sessionStorage.getItem("xa_splash_seen_v3")) {
         $("#splash").classList.add("hide");
       }
+
+      updateStoreLock();
     });
 
     function bindUI() {
       $("#enterApp").addEventListener("click", () => {
-        sessionStorage.setItem("xa_splash_seen_v2", "1");
+        sessionStorage.setItem("xa_splash_seen_v3", "1");
         $("#splash").classList.add("hide");
         toast("Benvenuto nel Club XA.");
       });
@@ -1942,15 +2099,63 @@
         renderRewards();
       });
 
+      $("#clientSearch").addEventListener("input", renderClients);
+
+      $("#newCustomerForm").addEventListener("submit", event => {
+        event.preventDefault();
+
+        const name = $("#newName").value.trim();
+        if (!name) {
+          toast("Inserisci il nome del cliente.");
+          return;
+        }
+
+        const customer = {
+          id: nextCustomerId(),
+          name,
+          email: $("#newEmail").value.trim(),
+          phone: $("#newPhone").value.trim(),
+          points: 0,
+          lifetimePoints: 0,
+          joined: new Date().toLocaleDateString("it-IT", {
+            day: "2-digit",
+            month: "long",
+            year: "numeric"
+          }),
+          preferences: $("#newPrefs").value.trim() || "Nuovo membro XA.",
+          redeemed: {},
+          history: [
+            {
+              id: makeId(),
+              title: "Nuova card XA",
+              note: "Cliente creato nel gestionale negozio",
+              points: 0,
+              date: nowLabel(),
+              type: "member"
+            }
+          ]
+        };
+
+        state.customers.unshift(customer);
+        state.activeCustomerId = customer.id;
+        saveState();
+
+        $("#newCustomerForm").reset();
+        renderAll();
+        setTab("home");
+        toast(`Card creata: ${customer.name}`);
+      });
+
       $("#profileForm").addEventListener("submit", event => {
         event.preventDefault();
 
-        state.customer.name = $("#profileName").value.trim() || "Membro XA";
-        state.customer.email = $("#profileEmail").value.trim();
-        state.customer.phone = $("#profilePhone").value.trim();
-        state.customer.preferences = $("#profilePreferences").value.trim();
+        const customer = getActiveCustomer();
+        customer.name = $("#profileName").value.trim() || "Membro XA";
+        customer.email = $("#profileEmail").value.trim();
+        customer.phone = $("#profilePhone").value.trim();
+        customer.preferences = $("#profilePreferences").value.trim();
 
-        addHistory({
+        addHistory(customer, {
           title: "Profilo aggiornato",
           note: "Dati membro modificati",
           points: 0,
@@ -1959,12 +2164,24 @@
 
         saveState();
         renderAll();
-        toast("Profilo XA salvato.");
+        toast("Profilo cliente salvato.");
+      });
+
+      $("#storeClientSelect").addEventListener("change", event => {
+        state.activeCustomerId = event.target.value;
+        saveState();
+        renderAll();
+        toast("Cliente selezionato in cassa.");
+      });
+
+      $("#goActiveClient").addEventListener("click", () => {
+        setTab("home");
       });
 
       $("#addPointsForm").addEventListener("submit", event => {
         event.preventDefault();
 
+        const customer = getActiveCustomer();
         const spend = Number($("#spendAmount").value);
         const note = $("#purchaseNote").value.trim() || "Acquisto XA Store";
 
@@ -1975,10 +2192,10 @@
 
         const points = Math.floor(spend);
 
-        state.points += points;
-        state.lifetimePoints += points;
+        customer.points += points;
+        customer.lifetimePoints += points;
 
-        addHistory({
+        addHistory(customer, {
           title: "Acquisto in negozio",
           note: `${note} — €${spend.toFixed(2)}`,
           points,
@@ -1990,14 +2207,15 @@
 
         saveState();
         renderAll();
-        toast(`Aggiunti ${points} punti XA.`);
+        toast(`${points} punti aggiunti a ${customer.name}.`);
       });
 
       $("#bonusButton").addEventListener("click", () => {
-        state.points += 50;
-        state.lifetimePoints += 50;
+        const customer = getActiveCustomer();
+        customer.points += 50;
+        customer.lifetimePoints += 50;
 
-        addHistory({
+        addHistory(customer, {
           title: "Bonus evento",
           note: "Invito o partecipazione ad attività XA",
           points: 50,
@@ -2006,11 +2224,16 @@
 
         saveState();
         renderAll();
-        toast("+50 punti bonus assegnati.");
+        toast(`+50 punti bonus a ${customer.name}.`);
+      });
+
+      $("#shopRedeemReward").addEventListener("click", () => {
+        redeemReward($("#shopRewardSelect").value);
       });
 
       $("#scanDemo").addEventListener("click", () => {
-        toast(`QR riconosciuto: ${state.customer.id}`);
+        const customer = getActiveCustomer();
+        toast(`QR riconosciuto: ${customer.id} — ${customer.name}`);
       });
 
       $("#exportData").addEventListener("click", () => {
@@ -2021,27 +2244,44 @@
       });
 
       $("#clearHistory").addEventListener("click", () => {
+        const customer = getActiveCustomer();
+
         openConfirm({
-          title: "Svuotare lo storico?",
-          text: "Questa azione cancella solo lo storico attività demo. Punti e profilo resteranno invariati.",
+          title: "Svuotare lo storico cliente?",
+          text: `Questa azione cancella solo lo storico di ${customer.name}. Punti e profilo resteranno invariati.`,
           onConfirm: () => {
-            state.history = [];
+            customer.history = [];
             saveState();
             renderAll();
-            toast("Storico attività svuotato.");
+            toast("Storico cliente svuotato.");
           }
         });
+      });
+
+      $("#unlockStore").addEventListener("click", () => {
+        const pin = $("#storePin").value.trim();
+        if (pin !== STORE_PIN) {
+          toast("PIN negozio non corretto.");
+          return;
+        }
+
+        sessionStorage.setItem("xa_store_unlocked", "1");
+        $("#storePin").value = "";
+        updateStoreLock();
+        toast("Pannello negozio sbloccato.");
       });
 
       $("#resetDemo").addEventListener("click", () => {
         openConfirm({
           title: "Ripristinare la demo XA?",
-          text: "Tutti i dati locali verranno sostituiti dai dati demo iniziali.",
+          text: "Tutti i clienti locali verranno sostituiti dai dati demo iniziali.",
           onConfirm: () => {
             localStorage.removeItem(STORAGE_KEY);
+            sessionStorage.removeItem("xa_store_unlocked");
             state = clone(demoState);
             saveState();
             renderAll();
+            updateStoreLock();
             toast("Demo XA ripristinata.");
           }
         });
@@ -2069,53 +2309,59 @@
       });
 
       window.scrollTo({ top: 0, behavior: "smooth" });
+      if (tab === "shop") updateStoreLock();
     }
 
     function renderAll() {
-      const level = getCurrentLevel();
-      const next = getNextLevel();
+      const customer = getActiveCustomer();
+      const level = getLevel(customer);
+      const next = getNextLevel(customer);
 
-      $("#helloName").textContent = firstName(state.customer.name);
+      $("#helloName").textContent = firstName(customer.name);
       $("#topStatus").textContent = level.name;
 
       $("#heroStatus").textContent = level.name;
-      $("#heroPoints").textContent = formatNumber(state.points);
-      $("#heroLifetime").textContent = formatNumber(state.lifetimePoints);
+      $("#heroPoints").textContent = formatNumber(customer.points);
+      $("#heroClients").textContent = formatNumber(state.customers.length);
       $("#heroNext").textContent = next ? next.name : "Max";
 
-      $("#cardName").textContent = state.customer.name;
-      $("#cardId").textContent = state.customer.id;
-      $("#cardSince").textContent = state.customer.joined;
+      $("#cardName").textContent = customer.name;
+      $("#cardId").textContent = customer.id;
+      $("#cardSince").textContent = customer.joined;
       $("#cardTier").textContent = level.name;
 
-      $("#pointsBig").textContent = formatNumber(state.points);
-      $("#lifetimePoints").textContent = formatNumber(state.lifetimePoints);
-
+      $("#pointsBig").textContent = formatNumber(customer.points);
+      $("#lifetimePoints").textContent = formatNumber(customer.lifetimePoints);
       $("#currentTierText").textContent = level.name;
       $("#nextTierText").textContent = next ? next.name : "Massimo livello";
-      $("#toNext").textContent = next ? formatNumber(Math.max(0, next.min - state.lifetimePoints)) : "0";
+      $("#toNext").textContent = next ? formatNumber(Math.max(0, next.min - customer.lifetimePoints)) : "0";
+      $("#tierBar").style.width = `${getProgressPercent(customer, level, next)}%`;
 
-      $("#tierBar").style.width = `${getProgressPercent(level, next)}%`;
+      $("#qrMemberName").textContent = customer.name;
+      $("#qrMemberCode").textContent = customer.id;
 
-      $("#qrMemberName").textContent = state.customer.name;
-      $("#qrMemberCode").textContent = state.customer.id;
+      $("#profileName").value = customer.name;
+      $("#profileEmail").value = customer.email || "";
+      $("#profilePhone").value = customer.phone || "";
+      $("#profilePreferences").value = customer.preferences || "";
 
-      $("#profileName").value = state.customer.name;
-      $("#profileEmail").value = state.customer.email;
-      $("#profilePhone").value = state.customer.phone;
-      $("#profilePreferences").value = state.customer.preferences;
-
-      $("#profileMemberCode").textContent = state.customer.id;
+      $("#profileMemberCode").textContent = customer.id;
       $("#profileStatus").textContent = level.name;
-      $("#profilePoints").textContent = `${formatNumber(state.points)} pt`;
+      $("#profilePoints").textContent = `${formatNumber(customer.points)} pt`;
 
-      $("#shopCustomer").textContent = state.customer.name;
-      $("#shopPoints").textContent = `${formatNumber(state.points)} pt`;
+      $("#shopCustomer").textContent = customer.name;
+      $("#shopPoints").textContent = `${formatNumber(customer.points)} pt`;
+      $("#shopCode").textContent = customer.id;
+      $("#shopStatus").textContent = level.name;
+      $("#shopLifetime").textContent = `${formatNumber(customer.lifetimePoints)} pt`;
 
       renderPrivileges(level);
       renderRewards();
       renderActivity();
-      drawQR(`${state.customer.id}|${state.customer.name}|XA Fermented Redrinks`);
+      renderClients();
+      renderStoreSelects();
+      renderClientStats();
+      drawQR(`${customer.id}|${customer.name}|XA Fermented Redrinks`);
     }
 
     function renderPrivileges(level) {
@@ -2134,21 +2380,22 @@
     }
 
     function renderRewards() {
+      const customer = getActiveCustomer();
       const list = $("#rewardList");
       list.innerHTML = "";
 
-      const rewards = state.rewards.filter(reward => {
+      const visibleRewards = state.rewards.filter(reward => {
         return currentRewardFilter === "all" || reward.type === currentRewardFilter;
       });
 
-      if (!rewards.length) {
+      if (!visibleRewards.length) {
         list.innerHTML = `<div class="empty">Nessun reward in questa categoria.</div>`;
         return;
       }
 
-      rewards.forEach(reward => {
-        const canRedeem = state.points >= reward.cost;
-        const redeemedCount = state.redeemed[reward.id] || 0;
+      visibleRewards.forEach(reward => {
+        const canRedeem = customer.points >= reward.cost;
+        const redeemedCount = customer.redeemed?.[reward.id] || 0;
 
         const el = document.createElement("article");
         el.className = "reward";
@@ -2177,46 +2424,17 @@
       });
     }
 
-    function redeemReward(id) {
-      const reward = state.rewards.find(item => item.id === id);
-      if (!reward) return;
-
-      if (state.points < reward.cost) {
-        toast(`Servono ${formatNumber(reward.cost - state.points)} punti in più.`);
-        return;
-      }
-
-      openConfirm({
-        title: "Confermare il riscatto?",
-        text: `${reward.title} verrà riscattato usando ${formatNumber(reward.cost)} punti XA.`,
-        onConfirm: () => {
-          state.points -= reward.cost;
-          state.redeemed[reward.id] = (state.redeemed[reward.id] || 0) + 1;
-
-          addHistory({
-            title: "Riscatto reward",
-            note: reward.title,
-            points: -reward.cost,
-            type: "redeem"
-          });
-
-          saveState();
-          renderAll();
-          toast(`Reward riscattato: ${reward.title}`);
-        }
-      });
-    }
-
     function renderActivity() {
+      const customer = getActiveCustomer();
       const list = $("#activityList");
       list.innerHTML = "";
 
-      if (!state.history.length) {
-        list.innerHTML = `<div class="empty">Nessun movimento registrato.</div>`;
+      if (!customer.history || !customer.history.length) {
+        list.innerHTML = `<div class="empty">Nessun movimento registrato per questo cliente.</div>`;
         return;
       }
 
-      state.history.slice(0, 70).forEach(item => {
+      customer.history.slice(0, 80).forEach(item => {
         const el = document.createElement("article");
         el.className = "activity";
 
@@ -2237,39 +2455,220 @@
       });
     }
 
-    function addHistory(entry) {
-      state.history.unshift({
+    function renderClients() {
+      const list = $("#clientList");
+      const query = ($("#clientSearch").value || "").trim().toLowerCase();
+
+      list.innerHTML = "";
+
+      const filtered = state.customers.filter(customer => {
+        const blob = `${customer.name} ${customer.email} ${customer.phone} ${customer.id}`.toLowerCase();
+        return !query || blob.includes(query);
+      });
+
+      if (!filtered.length) {
+        list.innerHTML = `<div class="empty">Nessun cliente trovato.</div>`;
+        return;
+      }
+
+      filtered.forEach(customer => {
+        const level = getLevel(customer);
+        const active = customer.id === state.activeCustomerId;
+
+        const el = document.createElement("article");
+        el.className = "client-row";
+        el.innerHTML = `
+          <div class="client-top">
+            <span class="tiny-tag">${active ? "Attivo" : "Cliente"}</span>
+            <span class="tiny-tag">${escapeHTML(level.name)}</span>
+          </div>
+
+          <h3>${escapeHTML(customer.name)}</h3>
+          <p>
+            ${escapeHTML(customer.id)}<br>
+            ${escapeHTML(customer.email || "email non inserita")} · ${escapeHTML(customer.phone || "telefono non inserito")}
+          </p>
+
+          <div class="reward-bottom">
+            <div class="price">
+              <strong>${formatNumber(customer.points)} pt</strong>
+              <small>${formatNumber(customer.lifetimePoints)} lifetime</small>
+            </div>
+            <div class="client-actions">
+              <button class="btn btn-primary btn-small" data-open="${customer.id}">Apri</button>
+              <button class="btn btn-secondary btn-small" data-cash="${customer.id}">Cassa</button>
+              <button class="btn btn-danger btn-small" data-delete="${customer.id}">Elimina</button>
+            </div>
+          </div>
+        `;
+
+        el.querySelector("[data-open]").addEventListener("click", () => {
+          state.activeCustomerId = customer.id;
+          saveState();
+          renderAll();
+          setTab("home");
+          toast(`Cliente aperto: ${customer.name}`);
+        });
+
+        el.querySelector("[data-cash]").addEventListener("click", () => {
+          state.activeCustomerId = customer.id;
+          saveState();
+          renderAll();
+          setTab("shop");
+          toast(`Cliente in cassa: ${customer.name}`);
+        });
+
+        el.querySelector("[data-delete]").addEventListener("click", () => {
+          deleteCustomer(customer.id);
+        });
+
+        list.appendChild(el);
+      });
+    }
+
+    function renderClientStats() {
+      const totalClients = state.customers.length;
+      const totalPoints = state.customers.reduce((sum, customer) => sum + Number(customer.points || 0), 0);
+      const top = [...state.customers].sort((a, b) => b.lifetimePoints - a.lifetimePoints)[0];
+
+      $("#clientsTotal").textContent = formatNumber(totalClients);
+      $("#clientsPoints").textContent = formatNumber(totalPoints);
+      $("#topClientShort").textContent = top ? formatNumber(top.lifetimePoints) : "0";
+      $("#topClientName").textContent = top ? top.name : "—";
+    }
+
+    function renderStoreSelects() {
+      const customerSelect = $("#storeClientSelect");
+      const rewardSelect = $("#shopRewardSelect");
+
+      customerSelect.innerHTML = "";
+      rewardSelect.innerHTML = "";
+
+      state.customers.forEach(customer => {
+        const option = document.createElement("option");
+        option.value = customer.id;
+        option.textContent = `${customer.name} — ${customer.id} — ${formatNumber(customer.points)} pt`;
+        option.selected = customer.id === state.activeCustomerId;
+        customerSelect.appendChild(option);
+      });
+
+      state.rewards.forEach(reward => {
+        const option = document.createElement("option");
+        option.value = reward.id;
+        option.textContent = `${reward.title} — ${formatNumber(reward.cost)} pt`;
+        rewardSelect.appendChild(option);
+      });
+    }
+
+    function redeemReward(id) {
+      const customer = getActiveCustomer();
+      const reward = state.rewards.find(item => item.id === id);
+
+      if (!reward) return;
+
+      if (customer.points < reward.cost) {
+        toast(`Servono ${formatNumber(reward.cost - customer.points)} punti in più.`);
+        return;
+      }
+
+      openConfirm({
+        title: "Confermare il riscatto?",
+        text: `${reward.title} verrà riscattato per ${customer.name} usando ${formatNumber(reward.cost)} punti XA.`,
+        onConfirm: () => {
+          customer.points -= reward.cost;
+          customer.redeemed = customer.redeemed || {};
+          customer.redeemed[reward.id] = (customer.redeemed[reward.id] || 0) + 1;
+
+          addHistory(customer, {
+            title: "Riscatto reward",
+            note: reward.title,
+            points: -reward.cost,
+            type: "redeem"
+          });
+
+          saveState();
+          renderAll();
+          toast(`Reward riscattato: ${reward.title}`);
+        }
+      });
+    }
+
+    function deleteCustomer(id) {
+      const customer = state.customers.find(item => item.id === id);
+      if (!customer) return;
+
+      if (state.customers.length <= 1) {
+        toast("Deve restare almeno un cliente.");
+        return;
+      }
+
+      openConfirm({
+        title: "Eliminare cliente?",
+        text: `Vuoi eliminare la card di ${customer.name}? Questa azione rimuove dati e storico dal dispositivo.`,
+        onConfirm: () => {
+          state.customers = state.customers.filter(item => item.id !== id);
+
+          if (state.activeCustomerId === id) {
+            state.activeCustomerId = state.customers[0].id;
+          }
+
+          saveState();
+          renderAll();
+          toast("Cliente eliminato.");
+        }
+      });
+    }
+
+    function addHistory(customer, entry) {
+      customer.history = customer.history || [];
+      customer.history.unshift({
         id: makeId(),
         title: entry.title,
         note: entry.note,
         points: entry.points,
         type: entry.type || "generic",
-        date: new Date().toLocaleString("it-IT", {
-          day: "2-digit",
-          month: "2-digit",
-          year: "numeric",
-          hour: "2-digit",
-          minute: "2-digit"
-        })
+        date: nowLabel()
       });
     }
 
-    function getCurrentLevel() {
+    function getActiveCustomer() {
+      let customer = state.customers.find(item => item.id === state.activeCustomerId);
+
+      if (!customer) {
+        customer = state.customers[0];
+        state.activeCustomerId = customer.id;
+        saveState();
+      }
+
+      customer.redeemed = customer.redeemed || {};
+      customer.history = customer.history || [];
+
+      return customer;
+    }
+
+    function getLevel(customer) {
       return levels
-        .filter(level => state.lifetimePoints >= level.min)
+        .filter(level => customer.lifetimePoints >= level.min)
         .at(-1) || levels[0];
     }
 
-    function getNextLevel() {
-      return levels.find(level => level.min > state.lifetimePoints) || null;
+    function getNextLevel(customer) {
+      return levels.find(level => level.min > customer.lifetimePoints) || null;
     }
 
-    function getProgressPercent(current, next) {
+    function getProgressPercent(customer, current, next) {
       if (!next) return 100;
 
       const range = next.min - current.min;
-      const gained = state.lifetimePoints - current.min;
+      const gained = customer.lifetimePoints - current.min;
       return Math.max(5, Math.min(100, Math.round((gained / range) * 100)));
+    }
+
+    function updateStoreLock() {
+      const unlocked = sessionStorage.getItem("xa_store_unlocked") === "1";
+
+      $("#storeLock").classList.toggle("show", !unlocked);
+      $("#storeArea").classList.toggle("locked", !unlocked);
     }
 
     function loadState() {
@@ -2287,13 +2686,8 @@
         return {
           ...clone(demoState),
           ...parsed,
-          customer: {
-            ...demoState.customer,
-            ...(parsed.customer || {})
-          },
-          rewards: Array.isArray(parsed.rewards) && parsed.rewards.length ? parsed.rewards : demoState.rewards,
-          history: Array.isArray(parsed.history) ? parsed.history : demoState.history,
-          redeemed: parsed.redeemed || {}
+          rewards: Array.isArray(parsed.rewards) && parsed.rewards.length ? parsed.rewards : rewards,
+          customers: Array.isArray(parsed.customers) && parsed.customers.length ? parsed.customers : clone(demoState.customers)
         };
       } catch (error) {
         console.warn("XA localStorage reset", error);
@@ -2391,6 +2785,48 @@
       ctx.fillText("XA", offset + 14.5 * cell, offset + 14.5 * cell);
     }
 
+    function createCustomerSeed(data) {
+      return {
+        id: data.id,
+        name: data.name,
+        email: data.email || "",
+        phone: data.phone || "",
+        points: data.points || 0,
+        lifetimePoints: data.lifetimePoints || 0,
+        joined: data.joined || "04 Luglio 2026",
+        preferences: data.preferences || "",
+        redeemed: {},
+        history: [
+          {
+            id: makeId(),
+            title: "Ingresso Club XA",
+            note: "Profilo membro attivato",
+            points: 0,
+            date: "04/07/2026, 09:10",
+            type: "member"
+          },
+          {
+            id: makeId(),
+            title: "Saldo iniziale demo",
+            note: "Punti caricati nel gestionale",
+            points: data.points || 0,
+            date: "04/07/2026, 09:18",
+            type: "earn"
+          }
+        ]
+      };
+    }
+
+    function nextCustomerId() {
+      const year = new Date().getFullYear();
+      const numbers = state.customers
+        .map(customer => Number(String(customer.id).split("-").at(-1)))
+        .filter(Number.isFinite);
+
+      const next = Math.max(0, ...numbers) + 1;
+      return `XA-${year}-${String(next).padStart(4, "0")}`;
+    }
+
     function hashString(value) {
       let hash = 0;
       for (let i = 0; i < value.length; i++) {
@@ -2398,6 +2834,16 @@
         hash |= 0;
       }
       return Math.abs(hash);
+    }
+
+    function nowLabel() {
+      return new Date().toLocaleString("it-IT", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit"
+      });
     }
 
     function firstName(name) {
