@@ -22,7 +22,6 @@
       --red: #ff7777;
       --line: rgba(255,240,200,.14);
       --glass: rgba(255,240,200,.08);
-      --glass2: rgba(255,240,200,.13);
       --shadow: 0 26px 80px rgba(0,0,0,.44);
       --shadow2: 0 16px 44px rgba(0,0,0,.30);
       --safe: env(safe-area-inset-bottom);
@@ -74,6 +73,10 @@
     button {
       border: 0;
       cursor: pointer;
+    }
+
+    textarea {
+      resize: vertical;
     }
 
     .app {
@@ -352,7 +355,8 @@
       margin-top: 14px;
     }
 
-    .stat {
+    .stat,
+    .metric {
       position: relative;
       z-index: 1;
       padding: 13px;
@@ -610,13 +614,6 @@
       margin-top: 14px;
     }
 
-    .metric {
-      padding: 13px;
-      border-radius: 20px;
-      background: rgba(0,0,0,.22);
-      border: 1px solid rgba(255,240,200,.11);
-    }
-
     .qr-layout {
       position: relative;
       z-index: 1;
@@ -712,7 +709,8 @@
     .reward-list,
     .activity-list,
     .client-list,
-    .lux-list {
+    .lux-list,
+    .transaction-list {
       position: relative;
       z-index: 1;
       display: grid;
@@ -721,7 +719,8 @@
 
     .reward,
     .client-row,
-    .activity {
+    .activity,
+    .transaction-row {
       position: relative;
       overflow: hidden;
       padding: 16px;
@@ -740,7 +739,8 @@
     }
 
     .reward-top,
-    .client-top {
+    .client-top,
+    .transaction-top {
       display: flex;
       justify-content: space-between;
       gap: 10px;
@@ -748,14 +748,16 @@
     }
 
     .reward h3,
-    .client-row h3 {
+    .client-row h3,
+    .transaction-row h3 {
       margin: 12px 0 7px;
       font-size: 18px;
       letter-spacing: -.035em;
     }
 
     .reward p,
-    .client-row p {
+    .client-row p,
+    .transaction-row p {
       margin: 0;
       color: var(--muted);
       font-size: 13px;
@@ -763,7 +765,8 @@
     }
 
     .reward-bottom,
-    .client-actions {
+    .client-actions,
+    .transaction-bottom {
       margin-top: 15px;
       display: flex;
       flex-wrap: wrap;
@@ -869,7 +872,6 @@
 
     .field textarea {
       min-height: 96px;
-      resize: vertical;
     }
 
     .field input:focus,
@@ -973,6 +975,31 @@
 
     .store-area.locked {
       display: none;
+    }
+
+    .pos-preview {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: 10px;
+      padding: 14px;
+      border-radius: 22px;
+      background: rgba(0,0,0,.22);
+      border: 1px solid rgba(244,212,122,.18);
+    }
+
+    .pos-preview strong {
+      color: var(--gold2);
+    }
+
+    .export-box {
+      width: 100%;
+      min-height: 170px;
+      font-size: 11px;
+      line-height: 1.42;
+      color: var(--cream);
+      white-space: pre-wrap;
+      word-break: break-word;
     }
 
     .bottom-nav {
@@ -1213,7 +1240,8 @@
       }
 
       .reward-list,
-      .client-list {
+      .client-list,
+      .transaction-list {
         grid-template-columns: repeat(2, 1fr);
       }
 
@@ -1232,7 +1260,8 @@
 
     @media (min-width: 1040px) {
       .reward-list,
-      .client-list {
+      .client-list,
+      .transaction-list {
         grid-template-columns: repeat(3, 1fr);
       }
     }
@@ -1295,9 +1324,9 @@
   <div class="splash" id="splash">
     <div class="splash-inner">
       <div class="splash-xa">XA</div>
-      <div class="splash-kicker">Fermented Redrinks Club</div>
+      <div class="splash-kicker">V5 Cassa Ready</div>
       <p class="splash-title">
-        Card cliente, gestione negozio, punti, premi e status in una web app mobile-first.
+        Card cliente, gestione negozio, transazioni vendita, punti, premi e dati pronti per una futura cassa.
       </p>
       <button class="btn btn-primary" id="enterApp">Entra nel Club XA</button>
     </div>
@@ -1324,16 +1353,16 @@
 
     <section class="screen active" id="screen-home">
       <div class="hero">
-        <div class="eyebrow"><span class="spark"></span> Private Member Access</div>
+        <div class="eyebrow"><span class="spark"></span> Loyalty + Cassa Ready</div>
 
         <h2 class="hero-title">
           <span class="gold">XA</span> Member Club<br>
-          <span id="helloName">Maria</span>
+          <span id="helloName">Cliente</span>
         </h2>
 
         <p class="hero-copy">
-          Card digitale, punti, status e privilegi. La vista cliente resta elegante e semplice;
-          la gestione completa delle card è nel pannello negozio.
+          Vista cliente elegante, gestione negozio multi-cliente e una cassa simulata
+          già strutturata per diventare collegabile a database, POS o gestionale.
         </p>
 
         <div class="stats-row">
@@ -1346,18 +1375,18 @@
             <strong id="heroPoints">0</strong>
           </div>
           <div class="stat">
-            <span>Clienti</span>
-            <strong id="heroClients">0</strong>
+            <span>Vendite</span>
+            <strong id="heroSales">0</strong>
           </div>
           <div class="stat">
-            <span>Prossimo</span>
-            <strong id="heroNext">Club</strong>
+            <span>Incasso demo</span>
+            <strong id="heroRevenue">€0</strong>
           </div>
         </div>
 
         <div class="hero-actions">
-          <button class="btn btn-primary" data-go="clients">Gestisci clienti</button>
-          <button class="btn btn-secondary" data-go="shop">Apri negozio</button>
+          <button class="btn btn-primary" data-go="pos">Apri Cassa XA</button>
+          <button class="btn btn-secondary" data-go="clients">Gestisci clienti</button>
         </div>
       </div>
 
@@ -1386,8 +1415,8 @@
                 <strong id="cardSince">2026</strong>
               </div>
               <div>
-                <small>Club</small>
-                <strong>Fermented Redrinks</strong>
+                <small>Spesa totale</small>
+                <strong id="cardSpend">€0</strong>
               </div>
             </div>
           </div>
@@ -1431,7 +1460,7 @@
           <div class="card-title">
             <div>
               <h3>QR cliente</h3>
-              <p>Identificativo per la cassa</p>
+              <p>Identificativo per cassa e card</p>
             </div>
             <span class="tag">ID</span>
           </div>
@@ -1444,7 +1473,7 @@
               <h4 id="qrMemberName">Cliente XA</h4>
               <p>
                 Codice membro: <strong id="qrMemberCode">XA-0000</strong><br>
-                Il negozio può usare questo codice per aggiungere punti o riscattare premi.
+                Futuro collegamento: lettura QR da cassa, database o gestionale POS.
               </p>
             </div>
           </div>
@@ -1453,45 +1482,199 @@
         <div class="card card-pad">
           <div class="card-title">
             <div>
-              <h3>Privilegi attivi</h3>
-              <p>Vantaggi collegati allo status</p>
+              <h3>Dashboard negozio</h3>
+              <p>Numeri centrali della loyalty</p>
             </div>
-            <span class="tag">Club</span>
+            <span class="tag">Store</span>
           </div>
 
-          <div class="lux-list" id="privilegesList"></div>
+          <div class="lux-list">
+            <div class="lux-item">
+              <span>Clienti totali</span>
+              <strong id="dashCustomers">0</strong>
+            </div>
+            <div class="lux-item">
+              <span>Punti attivi</span>
+              <strong id="dashPoints">0</strong>
+            </div>
+            <div class="lux-item">
+              <span>Transazioni</span>
+              <strong id="dashTransactions">0</strong>
+            </div>
+            <div class="lux-item">
+              <span>Incasso demo</span>
+              <strong id="dashRevenue">€0</strong>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="screen" id="screen-rewards">
-      <div class="section-head">
-        <div>
-          <h2>Rewards premium</h2>
-          <p>Esperienze, eventi, limited edition e privilegi. Non una raccolta bollini.</p>
+    <section class="screen" id="screen-pos">
+      <div class="shop-hero">
+        <div class="eyebrow"><span class="spark"></span> Cassa XA</div>
+        <h2>Store Console</h2>
+        <p>
+          Registra una vendita manuale, collega il cliente, inserisci scontrino e categoria.
+          La transazione viene salvata con struttura pronta per POS/database. PIN demo: <strong>2026</strong>.
+        </p>
+
+        <div class="shop-stat">
+          <div class="metric">
+            <span>Cliente attivo</span>
+            <strong id="posCustomer">Cliente XA</strong>
+          </div>
+          <div class="metric">
+            <span>Punti attuali</span>
+            <strong id="posPoints">0 pt</strong>
+          </div>
         </div>
       </div>
 
-      <div class="filters" id="rewardFilters">
-        <button class="chip active" data-filter="all">Tutti</button>
-        <button class="chip" data-filter="experience">Esperienze</button>
-        <button class="chip" data-filter="limited">Limited</button>
-        <button class="chip" data-filter="privilege">Privilegi</button>
-        <button class="chip" data-filter="cellar">Cantina</button>
-      </div>
+      <div class="store-lock" id="storeLock">
+        <div class="card-title">
+          <div>
+            <h3>Sblocca cassa</h3>
+            <p>Blocco demo locale. Non è sicurezza reale server-side.</p>
+          </div>
+        </div>
 
-      <div class="reward-list" id="rewardList"></div>
-    </section>
-
-    <section class="screen" id="screen-activity">
-      <div class="section-head">
-        <div>
-          <h2>Storico cliente</h2>
-          <p>Movimenti del cliente selezionato: acquisti, bonus, riscatti, modifiche.</p>
+        <div class="form-grid">
+          <div class="field">
+            <label for="storePin">PIN negozio</label>
+            <input id="storePin" inputmode="numeric" placeholder="2026" />
+          </div>
+          <button class="btn btn-primary" id="unlockStore">Sblocca cassa</button>
         </div>
       </div>
 
-      <div class="activity-list" id="activityList"></div>
+      <div class="store-area" id="storeArea">
+        <div class="grid two">
+          <div class="card card-pad">
+            <div class="card-title">
+              <div>
+                <h3>Nuova vendita</h3>
+                <p>Transazione manuale cassa-ready</p>
+              </div>
+              <span class="tag">POS</span>
+            </div>
+
+            <form class="form-grid" id="posForm">
+              <div class="field">
+                <label for="posClientSelect">Cliente</label>
+                <select id="posClientSelect"></select>
+              </div>
+
+              <div class="field">
+                <label for="posReceipt">Numero scontrino</label>
+                <input id="posReceipt" placeholder="Esempio: XA-2026-000001" />
+              </div>
+
+              <div class="field">
+                <label for="posAmount">Importo vendita €</label>
+                <input id="posAmount" type="number" min="0" step="0.01" placeholder="Esempio: 38.50" />
+              </div>
+
+              <div class="field">
+                <label for="posCategory">Categoria prodotto</label>
+                <select id="posCategory"></select>
+              </div>
+
+              <div class="field">
+                <label for="posOperator">Operatore</label>
+                <input id="posOperator" placeholder="Negozio XA" />
+              </div>
+
+              <div class="field">
+                <label for="posNote">Nota vendita</label>
+                <input id="posNote" placeholder="Esempio: degustazione sidri botanici" />
+              </div>
+
+              <div class="pos-preview" id="posPreview">
+                <div>Cliente: <strong id="previewClient">—</strong></div>
+                <div>Moltiplicatore: <strong id="previewMultiplier">1x</strong></div>
+                <div>Punti generati: <strong id="previewPoints">0</strong></div>
+                <div>Fonte: <strong>manual_pos</strong></div>
+              </div>
+
+              <button class="btn btn-primary" type="submit">Conferma vendita</button>
+            </form>
+          </div>
+
+          <div class="card card-pad">
+            <div class="card-title">
+              <div>
+                <h3>Cliente in cassa</h3>
+                <p>Dati rapidi del cliente selezionato</p>
+              </div>
+            </div>
+
+            <div class="lux-list">
+              <div class="lux-item">
+                <span>Codice</span>
+                <strong id="posCode">XA</strong>
+              </div>
+              <div class="lux-item">
+                <span>Status</span>
+                <strong id="posStatus">Member</strong>
+              </div>
+              <div class="lux-item">
+                <span>Spesa totale</span>
+                <strong id="posSpend">€0</strong>
+              </div>
+              <div class="lux-item">
+                <span>Ultima visita</span>
+                <strong id="posLastVisit">—</strong>
+              </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="form-grid">
+              <button class="btn btn-secondary" id="bonusButton">+50 punti bonus evento</button>
+              <button class="btn btn-secondary" id="scanDemo">Simula scansione QR</button>
+              <button class="btn btn-secondary" id="goActiveClient">Apri card cliente</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid two">
+          <div class="card card-pad">
+            <div class="card-title">
+              <div>
+                <h3>Riscatto premio</h3>
+                <p>Scala punti dal cliente selezionato</p>
+              </div>
+            </div>
+
+            <div class="form-grid">
+              <div class="field">
+                <label for="shopRewardSelect">Premio</label>
+                <select id="shopRewardSelect"></select>
+              </div>
+
+              <button class="btn btn-primary" id="shopRedeemReward">Riscatta premio</button>
+            </div>
+          </div>
+
+          <div class="card card-pad">
+            <div class="card-title">
+              <div>
+                <h3>Esportazione dati</h3>
+                <p>Backup e dati pronti per futuro database</p>
+              </div>
+            </div>
+
+            <div class="form-grid">
+              <button class="btn btn-secondary" id="exportJSON">Esporta JSON completo</button>
+              <button class="btn btn-secondary" id="exportCSV">Esporta vendite CSV</button>
+              <button class="btn btn-danger" id="clearTransactions">Svuota transazioni demo</button>
+            </div>
+
+            <textarea class="export-box note" id="exportBox" style="display:none;"></textarea>
+          </div>
+        </div>
+      </div>
     </section>
 
     <section class="screen" id="screen-clients">
@@ -1592,142 +1775,52 @@
       </div>
     </section>
 
-    <section class="screen" id="screen-shop">
-      <div class="shop-hero">
-        <div class="eyebrow"><span class="spark"></span> Area negozio</div>
-        <h2>XA Store Console</h2>
-        <p>
-          Seleziona un cliente, aggiungi punti, assegna bonus, riscatta premi,
-          esporta dati e consulta lo storico. PIN demo negozio: <strong>2026</strong>.
-        </p>
-
-        <div class="shop-stat">
-          <div class="metric">
-            <span>Cliente attivo</span>
-            <strong id="shopCustomer">Cliente XA</strong>
-          </div>
-          <div class="metric">
-            <span>Saldo attuale</span>
-            <strong id="shopPoints">0 pt</strong>
-          </div>
+    <section class="screen" id="screen-rewards">
+      <div class="section-head">
+        <div>
+          <h2>Rewards premium</h2>
+          <p>Esperienze, eventi, limited edition e privilegi. Non una raccolta bollini.</p>
         </div>
       </div>
 
-      <div class="store-lock" id="storeLock">
-        <div class="card-title">
-          <div>
-            <h3>Sblocca pannello negozio</h3>
-            <p>Blocco demo locale. Non è sicurezza reale server-side.</p>
-          </div>
-        </div>
+      <div class="filters" id="rewardFilters">
+        <button class="chip active" data-filter="all">Tutti</button>
+        <button class="chip" data-filter="experience">Esperienze</button>
+        <button class="chip" data-filter="limited">Limited</button>
+        <button class="chip" data-filter="privilege">Privilegi</button>
+        <button class="chip" data-filter="cellar">Cantina</button>
+      </div>
 
-        <div class="form-grid">
-          <div class="field">
-            <label for="storePin">PIN negozio</label>
-            <input id="storePin" inputmode="numeric" placeholder="2026" />
-          </div>
-          <button class="btn btn-primary" id="unlockStore">Sblocca negozio</button>
+      <div class="reward-list" id="rewardList"></div>
+    </section>
+
+    <section class="screen" id="screen-activity">
+      <div class="section-head">
+        <div>
+          <h2>Storico</h2>
+          <p>Movimenti cliente e transazioni vendita cassa-ready.</p>
         </div>
       </div>
 
-      <div class="store-area" id="storeArea">
-        <div class="grid two">
-          <div class="card card-pad">
-            <div class="card-title">
-              <div>
-                <h3>Cliente in cassa</h3>
-                <p>Scegli il cliente su cui lavorare</p>
-              </div>
-            </div>
-
-            <div class="form-grid">
-              <div class="field">
-                <label for="storeClientSelect">Cliente</label>
-                <select id="storeClientSelect"></select>
-              </div>
-              <button class="btn btn-secondary" id="goActiveClient">Apri card cliente</button>
-            </div>
-
-            <div class="divider"></div>
-
-            <div class="lux-list">
-              <div class="lux-item">
-                <span>Codice</span>
-                <strong id="shopCode">XA</strong>
-              </div>
-              <div class="lux-item">
-                <span>Status</span>
-                <strong id="shopStatus">Member</strong>
-              </div>
-              <div class="lux-item">
-                <span>Lifetime</span>
-                <strong id="shopLifetime">0</strong>
-              </div>
+      <div class="grid two">
+        <div class="card card-pad">
+          <div class="card-title">
+            <div>
+              <h3>Storico cliente</h3>
+              <p>Movimenti del cliente selezionato</p>
             </div>
           </div>
-
-          <div class="card card-pad">
-            <div class="card-title">
-              <div>
-                <h3>Aggiungi punti</h3>
-                <p>Regola demo: 1 punto XA per ogni euro speso</p>
-              </div>
-            </div>
-
-            <form class="form-grid" id="addPointsForm">
-              <div class="field">
-                <label for="spendAmount">Spesa cliente €</label>
-                <input id="spendAmount" type="number" min="0" step="0.01" placeholder="Esempio: 38.50" />
-              </div>
-
-              <div class="field">
-                <label for="purchaseNote">Nota movimento</label>
-                <input id="purchaseNote" placeholder="Esempio: degustazione sidri botanici" />
-              </div>
-
-              <button class="btn btn-primary" type="submit">Aggiungi punti</button>
-            </form>
-
-            <div class="divider"></div>
-            <button class="btn btn-secondary" id="bonusButton">+50 punti invito evento</button>
-          </div>
+          <div class="activity-list" id="activityList"></div>
         </div>
 
-        <div class="grid two">
-          <div class="card card-pad">
-            <div class="card-title">
-              <div>
-                <h3>Riscatto premio</h3>
-                <p>Scala punti dal cliente selezionato</p>
-              </div>
-            </div>
-
-            <div class="form-grid">
-              <div class="field">
-                <label for="shopRewardSelect">Premio</label>
-                <select id="shopRewardSelect"></select>
-              </div>
-
-              <button class="btn btn-primary" id="shopRedeemReward">Riscatta premio</button>
+        <div class="card card-pad">
+          <div class="card-title">
+            <div>
+              <h3>Ultime transazioni</h3>
+              <p>Vendite, bonus e riscatti registrati</p>
             </div>
           </div>
-
-          <div class="card card-pad">
-            <div class="card-title">
-              <div>
-                <h3>Strumenti negozio</h3>
-                <p>Azioni rapide per gestione demo</p>
-              </div>
-            </div>
-
-            <div class="lux-list">
-              <button class="btn btn-secondary" id="scanDemo">Simula scansione QR</button>
-              <button class="btn btn-secondary" id="exportData">Esporta dati demo</button>
-              <button class="btn btn-danger" id="clearHistory">Svuota storico cliente</button>
-            </div>
-
-            <div class="note" id="exportBox" style="display:none; word-break: break-word;"></div>
-          </div>
+          <div class="transaction-list" id="transactionList"></div>
         </div>
       </div>
     </section>
@@ -1766,8 +1859,13 @@
             </div>
 
             <div class="field">
-              <label for="profilePreferences">Preferenze</label>
+              <label for="profilePreferences">Preferenze cliente</label>
               <textarea id="profilePreferences"></textarea>
+            </div>
+
+            <div class="field">
+              <label for="profileNotes">Note negozio</label>
+              <textarea id="profileNotes" placeholder="Note interne per il negozio"></textarea>
             </div>
 
             <button class="btn btn-primary" type="submit">Salva profilo</button>
@@ -1778,7 +1876,7 @@
           <div class="card-title">
             <div>
               <h3>Identità XA</h3>
-              <p>Profilo, status e preferenze fermentate</p>
+              <p>Profilo, status e comportamento acquisto</p>
             </div>
           </div>
 
@@ -1796,14 +1894,22 @@
               <strong id="profilePoints">0</strong>
             </div>
             <div class="lux-item">
-              <span>Accesso</span>
-              <strong>Club privato demo</strong>
+              <span>Acquisti</span>
+              <strong id="profilePurchases">0</strong>
+            </div>
+            <div class="lux-item">
+              <span>Spesa totale</span>
+              <strong id="profileSpend">€0</strong>
+            </div>
+            <div class="lux-item">
+              <span>Ultima visita</span>
+              <strong id="profileLastVisit">—</strong>
             </div>
           </div>
 
           <div class="note">
-            Questa versione gestisce più clienti nello stesso dispositivo negozio tramite <strong>localStorage</strong>.
-            Per sincronizzare cliente e negozio su telefoni diversi servirà poi un database.
+            Questa V5 salva clienti e transazioni con <strong>localStorage</strong>.
+            Per usare la stessa base dati su più dispositivi servirà collegare un database/API.
           </div>
         </div>
       </div>
@@ -1816,6 +1922,16 @@
       Home
     </button>
 
+    <button class="nav-btn" data-tab="pos">
+      <span class="nav-icon">▣</span>
+      Cassa
+    </button>
+
+    <button class="nav-btn" data-tab="clients">
+      <span class="nav-icon">◉</span>
+      Clienti
+    </button>
+
     <button class="nav-btn" data-tab="rewards">
       <span class="nav-icon">✦</span>
       Rewards
@@ -1824,16 +1940,6 @@
     <button class="nav-btn" data-tab="activity">
       <span class="nav-icon">≋</span>
       Storico
-    </button>
-
-    <button class="nav-btn" data-tab="clients">
-      <span class="nav-icon">◉</span>
-      Clienti
-    </button>
-
-    <button class="nav-btn" data-tab="shop">
-      <span class="nav-icon">▣</span>
-      Negozio
     </button>
 
     <button class="nav-btn" data-tab="profile">
@@ -1856,8 +1962,14 @@
   </div>
 
   <script>
-    const STORAGE_KEY = "xa_fermented_redrinks_loyalty_v4";
-    const OLD_STORAGE_KEY = "xa_fermented_redrinks_loyalty_v3";
+    const STORAGE_KEY = "xa_fermented_redrinks_loyalty_v5";
+    const OLD_KEYS = [
+      "xa_fermented_redrinks_loyalty_v4",
+      "xa_fermented_redrinks_loyalty_v3",
+      "xa_fermented_redrinks_loyalty_v2",
+      "xa_fermented_redrinks_loyalty_v1"
+    ];
+
     const STORE_PIN = "2026";
 
     const levels = [
@@ -1905,6 +2017,45 @@
           "Accesso a release ultra limitate",
           "Inviti a esperienze private XA"
         ]
+      }
+    ];
+
+    const categories = [
+      {
+        id: "fermented_redrinks",
+        label: "Fermented Redrinks",
+        multiplier: 1,
+        description: "Regola base: 1 punto ogni euro"
+      },
+      {
+        id: "limited_edition",
+        label: "Limited Edition",
+        multiplier: 2,
+        description: "Release rare: 2 punti ogni euro"
+      },
+      {
+        id: "tasting_event",
+        label: "Degustazione / Evento",
+        multiplier: 3,
+        description: "Esperienze XA: 3 punti ogni euro"
+      },
+      {
+        id: "cellar_bottle",
+        label: "Bottiglia cantina",
+        multiplier: 1.5,
+        description: "Prodotti premium: 1,5 punti ogni euro"
+      },
+      {
+        id: "accessory",
+        label: "Accessori",
+        multiplier: 0.5,
+        description: "Accessori: mezzo punto ogni euro"
+      },
+      {
+        id: "manual_bonus",
+        label: "Bonus manuale",
+        multiplier: 1,
+        description: "Per correzioni o casi speciali"
       }
     ];
 
@@ -1968,6 +2119,39 @@
     const demoState = {
       activeCustomerId: "XA-2026-0001",
       rewards,
+      categories,
+      transactions: [
+        createTransactionSeed({
+          id: "TRX-DEMO-001",
+          type: "sale",
+          customer_id: "XA-2026-0001",
+          customer_name: "Maria Luisa",
+          receipt_number: "XA-2026-000001",
+          amount: 78,
+          points: 78,
+          product_category: "fermented_redrinks",
+          category_label: "Fermented Redrinks",
+          multiplier: 1,
+          operator: "Negozio XA",
+          note: "Degustazione sidro e fermented redrinks",
+          source: "manual_pos"
+        }),
+        createTransactionSeed({
+          id: "TRX-DEMO-002",
+          type: "bonus",
+          customer_id: "XA-2026-0001",
+          customer_name: "Maria Luisa",
+          receipt_number: "BONUS-2026-000001",
+          amount: 0,
+          points: 200,
+          product_category: "manual_bonus",
+          category_label: "Bonus manuale",
+          multiplier: 1,
+          operator: "Negozio XA",
+          note: "Bonus anteprima Club XA",
+          source: "loyalty_app"
+        })
+      ],
       customers: [
         createCustomerSeed({
           id: "XA-2026-0001",
@@ -1976,8 +2160,12 @@
           phone: "+39 000 000 0000",
           points: 1260,
           lifetimePoints: 3840,
+          totalSpend: 1180,
+          purchases: 14,
           joined: "04 Luglio 2026",
-          preferences: "Sidri dry, fermentazioni botaniche, limited edition, degustazioni guidate."
+          lastVisit: "04/07/2026, 09:18",
+          preferences: "Sidri dry, fermentazioni botaniche, limited edition, degustazioni guidate.",
+          notes: "Cliente demo principale."
         }),
         createCustomerSeed({
           id: "XA-2026-0002",
@@ -1986,8 +2174,12 @@
           phone: "+39 333 111 2222",
           points: 320,
           lifetimePoints: 320,
+          totalSpend: 320,
+          purchases: 3,
           joined: "04 Luglio 2026",
-          preferences: "Tonica mediterranea, sidro fruttato, eventi serali."
+          lastVisit: "04/07/2026, 10:22",
+          preferences: "Tonica mediterranea, sidro fruttato, eventi serali.",
+          notes: ""
         }),
         createCustomerSeed({
           id: "XA-2026-0003",
@@ -1996,8 +2188,12 @@
           phone: "+39 333 222 4444",
           points: 2480,
           lifetimePoints: 2480,
+          totalSpend: 1640,
+          purchases: 8,
           joined: "04 Luglio 2026",
-          preferences: "Limited edition, degustazioni tecniche, bevande secche."
+          lastVisit: "04/07/2026, 11:30",
+          preferences: "Limited edition, degustazioni tecniche, bevande secche.",
+          notes: ""
         }),
         createCustomerSeed({
           id: "XA-2026-0004",
@@ -2006,8 +2202,12 @@
           phone: "+39 333 555 7777",
           points: 5600,
           lifetimePoints: 5600,
+          totalSpend: 4200,
+          purchases: 19,
           joined: "04 Luglio 2026",
-          preferences: "Eventi privati, release numerate, sidri tannici."
+          lastVisit: "04/07/2026, 12:05",
+          preferences: "Eventi privati, release numerate, sidri tannici.",
+          notes: ""
         })
       ]
     };
@@ -2023,16 +2223,17 @@
       bindUI();
       renderAll();
 
-      if (sessionStorage.getItem("xa_splash_seen_v4")) {
+      if (sessionStorage.getItem("xa_splash_seen_v5")) {
         $("#splash").classList.add("hide");
       }
 
       updateStoreLock();
+      fillDefaultReceipt();
     });
 
     function bindUI() {
       $("#enterApp").addEventListener("click", () => {
-        sessionStorage.setItem("xa_splash_seen_v4", "1");
+        sessionStorage.setItem("xa_splash_seen_v5", "1");
         $("#splash").classList.add("hide");
         toast("Benvenuto nel Club XA.");
       });
@@ -2073,12 +2274,16 @@
           phone: $("#newPhone").value.trim(),
           points: 0,
           lifetimePoints: 0,
+          totalSpend: 0,
+          purchases: 0,
           joined: new Date().toLocaleDateString("it-IT", {
             day: "2-digit",
             month: "long",
             year: "numeric"
           }),
+          lastVisit: "—",
           preferences: $("#newPrefs").value.trim() || "Nuovo membro XA.",
+          notes: "",
           redeemed: {},
           history: [
             {
@@ -2110,6 +2315,7 @@
         customer.email = $("#profileEmail").value.trim();
         customer.phone = $("#profilePhone").value.trim();
         customer.preferences = $("#profilePreferences").value.trim();
+        customer.notes = $("#profileNotes").value.trim();
 
         addHistory(customer, {
           title: "Profilo aggiornato",
@@ -2123,65 +2329,49 @@
         toast("Profilo cliente salvato.");
       });
 
-      $("#storeClientSelect").addEventListener("change", event => {
+      $("#posClientSelect").addEventListener("change", event => {
         state.activeCustomerId = event.target.value;
         saveState();
         renderAll();
-        toast("Cliente selezionato in cassa.");
+        updatePOSPreview();
+      });
+
+      $("#posAmount").addEventListener("input", updatePOSPreview);
+      $("#posCategory").addEventListener("change", updatePOSPreview);
+
+      $("#posForm").addEventListener("submit", event => {
+        event.preventDefault();
+        createSaleTransaction();
       });
 
       $("#goActiveClient").addEventListener("click", () => {
         setTab("home");
       });
 
-      $("#addPointsForm").addEventListener("submit", event => {
-        event.preventDefault();
-
-        const customer = getActiveCustomer();
-        const spend = Number($("#spendAmount").value);
-        const note = $("#purchaseNote").value.trim() || "Acquisto XA Store";
-
-        if (!spend || spend <= 0) {
-          toast("Inserisci una spesa valida.");
-          return;
-        }
-
-        const points = Math.floor(spend);
-
-        customer.points += points;
-        customer.lifetimePoints += points;
-
-        addHistory(customer, {
-          title: "Acquisto in negozio",
-          note: `${note} — €${spend.toFixed(2)}`,
-          points,
-          type: "earn"
-        });
-
-        $("#spendAmount").value = "";
-        $("#purchaseNote").value = "";
-
-        saveState();
-        renderAll();
-        toast(`${points} punti aggiunti a ${customer.name}.`);
-      });
-
       $("#bonusButton").addEventListener("click", () => {
         const customer = getActiveCustomer();
 
-        customer.points += 50;
-        customer.lifetimePoints += 50;
+        openConfirm({
+          title: "Assegnare bonus?",
+          text: `Vuoi assegnare 50 punti bonus a ${customer.name}?`,
+          onConfirm: () => {
+            addPointsTransaction({
+              customer,
+              points: 50,
+              amount: 0,
+              type: "bonus",
+              receipt_number: nextBonusNumber(),
+              product_category: "manual_bonus",
+              category_label: "Bonus manuale",
+              multiplier: 1,
+              operator: $("#posOperator").value.trim() || "Negozio XA",
+              note: "Bonus evento / invito XA",
+              source: "loyalty_app"
+            });
 
-        addHistory(customer, {
-          title: "Bonus evento",
-          note: "Invito o partecipazione ad attività XA",
-          points: 50,
-          type: "earn"
+            toast(`+50 punti bonus a ${customer.name}.`);
+          }
         });
-
-        saveState();
-        renderAll();
-        toast(`+50 punti bonus a ${customer.name}.`);
       });
 
       $("#shopRedeemReward").addEventListener("click", () => {
@@ -2193,24 +2383,29 @@
         toast(`QR riconosciuto: ${customer.id} — ${customer.name}`);
       });
 
-      $("#exportData").addEventListener("click", () => {
+      $("#exportJSON").addEventListener("click", () => {
         const box = $("#exportBox");
         box.style.display = "block";
-        box.textContent = JSON.stringify(state, null, 2);
-        toast("Dati demo esportati nel riquadro.");
+        box.value = JSON.stringify(state, null, 2);
+        toast("JSON completo esportato nel riquadro.");
       });
 
-      $("#clearHistory").addEventListener("click", () => {
-        const customer = getActiveCustomer();
+      $("#exportCSV").addEventListener("click", () => {
+        const box = $("#exportBox");
+        box.style.display = "block";
+        box.value = exportTransactionsCSV();
+        toast("CSV vendite esportato nel riquadro.");
+      });
 
+      $("#clearTransactions").addEventListener("click", () => {
         openConfirm({
-          title: "Svuotare lo storico cliente?",
-          text: `Questa azione cancella solo lo storico di ${customer.name}. Punti e profilo resteranno invariati.`,
+          title: "Svuotare transazioni?",
+          text: "Verranno eliminate le transazioni demo globali. I punti già assegnati ai clienti non verranno ricalcolati.",
           onConfirm: () => {
-            customer.history = [];
+            state.transactions = [];
             saveState();
             renderAll();
-            toast("Storico cliente svuotato.");
+            toast("Transazioni demo svuotate.");
           }
         });
       });
@@ -2219,29 +2414,30 @@
         const pin = $("#storePin").value.trim();
 
         if (pin !== STORE_PIN) {
-          toast("PIN negozio non corretto.");
+          toast("PIN cassa non corretto.");
           return;
         }
 
         sessionStorage.setItem("xa_store_unlocked", "1");
         $("#storePin").value = "";
         updateStoreLock();
-        toast("Pannello negozio sbloccato.");
+        toast("Cassa XA sbloccata.");
       });
 
       $("#resetDemo").addEventListener("click", () => {
         openConfirm({
           title: "Ripristinare la demo XA?",
-          text: "Tutti i clienti locali verranno sostituiti dai dati demo iniziali.",
+          text: "Tutti i clienti e le transazioni locali verranno sostituiti dai dati demo iniziali.",
           onConfirm: () => {
             localStorage.removeItem(STORAGE_KEY);
-            localStorage.removeItem(OLD_STORAGE_KEY);
+            OLD_KEYS.forEach(key => localStorage.removeItem(key));
             sessionStorage.removeItem("xa_store_unlocked");
             state = clone(demoState);
             saveState();
+            fillDefaultReceipt();
             renderAll();
             updateStoreLock();
-            toast("Demo XA ripristinata.");
+            toast("Demo XA V5 ripristinata.");
           }
         });
       });
@@ -2269,25 +2465,33 @@
 
       window.scrollTo({ top: 0, behavior: "smooth" });
 
-      if (tab === "shop") updateStoreLock();
+      if (tab === "pos") {
+        updateStoreLock();
+        fillDefaultReceipt();
+        updatePOSPreview();
+      }
     }
 
     function renderAll() {
+      normalizeState();
+
       const customer = getActiveCustomer();
       const level = getLevel(customer);
       const next = getNextLevel(customer);
+      const stats = getStoreStats();
 
       $("#helloName").textContent = customer.name;
       $("#topStatus").textContent = level.name;
 
       $("#heroStatus").textContent = level.name;
       $("#heroPoints").textContent = formatNumber(customer.points);
-      $("#heroClients").textContent = formatNumber(state.customers.length);
-      $("#heroNext").textContent = next ? next.name : "Max";
+      $("#heroSales").textContent = formatNumber(stats.salesCount);
+      $("#heroRevenue").textContent = formatMoney(stats.revenue);
 
       $("#cardName").textContent = customer.name;
       $("#cardId").textContent = customer.id;
       $("#cardSince").textContent = customer.joined;
+      $("#cardSpend").textContent = formatMoney(customer.totalSpend || 0);
       $("#cardTier").textContent = level.name;
 
       $("#pointsBig").textContent = formatNumber(customer.points);
@@ -2300,32 +2504,46 @@
       $("#qrMemberName").textContent = customer.name;
       $("#qrMemberCode").textContent = customer.id;
 
+      $("#dashCustomers").textContent = formatNumber(state.customers.length);
+      $("#dashPoints").textContent = formatNumber(stats.activePoints);
+      $("#dashTransactions").textContent = formatNumber(state.transactions.length);
+      $("#dashRevenue").textContent = formatMoney(stats.revenue);
+
+      $("#posCustomer").textContent = customer.name;
+      $("#posPoints").textContent = `${formatNumber(customer.points)} pt`;
+      $("#posCode").textContent = customer.id;
+      $("#posStatus").textContent = level.name;
+      $("#posSpend").textContent = formatMoney(customer.totalSpend || 0);
+      $("#posLastVisit").textContent = customer.lastVisit || "—";
+
       $("#profileName").value = customer.name;
       $("#profileEmail").value = customer.email || "";
       $("#profilePhone").value = customer.phone || "";
       $("#profilePreferences").value = customer.preferences || "";
+      $("#profileNotes").value = customer.notes || "";
 
       $("#profileMemberCode").textContent = customer.id;
       $("#profileStatus").textContent = level.name;
       $("#profilePoints").textContent = `${formatNumber(customer.points)} pt`;
-
-      $("#shopCustomer").textContent = customer.name;
-      $("#shopPoints").textContent = `${formatNumber(customer.points)} pt`;
-      $("#shopCode").textContent = customer.id;
-      $("#shopStatus").textContent = level.name;
-      $("#shopLifetime").textContent = `${formatNumber(customer.lifetimePoints)} pt`;
+      $("#profilePurchases").textContent = formatNumber(customer.purchases || 0);
+      $("#profileSpend").textContent = formatMoney(customer.totalSpend || 0);
+      $("#profileLastVisit").textContent = customer.lastVisit || "—";
 
       renderPrivileges(level);
       renderRewards();
       renderActivity();
+      renderTransactions();
       renderClients();
       renderStoreSelects();
       renderClientStats();
+      updatePOSPreview();
       drawQR(`${customer.id}|${customer.name}|XA Fermented Redrinks`);
     }
 
     function renderPrivileges(level) {
       const list = $("#privilegesList");
+      if (!list) return;
+
       list.innerHTML = "";
 
       level.privileges.forEach(item => {
@@ -2415,6 +2633,47 @@
       });
     }
 
+    function renderTransactions() {
+      const list = $("#transactionList");
+      list.innerHTML = "";
+
+      if (!state.transactions.length) {
+        list.innerHTML = `<div class="empty">Nessuna transazione registrata.</div>`;
+        return;
+      }
+
+      state.transactions.slice(0, 60).forEach(transaction => {
+        const el = document.createElement("article");
+        el.className = "transaction-row";
+
+        const typeLabel = getTransactionTypeLabel(transaction.type);
+        const pointsClass = transaction.points > 0 ? "positive" : transaction.points < 0 ? "negative" : "";
+        const sign = transaction.points > 0 ? "+" : "";
+
+        el.innerHTML = `
+          <div class="transaction-top">
+            <span class="tag">${escapeHTML(typeLabel)}</span>
+            <span class="tag">${escapeHTML(transaction.source || "manual")}</span>
+          </div>
+          <h3>${escapeHTML(transaction.customer_name || transaction.customer_id)}</h3>
+          <p>
+            Scontrino: ${escapeHTML(transaction.receipt_number || "—")}<br>
+            Categoria: ${escapeHTML(transaction.category_label || "—")}<br>
+            Data: ${escapeHTML(transaction.date_label || "—")}
+          </p>
+          <div class="transaction-bottom">
+            <div class="price">
+              <strong>${formatMoney(transaction.amount || 0)}</strong>
+              <small>${escapeHTML(transaction.operator || "Negozio XA")}</small>
+            </div>
+            <strong class="${pointsClass}">${transaction.points === 0 ? "—" : `${sign}${formatNumber(transaction.points)} pt`}</strong>
+          </div>
+        `;
+
+        list.appendChild(el);
+      });
+    }
+
     function renderClients() {
       const list = $("#clientList");
       const query = ($("#clientSearch").value || "").trim().toLowerCase();
@@ -2446,7 +2705,8 @@
           <h3>${escapeHTML(customer.name)}</h3>
           <p>
             ${escapeHTML(customer.id)}<br>
-            ${escapeHTML(customer.email || "email non inserita")} · ${escapeHTML(customer.phone || "telefono non inserito")}
+            ${escapeHTML(customer.email || "email non inserita")} · ${escapeHTML(customer.phone || "telefono non inserito")}<br>
+            Acquisti: ${formatNumber(customer.purchases || 0)} · Spesa: ${formatMoney(customer.totalSpend || 0)}
           </p>
 
           <div class="reward-bottom">
@@ -2474,7 +2734,7 @@
           state.activeCustomerId = customer.id;
           saveState();
           renderAll();
-          setTab("shop");
+          setTab("pos");
           toast(`Cliente in cassa: ${customer.name}`);
         });
 
@@ -2498,18 +2758,29 @@
     }
 
     function renderStoreSelects() {
-      const customerSelect = $("#storeClientSelect");
+      const customerSelect = $("#posClientSelect");
+      const categorySelect = $("#posCategory");
       const rewardSelect = $("#shopRewardSelect");
 
+      const activeId = state.activeCustomerId;
+
       customerSelect.innerHTML = "";
+      categorySelect.innerHTML = "";
       rewardSelect.innerHTML = "";
 
       state.customers.forEach(customer => {
         const option = document.createElement("option");
         option.value = customer.id;
         option.textContent = `${customer.name} — ${customer.id} — ${formatNumber(customer.points)} pt`;
-        option.selected = customer.id === state.activeCustomerId;
+        option.selected = customer.id === activeId;
         customerSelect.appendChild(option);
+      });
+
+      state.categories.forEach(category => {
+        const option = document.createElement("option");
+        option.value = category.id;
+        option.textContent = `${category.label} — ${category.multiplier}x`;
+        categorySelect.appendChild(option);
       });
 
       state.rewards.forEach(reward => {
@@ -2518,6 +2789,97 @@
         option.textContent = `${reward.title} — ${formatNumber(reward.cost)} pt`;
         rewardSelect.appendChild(option);
       });
+
+      if (!$("#posOperator").value.trim()) {
+        $("#posOperator").value = "Negozio XA";
+      }
+    }
+
+    function createSaleTransaction() {
+      const customer = getActiveCustomer();
+      const amount = Number($("#posAmount").value);
+      const category = getCategory($("#posCategory").value);
+
+      if (!amount || amount <= 0) {
+        toast("Inserisci un importo vendita valido.");
+        return;
+      }
+
+      const receipt = $("#posReceipt").value.trim() || nextReceiptNumber();
+      const operator = $("#posOperator").value.trim() || "Negozio XA";
+      const note = $("#posNote").value.trim() || "Vendita XA Store";
+      const points = calculatePoints(amount, category.multiplier);
+
+      openConfirm({
+        title: "Confermare vendita?",
+        text: `${customer.name}: ${formatMoney(amount)} · ${category.label} · ${points} punti · scontrino ${receipt}.`,
+        onConfirm: () => {
+          addPointsTransaction({
+            customer,
+            points,
+            amount,
+            type: "sale",
+            receipt_number: receipt,
+            product_category: category.id,
+            category_label: category.label,
+            multiplier: category.multiplier,
+            operator,
+            note,
+            source: "manual_pos"
+          });
+
+          $("#posAmount").value = "";
+          $("#posNote").value = "";
+          $("#posReceipt").value = nextReceiptNumber();
+          updatePOSPreview();
+
+          toast(`Vendita registrata: +${points} punti a ${customer.name}.`);
+        }
+      });
+    }
+
+    function addPointsTransaction(data) {
+      const customer = data.customer;
+
+      customer.points += data.points;
+      customer.lifetimePoints += Math.max(0, data.points);
+      customer.totalSpend = Number(customer.totalSpend || 0) + Number(data.amount || 0);
+
+      if (data.type === "sale") {
+        customer.purchases = Number(customer.purchases || 0) + 1;
+        customer.lastVisit = nowLabel();
+      }
+
+      const transaction = {
+        id: makeTransactionId(),
+        type: data.type,
+        customer_id: customer.id,
+        customer_name: customer.name,
+        receipt_number: data.receipt_number,
+        amount: Number(data.amount || 0),
+        points: Number(data.points || 0),
+        product_category: data.product_category,
+        category_label: data.category_label,
+        multiplier: Number(data.multiplier || 1),
+        operator: data.operator || "Negozio XA",
+        note: data.note || "",
+        date_iso: new Date().toISOString(),
+        date_label: nowLabel(),
+        source: data.source || "manual_pos",
+        pos_ready: true
+      };
+
+      state.transactions.unshift(transaction);
+
+      addHistory(customer, {
+        title: data.type === "sale" ? "Vendita registrata" : "Bonus punti",
+        note: `${data.note || data.category_label} · ${data.receipt_number}`,
+        points: data.points,
+        type: data.type === "sale" ? "earn" : "bonus"
+      });
+
+      saveState();
+      renderAll();
     }
 
     function redeemReward(id) {
@@ -2538,6 +2900,29 @@
           customer.points -= reward.cost;
           customer.redeemed = customer.redeemed || {};
           customer.redeemed[reward.id] = (customer.redeemed[reward.id] || 0) + 1;
+
+          const transaction = {
+            id: makeTransactionId(),
+            type: "reward_redeem",
+            customer_id: customer.id,
+            customer_name: customer.name,
+            receipt_number: nextRedeemNumber(),
+            amount: 0,
+            points: -reward.cost,
+            reward_id: reward.id,
+            reward_title: reward.title,
+            product_category: "reward",
+            category_label: "Riscatto premio",
+            multiplier: 0,
+            operator: $("#posOperator").value.trim() || "Negozio XA",
+            note: reward.title,
+            date_iso: new Date().toISOString(),
+            date_label: nowLabel(),
+            source: "loyalty_app",
+            pos_ready: true
+          };
+
+          state.transactions.unshift(transaction);
 
           addHistory(customer, {
             title: "Riscatto reward",
@@ -2591,6 +2976,31 @@
       });
     }
 
+    function updatePOSPreview() {
+      const customer = getActiveCustomer();
+      const amount = Number($("#posAmount").value || 0);
+      const category = getCategory($("#posCategory").value);
+      const points = calculatePoints(amount, category.multiplier);
+
+      $("#previewClient").textContent = customer.name;
+      $("#previewMultiplier").textContent = `${category.multiplier}x`;
+      $("#previewPoints").textContent = formatNumber(points);
+    }
+
+    function fillDefaultReceipt() {
+      const input = $("#posReceipt");
+      if (input && !input.value.trim()) {
+        input.value = nextReceiptNumber();
+      }
+    }
+
+    function updateStoreLock() {
+      const unlocked = sessionStorage.getItem("xa_store_unlocked") === "1";
+
+      $("#storeLock").classList.toggle("show", !unlocked);
+      $("#storeArea").classList.toggle("locked", !unlocked);
+    }
+
     function getActiveCustomer() {
       let customer = state.customers.find(item => item.id === state.activeCustomerId);
 
@@ -2600,16 +3010,25 @@
         saveState();
       }
 
+      customer.points = Number(customer.points || 0);
+      customer.lifetimePoints = Number(customer.lifetimePoints || 0);
+      customer.totalSpend = Number(customer.totalSpend || 0);
+      customer.purchases = Number(customer.purchases || 0);
       customer.redeemed = customer.redeemed || {};
       customer.history = customer.history || [];
+      customer.notes = customer.notes || "";
 
       return customer;
     }
 
     function getLevel(customer) {
-      return levels
-        .filter(level => customer.lifetimePoints >= level.min)
-        .at(-1) || levels[0];
+      let current = levels[0];
+
+      levels.forEach(level => {
+        if (customer.lifetimePoints >= level.min) current = level;
+      });
+
+      return current;
     }
 
     function getNextLevel(customer) {
@@ -2624,16 +3043,36 @@
       return Math.max(5, Math.min(100, Math.round((gained / range) * 100)));
     }
 
-    function updateStoreLock() {
-      const unlocked = sessionStorage.getItem("xa_store_unlocked") === "1";
+    function getStoreStats() {
+      const activePoints = state.customers.reduce((sum, customer) => sum + Number(customer.points || 0), 0);
+      const sales = state.transactions.filter(t => t.type === "sale");
+      const revenue = sales.reduce((sum, t) => sum + Number(t.amount || 0), 0);
 
-      $("#storeLock").classList.toggle("show", !unlocked);
-      $("#storeArea").classList.toggle("locked", !unlocked);
+      return {
+        activePoints,
+        salesCount: sales.length,
+        revenue
+      };
+    }
+
+    function getCategory(id) {
+      return state.categories.find(category => category.id === id) || state.categories[0];
+    }
+
+    function calculatePoints(amount, multiplier) {
+      return Math.max(0, Math.floor(Number(amount || 0) * Number(multiplier || 1)));
     }
 
     function loadState() {
       try {
-        const raw = localStorage.getItem(STORAGE_KEY) || localStorage.getItem(OLD_STORAGE_KEY);
+        let raw = localStorage.getItem(STORAGE_KEY);
+
+        if (!raw) {
+          for (const key of OLD_KEYS) {
+            raw = localStorage.getItem(key);
+            if (raw) break;
+          }
+        }
 
         if (!raw) {
           const fresh = clone(demoState);
@@ -2647,7 +3086,9 @@
           ...clone(demoState),
           ...parsed,
           rewards: Array.isArray(parsed.rewards) && parsed.rewards.length ? parsed.rewards : rewards,
-          customers: Array.isArray(parsed.customers) && parsed.customers.length ? parsed.customers : clone(demoState.customers)
+          categories: Array.isArray(parsed.categories) && parsed.categories.length ? parsed.categories : categories,
+          customers: Array.isArray(parsed.customers) && parsed.customers.length ? parsed.customers : clone(demoState.customers),
+          transactions: Array.isArray(parsed.transactions) ? parsed.transactions : []
         };
 
         localStorage.setItem(STORAGE_KEY, JSON.stringify(loaded));
@@ -2658,8 +3099,148 @@
       }
     }
 
+    function normalizeState() {
+      state.rewards = Array.isArray(state.rewards) && state.rewards.length ? state.rewards : rewards;
+      state.categories = Array.isArray(state.categories) && state.categories.length ? state.categories : categories;
+      state.transactions = Array.isArray(state.transactions) ? state.transactions : [];
+      state.customers = Array.isArray(state.customers) && state.customers.length ? state.customers : clone(demoState.customers);
+
+      state.customers.forEach(customer => {
+        customer.points = Number(customer.points || 0);
+        customer.lifetimePoints = Number(customer.lifetimePoints || 0);
+        customer.totalSpend = Number(customer.totalSpend || 0);
+        customer.purchases = Number(customer.purchases || 0);
+        customer.lastVisit = customer.lastVisit || "—";
+        customer.notes = customer.notes || "";
+        customer.redeemed = customer.redeemed || {};
+        customer.history = customer.history || [];
+      });
+    }
+
     function saveState() {
+      normalizeState();
       localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    }
+
+    function createCustomerSeed(data) {
+      return {
+        id: data.id,
+        name: data.name,
+        email: data.email || "",
+        phone: data.phone || "",
+        points: Number(data.points || 0),
+        lifetimePoints: Number(data.lifetimePoints || 0),
+        totalSpend: Number(data.totalSpend || 0),
+        purchases: Number(data.purchases || 0),
+        joined: data.joined || "04 Luglio 2026",
+        lastVisit: data.lastVisit || "—",
+        preferences: data.preferences || "",
+        notes: data.notes || "",
+        redeemed: {},
+        history: [
+          {
+            id: makeId(),
+            title: "Ingresso Club XA",
+            note: "Profilo membro attivato",
+            points: 0,
+            date: "04/07/2026, 09:10",
+            type: "member"
+          },
+          {
+            id: makeId(),
+            title: "Saldo iniziale demo",
+            note: "Punti caricati nel gestionale",
+            points: Number(data.points || 0),
+            date: "04/07/2026, 09:18",
+            type: "earn"
+          }
+        ]
+      };
+    }
+
+    function createTransactionSeed(data) {
+      return {
+        id: data.id || makeTransactionId(),
+        type: data.type,
+        customer_id: data.customer_id,
+        customer_name: data.customer_name,
+        receipt_number: data.receipt_number,
+        amount: Number(data.amount || 0),
+        points: Number(data.points || 0),
+        product_category: data.product_category,
+        category_label: data.category_label,
+        multiplier: Number(data.multiplier || 1),
+        operator: data.operator || "Negozio XA",
+        note: data.note || "",
+        date_iso: new Date().toISOString(),
+        date_label: "04/07/2026, 09:18",
+        source: data.source || "manual_pos",
+        pos_ready: true
+      };
+    }
+
+    function nextCustomerId() {
+      const year = new Date().getFullYear();
+
+      const numbers = state.customers
+        .map(customer => Number(String(customer.id).split("-").slice(-1)[0]))
+        .filter(Number.isFinite);
+
+      const next = Math.max(0, ...numbers) + 1;
+      return `XA-${year}-${String(next).padStart(4, "0")}`;
+    }
+
+    function nextReceiptNumber() {
+      const year = new Date().getFullYear();
+      const count = state.transactions.filter(t => t.type === "sale").length + 1;
+      return `XA-${year}-${String(count).padStart(6, "0")}`;
+    }
+
+    function nextBonusNumber() {
+      const year = new Date().getFullYear();
+      const count = state.transactions.filter(t => t.type === "bonus").length + 1;
+      return `BONUS-${year}-${String(count).padStart(6, "0")}`;
+    }
+
+    function nextRedeemNumber() {
+      const year = new Date().getFullYear();
+      const count = state.transactions.filter(t => t.type === "reward_redeem").length + 1;
+      return `REWARD-${year}-${String(count).padStart(6, "0")}`;
+    }
+
+    function makeTransactionId() {
+      return `TRX-${Date.now()}-${Math.random().toString(16).slice(2, 8).toUpperCase()}`;
+    }
+
+    function exportTransactionsCSV() {
+      const headers = [
+        "transaction_id",
+        "type",
+        "customer_id",
+        "customer_name",
+        "receipt_number",
+        "amount",
+        "points",
+        "product_category",
+        "category_label",
+        "multiplier",
+        "operator",
+        "note",
+        "date_iso",
+        "date_label",
+        "source"
+      ];
+
+      const rows = state.transactions.map(t => {
+        return headers.map(key => csvCell(t[key] ?? "")).join(",");
+      });
+
+      return [headers.join(","), ...rows].join("\n");
+    }
+
+    function csvCell(value) {
+      const text = String(value).replaceAll('"', '""');
+      return `"${text}"`;
     }
 
     function toast(message) {
@@ -2749,49 +3330,6 @@
       ctx.fillText("XA", offset + 14.5 * cell, offset + 14.5 * cell);
     }
 
-    function createCustomerSeed(data) {
-      return {
-        id: data.id,
-        name: data.name,
-        email: data.email || "",
-        phone: data.phone || "",
-        points: data.points || 0,
-        lifetimePoints: data.lifetimePoints || 0,
-        joined: data.joined || "04 Luglio 2026",
-        preferences: data.preferences || "",
-        redeemed: {},
-        history: [
-          {
-            id: makeId(),
-            title: "Ingresso Club XA",
-            note: "Profilo membro attivato",
-            points: 0,
-            date: "04/07/2026, 09:10",
-            type: "member"
-          },
-          {
-            id: makeId(),
-            title: "Saldo iniziale demo",
-            note: "Punti caricati nel gestionale",
-            points: data.points || 0,
-            date: "04/07/2026, 09:18",
-            type: "earn"
-          }
-        ]
-      };
-    }
-
-    function nextCustomerId() {
-      const year = new Date().getFullYear();
-
-      const numbers = state.customers
-        .map(customer => Number(String(customer.id).split("-").at(-1)))
-        .filter(Number.isFinite);
-
-      const next = Math.max(0, ...numbers) + 1;
-      return `XA-${year}-${String(next).padStart(4, "0")}`;
-    }
-
     function hashString(value) {
       let hash = 0;
 
@@ -2817,13 +3355,23 @@
       return Number(number || 0).toLocaleString("it-IT");
     }
 
+    function formatMoney(number) {
+      return Number(number || 0).toLocaleString("it-IT", {
+        style: "currency",
+        currency: "EUR"
+      });
+    }
+
     function escapeHTML(value) {
-      return String(value ?? "")
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#039;");
+      return String(value ?? "").replace(/[&<>"']/g, char => {
+        return {
+          "&": "&amp;",
+          "<": "&lt;",
+          ">": "&gt;",
+          '"': "&quot;",
+          "'": "&#039;"
+        }[char];
+      });
     }
 
     function clone(value) {
@@ -2839,6 +3387,8 @@
     function getActivityIcon(type) {
       const icons = {
         earn: "+",
+        sale: "+",
+        bonus: "+",
         redeem: "✓",
         member: "XA",
         profile: "◎",
@@ -2846,6 +3396,16 @@
       };
 
       return icons[type] || icons.generic;
+    }
+
+    function getTransactionTypeLabel(type) {
+      const labels = {
+        sale: "Vendita",
+        bonus: "Bonus",
+        reward_redeem: "Riscatto"
+      };
+
+      return labels[type] || "Movimento";
     }
   </script>
 </body>
