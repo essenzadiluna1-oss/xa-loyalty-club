@@ -4,1317 +4,1249 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="theme-color" content="#120607" />
-  <title>XA Fermented Redrinks — Loyalty Club</title>
+  <title>XA Loyalty Club — Cassa Ready</title>
 
   <style>
-    :root {
-      --bg: #0e0405;
-      --bg2: #1a080a;
-      --wine: #731922;
-      --wine2: #a52b36;
-      --cream: #fff0c8;
-      --cream2: #ead09a;
-      --muted: rgba(255,240,200,.68);
-      --soft: rgba(255,240,200,.42);
-      --gold: #d7a546;
-      --gold2: #f4d47a;
-      --green: #8fe6a2;
-      --red: #ff7777;
-      --line: rgba(255,240,200,.14);
-      --glass: rgba(255,240,200,.08);
-      --shadow: 0 26px 80px rgba(0,0,0,.44);
-      --shadow2: 0 16px 44px rgba(0,0,0,.30);
-      --safe: env(safe-area-inset-bottom);
+    :root{
+      --bg:#0b0304;
+      --bg2:#160708;
+      --wine:#711a22;
+      --wine2:#a7313d;
+      --cream:#fff0c8;
+      --cream2:#ead09a;
+      --muted:rgba(255,240,200,.68);
+      --soft:rgba(255,240,200,.42);
+      --gold:#d7a546;
+      --gold2:#f4d47a;
+      --green:#8fe6a2;
+      --red:#ff7777;
+      --line:rgba(255,240,200,.14);
+      --glass:rgba(255,240,200,.08);
+      --shadow:0 24px 70px rgba(0,0,0,.42);
+      --safe:env(safe-area-inset-bottom);
     }
 
-    * {
-      box-sizing: border-box;
-      -webkit-tap-highlight-color: transparent;
+    *{
+      box-sizing:border-box;
+      -webkit-tap-highlight-color:transparent;
     }
 
-    html {
-      scroll-behavior: smooth;
+    html{
+      scroll-behavior:smooth;
     }
 
-    body {
-      margin: 0;
-      min-height: 100vh;
-      color: var(--cream);
-      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    body{
+      margin:0;
+      min-height:100vh;
+      color:var(--cream);
+      font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
       background:
-        radial-gradient(circle at 12% 0%, rgba(244,212,122,.16), transparent 28%),
-        radial-gradient(circle at 90% 18%, rgba(165,43,54,.24), transparent 34%),
-        radial-gradient(circle at 46% 100%, rgba(215,165,70,.12), transparent 34%),
-        linear-gradient(145deg, #070203 0%, #120607 42%, #260c0f 100%);
-      overflow-x: hidden;
+        radial-gradient(circle at 12% 0%,rgba(244,212,122,.16),transparent 28%),
+        radial-gradient(circle at 90% 18%,rgba(167,49,61,.24),transparent 34%),
+        radial-gradient(circle at 46% 100%,rgba(215,165,70,.12),transparent 34%),
+        linear-gradient(145deg,#060203 0%,#120607 45%,#260c0f 100%);
+      overflow-x:hidden;
     }
 
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      z-index:0;
+      pointer-events:none;
       background:
-        linear-gradient(rgba(255,255,255,.022) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.016) 1px, transparent 1px);
-      background-size: 34px 34px;
-      opacity: .34;
-      mask-image: radial-gradient(circle at center, black 0%, transparent 76%);
+        linear-gradient(rgba(255,255,255,.022) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.016) 1px,transparent 1px);
+      background-size:34px 34px;
+      opacity:.34;
+      mask-image:radial-gradient(circle at center,black 0%,transparent 76%);
     }
 
-    button,
-    input,
-    textarea,
-    select {
-      font: inherit;
+    button,input,textarea,select{
+      font:inherit;
     }
 
-    button {
-      border: 0;
-      cursor: pointer;
+    button{
+      border:0;
+      cursor:pointer;
     }
 
-    textarea {
-      resize: vertical;
+    textarea{
+      resize:vertical;
     }
 
-    .app {
-      position: relative;
-      z-index: 1;
-      width: min(100%, 1160px);
-      min-height: 100vh;
-      margin: 0 auto;
-      padding: 14px 14px calc(132px + var(--safe));
+    .app{
+      position:relative;
+      z-index:1;
+      width:min(100%,1180px);
+      min-height:100vh;
+      margin:0 auto;
+      padding:14px 14px calc(130px + var(--safe));
     }
 
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 30;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 10px 0 14px;
-      backdrop-filter: blur(20px);
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:40;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:10px 0 14px;
+      backdrop-filter:blur(20px);
     }
 
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      min-width: 0;
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width:0;
     }
 
-    .brand-seal {
-      width: 52px;
-      height: 52px;
-      border-radius: 19px;
-      display: grid;
-      place-items: center;
-      position: relative;
-      overflow: hidden;
+    .seal{
+      width:52px;
+      height:52px;
+      border-radius:19px;
+      display:grid;
+      place-items:center;
+      position:relative;
+      overflow:hidden;
       background:
-        radial-gradient(circle at 30% 20%, rgba(255,240,200,.18), transparent 28%),
-        linear-gradient(145deg, #7d1d26, #21080a);
-      border: 1px solid rgba(244,212,122,.36);
-      box-shadow: inset 0 0 24px rgba(244,212,122,.09), 0 14px 38px rgba(0,0,0,.4);
-      font-family: Georgia, serif;
-      font-weight: 900;
-      font-size: 20px;
-      letter-spacing: -3px;
-      color: var(--gold2);
-      flex: 0 0 auto;
+        radial-gradient(circle at 30% 20%,rgba(255,240,200,.18),transparent 28%),
+        linear-gradient(145deg,#7d1d26,#21080a);
+      border:1px solid rgba(244,212,122,.36);
+      box-shadow:inset 0 0 24px rgba(244,212,122,.09),0 14px 38px rgba(0,0,0,.4);
+      font-family:Georgia,serif;
+      font-weight:900;
+      font-size:20px;
+      letter-spacing:-3px;
+      color:var(--gold2);
+      flex:0 0 auto;
     }
 
-    .brand-seal::after {
-      content: "";
-      position: absolute;
-      inset: 6px;
-      border-radius: 14px;
-      border: 1px solid rgba(255,240,200,.16);
+    .seal::after{
+      content:"";
+      position:absolute;
+      inset:6px;
+      border-radius:14px;
+      border:1px solid rgba(255,240,200,.16);
     }
 
-    .brand h1 {
-      margin: 0;
-      font-size: 14px;
-      text-transform: uppercase;
-      letter-spacing: .19em;
-      white-space: nowrap;
+    .brand h1{
+      margin:0;
+      font-size:14px;
+      letter-spacing:.19em;
+      text-transform:uppercase;
+      white-space:nowrap;
     }
 
-    .brand p {
-      margin: 3px 0 0;
-      color: var(--muted);
-      font-size: 12px;
-      white-space: nowrap;
+    .brand p{
+      margin:3px 0 0;
+      color:var(--muted);
+      font-size:12px;
+      white-space:nowrap;
     }
 
-    .top-actions {
-      display: flex;
-      gap: 8px;
-      align-items: center;
+    .top-actions{
+      display:flex;
+      align-items:center;
+      gap:8px;
     }
 
-    .pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      min-height: 40px;
-      padding: 9px 12px;
-      border-radius: 999px;
-      color: var(--gold2);
-      background: rgba(244,212,122,.10);
-      border: 1px solid rgba(244,212,122,.26);
-      font-size: 11px;
-      font-weight: 950;
-      text-transform: uppercase;
-      letter-spacing: .08em;
-      max-width: 156px;
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:7px;
+      min-height:40px;
+      padding:9px 12px;
+      border-radius:999px;
+      color:var(--gold2);
+      background:rgba(244,212,122,.10);
+      border:1px solid rgba(244,212,122,.26);
+      font-size:11px;
+      font-weight:950;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      max-width:158px;
     }
 
-    .pill span:last-child {
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
+    .pill span:last-child{
+      overflow:hidden;
+      white-space:nowrap;
+      text-overflow:ellipsis;
     }
 
-    .dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--green);
-      box-shadow: 0 0 18px var(--green);
-      flex: 0 0 auto;
+    .dot{
+      width:8px;
+      height:8px;
+      border-radius:50%;
+      background:var(--green);
+      box-shadow:0 0 18px var(--green);
+      flex:0 0 auto;
     }
 
-    .icon-btn {
-      width: 42px;
-      height: 42px;
-      border-radius: 16px;
-      display: grid;
-      place-items: center;
-      color: var(--cream);
-      background: var(--glass);
-      border: 1px solid rgba(255,240,200,.13);
-      transition: transform .18s ease, background .18s ease;
+    .icon-btn{
+      width:42px;
+      height:42px;
+      border-radius:16px;
+      display:grid;
+      place-items:center;
+      color:var(--cream);
+      background:var(--glass);
+      border:1px solid rgba(255,240,200,.13);
+      transition:.18s ease;
     }
 
-    .icon-btn:active {
-      transform: scale(.94);
+    .icon-btn:active{
+      transform:scale(.94);
     }
 
-    .screen {
-      display: none;
-      animation: in .32s ease both;
+    .screen{
+      display:none;
+      animation:enter .32s ease both;
     }
 
-    .screen.active {
-      display: block;
+    .screen.active{
+      display:block;
     }
 
-    @keyframes in {
-      from {
-        opacity: 0;
-        transform: translateY(12px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    @keyframes enter{
+      from{opacity:0;transform:translateY(12px)}
+      to{opacity:1;transform:translateY(0)}
     }
 
-    .hero {
-      position: relative;
-      isolation: isolate;
-      overflow: hidden;
-      border-radius: 36px;
-      padding: 22px 18px;
-      min-height: 292px;
+    .hero{
+      position:relative;
+      isolation:isolate;
+      overflow:hidden;
+      border-radius:34px;
+      padding:22px 18px;
       background:
-        radial-gradient(circle at 80% 14%, rgba(244,212,122,.28), transparent 28%),
-        radial-gradient(circle at 12% 86%, rgba(165,43,54,.34), transparent 34%),
-        linear-gradient(145deg, rgba(255,240,200,.14), rgba(255,240,200,.04)),
-        linear-gradient(145deg, rgba(115,25,34,.86), rgba(17,6,7,.94));
-      border: 1px solid rgba(244,212,122,.26);
-      box-shadow: var(--shadow);
+        radial-gradient(circle at 80% 14%,rgba(244,212,122,.27),transparent 28%),
+        radial-gradient(circle at 12% 86%,rgba(167,49,61,.34),transparent 34%),
+        linear-gradient(145deg,rgba(255,240,200,.14),rgba(255,240,200,.04)),
+        linear-gradient(145deg,rgba(113,26,34,.86),rgba(17,6,7,.94));
+      border:1px solid rgba(244,212,122,.26);
+      box-shadow:var(--shadow);
     }
 
-    .hero::before {
-      content: "XA";
-      position: absolute;
-      right: -22px;
-      top: -38px;
-      z-index: -1;
-      font-family: Georgia, serif;
-      font-size: clamp(128px, 39vw, 280px);
-      line-height: .74;
-      font-weight: 900;
-      letter-spacing: -.13em;
-      color: rgba(255,240,200,.095);
+    .hero::before{
+      content:"XA";
+      position:absolute;
+      right:-22px;
+      top:-36px;
+      z-index:-1;
+      font-family:Georgia,serif;
+      font-size:clamp(126px,38vw,280px);
+      line-height:.74;
+      font-weight:900;
+      letter-spacing:-.13em;
+      color:rgba(255,240,200,.095);
     }
 
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 11px;
-      border-radius: 999px;
-      background: rgba(0,0,0,.24);
-      border: 1px solid rgba(255,240,200,.15);
-      color: var(--gold2);
-      font-size: 10px;
-      font-weight: 950;
-      text-transform: uppercase;
-      letter-spacing: .16em;
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 11px;
+      border-radius:999px;
+      background:rgba(0,0,0,.24);
+      border:1px solid rgba(255,240,200,.15);
+      color:var(--gold2);
+      font-size:10px;
+      font-weight:950;
+      text-transform:uppercase;
+      letter-spacing:.16em;
     }
 
-    .spark {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--gold2);
-      box-shadow: 0 0 18px rgba(244,212,122,.85);
+    .spark{
+      width:7px;
+      height:7px;
+      border-radius:50%;
+      background:var(--gold2);
+      box-shadow:0 0 18px rgba(244,212,122,.85);
     }
 
-    .hero-title {
-      margin: 18px 0 10px;
-      max-width: 780px;
-      font-size: clamp(31px, 8.2vw, 68px);
-      line-height: .92;
-      font-weight: 980;
-      letter-spacing: -.07em;
+    .hero-title{
+      margin:18px 0 10px;
+      max-width:780px;
+      font-size:clamp(31px,8.2vw,68px);
+      line-height:.92;
+      font-weight:980;
+      letter-spacing:-.07em;
     }
 
-    .gold {
-      color: var(--gold2);
+    .gold{
+      color:var(--gold2);
     }
 
-    .hero-copy {
-      margin: 0;
-      max-width: 720px;
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.52;
+    .hero-copy{
+      margin:0;
+      max-width:720px;
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.52;
     }
 
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 18px;
+    .hero-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:18px;
     }
 
-    .btn {
-      min-height: 45px;
-      padding: 11px 15px;
-      border-radius: 999px;
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      gap: 8px;
-      color: var(--cream);
-      font-weight: 950;
-      letter-spacing: .01em;
-      transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
-      user-select: none;
+    .btn{
+      min-height:45px;
+      padding:11px 15px;
+      border-radius:999px;
+      display:inline-flex;
+      justify-content:center;
+      align-items:center;
+      gap:8px;
+      color:var(--cream);
+      font-weight:950;
+      letter-spacing:.01em;
+      transition:.18s ease;
+      user-select:none;
     }
 
-    .btn:active {
-      transform: scale(.965);
+    .btn:active{
+      transform:scale(.965);
     }
 
-    .btn-primary {
-      color: #21100d;
-      background: linear-gradient(135deg, #fff1bd, #d7a546 64%, #b77b26);
-      box-shadow: 0 16px 35px rgba(215,165,70,.22);
+    .btn-primary{
+      color:#21100d;
+      background:linear-gradient(135deg,#fff1bd,#d7a546 64%,#b77b26);
+      box-shadow:0 16px 35px rgba(215,165,70,.22);
     }
 
-    .btn-secondary {
-      background: rgba(255,240,200,.08);
-      border: 1px solid rgba(255,240,200,.15);
+    .btn-secondary{
+      background:rgba(255,240,200,.08);
+      border:1px solid rgba(255,240,200,.15);
     }
 
-    .btn-danger {
-      background: rgba(165,43,54,.22);
-      border: 1px solid rgba(255,119,119,.32);
-      color: #ffe6e6;
+    .btn-danger{
+      background:rgba(167,49,61,.22);
+      border:1px solid rgba(255,119,119,.32);
+      color:#ffe6e6;
     }
 
-    .btn-small {
-      min-height: 38px;
-      padding: 9px 12px;
-      font-size: 12px;
+    .btn-small{
+      min-height:38px;
+      padding:9px 12px;
+      font-size:12px;
     }
 
-    .stats-row {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
-      margin-top: 14px;
+    .stats-row{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:10px;
+      margin-top:14px;
     }
 
-    .stat,
-    .metric {
-      position: relative;
-      z-index: 1;
-      padding: 13px;
-      border-radius: 20px;
-      background: rgba(0,0,0,.22);
-      border: 1px solid rgba(255,240,200,.11);
+    .stat,.metric{
+      position:relative;
+      z-index:1;
+      padding:13px;
+      border-radius:20px;
+      background:rgba(0,0,0,.22);
+      border:1px solid rgba(255,240,200,.11);
     }
 
-    .stat span,
-    .metric span {
-      display: block;
-      color: var(--soft);
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: .12em;
-      font-weight: 900;
+    .stat span,.metric span{
+      display:block;
+      color:var(--soft);
+      font-size:10px;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      font-weight:900;
     }
 
-    .stat strong,
-    .metric strong {
-      display: block;
-      margin-top: 4px;
-      color: var(--cream);
-      font-size: 19px;
-      letter-spacing: -.04em;
+    .stat strong,.metric strong{
+      display:block;
+      margin-top:4px;
+      color:var(--cream);
+      font-size:19px;
+      letter-spacing:-.04em;
     }
 
-    .grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 14px;
-      margin-top: 14px;
+    .grid{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:14px;
+      margin-top:14px;
     }
 
-    .card {
-      position: relative;
-      overflow: hidden;
-      border-radius: 28px;
-      background: linear-gradient(145deg, rgba(255,240,200,.105), rgba(255,240,200,.04));
-      border: 1px solid rgba(255,240,200,.13);
-      box-shadow: var(--shadow2);
-      backdrop-filter: blur(22px);
+    .card{
+      position:relative;
+      overflow:hidden;
+      border-radius:28px;
+      background:linear-gradient(145deg,rgba(255,240,200,.105),rgba(255,240,200,.04));
+      border:1px solid rgba(255,240,200,.13);
+      box-shadow:0 16px 44px rgba(0,0,0,.30);
+      backdrop-filter:blur(22px);
     }
 
-    .card-pad {
-      padding: 18px;
+    .card-pad{
+      padding:18px;
     }
 
-    .card-title {
-      position: relative;
-      z-index: 1;
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      align-items: flex-start;
-      margin-bottom: 14px;
+    .card-title{
+      position:relative;
+      z-index:1;
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      align-items:flex-start;
+      margin-bottom:14px;
     }
 
-    .card-title h3 {
-      margin: 0;
-      font-size: 16px;
-      letter-spacing: -.025em;
+    .card-title h3{
+      margin:0;
+      font-size:16px;
+      letter-spacing:-.025em;
     }
 
-    .card-title p {
-      margin: 4px 0 0;
-      color: var(--muted);
-      font-size: 12px;
-      line-height: 1.42;
+    .card-title p{
+      margin:4px 0 0;
+      color:var(--muted);
+      font-size:12px;
+      line-height:1.42;
     }
 
-    .tag {
-      padding: 7px 9px;
-      border-radius: 999px;
-      color: var(--gold2);
-      background: rgba(215,165,70,.10);
-      border: 1px solid rgba(215,165,70,.22);
-      font-size: 10px;
-      font-weight: 950;
-      text-transform: uppercase;
-      letter-spacing: .12em;
-      white-space: nowrap;
+    .tag{
+      padding:7px 9px;
+      border-radius:999px;
+      color:var(--gold2);
+      background:rgba(215,165,70,.10);
+      border:1px solid rgba(215,165,70,.22);
+      font-size:10px;
+      font-weight:950;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      white-space:nowrap;
     }
 
-    .member-card {
-      position: relative;
-      z-index: 1;
-      min-height: 224px;
-      padding: 18px;
-      border-radius: 30px;
-      overflow: hidden;
+    .member-card{
+      position:relative;
+      z-index:1;
+      min-height:224px;
+      padding:18px;
+      border-radius:30px;
+      overflow:hidden;
       background:
-        radial-gradient(circle at 82% 16%, rgba(244,212,122,.42), transparent 24%),
-        radial-gradient(circle at 18% 100%, rgba(165,43,54,.42), transparent 34%),
-        linear-gradient(145deg, #1a0709, #7c1d25 56%, #160607);
-      border: 1px solid rgba(244,212,122,.38);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.11), 0 28px 70px rgba(0,0,0,.38);
+        radial-gradient(circle at 82% 16%,rgba(244,212,122,.42),transparent 24%),
+        radial-gradient(circle at 18% 100%,rgba(167,49,61,.42),transparent 34%),
+        linear-gradient(145deg,#1a0709,#7c1d25 56%,#160607);
+      border:1px solid rgba(244,212,122,.38);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.11),0 28px 70px rgba(0,0,0,.38);
     }
 
-    .member-card::before {
-      content: "XA";
-      position: absolute;
-      right: -10px;
-      bottom: -28px;
-      font-family: Georgia, serif;
-      font-size: 138px;
-      line-height: .76;
-      font-weight: 900;
-      letter-spacing: -.12em;
-      color: rgba(255,240,200,.13);
+    .member-card::before{
+      content:"XA";
+      position:absolute;
+      right:-10px;
+      bottom:-28px;
+      font-family:Georgia,serif;
+      font-size:138px;
+      line-height:.76;
+      font-weight:900;
+      letter-spacing:-.12em;
+      color:rgba(255,240,200,.13);
     }
 
-    .member-card::after {
-      content: "";
-      position: absolute;
-      inset: 12px;
-      border-radius: 23px;
-      border: 1px solid rgba(255,240,200,.13);
-      pointer-events: none;
+    .member-card::after{
+      content:"";
+      position:absolute;
+      inset:12px;
+      border-radius:23px;
+      border:1px solid rgba(255,240,200,.13);
+      pointer-events:none;
     }
 
-    .member-top,
-    .member-name,
-    .member-id,
-    .member-bottom {
-      position: relative;
-      z-index: 1;
+    .member-top,.member-name,.member-id,.member-bottom{
+      position:relative;
+      z-index:1;
     }
 
-    .member-top {
-      display: flex;
-      justify-content: space-between;
-      gap: 14px;
-      align-items: flex-start;
+    .member-top{
+      display:flex;
+      justify-content:space-between;
+      gap:14px;
+      align-items:flex-start;
     }
 
-    .card-logo {
-      font-family: Georgia, serif;
-      font-size: 56px;
-      line-height: .74;
-      font-weight: 900;
-      letter-spacing: -.12em;
-      color: var(--gold2);
-      text-shadow: 0 12px 34px rgba(0,0,0,.46);
+    .card-logo{
+      font-family:Georgia,serif;
+      font-size:56px;
+      line-height:.74;
+      font-weight:900;
+      letter-spacing:-.12em;
+      color:var(--gold2);
+      text-shadow:0 12px 34px rgba(0,0,0,.46);
     }
 
-    .card-level {
-      text-align: right;
-      color: var(--cream2);
-      font-size: 10px;
-      font-weight: 950;
-      text-transform: uppercase;
-      letter-spacing: .16em;
-      line-height: 1.35;
+    .card-level{
+      text-align:right;
+      color:var(--cream2);
+      font-size:10px;
+      font-weight:950;
+      text-transform:uppercase;
+      letter-spacing:.16em;
+      line-height:1.35;
     }
 
-    .member-name {
-      margin-top: 42px;
-      font-size: 26px;
-      font-weight: 980;
-      letter-spacing: -.045em;
+    .member-name{
+      margin-top:42px;
+      font-size:26px;
+      font-weight:980;
+      letter-spacing:-.045em;
     }
 
-    .member-id {
-      margin-top: 7px;
-      color: var(--muted);
-      font-size: 12px;
-      letter-spacing: .12em;
-      font-weight: 700;
+    .member-id{
+      margin-top:7px;
+      color:var(--muted);
+      font-size:12px;
+      letter-spacing:.12em;
+      font-weight:700;
     }
 
-    .member-bottom {
-      display: flex;
-      justify-content: space-between;
-      gap: 18px;
-      align-items: flex-end;
-      margin-top: 22px;
+    .member-bottom{
+      display:flex;
+      justify-content:space-between;
+      gap:18px;
+      align-items:flex-end;
+      margin-top:22px;
     }
 
-    .member-bottom small {
-      display: block;
-      margin-bottom: 3px;
-      color: rgba(255,240,200,.47);
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: .13em;
-      font-weight: 850;
+    .member-bottom small{
+      display:block;
+      margin-bottom:3px;
+      color:rgba(255,240,200,.47);
+      font-size:10px;
+      letter-spacing:.13em;
+      text-transform:uppercase;
+      font-weight:850;
     }
 
-    .member-bottom strong {
-      display: block;
-      font-size: 13px;
+    .member-bottom strong{
+      display:block;
+      font-size:13px;
     }
 
-    .points-big {
-      position: relative;
-      z-index: 1;
-      margin: 2px 0 4px;
-      font-size: clamp(46px, 13vw, 82px);
-      line-height: .88;
-      font-weight: 1000;
-      letter-spacing: -.085em;
-      color: var(--gold2);
-      text-shadow: 0 18px 44px rgba(0,0,0,.3);
+    .points-big{
+      position:relative;
+      z-index:1;
+      margin:2px 0 4px;
+      font-size:clamp(46px,13vw,82px);
+      line-height:.88;
+      font-weight:1000;
+      letter-spacing:-.085em;
+      color:var(--gold2);
+      text-shadow:0 18px 44px rgba(0,0,0,.3);
     }
 
-    .points-label {
-      position: relative;
-      z-index: 1;
-      color: var(--muted);
-      font-size: 13px;
+    .points-label{
+      position:relative;
+      z-index:1;
+      color:var(--muted);
+      font-size:13px;
     }
 
-    .progress-wrap {
-      position: relative;
-      z-index: 1;
-      margin-top: 17px;
+    .progress-wrap{
+      position:relative;
+      z-index:1;
+      margin-top:17px;
     }
 
-    .progress-meta {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-      margin-bottom: 8px;
-      color: var(--muted);
-      font-size: 12px;
+    .progress-meta{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      margin-bottom:8px;
+      color:var(--muted);
+      font-size:12px;
     }
 
-    .bar {
-      position: relative;
-      height: 13px;
-      border-radius: 999px;
-      background: rgba(0,0,0,.25);
-      border: 1px solid rgba(255,240,200,.1);
-      overflow: hidden;
+    .bar{
+      position:relative;
+      height:13px;
+      border-radius:999px;
+      background:rgba(0,0,0,.25);
+      border:1px solid rgba(255,240,200,.10);
+      overflow:hidden;
     }
 
-    .bar span {
-      position: absolute;
-      inset: 0 auto 0 0;
-      width: 25%;
-      border-radius: inherit;
-      background: linear-gradient(90deg, #7f1b23, #d7a546 60%, #fff1bd);
-      box-shadow: 0 0 28px rgba(244,212,122,.38);
-      transition: width .7s cubic-bezier(.16,1,.3,1);
+    .bar span{
+      position:absolute;
+      inset:0 auto 0 0;
+      width:25%;
+      border-radius:inherit;
+      background:linear-gradient(90deg,#7f1b23,#d7a546 60%,#fff1bd);
+      box-shadow:0 0 28px rgba(244,212,122,.38);
+      transition:width .7s cubic-bezier(.16,1,.3,1);
     }
 
-    .mini-metrics,
-    .shop-stat {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-top: 14px;
+    .mini-metrics,.shop-stat{
+      position:relative;
+      z-index:1;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+      margin-top:14px;
     }
 
-    .qr-layout {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      grid-template-columns: 132px 1fr;
-      align-items: center;
-      gap: 14px;
+    .qr-layout{
+      position:relative;
+      z-index:1;
+      display:grid;
+      grid-template-columns:132px 1fr;
+      align-items:center;
+      gap:14px;
     }
 
-    .qr-frame {
-      width: 132px;
-      height: 132px;
-      padding: 10px;
-      border-radius: 24px;
-      background: #fff7e7;
-      box-shadow: inset 0 0 0 1px rgba(0,0,0,.08), 0 18px 42px rgba(0,0,0,.32);
+    .qr-frame{
+      width:132px;
+      height:132px;
+      padding:10px;
+      border-radius:24px;
+      background:#fff7e7;
+      box-shadow:inset 0 0 0 1px rgba(0,0,0,.08),0 18px 42px rgba(0,0,0,.32);
     }
 
-    #qrCanvas {
-      display: block;
-      width: 112px;
-      height: 112px;
-      image-rendering: pixelated;
+    #qrCanvas{
+      display:block;
+      width:112px;
+      height:112px;
+      image-rendering:pixelated;
     }
 
-    .qr-info h4 {
-      margin: 0 0 7px;
-      font-size: 16px;
-      letter-spacing: -.02em;
+    .qr-info h4{
+      margin:0 0 7px;
+      font-size:16px;
+      letter-spacing:-.02em;
     }
 
-    .qr-info p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 12px;
-      line-height: 1.48;
+    .qr-info p{
+      margin:0;
+      color:var(--muted);
+      font-size:12px;
+      line-height:1.48;
     }
 
-    .section-head {
-      margin: 20px 2px 12px;
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      gap: 14px;
+    .section-head{
+      margin:20px 2px 12px;
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:14px;
     }
 
-    .section-head h2 {
-      margin: 0;
-      font-size: 29px;
-      line-height: 1;
-      letter-spacing: -.07em;
+    .section-head h2{
+      margin:0;
+      font-size:29px;
+      line-height:1;
+      letter-spacing:-.07em;
     }
 
-    .section-head p {
-      margin: 5px 0 0;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.4;
+    .section-head p{
+      margin:5px 0 0;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.4;
     }
 
-    .filters {
-      display: flex;
-      gap: 8px;
-      overflow-x: auto;
-      padding: 2px 2px 14px;
-      scrollbar-width: none;
+    .filters{
+      display:flex;
+      gap:8px;
+      overflow-x:auto;
+      padding:2px 2px 14px;
+      scrollbar-width:none;
     }
 
-    .filters::-webkit-scrollbar {
-      display: none;
+    .filters::-webkit-scrollbar{
+      display:none;
     }
 
-    .chip {
-      flex: 0 0 auto;
-      min-height: 39px;
-      padding: 10px 13px;
-      border-radius: 999px;
-      color: var(--muted);
-      background: rgba(255,240,200,.07);
-      border: 1px solid rgba(255,240,200,.12);
-      font-size: 12px;
-      font-weight: 900;
-      transition: .18s ease;
+    .chip{
+      flex:0 0 auto;
+      min-height:39px;
+      padding:10px 13px;
+      border-radius:999px;
+      color:var(--muted);
+      background:rgba(255,240,200,.07);
+      border:1px solid rgba(255,240,200,.12);
+      font-size:12px;
+      font-weight:900;
+      transition:.18s ease;
     }
 
-    .chip.active {
-      color: #23100d;
-      background: linear-gradient(135deg, #fff1bd, #d7a546);
-      border-color: rgba(244,212,122,.62);
-      box-shadow: 0 12px 28px rgba(215,165,70,.15);
+    .chip.active{
+      color:#23100d;
+      background:linear-gradient(135deg,#fff1bd,#d7a546);
+      border-color:rgba(244,212,122,.62);
+      box-shadow:0 12px 28px rgba(215,165,70,.15);
     }
 
-    .reward-list,
-    .activity-list,
-    .client-list,
-    .lux-list,
-    .transaction-list {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      gap: 12px;
+    .reward-list,.activity-list,.client-list,.lux-list,.transaction-list{
+      position:relative;
+      z-index:1;
+      display:grid;
+      gap:12px;
     }
 
-    .reward,
-    .client-row,
-    .activity,
-    .transaction-row {
-      position: relative;
-      overflow: hidden;
-      padding: 16px;
-      border-radius: 26px;
+    .reward,.client-row,.activity,.transaction-row{
+      position:relative;
+      overflow:hidden;
+      padding:16px;
+      border-radius:26px;
       background:
-        radial-gradient(circle at 92% 10%, rgba(244,212,122,.13), transparent 24%),
-        linear-gradient(145deg, rgba(255,240,200,.102), rgba(255,240,200,.035));
-      border: 1px solid rgba(255,240,200,.13);
-      box-shadow: 0 16px 42px rgba(0,0,0,.24);
-      transition: transform .18s ease;
+        radial-gradient(circle at 92% 10%,rgba(244,212,122,.13),transparent 24%),
+        linear-gradient(145deg,rgba(255,240,200,.102),rgba(255,240,200,.035));
+      border:1px solid rgba(255,240,200,.13);
+      box-shadow:0 16px 42px rgba(0,0,0,.24);
+      transition:.18s ease;
     }
 
-    .reward:active,
-    .client-row:active {
-      transform: scale(.985);
+    .reward:active,.client-row:active{
+      transform:scale(.985);
     }
 
-    .reward-top,
-    .client-top,
-    .transaction-top {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-      align-items: flex-start;
+    .reward-top,.client-top,.transaction-top{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      align-items:flex-start;
     }
 
-    .reward h3,
-    .client-row h3,
-    .transaction-row h3 {
-      margin: 12px 0 7px;
-      font-size: 18px;
-      letter-spacing: -.035em;
+    .reward h3,.client-row h3,.transaction-row h3{
+      margin:12px 0 7px;
+      font-size:18px;
+      letter-spacing:-.035em;
     }
 
-    .reward p,
-    .client-row p,
-    .transaction-row p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.48;
+    .reward p,.client-row p,.transaction-row p{
+      margin:0;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.48;
     }
 
-    .reward-bottom,
-    .client-actions,
-    .transaction-bottom {
-      margin-top: 15px;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 10px;
-      align-items: center;
+    .reward-bottom,.client-actions,.transaction-bottom{
+      margin-top:15px;
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:space-between;
+      gap:10px;
+      align-items:center;
     }
 
-    .price {
-      display: grid;
-      gap: 2px;
+    .price{
+      display:grid;
+      gap:2px;
     }
 
-    .price strong {
-      color: var(--gold2);
-      font-size: 19px;
-      letter-spacing: -.04em;
+    .price strong{
+      color:var(--gold2);
+      font-size:19px;
+      letter-spacing:-.04em;
     }
 
-    .price small {
-      color: var(--soft);
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: .12em;
-      font-weight: 900;
+    .price small{
+      color:var(--soft);
+      font-size:10px;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      font-weight:900;
     }
 
-    .activity {
-      display: grid;
-      grid-template-columns: 46px 1fr auto;
-      gap: 12px;
-      align-items: center;
+    .activity{
+      display:grid;
+      grid-template-columns:46px 1fr auto;
+      gap:12px;
+      align-items:center;
     }
 
-    .activity-icon {
-      width: 46px;
-      height: 46px;
-      border-radius: 17px;
-      display: grid;
-      place-items: center;
-      color: var(--gold2);
-      background: rgba(215,165,70,.11);
-      border: 1px solid rgba(215,165,70,.19);
-      font-weight: 950;
-      font-size: 12px;
+    .activity-icon{
+      width:46px;
+      height:46px;
+      border-radius:17px;
+      display:grid;
+      place-items:center;
+      color:var(--gold2);
+      background:rgba(215,165,70,.11);
+      border:1px solid rgba(215,165,70,.19);
+      font-weight:950;
+      font-size:12px;
     }
 
-    .activity h4 {
-      margin: 0;
-      font-size: 14px;
-      letter-spacing: -.015em;
+    .activity h4{
+      margin:0;
+      font-size:14px;
+      letter-spacing:-.015em;
     }
 
-    .activity p {
-      margin: 3px 0 0;
-      color: var(--muted);
-      font-size: 12px;
-      line-height: 1.38;
+    .activity p{
+      margin:3px 0 0;
+      color:var(--muted);
+      font-size:12px;
+      line-height:1.38;
     }
 
-    .activity strong {
-      font-size: 14px;
-      white-space: nowrap;
+    .activity strong{
+      font-size:14px;
+      white-space:nowrap;
     }
 
-    .positive {
-      color: var(--green);
+    .positive{color:var(--green)}
+    .negative{color:var(--red)}
+
+    .form-grid{
+      position:relative;
+      z-index:1;
+      display:grid;
+      gap:12px;
     }
 
-    .negative {
-      color: var(--red);
+    .field label{
+      display:block;
+      margin:0 0 7px;
+      color:var(--muted);
+      font-size:11px;
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:.12em;
     }
 
-    .form-grid {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      gap: 12px;
+    .field input,.field textarea,.field select{
+      width:100%;
+      border:1px solid rgba(255,240,200,.14);
+      border-radius:19px;
+      padding:14px;
+      color:var(--cream);
+      background:rgba(0,0,0,.23);
+      outline:none;
+      transition:.18s ease;
     }
 
-    .field label {
-      display: block;
-      margin: 0 0 7px;
-      color: var(--muted);
-      font-size: 11px;
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: .12em;
+    .field textarea{
+      min-height:96px;
     }
 
-    .field input,
-    .field textarea,
-    .field select {
-      width: 100%;
-      border: 1px solid rgba(255,240,200,.14);
-      border-radius: 19px;
-      padding: 14px;
-      color: var(--cream);
-      background: rgba(0,0,0,.23);
-      outline: none;
-      transition: border-color .18s ease, box-shadow .18s ease, background .18s ease;
+    .field input:focus,.field textarea:focus,.field select:focus{
+      border-color:rgba(244,212,122,.58);
+      box-shadow:0 0 0 4px rgba(215,165,70,.12);
+      background:rgba(0,0,0,.32);
     }
 
-    .field textarea {
-      min-height: 96px;
+    .lux-item{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      padding:13px;
+      border-radius:19px;
+      background:rgba(0,0,0,.20);
+      border:1px solid rgba(255,240,200,.095);
     }
 
-    .field input:focus,
-    .field textarea:focus,
-    .field select:focus {
-      border-color: rgba(244,212,122,.58);
-      box-shadow: 0 0 0 4px rgba(215,165,70,.12);
-      background: rgba(0,0,0,.32);
+    .lux-item span{
+      color:var(--muted);
+      font-size:12px;
     }
 
-    .lux-item {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 13px;
-      border-radius: 19px;
-      background: rgba(0,0,0,.20);
-      border: 1px solid rgba(255,240,200,.095);
+    .lux-item strong{
+      text-align:right;
+      font-size:13px;
+      line-height:1.34;
     }
 
-    .lux-item span {
-      color: var(--muted);
-      font-size: 12px;
-    }
-
-    .lux-item strong {
-      text-align: right;
-      font-size: 13px;
-      line-height: 1.34;
-    }
-
-    .shop-hero {
-      position: relative;
-      overflow: hidden;
-      border-radius: 34px;
-      padding: 20px;
+    .shop-hero{
+      position:relative;
+      overflow:hidden;
+      border-radius:34px;
+      padding:20px;
       background:
-        radial-gradient(circle at 90% 0%, rgba(244,212,122,.22), transparent 28%),
-        radial-gradient(circle at 10% 100%, rgba(165,43,54,.22), transparent 32%),
-        linear-gradient(145deg, rgba(255,240,200,.12), rgba(255,240,200,.04));
-      border: 1px solid rgba(244,212,122,.22);
-      box-shadow: var(--shadow2);
-      margin-bottom: 14px;
+        radial-gradient(circle at 90% 0%,rgba(244,212,122,.22),transparent 28%),
+        radial-gradient(circle at 10% 100%,rgba(167,49,61,.22),transparent 32%),
+        linear-gradient(145deg,rgba(255,240,200,.12),rgba(255,240,200,.04));
+      border:1px solid rgba(244,212,122,.22);
+      box-shadow:0 16px 44px rgba(0,0,0,.30);
+      margin-bottom:14px;
     }
 
-    .shop-hero h2 {
-      margin: 15px 0 0;
-      font-size: 32px;
-      letter-spacing: -.07em;
-      line-height: 1;
+    .shop-hero h2{
+      margin:15px 0 0;
+      font-size:32px;
+      letter-spacing:-.07em;
+      line-height:1;
     }
 
-    .shop-hero p {
-      margin: 9px 0 0;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.5;
+    .shop-hero p{
+      margin:9px 0 0;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.5;
     }
 
-    .divider {
-      height: 1px;
-      background: rgba(255,240,200,.12);
-      margin: 16px 0;
+    .divider{
+      height:1px;
+      background:rgba(255,240,200,.12);
+      margin:16px 0;
     }
 
-    .empty {
-      padding: 24px;
-      text-align: center;
-      color: var(--muted);
-      border: 1px dashed rgba(255,240,200,.18);
-      border-radius: 24px;
+    .empty{
+      padding:24px;
+      text-align:center;
+      color:var(--muted);
+      border:1px dashed rgba(255,240,200,.18);
+      border-radius:24px;
     }
 
-    .note {
-      position: relative;
-      z-index: 1;
-      margin-top: 14px;
-      padding: 14px;
-      border-radius: 21px;
-      background: rgba(215,165,70,.10);
-      border: 1px solid rgba(215,165,70,.18);
-      color: var(--cream2);
-      font-size: 12px;
-      line-height: 1.48;
+    .note{
+      position:relative;
+      z-index:1;
+      margin-top:14px;
+      padding:14px;
+      border-radius:21px;
+      background:rgba(215,165,70,.10);
+      border:1px solid rgba(215,165,70,.18);
+      color:var(--cream2);
+      font-size:12px;
+      line-height:1.48;
     }
 
-    .store-lock {
-      display: none;
-      position: relative;
-      z-index: 1;
-      padding: 18px;
-      border-radius: 28px;
-      background: rgba(0,0,0,.24);
-      border: 1px solid rgba(244,212,122,.22);
-      margin-bottom: 14px;
+    .store-lock{
+      display:none;
+      position:relative;
+      z-index:1;
+      padding:18px;
+      border-radius:28px;
+      background:rgba(0,0,0,.24);
+      border:1px solid rgba(244,212,122,.22);
+      margin-bottom:14px;
     }
 
-    .store-lock.show {
-      display: block;
+    .store-lock.show{
+      display:block;
     }
 
-    .store-area.locked {
-      display: none;
+    .store-area.locked{
+      display:none;
     }
 
-    .pos-preview {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      gap: 10px;
-      padding: 14px;
-      border-radius: 22px;
-      background: rgba(0,0,0,.22);
-      border: 1px solid rgba(244,212,122,.18);
+    .pos-preview{
+      position:relative;
+      z-index:1;
+      display:grid;
+      gap:10px;
+      padding:14px;
+      border-radius:22px;
+      background:rgba(0,0,0,.22);
+      border:1px solid rgba(244,212,122,.18);
     }
 
-    .pos-preview strong {
-      color: var(--gold2);
+    .pos-preview strong{
+      color:var(--gold2);
     }
 
-    .export-box {
-      width: 100%;
-      min-height: 170px;
-      font-size: 11px;
-      line-height: 1.42;
-      color: var(--cream);
-      white-space: pre-wrap;
-      word-break: break-word;
+    .export-box{
+      width:100%;
+      min-height:170px;
+      font-size:11px;
+      line-height:1.42;
+      color:var(--cream);
+      white-space:pre-wrap;
+      word-break:break-word;
     }
 
-    .bottom-nav {
-      position: fixed;
-      left: 50%;
-      bottom: max(13px, var(--safe));
-      transform: translateX(-50%);
-      z-index: 40;
-      width: min(calc(100% - 28px), 710px);
-      display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      gap: 5px;
-      padding: 7px;
-      border-radius: 26px;
-      background: rgba(16,5,6,.88);
-      border: 1px solid rgba(255,240,200,.14);
-      backdrop-filter: blur(26px);
-      box-shadow: 0 22px 62px rgba(0,0,0,.52);
+    .bottom-nav{
+      position:fixed;
+      left:50%;
+      bottom:max(13px,var(--safe));
+      transform:translateX(-50%);
+      z-index:50;
+      width:min(calc(100% - 28px),720px);
+      display:grid;
+      grid-template-columns:repeat(6,1fr);
+      gap:5px;
+      padding:7px;
+      border-radius:26px;
+      background:rgba(16,5,6,.90);
+      border:1px solid rgba(255,240,200,.14);
+      backdrop-filter:blur(26px);
+      box-shadow:0 22px 62px rgba(0,0,0,.52);
     }
 
-    .nav-btn {
-      min-height: 54px;
-      border-radius: 19px;
-      display: grid;
-      place-items: center;
-      gap: 1px;
-      color: rgba(255,240,200,.52);
-      background: transparent;
-      font-size: 8.5px;
-      font-weight: 950;
-      transition: .18s ease;
+    .nav-btn{
+      min-height:54px;
+      border-radius:19px;
+      display:grid;
+      place-items:center;
+      gap:1px;
+      color:rgba(255,240,200,.52);
+      background:transparent;
+      font-size:8.5px;
+      font-weight:950;
+      transition:.18s ease;
     }
 
-    .nav-icon {
-      font-size: 17px;
-      line-height: 1;
+    .nav-icon{
+      font-size:17px;
+      line-height:1;
     }
 
-    .nav-btn.active {
-      color: #23100d;
-      background: linear-gradient(135deg, #fff1bd, #d7a546);
-      box-shadow: 0 13px 30px rgba(215,165,70,.16);
+    .nav-btn.active{
+      color:#23100d;
+      background:linear-gradient(135deg,#fff1bd,#d7a546);
+      box-shadow:0 13px 30px rgba(215,165,70,.16);
     }
 
-    .nav-btn:active {
-      transform: scale(.94);
+    .nav-btn:active{
+      transform:scale(.94);
     }
 
-    .toast-wrap {
-      position: fixed;
-      left: 50%;
-      bottom: calc(98px + var(--safe));
-      transform: translateX(-50%);
-      z-index: 90;
-      width: min(calc(100% - 28px), 540px);
-      display: grid;
-      gap: 9px;
-      pointer-events: none;
+    .toast-wrap{
+      position:fixed;
+      left:50%;
+      bottom:calc(98px + var(--safe));
+      transform:translateX(-50%);
+      z-index:90;
+      width:min(calc(100% - 28px),540px);
+      display:grid;
+      gap:9px;
+      pointer-events:none;
     }
 
-    .toast {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 13px 14px;
-      border-radius: 19px;
-      color: var(--cream);
-      background: rgba(16,5,6,.94);
-      border: 1px solid rgba(244,212,122,.25);
-      box-shadow: 0 18px 46px rgba(0,0,0,.42);
-      backdrop-filter: blur(18px);
-      font-size: 13px;
-      line-height: 1.35;
-      animation: toastIn .24s ease both;
+    .toast{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding:13px 14px;
+      border-radius:19px;
+      color:var(--cream);
+      background:rgba(16,5,6,.94);
+      border:1px solid rgba(244,212,122,.25);
+      box-shadow:0 18px 46px rgba(0,0,0,.42);
+      backdrop-filter:blur(18px);
+      font-size:13px;
+      line-height:1.35;
+      animation:toastIn .24s ease both;
     }
 
-    @keyframes toastIn {
-      from {
-        opacity: 0;
-        transform: translateY(14px) scale(.98);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
+    @keyframes toastIn{
+      from{opacity:0;transform:translateY(14px) scale(.98)}
+      to{opacity:1;transform:translateY(0) scale(1)}
     }
 
-    .modal-backdrop {
-      position: fixed;
-      inset: 0;
-      z-index: 80;
-      display: none;
-      align-items: flex-end;
-      justify-content: center;
-      padding: 18px;
-      background: rgba(0,0,0,.56);
-      backdrop-filter: blur(12px);
+    .modal-backdrop{
+      position:fixed;
+      inset:0;
+      z-index:80;
+      display:none;
+      align-items:flex-end;
+      justify-content:center;
+      padding:18px;
+      background:rgba(0,0,0,.56);
+      backdrop-filter:blur(12px);
     }
 
-    .modal-backdrop.show {
-      display: flex;
-      animation: fadeIn .18s ease both;
+    .modal-backdrop.show{
+      display:flex;
+      animation:fadeIn .18s ease both;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+    @keyframes fadeIn{
+      from{opacity:0}
+      to{opacity:1}
     }
 
-    .modal {
-      width: min(100%, 540px);
-      border-radius: 32px;
-      padding: 20px;
+    .modal{
+      width:min(100%,540px);
+      border-radius:32px;
+      padding:20px;
       background:
-        radial-gradient(circle at 92% 0%, rgba(244,212,122,.20), transparent 28%),
-        linear-gradient(145deg, #250c0f, #110506);
-      border: 1px solid rgba(244,212,122,.25);
-      box-shadow: 0 30px 100px rgba(0,0,0,.58);
-      animation: modalIn .24s ease both;
+        radial-gradient(circle at 92% 0%,rgba(244,212,122,.20),transparent 28%),
+        linear-gradient(145deg,#250c0f,#110506);
+      border:1px solid rgba(244,212,122,.25);
+      box-shadow:0 30px 100px rgba(0,0,0,.58);
+      animation:modalIn .24s ease both;
     }
 
-    @keyframes modalIn {
-      from {
-        opacity: 0;
-        transform: translateY(20px) scale(.98);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
+    @keyframes modalIn{
+      from{opacity:0;transform:translateY(20px) scale(.98)}
+      to{opacity:1;transform:translateY(0) scale(1)}
     }
 
-    .modal h3 {
-      margin: 0 0 8px;
-      font-size: 24px;
-      letter-spacing: -.055em;
+    .modal h3{
+      margin:0 0 8px;
+      font-size:24px;
+      letter-spacing:-.055em;
     }
 
-    .modal p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.52;
+    .modal p{
+      margin:0;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.52;
     }
 
-    .modal-actions {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-top: 18px;
+    .modal-actions{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+      margin-top:18px;
     }
 
-    .splash {
-      position: fixed;
-      inset: 0;
-      z-index: 100;
-      display: grid;
-      place-items: center;
-      padding: 24px;
+    .splash{
+      position:fixed;
+      inset:0;
+      z-index:100;
+      display:grid;
+      place-items:center;
+      padding:24px;
       background:
-        radial-gradient(circle at 50% 16%, rgba(244,212,122,.25), transparent 30%),
-        radial-gradient(circle at 78% 78%, rgba(165,43,54,.27), transparent 31%),
-        linear-gradient(145deg, #060203, #120607 55%, #2a0d10);
-      transition: opacity .48s ease, transform .48s ease, visibility .48s ease;
+        radial-gradient(circle at 50% 16%,rgba(244,212,122,.25),transparent 30%),
+        radial-gradient(circle at 78% 78%,rgba(167,49,61,.27),transparent 31%),
+        linear-gradient(145deg,#060203,#120607 55%,#2a0d10);
+      transition:opacity .48s ease,transform .48s ease,visibility .48s ease;
     }
 
-    .splash.hide {
-      opacity: 0;
-      transform: scale(1.035);
-      visibility: hidden;
-      pointer-events: none;
+    .splash.hide{
+      opacity:0;
+      transform:scale(1.035);
+      visibility:hidden;
+      pointer-events:none;
     }
 
-    .splash-inner {
-      width: min(100%, 620px);
-      text-align: center;
+    .splash-inner{
+      width:min(100%,620px);
+      text-align:center;
     }
 
-    .splash-xa {
-      font-family: Georgia, serif;
-      font-size: clamp(135px, 45vw, 330px);
-      line-height: .72;
-      font-weight: 900;
-      letter-spacing: -.135em;
-      color: var(--cream);
-      text-shadow: 0 0 42px rgba(244,212,122,.20), 0 30px 86px rgba(0,0,0,.74);
-      animation: monument .95s cubic-bezier(.16,1,.3,1) both;
+    .splash-xa{
+      font-family:Georgia,serif;
+      font-size:clamp(135px,45vw,330px);
+      line-height:.72;
+      font-weight:900;
+      letter-spacing:-.135em;
+      color:var(--cream);
+      text-shadow:0 0 42px rgba(244,212,122,.20),0 30px 86px rgba(0,0,0,.74);
+      animation:monument .95s cubic-bezier(.16,1,.3,1) both;
     }
 
-    @keyframes monument {
-      from {
-        opacity: 0;
-        transform: translateY(18px) scale(.84);
-        filter: blur(13px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-        filter: blur(0);
-      }
+    @keyframes monument{
+      from{opacity:0;transform:translateY(18px) scale(.84);filter:blur(13px)}
+      to{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}
     }
 
-    .splash-kicker {
-      margin-top: 19px;
-      color: var(--gold2);
-      font-size: 11px;
-      font-weight: 1000;
-      text-transform: uppercase;
-      letter-spacing: .3em;
-      animation: in .65s ease .16s both;
+    .splash-kicker{
+      margin-top:19px;
+      color:var(--gold2);
+      font-size:11px;
+      font-weight:1000;
+      text-transform:uppercase;
+      letter-spacing:.3em;
+      animation:enter .65s ease .16s both;
     }
 
-    .splash-title {
-      max-width: 460px;
-      margin: 12px auto 0;
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.55;
-      animation: in .65s ease .28s both;
+    .splash-title{
+      max-width:460px;
+      margin:12px auto 0;
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.55;
+      animation:enter .65s ease .28s both;
     }
 
-    .splash .btn {
-      margin-top: 25px;
-      animation: in .65s ease .38s both;
+    .splash .btn{
+      margin-top:25px;
+      animation:enter .65s ease .38s both;
     }
 
-    @media (min-width: 760px) {
-      .app {
-        padding: 24px 22px calc(138px + var(--safe));
+    @media (min-width:760px){
+      .app{
+        padding:24px 22px calc(138px + var(--safe));
       }
 
-      .grid.two {
-        grid-template-columns: 1.1fr .9fr;
+      .grid.two{
+        grid-template-columns:1.1fr .9fr;
       }
 
-      .grid.three {
-        grid-template-columns: repeat(3, 1fr);
+      .grid.three{
+        grid-template-columns:repeat(3,1fr);
       }
 
-      .reward-list,
-      .client-list,
-      .transaction-list {
-        grid-template-columns: repeat(2, 1fr);
+      .reward-list,.client-list,.transaction-list{
+        grid-template-columns:repeat(2,1fr);
       }
 
-      .hero {
-        padding: 32px;
+      .hero{
+        padding:32px;
       }
 
-      .stats-row {
-        grid-template-columns: repeat(4, 1fr);
+      .stats-row{
+        grid-template-columns:repeat(4,1fr);
       }
 
-      .modal-backdrop {
-        align-items: center;
+      .modal-backdrop{
+        align-items:center;
       }
     }
 
-    @media (min-width: 1040px) {
-      .reward-list,
-      .client-list,
-      .transaction-list {
-        grid-template-columns: repeat(3, 1fr);
+    @media (min-width:1040px){
+      .reward-list,.client-list,.transaction-list{
+        grid-template-columns:repeat(3,1fr);
       }
     }
 
-    @media (max-width: 430px) {
-      .brand p {
-        max-width: 128px;
-        overflow: hidden;
-        text-overflow: ellipsis;
+    @media (max-width:430px){
+      .brand p{
+        max-width:128px;
+        overflow:hidden;
+        text-overflow:ellipsis;
       }
 
-      .pill {
-        display: none;
+      .pill{
+        display:none;
       }
 
-      .mini-metrics,
-      .shop-stat {
-        grid-template-columns: 1fr;
+      .mini-metrics,.shop-stat{
+        grid-template-columns:1fr;
       }
 
-      .qr-layout {
-        grid-template-columns: 1fr;
+      .qr-layout{
+        grid-template-columns:1fr;
       }
 
-      .qr-frame {
-        margin: 0 auto;
+      .qr-frame{
+        margin:0 auto;
       }
 
-      .hero-actions {
-        display: grid;
+      .hero-actions{
+        display:grid;
       }
 
-      .btn {
-        width: 100%;
+      .btn{
+        width:100%;
       }
 
-      .activity {
-        grid-template-columns: 42px 1fr;
+      .activity{
+        grid-template-columns:42px 1fr;
       }
 
-      .activity strong {
-        grid-column: 2;
+      .activity strong{
+        grid-column:2;
       }
 
-      .bottom-nav {
-        width: min(calc(100% - 22px), 710px);
-        gap: 4px;
-        padding: 7px;
+      .bottom-nav{
+        width:min(calc(100% - 22px),720px);
+        gap:4px;
+        padding:7px;
       }
 
-      .nav-btn {
-        min-height: 54px;
-        font-size: 8px;
+      .nav-btn{
+        min-height:54px;
+        font-size:8px;
       }
     }
   </style>
@@ -1324,9 +1256,9 @@
   <div class="splash" id="splash">
     <div class="splash-inner">
       <div class="splash-xa">XA</div>
-      <div class="splash-kicker">V5 Cassa Ready</div>
+      <div class="splash-kicker">V6 Store Loyalty Console</div>
       <p class="splash-title">
-        Card cliente, gestione negozio, transazioni vendita, punti, premi e dati pronti per una futura cassa.
+        Card cliente, clienti, cassa, transazioni, rewards e dati pronti per futuro collegamento POS.
       </p>
       <button class="btn btn-primary" id="enterApp">Entra nel Club XA</button>
     </div>
@@ -1335,7 +1267,7 @@
   <main class="app">
     <header class="topbar">
       <div class="brand">
-        <div class="brand-seal">XA</div>
+        <div class="seal">XA</div>
         <div>
           <h1>XA Club</h1>
           <p>Fermented Redrinks</p>
@@ -1354,34 +1286,16 @@
     <section class="screen active" id="screen-home">
       <div class="hero">
         <div class="eyebrow"><span class="spark"></span> Loyalty + Cassa Ready</div>
-
-        <h2 class="hero-title">
-          <span class="gold">XA</span> Member Club<br>
-          <span id="helloName">Cliente</span>
-        </h2>
-
+        <h2 class="hero-title"><span class="gold">XA</span> Member Club<br><span id="helloName">Cliente</span></h2>
         <p class="hero-copy">
-          Vista cliente elegante, gestione negozio multi-cliente e una cassa simulata
-          già strutturata per diventare collegabile a database, POS o gestionale.
+          Vista cliente premium, gestione negozio multi-cliente e cassa manuale strutturata per futuro POS, database o gestionale.
         </p>
 
         <div class="stats-row">
-          <div class="stat">
-            <span>Status</span>
-            <strong id="heroStatus">Reserve</strong>
-          </div>
-          <div class="stat">
-            <span>Punti</span>
-            <strong id="heroPoints">0</strong>
-          </div>
-          <div class="stat">
-            <span>Vendite</span>
-            <strong id="heroSales">0</strong>
-          </div>
-          <div class="stat">
-            <span>Incasso demo</span>
-            <strong id="heroRevenue">€0</strong>
-          </div>
+          <div class="stat"><span>Status</span><strong id="heroStatus">—</strong></div>
+          <div class="stat"><span>Punti</span><strong id="heroPoints">0</strong></div>
+          <div class="stat"><span>Vendite</span><strong id="heroSales">0</strong></div>
+          <div class="stat"><span>Incasso</span><strong id="heroRevenue">€0</strong></div>
         </div>
 
         <div class="hero-actions">
@@ -1403,7 +1317,7 @@
           <div class="member-card">
             <div class="member-top">
               <div class="card-logo">XA</div>
-              <div class="card-level" id="cardTier">Reserve Member</div>
+              <div class="card-level" id="cardTier">Member</div>
             </div>
 
             <div class="member-name" id="cardName">Cliente XA</div>
@@ -1426,7 +1340,7 @@
           <div class="card-title">
             <div>
               <h3>Saldo punti</h3>
-              <p>Disponibili per esperienze e privilegi</p>
+              <p>Disponibili per premi, esperienze e privilegi</p>
             </div>
             <span class="tag">Live</span>
           </div>
@@ -1436,21 +1350,15 @@
 
           <div class="progress-wrap">
             <div class="progress-meta">
-              <span id="currentTierText">Status attuale</span>
-              <span id="nextTierText">Prossimo livello</span>
+              <span id="currentTierText">Status</span>
+              <span id="nextTierText">Prossimo</span>
             </div>
             <div class="bar"><span id="tierBar"></span></div>
           </div>
 
           <div class="mini-metrics">
-            <div class="metric">
-              <span>Punti vita</span>
-              <strong id="lifetimePoints">0</strong>
-            </div>
-            <div class="metric">
-              <span>Al prossimo</span>
-              <strong id="toNext">0</strong>
-            </div>
+            <div class="metric"><span>Punti vita</span><strong id="lifetimePoints">0</strong></div>
+            <div class="metric"><span>Al prossimo</span><strong id="toNext">0</strong></div>
           </div>
         </div>
       </div>
@@ -1473,7 +1381,7 @@
               <h4 id="qrMemberName">Cliente XA</h4>
               <p>
                 Codice membro: <strong id="qrMemberCode">XA-0000</strong><br>
-                Futuro collegamento: lettura QR da cassa, database o gestionale POS.
+                Pronto per futuro collegamento QR con cassa o database.
               </p>
             </div>
           </div>
@@ -1489,22 +1397,10 @@
           </div>
 
           <div class="lux-list">
-            <div class="lux-item">
-              <span>Clienti totali</span>
-              <strong id="dashCustomers">0</strong>
-            </div>
-            <div class="lux-item">
-              <span>Punti attivi</span>
-              <strong id="dashPoints">0</strong>
-            </div>
-            <div class="lux-item">
-              <span>Transazioni</span>
-              <strong id="dashTransactions">0</strong>
-            </div>
-            <div class="lux-item">
-              <span>Incasso demo</span>
-              <strong id="dashRevenue">€0</strong>
-            </div>
+            <div class="lux-item"><span>Clienti totali</span><strong id="dashCustomers">0</strong></div>
+            <div class="lux-item"><span>Punti attivi</span><strong id="dashPoints">0</strong></div>
+            <div class="lux-item"><span>Transazioni</span><strong id="dashTransactions">0</strong></div>
+            <div class="lux-item"><span>Incasso demo</span><strong id="dashRevenue">€0</strong></div>
           </div>
         </div>
       </div>
@@ -1515,19 +1411,13 @@
         <div class="eyebrow"><span class="spark"></span> Cassa XA</div>
         <h2>Store Console</h2>
         <p>
-          Registra una vendita manuale, collega il cliente, inserisci scontrino e categoria.
-          La transazione viene salvata con struttura pronta per POS/database. PIN demo: <strong>2026</strong>.
+          Registra vendita, cliente, scontrino, categoria, punti e operatore.
+          PIN demo: <strong>2026</strong>.
         </p>
 
         <div class="shop-stat">
-          <div class="metric">
-            <span>Cliente attivo</span>
-            <strong id="posCustomer">Cliente XA</strong>
-          </div>
-          <div class="metric">
-            <span>Punti attuali</span>
-            <strong id="posPoints">0 pt</strong>
-          </div>
+          <div class="metric"><span>Cliente attivo</span><strong id="posCustomer">Cliente XA</strong></div>
+          <div class="metric"><span>Punti attuali</span><strong id="posPoints">0 pt</strong></div>
         </div>
       </div>
 
@@ -1535,7 +1425,7 @@
         <div class="card-title">
           <div>
             <h3>Sblocca cassa</h3>
-            <p>Blocco demo locale. Non è sicurezza reale server-side.</p>
+            <p>Blocco demo locale. Non è sicurezza server.</p>
           </div>
         </div>
 
@@ -1567,12 +1457,12 @@
 
               <div class="field">
                 <label for="posReceipt">Numero scontrino</label>
-                <input id="posReceipt" placeholder="Esempio: XA-2026-000001" />
+                <input id="posReceipt" placeholder="XA-2026-000001" />
               </div>
 
               <div class="field">
                 <label for="posAmount">Importo vendita €</label>
-                <input id="posAmount" type="number" min="0" step="0.01" placeholder="Esempio: 38.50" />
+                <input id="posAmount" type="number" min="0" step="0.01" placeholder="38.50" />
               </div>
 
               <div class="field">
@@ -1587,10 +1477,10 @@
 
               <div class="field">
                 <label for="posNote">Nota vendita</label>
-                <input id="posNote" placeholder="Esempio: degustazione sidri botanici" />
+                <input id="posNote" placeholder="Degustazione sidri botanici" />
               </div>
 
-              <div class="pos-preview" id="posPreview">
+              <div class="pos-preview">
                 <div>Cliente: <strong id="previewClient">—</strong></div>
                 <div>Moltiplicatore: <strong id="previewMultiplier">1x</strong></div>
                 <div>Punti generati: <strong id="previewPoints">0</strong></div>
@@ -1610,30 +1500,18 @@
             </div>
 
             <div class="lux-list">
-              <div class="lux-item">
-                <span>Codice</span>
-                <strong id="posCode">XA</strong>
-              </div>
-              <div class="lux-item">
-                <span>Status</span>
-                <strong id="posStatus">Member</strong>
-              </div>
-              <div class="lux-item">
-                <span>Spesa totale</span>
-                <strong id="posSpend">€0</strong>
-              </div>
-              <div class="lux-item">
-                <span>Ultima visita</span>
-                <strong id="posLastVisit">—</strong>
-              </div>
+              <div class="lux-item"><span>Codice</span><strong id="posCode">XA</strong></div>
+              <div class="lux-item"><span>Status</span><strong id="posStatus">Member</strong></div>
+              <div class="lux-item"><span>Spesa totale</span><strong id="posSpend">€0</strong></div>
+              <div class="lux-item"><span>Ultima visita</span><strong id="posLastVisit">—</strong></div>
             </div>
 
             <div class="divider"></div>
 
             <div class="form-grid">
-              <button class="btn btn-secondary" id="bonusButton">+50 punti bonus evento</button>
-              <button class="btn btn-secondary" id="scanDemo">Simula scansione QR</button>
-              <button class="btn btn-secondary" id="goActiveClient">Apri card cliente</button>
+              <button class="btn btn-secondary" id="bonusButton" type="button">+50 punti bonus evento</button>
+              <button class="btn btn-secondary" id="scanDemo" type="button">Simula scansione QR</button>
+              <button class="btn btn-secondary" id="goActiveClient" type="button">Apri card cliente</button>
             </div>
           </div>
         </div>
@@ -1652,23 +1530,29 @@
                 <label for="shopRewardSelect">Premio</label>
                 <select id="shopRewardSelect"></select>
               </div>
-
-              <button class="btn btn-primary" id="shopRedeemReward">Riscatta premio</button>
+              <button class="btn btn-primary" id="shopRedeemReward" type="button">Riscatta premio</button>
             </div>
           </div>
 
           <div class="card card-pad">
             <div class="card-title">
               <div>
-                <h3>Esportazione dati</h3>
-                <p>Backup e dati pronti per futuro database</p>
+                <h3>Backup dati</h3>
+                <p>Esporta o ripristina il gestionale locale</p>
               </div>
             </div>
 
             <div class="form-grid">
-              <button class="btn btn-secondary" id="exportJSON">Esporta JSON completo</button>
-              <button class="btn btn-secondary" id="exportCSV">Esporta vendite CSV</button>
-              <button class="btn btn-danger" id="clearTransactions">Svuota transazioni demo</button>
+              <button class="btn btn-secondary" id="exportJSON" type="button">Esporta JSON completo</button>
+              <button class="btn btn-secondary" id="exportCSV" type="button">Esporta vendite CSV</button>
+
+              <div class="field">
+                <label for="importBox">Ripristina da JSON</label>
+                <textarea id="importBox" placeholder="Incolla qui un backup JSON"></textarea>
+              </div>
+
+              <button class="btn btn-secondary" id="importJSON" type="button">Importa backup JSON</button>
+              <button class="btn btn-danger" id="clearTransactions" type="button">Svuota transazioni demo</button>
             </div>
 
             <textarea class="export-box note" id="exportBox" style="display:none;"></textarea>
@@ -1687,34 +1571,19 @@
 
       <div class="grid three">
         <div class="card card-pad">
-          <div class="card-title">
-            <div>
-              <h3>Totale clienti</h3>
-              <p>Card create nel dispositivo negozio</p>
-            </div>
-          </div>
+          <div class="card-title"><div><h3>Totale clienti</h3><p>Card create nel dispositivo</p></div></div>
           <div class="points-big" id="clientsTotal">0</div>
           <div class="points-label">clienti registrati</div>
         </div>
 
         <div class="card card-pad">
-          <div class="card-title">
-            <div>
-              <h3>Punti attivi</h3>
-              <p>Somma dei punti disponibili</p>
-            </div>
-          </div>
+          <div class="card-title"><div><h3>Punti attivi</h3><p>Somma punti disponibili</p></div></div>
           <div class="points-big" id="clientsPoints">0</div>
           <div class="points-label">punti circolanti</div>
         </div>
 
         <div class="card card-pad">
-          <div class="card-title">
-            <div>
-              <h3>Top cliente</h3>
-              <p>Più punti lifetime</p>
-            </div>
-          </div>
+          <div class="card-title"><div><h3>Top cliente</h3><p>Più punti lifetime</p></div></div>
           <div class="points-big" id="topClientShort">0</div>
           <div class="points-label" id="topClientName">—</div>
         </div>
@@ -1723,16 +1592,13 @@
       <div class="grid two">
         <div class="card card-pad">
           <div class="card-title">
-            <div>
-              <h3>Cerca cliente</h3>
-              <p>Nome, email, telefono o codice XA</p>
-            </div>
+            <div><h3>Cerca cliente</h3><p>Nome, email, telefono o codice XA</p></div>
           </div>
 
           <div class="form-grid">
             <div class="field">
               <label for="clientSearch">Ricerca</label>
-              <input id="clientSearch" placeholder="Esempio: Maria, XA-2026, telefono..." />
+              <input id="clientSearch" placeholder="Maria, XA-2026, telefono..." />
             </div>
           </div>
 
@@ -1742,10 +1608,7 @@
 
         <div class="card card-pad">
           <div class="card-title">
-            <div>
-              <h3>Crea nuova card</h3>
-              <p>Aggiungi un cliente al gestionale negozio</p>
-            </div>
+            <div><h3>Crea nuova card</h3><p>Aggiungi un cliente al gestionale negozio</p></div>
           </div>
 
           <form class="form-grid" id="newCustomerForm">
@@ -1766,7 +1629,7 @@
 
             <div class="field">
               <label for="newPrefs">Preferenze</label>
-              <textarea id="newPrefs" placeholder="Sidro secco, fermentazioni botaniche, eventi..."></textarea>
+              <textarea id="newPrefs" placeholder="Sidro secco, botaniche, eventi..."></textarea>
             </div>
 
             <button class="btn btn-primary" type="submit">Crea card XA</button>
@@ -1779,7 +1642,7 @@
       <div class="section-head">
         <div>
           <h2>Rewards premium</h2>
-          <p>Esperienze, eventi, limited edition e privilegi. Non una raccolta bollini.</p>
+          <p>Esperienze, eventi, limited edition e privilegi.</p>
         </div>
       </div>
 
@@ -1804,22 +1667,12 @@
 
       <div class="grid two">
         <div class="card card-pad">
-          <div class="card-title">
-            <div>
-              <h3>Storico cliente</h3>
-              <p>Movimenti del cliente selezionato</p>
-            </div>
-          </div>
+          <div class="card-title"><div><h3>Storico cliente</h3><p>Movimenti del cliente selezionato</p></div></div>
           <div class="activity-list" id="activityList"></div>
         </div>
 
         <div class="card card-pad">
-          <div class="card-title">
-            <div>
-              <h3>Ultime transazioni</h3>
-              <p>Vendite, bonus e riscatti registrati</p>
-            </div>
-          </div>
+          <div class="card-title"><div><h3>Ultime transazioni</h3><p>Vendite, bonus e riscatti</p></div></div>
           <div class="transaction-list" id="transactionList"></div>
         </div>
       </div>
@@ -1829,87 +1682,42 @@
       <div class="section-head">
         <div>
           <h2>Profilo cliente</h2>
-          <p>Modifica dati del cliente selezionato. Salvataggio locale nel dispositivo.</p>
+          <p>Modifica dati del cliente selezionato.</p>
         </div>
       </div>
 
       <div class="grid two">
         <div class="card card-pad">
           <div class="card-title">
-            <div>
-              <h3>Dati membro</h3>
-              <p>Personalizzazione del saluto e della card</p>
-            </div>
+            <div><h3>Dati membro</h3><p>Personalizzazione card e note negozio</p></div>
           </div>
 
           <form class="form-grid" id="profileForm">
-            <div class="field">
-              <label for="profileName">Nome</label>
-              <input id="profileName" autocomplete="name" />
-            </div>
-
-            <div class="field">
-              <label for="profileEmail">Email</label>
-              <input id="profileEmail" type="email" autocomplete="email" />
-            </div>
-
-            <div class="field">
-              <label for="profilePhone">Telefono</label>
-              <input id="profilePhone" autocomplete="tel" />
-            </div>
-
-            <div class="field">
-              <label for="profilePreferences">Preferenze cliente</label>
-              <textarea id="profilePreferences"></textarea>
-            </div>
-
-            <div class="field">
-              <label for="profileNotes">Note negozio</label>
-              <textarea id="profileNotes" placeholder="Note interne per il negozio"></textarea>
-            </div>
-
+            <div class="field"><label for="profileName">Nome</label><input id="profileName" autocomplete="name" /></div>
+            <div class="field"><label for="profileEmail">Email</label><input id="profileEmail" type="email" autocomplete="email" /></div>
+            <div class="field"><label for="profilePhone">Telefono</label><input id="profilePhone" autocomplete="tel" /></div>
+            <div class="field"><label for="profilePreferences">Preferenze cliente</label><textarea id="profilePreferences"></textarea></div>
+            <div class="field"><label for="profileNotes">Note negozio</label><textarea id="profileNotes" placeholder="Note interne"></textarea></div>
             <button class="btn btn-primary" type="submit">Salva profilo</button>
           </form>
         </div>
 
         <div class="card card-pad">
           <div class="card-title">
-            <div>
-              <h3>Identità XA</h3>
-              <p>Profilo, status e comportamento acquisto</p>
-            </div>
+            <div><h3>Identità XA</h3><p>Profilo, status e comportamento acquisto</p></div>
           </div>
 
           <div class="lux-list">
-            <div class="lux-item">
-              <span>Codice membro</span>
-              <strong id="profileMemberCode">XA</strong>
-            </div>
-            <div class="lux-item">
-              <span>Status</span>
-              <strong id="profileStatus">Member</strong>
-            </div>
-            <div class="lux-item">
-              <span>Punti disponibili</span>
-              <strong id="profilePoints">0</strong>
-            </div>
-            <div class="lux-item">
-              <span>Acquisti</span>
-              <strong id="profilePurchases">0</strong>
-            </div>
-            <div class="lux-item">
-              <span>Spesa totale</span>
-              <strong id="profileSpend">€0</strong>
-            </div>
-            <div class="lux-item">
-              <span>Ultima visita</span>
-              <strong id="profileLastVisit">—</strong>
-            </div>
+            <div class="lux-item"><span>Codice membro</span><strong id="profileMemberCode">XA</strong></div>
+            <div class="lux-item"><span>Status</span><strong id="profileStatus">Member</strong></div>
+            <div class="lux-item"><span>Punti disponibili</span><strong id="profilePoints">0</strong></div>
+            <div class="lux-item"><span>Acquisti</span><strong id="profilePurchases">0</strong></div>
+            <div class="lux-item"><span>Spesa totale</span><strong id="profileSpend">€0</strong></div>
+            <div class="lux-item"><span>Ultima visita</span><strong id="profileLastVisit">—</strong></div>
           </div>
 
           <div class="note">
-            Questa V5 salva clienti e transazioni con <strong>localStorage</strong>.
-            Per usare la stessa base dati su più dispositivi servirà collegare un database/API.
+            V6 usa localStorage. Per usare la stessa base dati su più dispositivi servirà poi database/API.
           </div>
         </div>
       </div>
@@ -1917,35 +1725,12 @@
   </main>
 
   <nav class="bottom-nav" aria-label="Navigazione principale">
-    <button class="nav-btn active" data-tab="home">
-      <span class="nav-icon">⌂</span>
-      Home
-    </button>
-
-    <button class="nav-btn" data-tab="pos">
-      <span class="nav-icon">▣</span>
-      Cassa
-    </button>
-
-    <button class="nav-btn" data-tab="clients">
-      <span class="nav-icon">◉</span>
-      Clienti
-    </button>
-
-    <button class="nav-btn" data-tab="rewards">
-      <span class="nav-icon">✦</span>
-      Rewards
-    </button>
-
-    <button class="nav-btn" data-tab="activity">
-      <span class="nav-icon">≋</span>
-      Storico
-    </button>
-
-    <button class="nav-btn" data-tab="profile">
-      <span class="nav-icon">◎</span>
-      Profilo
-    </button>
+    <button class="nav-btn active" data-tab="home"><span class="nav-icon">⌂</span>Home</button>
+    <button class="nav-btn" data-tab="pos"><span class="nav-icon">▣</span>Cassa</button>
+    <button class="nav-btn" data-tab="clients"><span class="nav-icon">◉</span>Clienti</button>
+    <button class="nav-btn" data-tab="rewards"><span class="nav-icon">✦</span>Rewards</button>
+    <button class="nav-btn" data-tab="activity"><span class="nav-icon">≋</span>Storico</button>
+    <button class="nav-btn" data-tab="profile"><span class="nav-icon">◎</span>Profilo</button>
   </nav>
 
   <div class="toast-wrap" id="toastWrap"></div>
@@ -1962,8 +1747,9 @@
   </div>
 
   <script>
-    const STORAGE_KEY = "xa_fermented_redrinks_loyalty_v5";
+    const STORAGE_KEY = "xa_fermented_redrinks_loyalty_v6";
     const OLD_KEYS = [
+      "xa_fermented_redrinks_loyalty_v5",
       "xa_fermented_redrinks_loyalty_v4",
       "xa_fermented_redrinks_loyalty_v3",
       "xa_fermented_redrinks_loyalty_v2",
@@ -1973,242 +1759,72 @@
     const STORE_PIN = "2026";
 
     const levels = [
-      {
-        name: "Cellar Guest",
-        min: 0,
-        privileges: [
-          "Card digitale XA attiva",
-          "Punti su ogni acquisto",
-          "Accesso alle prime novità del club"
-        ]
-      },
-      {
-        name: "Reserve Member",
-        min: 750,
-        privileges: [
-          "Anteprime su limited edition",
-          "Priorità su degustazioni selezionate",
-          "Badge Reserve sulla card XA"
-        ]
-      },
-      {
-        name: "Grand Reserve",
-        min: 2200,
-        privileges: [
-          "Accesso anticipato agli eventi XA",
-          "Reward esperienziali riservati",
-          "Priorità sulle release stagionali"
-        ]
-      },
-      {
-        name: "Founder Circle",
-        min: 5200,
-        privileges: [
-          "Inviti a tavoli di degustazione privati",
-          "Privilegi su bottiglie numerate",
-          "Accesso alle prove di laboratorio XA"
-        ]
-      },
-      {
-        name: "XA Inner Cellar",
-        min: 9800,
-        privileges: [
-          "Massimo status membro",
-          "Accesso a release ultra limitate",
-          "Inviti a esperienze private XA"
-        ]
-      }
+      { name:"Cellar Guest", min:0, privileges:["Card digitale XA attiva","Punti su ogni acquisto","Accesso alle prime novità del club"] },
+      { name:"Reserve Member", min:750, privileges:["Anteprime su limited edition","Priorità su degustazioni selezionate","Badge Reserve sulla card XA"] },
+      { name:"Grand Reserve", min:2200, privileges:["Accesso anticipato agli eventi XA","Reward esperienziali riservati","Priorità sulle release stagionali"] },
+      { name:"Founder Circle", min:5200, privileges:["Inviti a tavoli di degustazione privati","Privilegi su bottiglie numerate","Accesso alle prove di laboratorio XA"] },
+      { name:"XA Inner Cellar", min:9800, privileges:["Massimo status membro","Accesso a release ultra limitate","Inviti a esperienze private XA"] }
     ];
 
     const categories = [
-      {
-        id: "fermented_redrinks",
-        label: "Fermented Redrinks",
-        multiplier: 1,
-        description: "Regola base: 1 punto ogni euro"
-      },
-      {
-        id: "limited_edition",
-        label: "Limited Edition",
-        multiplier: 2,
-        description: "Release rare: 2 punti ogni euro"
-      },
-      {
-        id: "tasting_event",
-        label: "Degustazione / Evento",
-        multiplier: 3,
-        description: "Esperienze XA: 3 punti ogni euro"
-      },
-      {
-        id: "cellar_bottle",
-        label: "Bottiglia cantina",
-        multiplier: 1.5,
-        description: "Prodotti premium: 1,5 punti ogni euro"
-      },
-      {
-        id: "accessory",
-        label: "Accessori",
-        multiplier: 0.5,
-        description: "Accessori: mezzo punto ogni euro"
-      },
-      {
-        id: "manual_bonus",
-        label: "Bonus manuale",
-        multiplier: 1,
-        description: "Per correzioni o casi speciali"
-      }
+      { id:"fermented_redrinks", label:"Fermented Redrinks", multiplier:1 },
+      { id:"limited_edition", label:"Limited Edition", multiplier:2 },
+      { id:"tasting_event", label:"Degustazione / Evento", multiplier:3 },
+      { id:"cellar_bottle", label:"Bottiglia cantina", multiplier:1.5 },
+      { id:"accessory", label:"Accessori", multiplier:.5 },
+      { id:"manual_bonus", label:"Bonus manuale", multiplier:1 }
     ];
 
     const rewards = [
-      {
-        id: "rw-01",
-        title: "Degustazione privata XA",
-        type: "experience",
-        badge: "Esperienza",
-        cost: 850,
-        limit: "Solo 8 posti",
-        desc: "Accesso a una degustazione guidata con sidri moderni, fermentazioni botaniche e prove di laboratorio XA."
-      },
-      {
-        id: "rw-02",
-        title: "Bottiglia Founder Batch",
-        type: "limited",
-        badge: "Limited Edition",
-        cost: 1200,
-        limit: "Numerata",
-        desc: "Prenotazione di una release XA in micro lotto, con etichetta dedicata ai membri del club."
-      },
-      {
-        id: "rw-03",
-        title: "Invito tavolo fermentazioni",
-        type: "experience",
-        badge: "Evento",
-        cost: 650,
-        limit: "Su calendario",
-        desc: "Partecipazione a un incontro su fermentazioni, sidro e tecniche contemporanee di miscelazione."
-      },
-      {
-        id: "rw-04",
-        title: "Priority Release Access",
-        type: "privilege",
-        badge: "Privilegio",
-        cost: 500,
-        limit: "Accesso 48h prima",
-        desc: "Accesso anticipato alle future release XA prima della comunicazione pubblica."
-      },
-      {
-        id: "rw-05",
-        title: "Cellar Note personale",
-        type: "cellar",
-        badge: "Cantina",
-        cost: 350,
-        limit: "Profilo gusto",
-        desc: "Creazione di una nota gusto personale con preferenze su acidità, tannino, secco, fruttato e botaniche."
-      },
-      {
-        id: "rw-06",
-        title: "Limited Glass Ritual",
-        type: "limited",
-        badge: "Oggetto Club",
-        cost: 950,
-        limit: "Serie privata",
-        desc: "Oggetto rituale XA per degustazione, pensato come segno identitario del club."
-      }
+      { id:"rw-01", title:"Degustazione privata XA", type:"experience", badge:"Esperienza", cost:850, limit:"Solo 8 posti", desc:"Accesso a una degustazione guidata con sidri moderni, fermentazioni botaniche e prove di laboratorio XA." },
+      { id:"rw-02", title:"Bottiglia Founder Batch", type:"limited", badge:"Limited Edition", cost:1200, limit:"Numerata", desc:"Prenotazione di una release XA in micro lotto, con etichetta dedicata ai membri del club." },
+      { id:"rw-03", title:"Invito tavolo fermentazioni", type:"experience", badge:"Evento", cost:650, limit:"Su calendario", desc:"Partecipazione a un incontro su fermentazioni, sidro e tecniche contemporanee di miscelazione." },
+      { id:"rw-04", title:"Priority Release Access", type:"privilege", badge:"Privilegio", cost:500, limit:"Accesso 48h prima", desc:"Accesso anticipato alle future release XA prima della comunicazione pubblica." },
+      { id:"rw-05", title:"Cellar Note personale", type:"cellar", badge:"Cantina", cost:350, limit:"Profilo gusto", desc:"Creazione di una nota gusto personale con preferenze su acidità, tannino, secco, fruttato e botaniche." },
+      { id:"rw-06", title:"Limited Glass Ritual", type:"limited", badge:"Oggetto Club", cost:950, limit:"Serie privata", desc:"Oggetto rituale XA per degustazione, pensato come segno identitario del club." }
     ];
 
     const demoState = {
-      activeCustomerId: "XA-2026-0001",
+      activeCustomerId:"XA-2026-0001",
       rewards,
       categories,
-      transactions: [
-        createTransactionSeed({
-          id: "TRX-DEMO-001",
-          type: "sale",
-          customer_id: "XA-2026-0001",
-          customer_name: "Maria Luisa",
-          receipt_number: "XA-2026-000001",
-          amount: 78,
-          points: 78,
-          product_category: "fermented_redrinks",
-          category_label: "Fermented Redrinks",
-          multiplier: 1,
-          operator: "Negozio XA",
-          note: "Degustazione sidro e fermented redrinks",
-          source: "manual_pos"
+      transactions:[
+        seedTransaction({
+          id:"TRX-DEMO-001",
+          type:"sale",
+          customer_id:"XA-2026-0001",
+          customer_name:"Maria Luisa",
+          receipt_number:"XA-2026-000001",
+          amount:78,
+          points:78,
+          product_category:"fermented_redrinks",
+          category_label:"Fermented Redrinks",
+          multiplier:1,
+          operator:"Negozio XA",
+          note:"Degustazione sidro e fermented redrinks",
+          source:"manual_pos"
         }),
-        createTransactionSeed({
-          id: "TRX-DEMO-002",
-          type: "bonus",
-          customer_id: "XA-2026-0001",
-          customer_name: "Maria Luisa",
-          receipt_number: "BONUS-2026-000001",
-          amount: 0,
-          points: 200,
-          product_category: "manual_bonus",
-          category_label: "Bonus manuale",
-          multiplier: 1,
-          operator: "Negozio XA",
-          note: "Bonus anteprima Club XA",
-          source: "loyalty_app"
+        seedTransaction({
+          id:"TRX-DEMO-002",
+          type:"bonus",
+          customer_id:"XA-2026-0001",
+          customer_name:"Maria Luisa",
+          receipt_number:"BONUS-2026-000001",
+          amount:0,
+          points:200,
+          product_category:"manual_bonus",
+          category_label:"Bonus manuale",
+          multiplier:1,
+          operator:"Negozio XA",
+          note:"Bonus anteprima Club XA",
+          source:"loyalty_app"
         })
       ],
-      customers: [
-        createCustomerSeed({
-          id: "XA-2026-0001",
-          name: "Maria Luisa",
-          email: "member@xaclub.demo",
-          phone: "+39 000 000 0000",
-          points: 1260,
-          lifetimePoints: 3840,
-          totalSpend: 1180,
-          purchases: 14,
-          joined: "04 Luglio 2026",
-          lastVisit: "04/07/2026, 09:18",
-          preferences: "Sidri dry, fermentazioni botaniche, limited edition, degustazioni guidate.",
-          notes: "Cliente demo principale."
-        }),
-        createCustomerSeed({
-          id: "XA-2026-0002",
-          name: "Giovanni Bianchi",
-          email: "giovanni@example.com",
-          phone: "+39 333 111 2222",
-          points: 320,
-          lifetimePoints: 320,
-          totalSpend: 320,
-          purchases: 3,
-          joined: "04 Luglio 2026",
-          lastVisit: "04/07/2026, 10:22",
-          preferences: "Tonica mediterranea, sidro fruttato, eventi serali.",
-          notes: ""
-        }),
-        createCustomerSeed({
-          id: "XA-2026-0003",
-          name: "Francesca Rossi",
-          email: "francesca@example.com",
-          phone: "+39 333 222 4444",
-          points: 2480,
-          lifetimePoints: 2480,
-          totalSpend: 1640,
-          purchases: 8,
-          joined: "04 Luglio 2026",
-          lastVisit: "04/07/2026, 11:30",
-          preferences: "Limited edition, degustazioni tecniche, bevande secche.",
-          notes: ""
-        }),
-        createCustomerSeed({
-          id: "XA-2026-0004",
-          name: "Luca Ferri",
-          email: "luca@example.com",
-          phone: "+39 333 555 7777",
-          points: 5600,
-          lifetimePoints: 5600,
-          totalSpend: 4200,
-          purchases: 19,
-          joined: "04 Luglio 2026",
-          lastVisit: "04/07/2026, 12:05",
-          preferences: "Eventi privati, release numerate, sidri tannici.",
-          notes: ""
-        })
+      customers:[
+        seedCustomer({ id:"XA-2026-0001", name:"Maria Luisa", email:"member@xaclub.demo", phone:"+39 000 000 0000", points:1260, lifetimePoints:3840, totalSpend:1180, purchases:14, joined:"04 Luglio 2026", lastVisit:"04/07/2026, 09:18", preferences:"Sidri dry, fermentazioni botaniche, limited edition, degustazioni guidate.", notes:"Cliente demo principale." }),
+        seedCustomer({ id:"XA-2026-0002", name:"Giovanni Bianchi", email:"giovanni@example.com", phone:"+39 333 111 2222", points:320, lifetimePoints:320, totalSpend:320, purchases:3, joined:"04 Luglio 2026", lastVisit:"04/07/2026, 10:22", preferences:"Tonica mediterranea, sidro fruttato, eventi serali.", notes:"" }),
+        seedCustomer({ id:"XA-2026-0003", name:"Francesca Rossi", email:"francesca@example.com", phone:"+39 333 222 4444", points:2480, lifetimePoints:2480, totalSpend:1640, purchases:8, joined:"04 Luglio 2026", lastVisit:"04/07/2026, 11:30", preferences:"Limited edition, degustazioni tecniche, bevande secche.", notes:"" }),
+        seedCustomer({ id:"XA-2026-0004", name:"Luca Ferri", email:"luca@example.com", phone:"+39 333 555 7777", points:5600, lifetimePoints:5600, totalSpend:4200, purchases:19, joined:"04 Luglio 2026", lastVisit:"04/07/2026, 12:05", preferences:"Eventi privati, release numerate, sidri tannici.", notes:"" })
       ]
     };
 
@@ -2223,7 +1839,7 @@
       bindUI();
       renderAll();
 
-      if (sessionStorage.getItem("xa_splash_seen_v5")) {
+      if (sessionStorage.getItem("xa_splash_seen_v6")) {
         $("#splash").classList.add("hide");
       }
 
@@ -2231,25 +1847,19 @@
       fillDefaultReceipt();
     });
 
-    function bindUI() {
+    function bindUI(){
       $("#enterApp").addEventListener("click", () => {
-        sessionStorage.setItem("xa_splash_seen_v5", "1");
+        sessionStorage.setItem("xa_splash_seen_v6","1");
         $("#splash").classList.add("hide");
         toast("Benvenuto nel Club XA.");
       });
 
-      $$(".nav-btn").forEach(btn => {
-        btn.addEventListener("click", () => setTab(btn.dataset.tab));
-      });
-
-      $$("[data-go]").forEach(btn => {
-        btn.addEventListener("click", () => setTab(btn.dataset.go));
-      });
+      $$(".nav-btn").forEach(btn => btn.addEventListener("click", () => setTab(btn.dataset.tab)));
+      $$("[data-go]").forEach(btn => btn.addEventListener("click", () => setTab(btn.dataset.go)));
 
       $("#rewardFilters").addEventListener("click", event => {
         const chip = event.target.closest(".chip");
         if (!chip) return;
-
         currentRewardFilter = chip.dataset.filter;
         $$("#rewardFilters .chip").forEach(c => c.classList.remove("active"));
         chip.classList.add("active");
@@ -2260,80 +1870,18 @@
 
       $("#newCustomerForm").addEventListener("submit", event => {
         event.preventDefault();
-
-        const name = $("#newName").value.trim();
-        if (!name) {
-          toast("Inserisci il nome del cliente.");
-          return;
-        }
-
-        const customer = {
-          id: nextCustomerId(),
-          name,
-          email: $("#newEmail").value.trim(),
-          phone: $("#newPhone").value.trim(),
-          points: 0,
-          lifetimePoints: 0,
-          totalSpend: 0,
-          purchases: 0,
-          joined: new Date().toLocaleDateString("it-IT", {
-            day: "2-digit",
-            month: "long",
-            year: "numeric"
-          }),
-          lastVisit: "—",
-          preferences: $("#newPrefs").value.trim() || "Nuovo membro XA.",
-          notes: "",
-          redeemed: {},
-          history: [
-            {
-              id: makeId(),
-              title: "Nuova card XA",
-              note: "Cliente creato nel gestionale negozio",
-              points: 0,
-              date: nowLabel(),
-              type: "member"
-            }
-          ]
-        };
-
-        state.customers.unshift(customer);
-        state.activeCustomerId = customer.id;
-        saveState();
-
-        $("#newCustomerForm").reset();
-        renderAll();
-        setTab("home");
-        toast(`Card creata: ${customer.name}`);
+        createCustomer();
       });
 
       $("#profileForm").addEventListener("submit", event => {
         event.preventDefault();
-
-        const customer = getActiveCustomer();
-        customer.name = $("#profileName").value.trim() || "Membro XA";
-        customer.email = $("#profileEmail").value.trim();
-        customer.phone = $("#profilePhone").value.trim();
-        customer.preferences = $("#profilePreferences").value.trim();
-        customer.notes = $("#profileNotes").value.trim();
-
-        addHistory(customer, {
-          title: "Profilo aggiornato",
-          note: "Dati membro modificati",
-          points: 0,
-          type: "profile"
-        });
-
-        saveState();
-        renderAll();
-        toast("Profilo cliente salvato.");
+        saveProfile();
       });
 
       $("#posClientSelect").addEventListener("change", event => {
         state.activeCustomerId = event.target.value;
         saveState();
         renderAll();
-        updatePOSPreview();
       });
 
       $("#posAmount").addEventListener("input", updatePOSPreview);
@@ -2344,126 +1892,33 @@
         createSaleTransaction();
       });
 
-      $("#goActiveClient").addEventListener("click", () => {
-        setTab("home");
-      });
+      $("#goActiveClient").addEventListener("click", () => setTab("home"));
+      $("#bonusButton").addEventListener("click", assignBonus);
+      $("#scanDemo").addEventListener("click", scanDemo);
+      $("#shopRedeemReward").addEventListener("click", () => redeemReward($("#shopRewardSelect").value));
 
-      $("#bonusButton").addEventListener("click", () => {
-        const customer = getActiveCustomer();
+      $("#exportJSON").addEventListener("click", exportJSON);
+      $("#exportCSV").addEventListener("click", exportCSV);
+      $("#importJSON").addEventListener("click", importJSON);
+      $("#clearTransactions").addEventListener("click", clearTransactions);
 
-        openConfirm({
-          title: "Assegnare bonus?",
-          text: `Vuoi assegnare 50 punti bonus a ${customer.name}?`,
-          onConfirm: () => {
-            addPointsTransaction({
-              customer,
-              points: 50,
-              amount: 0,
-              type: "bonus",
-              receipt_number: nextBonusNumber(),
-              product_category: "manual_bonus",
-              category_label: "Bonus manuale",
-              multiplier: 1,
-              operator: $("#posOperator").value.trim() || "Negozio XA",
-              note: "Bonus evento / invito XA",
-              source: "loyalty_app"
-            });
-
-            toast(`+50 punti bonus a ${customer.name}.`);
-          }
-        });
-      });
-
-      $("#shopRedeemReward").addEventListener("click", () => {
-        redeemReward($("#shopRewardSelect").value);
-      });
-
-      $("#scanDemo").addEventListener("click", () => {
-        const customer = getActiveCustomer();
-        toast(`QR riconosciuto: ${customer.id} — ${customer.name}`);
-      });
-
-      $("#exportJSON").addEventListener("click", () => {
-        const box = $("#exportBox");
-        box.style.display = "block";
-        box.value = JSON.stringify(state, null, 2);
-        toast("JSON completo esportato nel riquadro.");
-      });
-
-      $("#exportCSV").addEventListener("click", () => {
-        const box = $("#exportBox");
-        box.style.display = "block";
-        box.value = exportTransactionsCSV();
-        toast("CSV vendite esportato nel riquadro.");
-      });
-
-      $("#clearTransactions").addEventListener("click", () => {
-        openConfirm({
-          title: "Svuotare transazioni?",
-          text: "Verranno eliminate le transazioni demo globali. I punti già assegnati ai clienti non verranno ricalcolati.",
-          onConfirm: () => {
-            state.transactions = [];
-            saveState();
-            renderAll();
-            toast("Transazioni demo svuotate.");
-          }
-        });
-      });
-
-      $("#unlockStore").addEventListener("click", () => {
-        const pin = $("#storePin").value.trim();
-
-        if (pin !== STORE_PIN) {
-          toast("PIN cassa non corretto.");
-          return;
-        }
-
-        sessionStorage.setItem("xa_store_unlocked", "1");
-        $("#storePin").value = "";
-        updateStoreLock();
-        toast("Cassa XA sbloccata.");
-      });
-
-      $("#resetDemo").addEventListener("click", () => {
-        openConfirm({
-          title: "Ripristinare la demo XA?",
-          text: "Tutti i clienti e le transazioni locali verranno sostituiti dai dati demo iniziali.",
-          onConfirm: () => {
-            localStorage.removeItem(STORAGE_KEY);
-            OLD_KEYS.forEach(key => localStorage.removeItem(key));
-            sessionStorage.removeItem("xa_store_unlocked");
-            state = clone(demoState);
-            saveState();
-            fillDefaultReceipt();
-            renderAll();
-            updateStoreLock();
-            toast("Demo XA V5 ripristinata.");
-          }
-        });
-      });
+      $("#unlockStore").addEventListener("click", unlockStore);
+      $("#resetDemo").addEventListener("click", resetDemo);
 
       $("#modalCancel").addEventListener("click", closeConfirm);
-
       $("#modalBackdrop").addEventListener("click", event => {
         if (event.target.id === "modalBackdrop") closeConfirm();
       });
-
       $("#modalConfirm").addEventListener("click", () => {
         if (typeof pendingConfirm === "function") pendingConfirm();
         closeConfirm();
       });
     }
 
-    function setTab(tab) {
-      $$(".nav-btn").forEach(btn => {
-        btn.classList.toggle("active", btn.dataset.tab === tab);
-      });
-
-      $$(".screen").forEach(screen => {
-        screen.classList.toggle("active", screen.id === `screen-${tab}`);
-      });
-
-      window.scrollTo({ top: 0, behavior: "smooth" });
+    function setTab(tab){
+      $$(".nav-btn").forEach(btn => btn.classList.toggle("active", btn.dataset.tab === tab));
+      $$(".screen").forEach(screen => screen.classList.toggle("active", screen.id === `screen-${tab}`));
+      window.scrollTo({top:0,behavior:"smooth"});
 
       if (tab === "pos") {
         updateStoreLock();
@@ -2472,7 +1927,7 @@
       }
     }
 
-    function renderAll() {
+    function renderAll(){
       normalizeState();
 
       const customer = getActiveCustomer();
@@ -2540,31 +1995,24 @@
       drawQR(`${customer.id}|${customer.name}|XA Fermented Redrinks`);
     }
 
-    function renderPrivileges(level) {
+    function renderPrivileges(level){
       const list = $("#privilegesList");
       if (!list) return;
-
       list.innerHTML = "";
-
       level.privileges.forEach(item => {
         const row = document.createElement("div");
         row.className = "lux-item";
-        row.innerHTML = `
-          <span>Privilegio</span>
-          <strong>${escapeHTML(item)}</strong>
-        `;
+        row.innerHTML = `<span>Privilegio</span><strong>${escapeHTML(item)}</strong>`;
         list.appendChild(row);
       });
     }
 
-    function renderRewards() {
+    function renderRewards(){
       const customer = getActiveCustomer();
       const list = $("#rewardList");
       list.innerHTML = "";
 
-      const visibleRewards = state.rewards.filter(reward => {
-        return currentRewardFilter === "all" || reward.type === currentRewardFilter;
-      });
+      const visibleRewards = state.rewards.filter(reward => currentRewardFilter === "all" || reward.type === currentRewardFilter);
 
       if (!visibleRewards.length) {
         list.innerHTML = `<div class="empty">Nessun reward in questa categoria.</div>`;
@@ -2582,10 +2030,8 @@
             <span class="tag">${escapeHTML(reward.badge)}</span>
             <span class="tag">${escapeHTML(reward.limit)}</span>
           </div>
-
           <h3>${escapeHTML(reward.title)}</h3>
           <p>${escapeHTML(reward.desc)}</p>
-
           <div class="reward-bottom">
             <div class="price">
               <strong>${formatNumber(reward.cost)} pt</strong>
@@ -2602,7 +2048,7 @@
       });
     }
 
-    function renderActivity() {
+    function renderActivity(){
       const customer = getActiveCustomer();
       const list = $("#activityList");
       list.innerHTML = "";
@@ -2612,14 +2058,13 @@
         return;
       }
 
-      customer.history.slice(0, 80).forEach(item => {
-        const el = document.createElement("article");
-        el.className = "activity";
-
+      customer.history.slice(0,80).forEach(item => {
         const sign = item.points > 0 ? "+" : "";
         const pointsClass = item.points > 0 ? "positive" : item.points < 0 ? "negative" : "";
         const icon = getActivityIcon(item.type);
 
+        const el = document.createElement("article");
+        el.className = "activity";
         el.innerHTML = `
           <div class="activity-icon">${icon}</div>
           <div>
@@ -2628,12 +2073,11 @@
           </div>
           <strong class="${pointsClass}">${item.points === 0 ? "—" : `${sign}${formatNumber(item.points)}`}</strong>
         `;
-
         list.appendChild(el);
       });
     }
 
-    function renderTransactions() {
+    function renderTransactions(){
       const list = $("#transactionList");
       list.innerHTML = "";
 
@@ -2642,14 +2086,13 @@
         return;
       }
 
-      state.transactions.slice(0, 60).forEach(transaction => {
-        const el = document.createElement("article");
-        el.className = "transaction-row";
-
+      state.transactions.slice(0,60).forEach(transaction => {
         const typeLabel = getTransactionTypeLabel(transaction.type);
         const pointsClass = transaction.points > 0 ? "positive" : transaction.points < 0 ? "negative" : "";
         const sign = transaction.points > 0 ? "+" : "";
 
+        const el = document.createElement("article");
+        el.className = "transaction-row";
         el.innerHTML = `
           <div class="transaction-top">
             <span class="tag">${escapeHTML(typeLabel)}</span>
@@ -2669,15 +2112,13 @@
             <strong class="${pointsClass}">${transaction.points === 0 ? "—" : `${sign}${formatNumber(transaction.points)} pt`}</strong>
           </div>
         `;
-
         list.appendChild(el);
       });
     }
 
-    function renderClients() {
+    function renderClients(){
       const list = $("#clientList");
       const query = ($("#clientSearch").value || "").trim().toLowerCase();
-
       list.innerHTML = "";
 
       const filtered = state.customers.filter(customer => {
@@ -2701,14 +2142,12 @@
             <span class="tag">${active ? "Attivo" : "Cliente"}</span>
             <span class="tag">${escapeHTML(level.name)}</span>
           </div>
-
           <h3>${escapeHTML(customer.name)}</h3>
           <p>
             ${escapeHTML(customer.id)}<br>
             ${escapeHTML(customer.email || "email non inserita")} · ${escapeHTML(customer.phone || "telefono non inserito")}<br>
             Acquisti: ${formatNumber(customer.purchases || 0)} · Spesa: ${formatMoney(customer.totalSpend || 0)}
           </p>
-
           <div class="reward-bottom">
             <div class="price">
               <strong>${formatNumber(customer.points)} pt</strong>
@@ -2738,18 +2177,15 @@
           toast(`Cliente in cassa: ${customer.name}`);
         });
 
-        el.querySelector("[data-delete]").addEventListener("click", () => {
-          deleteCustomer(customer.id);
-        });
-
+        el.querySelector("[data-delete]").addEventListener("click", () => deleteCustomer(customer.id));
         list.appendChild(el);
       });
     }
 
-    function renderClientStats() {
+    function renderClientStats(){
       const totalClients = state.customers.length;
-      const totalPoints = state.customers.reduce((sum, customer) => sum + Number(customer.points || 0), 0);
-      const top = [...state.customers].sort((a, b) => b.lifetimePoints - a.lifetimePoints)[0];
+      const totalPoints = state.customers.reduce((sum, customer) => sum + Number(customer.points || 0),0);
+      const top = [...state.customers].sort((a,b) => b.lifetimePoints - a.lifetimePoints)[0];
 
       $("#clientsTotal").textContent = formatNumber(totalClients);
       $("#clientsPoints").textContent = formatNumber(totalPoints);
@@ -2757,7 +2193,7 @@
       $("#topClientName").textContent = top ? top.name : "—";
     }
 
-    function renderStoreSelects() {
+    function renderStoreSelects(){
       const customerSelect = $("#posClientSelect");
       const categorySelect = $("#posCategory");
       const rewardSelect = $("#shopRewardSelect");
@@ -2795,7 +2231,62 @@
       }
     }
 
-    function createSaleTransaction() {
+    function createCustomer(){
+      const name = $("#newName").value.trim();
+      if (!name) {
+        toast("Inserisci il nome del cliente.");
+        return;
+      }
+
+      const customer = {
+        id: nextCustomerId(),
+        name,
+        email: $("#newEmail").value.trim(),
+        phone: $("#newPhone").value.trim(),
+        points:0,
+        lifetimePoints:0,
+        totalSpend:0,
+        purchases:0,
+        joined: new Date().toLocaleDateString("it-IT",{day:"2-digit",month:"long",year:"numeric"}),
+        lastVisit:"—",
+        preferences: $("#newPrefs").value.trim() || "Nuovo membro XA.",
+        notes:"",
+        redeemed:{},
+        history:[{
+          id: makeId(),
+          title:"Nuova card XA",
+          note:"Cliente creato nel gestionale negozio",
+          points:0,
+          date: nowLabel(),
+          type:"member"
+        }]
+      };
+
+      state.customers.unshift(customer);
+      state.activeCustomerId = customer.id;
+      saveState();
+
+      $("#newCustomerForm").reset();
+      renderAll();
+      setTab("home");
+      toast(`Card creata: ${customer.name}`);
+    }
+
+    function saveProfile(){
+      const customer = getActiveCustomer();
+      customer.name = $("#profileName").value.trim() || "Membro XA";
+      customer.email = $("#profileEmail").value.trim();
+      customer.phone = $("#profilePhone").value.trim();
+      customer.preferences = $("#profilePreferences").value.trim();
+      customer.notes = $("#profileNotes").value.trim();
+
+      addHistory(customer,{title:"Profilo aggiornato",note:"Dati membro modificati",points:0,type:"profile"});
+      saveState();
+      renderAll();
+      toast("Profilo cliente salvato.");
+    }
+
+    function createSaleTransaction(){
       const customer = getActiveCustomer();
       const amount = Number($("#posAmount").value);
       const category = getCategory($("#posCategory").value);
@@ -2811,38 +2302,37 @@
       const points = calculatePoints(amount, category.multiplier);
 
       openConfirm({
-        title: "Confermare vendita?",
-        text: `${customer.name}: ${formatMoney(amount)} · ${category.label} · ${points} punti · scontrino ${receipt}.`,
+        title:"Confermare vendita?",
+        text:`${customer.name}: ${formatMoney(amount)} · ${category.label} · ${points} punti · scontrino ${receipt}.`,
         onConfirm: () => {
           addPointsTransaction({
             customer,
             points,
             amount,
-            type: "sale",
-            receipt_number: receipt,
-            product_category: category.id,
-            category_label: category.label,
-            multiplier: category.multiplier,
+            type:"sale",
+            receipt_number:receipt,
+            product_category:category.id,
+            category_label:category.label,
+            multiplier:category.multiplier,
             operator,
             note,
-            source: "manual_pos"
+            source:"manual_pos"
           });
 
           $("#posAmount").value = "";
           $("#posNote").value = "";
           $("#posReceipt").value = nextReceiptNumber();
           updatePOSPreview();
-
           toast(`Vendita registrata: +${points} punti a ${customer.name}.`);
         }
       });
     }
 
-    function addPointsTransaction(data) {
+    function addPointsTransaction(data){
       const customer = data.customer;
 
       customer.points += data.points;
-      customer.lifetimePoints += Math.max(0, data.points);
+      customer.lifetimePoints += Math.max(0,data.points);
       customer.totalSpend = Number(customer.totalSpend || 0) + Number(data.amount || 0);
 
       if (data.type === "sale") {
@@ -2852,37 +2342,63 @@
 
       const transaction = {
         id: makeTransactionId(),
-        type: data.type,
-        customer_id: customer.id,
-        customer_name: customer.name,
-        receipt_number: data.receipt_number,
-        amount: Number(data.amount || 0),
-        points: Number(data.points || 0),
-        product_category: data.product_category,
-        category_label: data.category_label,
-        multiplier: Number(data.multiplier || 1),
-        operator: data.operator || "Negozio XA",
-        note: data.note || "",
-        date_iso: new Date().toISOString(),
-        date_label: nowLabel(),
-        source: data.source || "manual_pos",
-        pos_ready: true
+        type:data.type,
+        customer_id:customer.id,
+        customer_name:customer.name,
+        receipt_number:data.receipt_number,
+        amount:Number(data.amount || 0),
+        points:Number(data.points || 0),
+        product_category:data.product_category,
+        category_label:data.category_label,
+        multiplier:Number(data.multiplier || 1),
+        operator:data.operator || "Negozio XA",
+        note:data.note || "",
+        date_iso:new Date().toISOString(),
+        date_label:nowLabel(),
+        source:data.source || "manual_pos",
+        pos_ready:true
       };
 
       state.transactions.unshift(transaction);
 
-      addHistory(customer, {
+      addHistory(customer,{
         title: data.type === "sale" ? "Vendita registrata" : "Bonus punti",
-        note: `${data.note || data.category_label} · ${data.receipt_number}`,
-        points: data.points,
-        type: data.type === "sale" ? "earn" : "bonus"
+        note:`${data.note || data.category_label} · ${data.receipt_number}`,
+        points:data.points,
+        type:data.type === "sale" ? "earn" : "bonus"
       });
 
       saveState();
       renderAll();
     }
 
-    function redeemReward(id) {
+    function assignBonus(){
+      const customer = getActiveCustomer();
+
+      openConfirm({
+        title:"Assegnare bonus?",
+        text:`Vuoi assegnare 50 punti bonus a ${customer.name}?`,
+        onConfirm: () => {
+          addPointsTransaction({
+            customer,
+            points:50,
+            amount:0,
+            type:"bonus",
+            receipt_number:nextBonusNumber(),
+            product_category:"manual_bonus",
+            category_label:"Bonus manuale",
+            multiplier:1,
+            operator: $("#posOperator").value.trim() || "Negozio XA",
+            note:"Bonus evento / invito XA",
+            source:"loyalty_app"
+          });
+
+          toast(`+50 punti bonus a ${customer.name}.`);
+        }
+      });
+    }
+
+    function redeemReward(id){
       const customer = getActiveCustomer();
       const reward = state.rewards.find(item => item.id === id);
 
@@ -2894,43 +2410,35 @@
       }
 
       openConfirm({
-        title: "Confermare il riscatto?",
-        text: `${reward.title} verrà riscattato per ${customer.name} usando ${formatNumber(reward.cost)} punti XA.`,
+        title:"Confermare il riscatto?",
+        text:`${reward.title} verrà riscattato per ${customer.name} usando ${formatNumber(reward.cost)} punti XA.`,
         onConfirm: () => {
           customer.points -= reward.cost;
           customer.redeemed = customer.redeemed || {};
           customer.redeemed[reward.id] = (customer.redeemed[reward.id] || 0) + 1;
 
-          const transaction = {
-            id: makeTransactionId(),
-            type: "reward_redeem",
-            customer_id: customer.id,
-            customer_name: customer.name,
-            receipt_number: nextRedeemNumber(),
-            amount: 0,
-            points: -reward.cost,
-            reward_id: reward.id,
-            reward_title: reward.title,
-            product_category: "reward",
-            category_label: "Riscatto premio",
-            multiplier: 0,
-            operator: $("#posOperator").value.trim() || "Negozio XA",
-            note: reward.title,
-            date_iso: new Date().toISOString(),
-            date_label: nowLabel(),
-            source: "loyalty_app",
-            pos_ready: true
-          };
-
-          state.transactions.unshift(transaction);
-
-          addHistory(customer, {
-            title: "Riscatto reward",
-            note: reward.title,
-            points: -reward.cost,
-            type: "redeem"
+          state.transactions.unshift({
+            id:makeTransactionId(),
+            type:"reward_redeem",
+            customer_id:customer.id,
+            customer_name:customer.name,
+            receipt_number:nextRedeemNumber(),
+            amount:0,
+            points:-reward.cost,
+            reward_id:reward.id,
+            reward_title:reward.title,
+            product_category:"reward",
+            category_label:"Riscatto premio",
+            multiplier:0,
+            operator:$("#posOperator").value.trim() || "Negozio XA",
+            note:reward.title,
+            date_iso:new Date().toISOString(),
+            date_label:nowLabel(),
+            source:"loyalty_app",
+            pos_ready:true
           });
 
+          addHistory(customer,{title:"Riscatto reward",note:reward.title,points:-reward.cost,type:"redeem"});
           saveState();
           renderAll();
           toast(`Reward riscattato: ${reward.title}`);
@@ -2938,7 +2446,7 @@
       });
     }
 
-    function deleteCustomer(id) {
+    function deleteCustomer(id){
       const customer = state.customers.find(item => item.id === id);
       if (!customer) return;
 
@@ -2948,15 +2456,11 @@
       }
 
       openConfirm({
-        title: "Eliminare cliente?",
-        text: `Vuoi eliminare la card di ${customer.name}? Questa azione rimuove dati e storico dal dispositivo.`,
+        title:"Eliminare cliente?",
+        text:`Vuoi eliminare la card di ${customer.name}? Questa azione rimuove dati e storico dal dispositivo.`,
         onConfirm: () => {
           state.customers = state.customers.filter(item => item.id !== id);
-
-          if (state.activeCustomerId === id) {
-            state.activeCustomerId = state.customers[0].id;
-          }
-
+          if (state.activeCustomerId === id) state.activeCustomerId = state.customers[0].id;
           saveState();
           renderAll();
           toast("Cliente eliminato.");
@@ -2964,19 +2468,109 @@
       });
     }
 
-    function addHistory(customer, entry) {
-      customer.history = customer.history || [];
-      customer.history.unshift({
-        id: makeId(),
-        title: entry.title,
-        note: entry.note,
-        points: entry.points,
-        type: entry.type || "generic",
-        date: nowLabel()
+    function scanDemo(){
+      const customer = getActiveCustomer();
+      toast(`QR riconosciuto: ${customer.id} — ${customer.name}`);
+    }
+
+    function exportJSON(){
+      const box = $("#exportBox");
+      box.style.display = "block";
+      box.value = JSON.stringify(state,null,2);
+      toast("JSON completo esportato nel riquadro.");
+    }
+
+    function exportCSV(){
+      const box = $("#exportBox");
+      box.style.display = "block";
+      box.value = exportTransactionsCSV();
+      toast("CSV vendite esportato nel riquadro.");
+    }
+
+    function importJSON(){
+      const raw = $("#importBox").value.trim();
+
+      if (!raw) {
+        toast("Incolla prima un backup JSON.");
+        return;
+      }
+
+      try {
+        const parsed = JSON.parse(raw);
+
+        if (!Array.isArray(parsed.customers)) {
+          toast("Backup non valido: mancano i clienti.");
+          return;
+        }
+
+        openConfirm({
+          title:"Importare backup?",
+          text:"I dati attuali verranno sostituiti dal backup incollato.",
+          onConfirm: () => {
+            state = {
+              ...clone(demoState),
+              ...parsed,
+              rewards: Array.isArray(parsed.rewards) && parsed.rewards.length ? parsed.rewards : rewards,
+              categories: Array.isArray(parsed.categories) && parsed.categories.length ? parsed.categories : categories,
+              customers: parsed.customers,
+              transactions: Array.isArray(parsed.transactions) ? parsed.transactions : []
+            };
+            saveState();
+            renderAll();
+            toast("Backup importato.");
+          }
+        });
+      } catch (error) {
+        toast("JSON non valido.");
+      }
+    }
+
+    function clearTransactions(){
+      openConfirm({
+        title:"Svuotare transazioni?",
+        text:"Verranno eliminate le transazioni globali. I punti già assegnati ai clienti non verranno ricalcolati.",
+        onConfirm: () => {
+          state.transactions = [];
+          saveState();
+          renderAll();
+          toast("Transazioni svuotate.");
+        }
       });
     }
 
-    function updatePOSPreview() {
+    function unlockStore(){
+      const pin = $("#storePin").value.trim();
+
+      if (pin !== STORE_PIN) {
+        toast("PIN cassa non corretto.");
+        return;
+      }
+
+      sessionStorage.setItem("xa_store_unlocked","1");
+      $("#storePin").value = "";
+      updateStoreLock();
+      toast("Cassa XA sbloccata.");
+    }
+
+    function resetDemo(){
+      openConfirm({
+        title:"Ripristinare la demo XA?",
+        text:"Tutti i clienti e le transazioni locali verranno sostituiti dai dati demo iniziali.",
+        onConfirm: () => {
+          localStorage.removeItem(STORAGE_KEY);
+          OLD_KEYS.forEach(key => localStorage.removeItem(key));
+          sessionStorage.removeItem("xa_store_unlocked");
+          state = clone(demoState);
+          saveState();
+          fillDefaultReceipt();
+          renderAll();
+          updateStoreLock();
+          toast("Demo XA V6 ripristinata.");
+        }
+      });
+    }
+
+    function updatePOSPreview(){
       const customer = getActiveCustomer();
       const amount = Number($("#posAmount").value || 0);
       const category = getCategory($("#posCategory").value);
@@ -2987,21 +2581,18 @@
       $("#previewPoints").textContent = formatNumber(points);
     }
 
-    function fillDefaultReceipt() {
+    function fillDefaultReceipt(){
       const input = $("#posReceipt");
-      if (input && !input.value.trim()) {
-        input.value = nextReceiptNumber();
-      }
+      if (input && !input.value.trim()) input.value = nextReceiptNumber();
     }
 
-    function updateStoreLock() {
+    function updateStoreLock(){
       const unlocked = sessionStorage.getItem("xa_store_unlocked") === "1";
-
       $("#storeLock").classList.toggle("show", !unlocked);
       $("#storeArea").classList.toggle("locked", !unlocked);
     }
 
-    function getActiveCustomer() {
+    function getActiveCustomer(){
       let customer = state.customers.find(item => item.id === state.activeCustomerId);
 
       if (!customer) {
@@ -3017,53 +2608,58 @@
       customer.redeemed = customer.redeemed || {};
       customer.history = customer.history || [];
       customer.notes = customer.notes || "";
+      customer.lastVisit = customer.lastVisit || "—";
 
       return customer;
     }
 
-    function getLevel(customer) {
+    function getLevel(customer){
       let current = levels[0];
-
       levels.forEach(level => {
         if (customer.lifetimePoints >= level.min) current = level;
       });
-
       return current;
     }
 
-    function getNextLevel(customer) {
+    function getNextLevel(customer){
       return levels.find(level => level.min > customer.lifetimePoints) || null;
     }
 
-    function getProgressPercent(customer, current, next) {
+    function getProgressPercent(customer,current,next){
       if (!next) return 100;
-
       const range = next.min - current.min;
       const gained = customer.lifetimePoints - current.min;
       return Math.max(5, Math.min(100, Math.round((gained / range) * 100)));
     }
 
-    function getStoreStats() {
-      const activePoints = state.customers.reduce((sum, customer) => sum + Number(customer.points || 0), 0);
+    function getStoreStats(){
+      const activePoints = state.customers.reduce((sum, customer) => sum + Number(customer.points || 0),0);
       const sales = state.transactions.filter(t => t.type === "sale");
-      const revenue = sales.reduce((sum, t) => sum + Number(t.amount || 0), 0);
-
-      return {
-        activePoints,
-        salesCount: sales.length,
-        revenue
-      };
+      const revenue = sales.reduce((sum, t) => sum + Number(t.amount || 0),0);
+      return { activePoints, salesCount:sales.length, revenue };
     }
 
-    function getCategory(id) {
+    function getCategory(id){
       return state.categories.find(category => category.id === id) || state.categories[0];
     }
 
-    function calculatePoints(amount, multiplier) {
+    function calculatePoints(amount,multiplier){
       return Math.max(0, Math.floor(Number(amount || 0) * Number(multiplier || 1)));
     }
 
-    function loadState() {
+    function addHistory(customer,entry){
+      customer.history = customer.history || [];
+      customer.history.unshift({
+        id: makeId(),
+        title: entry.title,
+        note: entry.note,
+        points: entry.points,
+        type: entry.type || "generic",
+        date: nowLabel()
+      });
+    }
+
+    function loadState(){
       try {
         let raw = localStorage.getItem(STORAGE_KEY);
 
@@ -3099,7 +2695,7 @@
       }
     }
 
-    function normalizeState() {
+    function normalizeState(){
       state.rewards = Array.isArray(state.rewards) && state.rewards.length ? state.rewards : rewards;
       state.categories = Array.isArray(state.categories) && state.categories.length ? state.categories : categories;
       state.transactions = Array.isArray(state.transactions) ? state.transactions : [];
@@ -3117,136 +2713,101 @@
       });
     }
 
-    function saveState() {
+    function saveState(){
       normalizeState();
       localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
     }
 
-    function createCustomerSeed(data) {
+    function seedCustomer(data){
       return {
-        id: data.id,
-        name: data.name,
-        email: data.email || "",
-        phone: data.phone || "",
-        points: Number(data.points || 0),
-        lifetimePoints: Number(data.lifetimePoints || 0),
-        totalSpend: Number(data.totalSpend || 0),
-        purchases: Number(data.purchases || 0),
-        joined: data.joined || "04 Luglio 2026",
-        lastVisit: data.lastVisit || "—",
-        preferences: data.preferences || "",
-        notes: data.notes || "",
-        redeemed: {},
-        history: [
-          {
-            id: makeId(),
-            title: "Ingresso Club XA",
-            note: "Profilo membro attivato",
-            points: 0,
-            date: "04/07/2026, 09:10",
-            type: "member"
-          },
-          {
-            id: makeId(),
-            title: "Saldo iniziale demo",
-            note: "Punti caricati nel gestionale",
-            points: Number(data.points || 0),
-            date: "04/07/2026, 09:18",
-            type: "earn"
-          }
+        id:data.id,
+        name:data.name,
+        email:data.email || "",
+        phone:data.phone || "",
+        points:Number(data.points || 0),
+        lifetimePoints:Number(data.lifetimePoints || 0),
+        totalSpend:Number(data.totalSpend || 0),
+        purchases:Number(data.purchases || 0),
+        joined:data.joined || "04 Luglio 2026",
+        lastVisit:data.lastVisit || "—",
+        preferences:data.preferences || "",
+        notes:data.notes || "",
+        redeemed:{},
+        history:[
+          { id:makeId(), title:"Ingresso Club XA", note:"Profilo membro attivato", points:0, date:"04/07/2026, 09:10", type:"member" },
+          { id:makeId(), title:"Saldo iniziale demo", note:"Punti caricati nel gestionale", points:Number(data.points || 0), date:"04/07/2026, 09:18", type:"earn" }
         ]
       };
     }
 
-    function createTransactionSeed(data) {
+    function seedTransaction(data){
       return {
-        id: data.id || makeTransactionId(),
-        type: data.type,
-        customer_id: data.customer_id,
-        customer_name: data.customer_name,
-        receipt_number: data.receipt_number,
-        amount: Number(data.amount || 0),
-        points: Number(data.points || 0),
-        product_category: data.product_category,
-        category_label: data.category_label,
-        multiplier: Number(data.multiplier || 1),
-        operator: data.operator || "Negozio XA",
-        note: data.note || "",
-        date_iso: new Date().toISOString(),
-        date_label: "04/07/2026, 09:18",
-        source: data.source || "manual_pos",
-        pos_ready: true
+        id:data.id || makeTransactionId(),
+        type:data.type,
+        customer_id:data.customer_id,
+        customer_name:data.customer_name,
+        receipt_number:data.receipt_number,
+        amount:Number(data.amount || 0),
+        points:Number(data.points || 0),
+        product_category:data.product_category,
+        category_label:data.category_label,
+        multiplier:Number(data.multiplier || 1),
+        operator:data.operator || "Negozio XA",
+        note:data.note || "",
+        date_iso:new Date().toISOString(),
+        date_label:"04/07/2026, 09:18",
+        source:data.source || "manual_pos",
+        pos_ready:true
       };
     }
 
-    function nextCustomerId() {
+    function nextCustomerId(){
       const year = new Date().getFullYear();
-
-      const numbers = state.customers
-        .map(customer => Number(String(customer.id).split("-").slice(-1)[0]))
-        .filter(Number.isFinite);
-
-      const next = Math.max(0, ...numbers) + 1;
-      return `XA-${year}-${String(next).padStart(4, "0")}`;
+      const numbers = state.customers.map(customer => Number(String(customer.id).split("-").slice(-1)[0])).filter(Number.isFinite);
+      const next = Math.max(0,...numbers) + 1;
+      return `XA-${year}-${String(next).padStart(4,"0")}`;
     }
 
-    function nextReceiptNumber() {
+    function nextReceiptNumber(){
       const year = new Date().getFullYear();
       const count = state.transactions.filter(t => t.type === "sale").length + 1;
-      return `XA-${year}-${String(count).padStart(6, "0")}`;
+      return `XA-${year}-${String(count).padStart(6,"0")}`;
     }
 
-    function nextBonusNumber() {
+    function nextBonusNumber(){
       const year = new Date().getFullYear();
       const count = state.transactions.filter(t => t.type === "bonus").length + 1;
-      return `BONUS-${year}-${String(count).padStart(6, "0")}`;
+      return `BONUS-${year}-${String(count).padStart(6,"0")}`;
     }
 
-    function nextRedeemNumber() {
+    function nextRedeemNumber(){
       const year = new Date().getFullYear();
       const count = state.transactions.filter(t => t.type === "reward_redeem").length + 1;
-      return `REWARD-${year}-${String(count).padStart(6, "0")}`;
+      return `REWARD-${year}-${String(count).padStart(6,"0")}`;
     }
 
-    function makeTransactionId() {
-      return `TRX-${Date.now()}-${Math.random().toString(16).slice(2, 8).toUpperCase()}`;
+    function makeTransactionId(){
+      return `TRX-${Date.now()}-${Math.random().toString(16).slice(2,8).toUpperCase()}`;
     }
 
-    function exportTransactionsCSV() {
+    function exportTransactionsCSV(){
       const headers = [
-        "transaction_id",
-        "type",
-        "customer_id",
-        "customer_name",
-        "receipt_number",
-        "amount",
-        "points",
-        "product_category",
-        "category_label",
-        "multiplier",
-        "operator",
-        "note",
-        "date_iso",
-        "date_label",
-        "source"
+        "transaction_id","type","customer_id","customer_name","receipt_number","amount","points",
+        "product_category","category_label","multiplier","operator","note","date_iso","date_label","source"
       ];
 
-      const rows = state.transactions.map(t => {
-        return headers.map(key => csvCell(t[key] ?? "")).join(",");
-      });
-
-      return [headers.join(","), ...rows].join("\n");
+      const rows = state.transactions.map(t => headers.map(key => csvCell(t[key] ?? "")).join(","));
+      return [headers.join(","),...rows].join("\n");
     }
 
-    function csvCell(value) {
-      const text = String(value).replaceAll('"', '""');
+    function csvCell(value){
+      const text = String(value).replaceAll('"','""');
       return `"${text}"`;
     }
 
-    function toast(message) {
+    function toast(message){
       const wrap = $("#toastWrap");
       const el = document.createElement("div");
-
       el.className = "toast";
       el.innerHTML = `<span>✦</span><span>${escapeHTML(message)}</span>`;
       wrap.appendChild(el);
@@ -3255,24 +2816,24 @@
         el.style.opacity = "0";
         el.style.transform = "translateY(10px)";
         el.style.transition = "opacity .22s ease, transform .22s ease";
-      }, 2600);
+      },2600);
 
-      setTimeout(() => el.remove(), 2920);
+      setTimeout(() => el.remove(),2920);
     }
 
-    function openConfirm({ title, text, onConfirm }) {
+    function openConfirm({title,text,onConfirm}){
       $("#modalTitle").textContent = title;
       $("#modalText").textContent = text;
       pendingConfirm = onConfirm;
       $("#modalBackdrop").classList.add("show");
     }
 
-    function closeConfirm() {
+    function closeConfirm(){
       $("#modalBackdrop").classList.remove("show");
       pendingConfirm = null;
     }
 
-    function drawQR(payload) {
+    function drawQR(payload){
       const canvas = $("#qrCanvas");
       const ctx = canvas.getContext("2d");
       const size = 112;
@@ -3282,21 +2843,21 @@
       const offset = Math.floor((size - actual) / 2);
 
       ctx.fillStyle = "#fff7e7";
-      ctx.fillRect(0, 0, size, size);
+      ctx.fillRect(0,0,size,size);
 
       const seed = hashString(payload);
 
-      function randomDark(x, y) {
-        const n = Math.sin((x * 928371 + y * 364479 + seed) * 0.00017) * 10000;
-        return (n - Math.floor(n)) > 0.535;
+      function randomDark(x,y){
+        const n = Math.sin((x * 928371 + y * 364479 + seed) * .00017) * 10000;
+        return (n - Math.floor(n)) > .535;
       }
 
-      function drawCell(x, y, dark = true) {
+      function drawCell(x,y,dark = true){
         ctx.fillStyle = dark ? "#170708" : "#fff7e7";
         ctx.fillRect(offset + x * cell, offset + y * cell, cell, cell);
       }
 
-      function finder(x, y) {
+      function finder(x,y){
         for (let yy = 0; yy < 7; yy++) {
           for (let xx = 0; xx < 7; xx++) {
             const edge = xx === 0 || yy === 0 || xx === 6 || yy === 6;
@@ -3308,18 +2869,14 @@
 
       for (let y = 0; y < cells; y++) {
         for (let x = 0; x < cells; x++) {
-          const inFinder =
-            (x < 8 && y < 8) ||
-            (x > 20 && y < 8) ||
-            (x < 8 && y > 20);
-
-          if (!inFinder && randomDark(x, y)) drawCell(x, y, true);
+          const inFinder = (x < 8 && y < 8) || (x > 20 && y < 8) || (x < 8 && y > 20);
+          if (!inFinder && randomDark(x,y)) drawCell(x,y,true);
         }
       }
 
-      finder(0, 0);
-      finder(22, 0);
-      finder(0, 22);
+      finder(0,0);
+      finder(22,0);
+      finder(0,22);
 
       ctx.fillStyle = "#7e1e24";
       ctx.fillRect(offset + 13 * cell, offset + 13 * cell, cell * 3, cell * 3);
@@ -3330,81 +2887,60 @@
       ctx.fillText("XA", offset + 14.5 * cell, offset + 14.5 * cell);
     }
 
-    function hashString(value) {
+    function hashString(value){
       let hash = 0;
-
       for (let i = 0; i < value.length; i++) {
         hash = ((hash << 5) - hash) + value.charCodeAt(i);
         hash |= 0;
       }
-
       return Math.abs(hash);
     }
 
-    function nowLabel() {
-      return new Date().toLocaleString("it-IT", {
-        day: "2-digit",
-        month: "2-digit",
-        year: "numeric",
-        hour: "2-digit",
-        minute: "2-digit"
+    function nowLabel(){
+      return new Date().toLocaleString("it-IT",{
+        day:"2-digit",
+        month:"2-digit",
+        year:"numeric",
+        hour:"2-digit",
+        minute:"2-digit"
       });
     }
 
-    function formatNumber(number) {
+    function formatNumber(number){
       return Number(number || 0).toLocaleString("it-IT");
     }
 
-    function formatMoney(number) {
-      return Number(number || 0).toLocaleString("it-IT", {
-        style: "currency",
-        currency: "EUR"
-      });
+    function formatMoney(number){
+      return Number(number || 0).toLocaleString("it-IT",{style:"currency",currency:"EUR"});
     }
 
-    function escapeHTML(value) {
-      return String(value ?? "").replace(/[&<>"']/g, char => {
-        return {
-          "&": "&amp;",
-          "<": "&lt;",
-          ">": "&gt;",
-          '"': "&quot;",
-          "'": "&#039;"
-        }[char];
-      });
+    function escapeHTML(value){
+      return String(value ?? "").replace(/[&<>"']/g, char => ({
+        "&":"&amp;",
+        "<":"&lt;",
+        ">":"&gt;",
+        '"':"&quot;",
+        "'":"&#039;"
+      }[char]));
     }
 
-    function clone(value) {
+    function clone(value){
       if (typeof structuredClone === "function") return structuredClone(value);
       return JSON.parse(JSON.stringify(value));
     }
 
-    function makeId() {
+    function makeId(){
       if (window.crypto && crypto.randomUUID) return crypto.randomUUID();
       return `xa-${Date.now()}-${Math.random().toString(16).slice(2)}`;
     }
 
-    function getActivityIcon(type) {
-      const icons = {
-        earn: "+",
-        sale: "+",
-        bonus: "+",
-        redeem: "✓",
-        member: "XA",
-        profile: "◎",
-        generic: "•"
-      };
-
+    function getActivityIcon(type){
+      const icons = { earn:"+", sale:"+", bonus:"+", redeem:"✓", member:"XA", profile:"◎", generic:"•" };
       return icons[type] || icons.generic;
     }
 
-    function getTransactionTypeLabel(type) {
-      const labels = {
-        sale: "Vendita",
-        bonus: "Bonus",
-        reward_redeem: "Riscatto"
-      };
-
+    function getTransactionTypeLabel(type){
+      const labels = { sale:"Vendita", bonus:"Bonus", reward_redeem:"Riscatto" };
       return labels[type] || "Movimento";
     }
   </script>
