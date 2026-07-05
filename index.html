@@ -3,12 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>XA Member Club — V8.4 Mobile Fix Premium</title>
+  <title>XA Member Club — V8.5 Rewards Builder</title>
 
   <style>
     :root{
       --bg:#140305;
-      --bg2:#26070d;
       --cream:#fff4df;
       --ivory:#fffaf0;
       --gold:#d5a443;
@@ -24,15 +23,11 @@
       --panel:rgba(255,246,226,.96);
       --soft:0 12px 30px rgba(0,0,0,.25);
       --deep:0 18px 55px rgba(0,0,0,.40);
-      --line:rgba(213,164,67,.34);
       --line2:rgba(255,244,223,.18);
       --radius:22px;
     }
 
-    *{
-      box-sizing:border-box;
-      -webkit-tap-highlight-color:transparent;
-    }
+    *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
 
     html,body{
       margin:0;
@@ -46,19 +41,10 @@
       overflow-x:hidden;
     }
 
-    body{
-      padding-bottom:92px;
-    }
+    body{padding-bottom:92px;}
 
-    button,input,select,textarea{
-      font-family:inherit;
-    }
-
-    button{
-      border:0;
-      cursor:pointer;
-      touch-action:manipulation;
-    }
+    button,input,select,textarea{font-family:inherit;}
+    button{border:0;cursor:pointer;touch-action:manipulation;}
 
     input,select,textarea{
       width:100%;
@@ -71,10 +57,7 @@
       outline:none;
     }
 
-    textarea{
-      min-height:88px;
-      resize:vertical;
-    }
+    textarea{min-height:88px;resize:vertical;}
 
     label{
       display:block;
@@ -87,11 +70,7 @@
       text-transform:uppercase;
     }
 
-    .app{
-      width:min(1180px,100%);
-      margin:0 auto;
-      padding:8px;
-    }
+    .app{width:min(1180px,100%);margin:0 auto;padding:8px;}
 
     .top{
       position:sticky;
@@ -159,12 +138,9 @@
       font-size:22px;
       font-weight:950;
       letter-spacing:-2px;
-      flex:0 0 auto;
     }
 
-    .brand{
-      min-width:0;
-    }
+    .brand{min-width:0;}
 
     .brand small{
       display:block;
@@ -227,13 +203,11 @@
       margin:10px 0 0;
       color:#70402f;
       font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-      font-size:13.5px;
+      font-size:13px;
       line-height:1.32;
     }
 
-    .top-copy strong{
-      color:var(--bord);
-    }
+    .top-copy strong{color:var(--bord);}
 
     .mini-console{
       position:relative;
@@ -269,9 +243,7 @@
       scrollbar-width:none;
     }
 
-    .tabs::-webkit-scrollbar{
-      display:none;
-    }
+    .tabs::-webkit-scrollbar{display:none;}
 
     .tab{
       flex:0 0 auto;
@@ -293,14 +265,8 @@
       box-shadow:0 8px 18px rgba(213,164,67,.20);
     }
 
-    .page{
-      display:none;
-      animation:fade .2s ease both;
-    }
-
-    .page.active{
-      display:block;
-    }
+    .page{display:none;animation:fade .2s ease both;}
+    .page.active{display:block;}
 
     @keyframes fade{
       from{opacity:0;transform:translateY(6px);}
@@ -341,9 +307,7 @@
       margin-top:16px;
     }
 
-    .section-title{
-      margin:20px 0 11px;
-    }
+    .section-title{margin:20px 0 11px;}
 
     .section-title h3{
       margin:0;
@@ -419,13 +383,8 @@
       line-height:1;
     }
 
-    .panel.dark .panel-title small{
-      color:rgba(255,244,223,.60);
-    }
-
-    .panel.dark .panel-title h4{
-      color:var(--gold2);
-    }
+    .panel.dark .panel-title small{color:rgba(255,244,223,.60);}
+    .panel.dark .panel-title h4{color:var(--gold2);}
 
     .btn,.btn-gold,.btn-soft,.btn-danger,.btn-ghost,.btn-small,.btn-light{
       min-height:48px;
@@ -487,15 +446,8 @@
       box-shadow:none;
     }
 
-    .button-row{
-      display:flex;
-      gap:8px;
-      flex-wrap:wrap;
-    }
-
-    .button-row button{
-      flex:1 1 auto;
-    }
+    .button-row{display:flex;gap:8px;flex-wrap:wrap;}
+    .button-row button{flex:1 1 auto;}
 
     .metric{
       min-height:112px;
@@ -572,10 +524,7 @@
       pointer-events:none;
     }
 
-    .member-card>*{
-      position:relative;
-      z-index:1;
-    }
+    .member-card>*{position:relative;z-index:1;}
 
     .member-top{
       display:flex;
@@ -611,9 +560,7 @@
       text-overflow:ellipsis;
     }
 
-    .member-name{
-      margin-top:24px;
-    }
+    .member-name{margin-top:24px;}
 
     .member-name small{
       display:block;
@@ -680,11 +627,7 @@
       overflow:hidden;
     }
 
-    .qr svg{
-      width:102px;
-      height:102px;
-      display:block;
-    }
+    .qr svg{width:102px;height:102px;display:block;}
 
     .progress-box{
       margin-top:16px;
@@ -720,12 +663,9 @@
       background:linear-gradient(90deg,var(--gold3),var(--gold2));
     }
 
-    .client-list,.history-list{
-      display:grid;
-      gap:9px;
-    }
+    .client-list,.history-list,.reward-manage-list{display:grid;gap:9px;}
 
-    .client-item,.history-item{
+    .client-item,.history-item,.reward-manage-item{
       display:grid;
       grid-template-columns:1fr auto;
       gap:10px;
@@ -736,19 +676,19 @@
       border:1px solid rgba(91,16,27,.12);
     }
 
-    .client-item.active{
+    .client-item.active,.reward-manage-item.active{
       background:rgba(245,213,126,.27);
       border-color:rgba(91,16,27,.25);
     }
 
-    .client-item h5,.history-item h5{
+    .client-item h5,.history-item h5,.reward-manage-item h5{
       margin:0;
       color:var(--bord);
       font-size:17px;
       line-height:1.1;
     }
 
-    .client-item p,.history-item p{
+    .client-item p,.history-item p,.reward-manage-item p{
       margin:5px 0 0;
       color:#67483a;
       font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
@@ -756,7 +696,7 @@
       line-height:1.3;
     }
 
-    .client-points,.history-points{
+    .client-points,.history-points,.reward-points{
       text-align:right;
       font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
       font-weight:950;
@@ -764,13 +704,13 @@
       white-space:nowrap;
     }
 
-    .client-points strong{
+    .client-points strong,.reward-points strong{
       display:block;
       font-size:25px;
       line-height:.9;
     }
 
-    .client-points small{
+    .client-points small,.reward-points small{
       display:block;
       color:var(--muted);
       font-size:10px;
@@ -787,9 +727,7 @@
       gap:12px;
     }
 
-    .full{
-      grid-column:1/-1;
-    }
+    .full{grid-column:1/-1;}
 
     .notice,.sale-preview{
       padding:13px;
@@ -882,6 +820,12 @@
       background:rgba(57,115,73,.13);
       color:var(--green);
       border-color:rgba(57,115,73,.22);
+    }
+
+    .badge.off{
+      background:rgba(158,37,55,.12);
+      color:var(--red);
+      border-color:rgba(158,37,55,.22);
     }
 
     .reward h4{
@@ -1016,9 +960,7 @@
       backdrop-filter:blur(8px);
     }
 
-    .modal-bg.show{
-      display:grid;
-    }
+    .modal-bg.show{display:grid;}
 
     .modal{
       width:min(680px,100%);
@@ -1106,57 +1048,21 @@
     }
 
     @media(max-width:880px){
-      .col-3,.col-4,.col-5,.col-6,.col-7,.col-8{
-        grid-column:span 12;
-      }
-
-      .reward-grid{
-        grid-template-columns:1fr;
-      }
+      .col-3,.col-4,.col-5,.col-6,.col-7,.col-8{grid-column:span 12;}
+      .reward-grid{grid-template-columns:1fr;}
     }
 
     @media(max-width:560px){
-      .app{
-        padding:8px;
-      }
-
-      .top{
-        margin:0 -8px 10px;
-      }
-
-      .brand h1{
-        font-size:29px;
-      }
-
-      .top-copy{
-        font-size:13px;
-      }
-
-      .form-grid,.data-grid{
-        grid-template-columns:1fr;
-      }
-
-      .quick-amounts{
-        grid-template-columns:repeat(2,1fr);
-      }
-
-      .profile-head,.member-bottom{
-        grid-template-columns:1fr;
-      }
-
-      .member-code{
-        text-align:left;
-      }
-
-      .qr{
-        width:112px;
-        height:112px;
-      }
-
-      .qr svg{
-        width:98px;
-        height:98px;
-      }
+      .app{padding:8px;}
+      .top{margin:0 -8px 10px;}
+      .brand h1{font-size:29px;}
+      .top-copy{font-size:13px;}
+      .form-grid,.data-grid{grid-template-columns:1fr;}
+      .quick-amounts{grid-template-columns:repeat(2,1fr);}
+      .profile-head,.member-bottom{grid-template-columns:1fr;}
+      .member-code{text-align:left;}
+      .qr{width:112px;height:112px;}
+      .qr svg{width:98px;height:98px;}
     }
   </style>
 </head>
@@ -1196,6 +1102,7 @@
         <button class="tab" data-page="clients" onclick="goPage('clients')">Clienti</button>
         <button class="tab" data-page="cash" onclick="goPage('cash')">Cassa</button>
         <button class="tab" data-page="rewards" onclick="goPage('rewards')">Premi</button>
+        <button class="tab" data-page="builder" onclick="goPage('builder')">Gestione</button>
         <button class="tab" data-page="history" onclick="goPage('history')">Storico</button>
         <button class="tab" data-page="profile" onclick="goPage('profile')">Profilo</button>
         <button class="tab" data-page="backup" onclick="goPage('backup')">Backup</button>
@@ -1208,13 +1115,14 @@
           <h2>XA Club Console</h2>
           <p>
             La base operativa del club: clienti, saldo punti, vendite, premi,
-            storico e backup. Grafica elegante, da club premium.
+            storico e backup. Ora puoi creare anche i premi del negozio.
           </p>
 
           <div class="home-actions">
             <button class="btn-gold" onclick="openClientModal()">Nuovo cliente</button>
             <button class="btn-light" onclick="goPage('clients')">Cerca cliente</button>
             <button class="btn-light" onclick="goPage('cash')">Vai alla cassa</button>
+            <button class="btn-light" onclick="goPage('builder')">Gestione premi</button>
           </div>
         </div>
 
@@ -1242,9 +1150,9 @@
 
           <div class="col-4">
             <div class="metric">
-              <small>Vendite</small>
-              <strong id="mSales">0</strong>
-              <span>Movimenti vendita salvati.</span>
+              <small>Premi attivi</small>
+              <strong id="mRewards">0</strong>
+              <span>Premi disponibili nel club.</span>
             </div>
           </div>
 
@@ -1299,9 +1207,9 @@
 
           <div class="col-3">
             <div class="metric">
-              <small>Incasso demo</small>
-              <strong id="dRevenue">€0</strong>
-              <span>Totale locale.</span>
+              <small>Premi</small>
+              <strong id="dRewards">0</strong>
+              <span>Premi attivi.</span>
             </div>
           </div>
 
@@ -1444,8 +1352,8 @@
 
       <section class="page" id="page-rewards">
         <div class="section-title">
-          <h3>Rewards Club</h3>
-          <p>Premi come esperienze, anteprime e privilegi XA.</p>
+          <h3>Premi Club</h3>
+          <p>Premi, esperienze e oggetti riscattabili dal cliente.</p>
         </div>
 
         <div class="grid">
@@ -1454,7 +1362,7 @@
               <div class="panel-title">
                 <div>
                   <small>Cliente selezionato</small>
-                  <h4>Saldo rewards</h4>
+                  <h4>Saldo premi</h4>
                 </div>
               </div>
               <div id="rewardClient"></div>
@@ -1463,6 +1371,93 @@
 
           <div class="col-7">
             <div class="reward-grid" id="rewardGrid"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="page" id="page-builder">
+        <div class="section-title">
+          <h3>Gestione Premi</h3>
+          <p>Crea i premi del negozio: bicchieri, bottiglie, degustazioni, eventi o premi personalizzati.</p>
+        </div>
+
+        <div class="grid">
+          <div class="col-5">
+            <div class="panel">
+              <div class="panel-title">
+                <div>
+                  <small>Nuovo / modifica</small>
+                  <h4>Premio</h4>
+                </div>
+              </div>
+
+              <input type="hidden" id="rewardEditId" />
+
+              <div class="form-grid">
+                <div class="full">
+                  <label>Nome premio</label>
+                  <input id="rewardTitle" type="text" placeholder="Esempio: Bicchiere XA" />
+                </div>
+
+                <div>
+                  <label>Punti necessari</label>
+                  <input id="rewardPoints" type="number" min="1" step="1" placeholder="250" />
+                </div>
+
+                <div>
+                  <label>Categoria</label>
+                  <select id="rewardCategory">
+                    <option value="Oggetto">Oggetto</option>
+                    <option value="Degustazione">Degustazione</option>
+                    <option value="Bottiglia">Bottiglia</option>
+                    <option value="Esperienza">Esperienza</option>
+                    <option value="Evento">Evento</option>
+                    <option value="Sconto">Sconto</option>
+                    <option value="Altro">Altro</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label>Quantità disponibile</label>
+                  <input id="rewardQuantity" type="number" min="0" step="1" placeholder="Vuoto = illimitata" />
+                </div>
+
+                <div>
+                  <label>Stato</label>
+                  <select id="rewardActive">
+                    <option value="true">Attivo</option>
+                    <option value="false">Non attivo</option>
+                  </select>
+                </div>
+
+                <div class="full">
+                  <label>Descrizione premio</label>
+                  <textarea id="rewardDesc" placeholder="Descrivi il premio, quando si ritira, condizioni, dettagli..."></textarea>
+                </div>
+              </div>
+
+              <div class="button-row" style="margin-top:14px;">
+                <button class="btn" onclick="saveRewardFromForm()">Salva premio</button>
+                <button class="btn-gold" onclick="clearRewardForm()">Nuovo</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-7">
+            <div class="panel">
+              <div class="panel-title">
+                <div>
+                  <small>Catalogo negozio</small>
+                  <h4>Premi creati</h4>
+                </div>
+              </div>
+
+              <div class="notice">
+                I premi attivi appaiono nella pagina “Premi Club” e possono essere riscattati dal cliente selezionato.
+              </div>
+
+              <div id="rewardManageList" class="reward-manage-list"></div>
+            </div>
           </div>
         </div>
       </section>
@@ -1528,7 +1523,7 @@
       <section class="page" id="page-backup">
         <div class="section-title">
           <h3>Backup</h3>
-          <p>Esporta JSON, CSV o importa un backup.</p>
+          <p>Esporta JSON, CSV o importa un backup. Il JSON salva anche i premi creati.</p>
         </div>
 
         <div class="grid">
@@ -1549,6 +1544,7 @@
                 <button class="btn" onclick="exportJSON()">Backup JSON</button>
                 <button class="btn-gold" onclick="exportHistoryCSV()">Storico CSV</button>
                 <button class="btn-soft" onclick="exportClientsCSV()">Clienti CSV</button>
+                <button class="btn-soft" onclick="exportRewardsCSV()">Premi CSV</button>
               </div>
             </div>
           </div>
@@ -1573,7 +1569,7 @@
       </section>
     </main>
 
-    <div class="version">V8.4 — XA Member Club Mobile Fix Premium</div>
+    <div class="version">V8.5 — XA Member Club Rewards Builder</div>
   </div>
 
   <div class="bottom">
@@ -1664,14 +1660,58 @@
   <div class="toast" id="toast"></div>
 
   <script>
-    const STORAGE_KEY = "xa_member_club_v84";
+    const STORAGE_KEY = "xa_member_club_v85";
     const OLD_KEYS = [
+      "xa_member_club_v84",
       "xa_member_club_v83",
       "xa_member_club_v82",
       "xa_member_club_v81",
       "xa_member_club_v8",
       "xa_loyalty_club_v8",
       "xa_club_console_v8"
+    ];
+
+    const defaultRewards = [
+      {
+        id: "RWD-SECRET-BOTTLE",
+        title: "Secret Bottle Preview",
+        points: 250,
+        desc: "Anteprima riservata di una bottiglia, ricetta o micro lotto XA.",
+        category: "Bottiglia",
+        active: true,
+        quantity: "",
+        createdAt: new Date().toISOString()
+      },
+      {
+        id: "RWD-TASTING",
+        title: "Private Fermentation Tasting",
+        points: 350,
+        desc: "Degustazione privata dedicata ai fermentati XA e alle nuove prove.",
+        category: "Degustazione",
+        active: true,
+        quantity: "",
+        createdAt: new Date().toISOString()
+      },
+      {
+        id: "RWD-BATCH",
+        title: "Limited Batch Reservation",
+        points: 500,
+        desc: "Riserva prioritaria su una selezione limitata.",
+        category: "Bottiglia",
+        active: true,
+        quantity: "",
+        createdAt: new Date().toISOString()
+      },
+      {
+        id: "RWD-CELLAR",
+        title: "XA Cellar Access",
+        points: 650,
+        desc: "Accesso speciale ad assaggi, prove e note di cantina XA.",
+        category: "Esperienza",
+        active: true,
+        quantity: "",
+        createdAt: new Date().toISOString()
+      }
     ];
 
     const categoryMultipliers = {
@@ -1683,45 +1723,13 @@
       "Gift": 1
     };
 
-    const rewards = [
-      {
-        title: "Secret Bottle Preview",
-        points: 250,
-        desc: "Anteprima riservata di una bottiglia, ricetta o micro lotto XA."
-      },
-      {
-        title: "Private Fermentation Tasting",
-        points: 350,
-        desc: "Degustazione privata dedicata ai fermentati XA e alle nuove prove."
-      },
-      {
-        title: "Limited Batch Reservation",
-        points: 500,
-        desc: "Riserva prioritaria su una selezione limitata."
-      },
-      {
-        title: "XA Cellar Access",
-        points: 650,
-        desc: "Accesso speciale ad assaggi, prove e note di cantina XA."
-      },
-      {
-        title: "Founder’s Table",
-        points: 800,
-        desc: "Tavolo premium con degustazione guidata e racconto del progetto."
-      },
-      {
-        title: "Ambassador Experience",
-        points: 1000,
-        desc: "Esperienza simbolica da Ambassador XA con status premium."
-      }
-    ];
-
     let state = {
-      version: "8.4",
+      version: "8.5",
       selectedClientId: null,
       cashierUnlocked: false,
       clients: [],
-      transactions: []
+      transactions: [],
+      rewards: structuredClone(defaultRewards)
     };
 
     function save(){
@@ -1765,6 +1773,19 @@
       };
     }
 
+    function normalizeReward(r){
+      return {
+        id: r.id || makeId("RWD"),
+        title: r.title || r.name || r.nome || "Premio XA",
+        points: Number(r.points || r.punti || 100),
+        desc: r.desc || r.description || r.descrizione || "",
+        category: r.category || r.categoria || "Altro",
+        active: r.active === false || r.active === "false" ? false : true,
+        quantity: r.quantity === undefined || r.quantity === null ? "" : r.quantity,
+        createdAt: r.createdAt || new Date().toISOString()
+      };
+    }
+
     function load(){
       let raw = localStorage.getItem(STORAGE_KEY);
 
@@ -1783,15 +1804,20 @@
       try{
         const parsed = JSON.parse(raw);
         const data = parsed.data || parsed;
+
         const clients = Array.isArray(data.clients) ? data.clients.map(normalizeClient) : [];
         const transactions = Array.isArray(data.transactions) ? data.transactions.map(normalizeTransaction) : [];
+        const rewards = Array.isArray(data.rewards) && data.rewards.length
+          ? data.rewards.map(normalizeReward)
+          : structuredClone(defaultRewards);
 
         state = {
-          version: "8.4",
+          version: "8.5",
           selectedClientId: data.selectedClientId || data.activeClientId || clients[0]?.id || null,
           cashierUnlocked: false,
           clients,
-          transactions
+          transactions,
+          rewards
         };
 
         if(state.selectedClientId && !state.clients.some(c => c.id === state.selectedClientId)){
@@ -1801,11 +1827,12 @@
         save();
       }catch(err){
         state = {
-          version: "8.4",
+          version: "8.5",
           selectedClientId: null,
           cashierUnlocked: false,
           clients: [],
-          transactions: []
+          transactions: [],
+          rewards: structuredClone(defaultRewards)
         };
         save();
       }
@@ -1842,6 +1869,12 @@
       }
     }
 
+    function activeRewards(){
+      return state.rewards
+        .filter(r => r.active)
+        .sort((a,b) => Number(a.points) - Number(b.points));
+    }
+
     function getClient(id = state.selectedClientId){
       return state.clients.find(c => c.id === id) || null;
     }
@@ -1868,7 +1901,15 @@
     }
 
     function nextRewardInfo(points){
-      const sorted = [...rewards].sort((a,b) => a.points - b.points);
+      const sorted = activeRewards();
+      if(!sorted.length){
+        return {
+          next: { title: "Nessun premio attivo", points: 0 },
+          progress: 0,
+          missing: 0
+        };
+      }
+
       const next = sorted.find(r => r.points > points) || sorted[sorted.length - 1];
       const previous = [...sorted].reverse().find(r => r.points <= points);
       const base = previous && previous.points !== next.points ? previous.points : 0;
@@ -2110,7 +2151,7 @@
       toast("Bonus +50 punti aggiunto");
     }
 
-    function redeemReward(index){
+    function redeemReward(id){
       const client = getClient();
 
       if(!client){
@@ -2121,17 +2162,31 @@
 
       if(!requireCashier()) return;
 
-      const reward = rewards[index];
+      const reward = state.rewards.find(r => r.id === id);
       if(!reward) return;
 
-      if(Number(client.points || 0) < reward.points){
+      if(!reward.active){
+        toast("Premio non attivo");
+        return;
+      }
+
+      if(Number(client.points || 0) < Number(reward.points)){
         toast("Punti insufficienti");
+        return;
+      }
+
+      if(reward.quantity !== "" && Number(reward.quantity) <= 0){
+        toast("Premio esaurito");
         return;
       }
 
       if(!confirm("Riscattare premio: " + reward.title + " per " + reward.points + " punti?")) return;
 
-      client.points = Number(client.points || 0) - reward.points;
+      client.points = Number(client.points || 0) - Number(reward.points);
+
+      if(reward.quantity !== ""){
+        reward.quantity = Math.max(0, Number(reward.quantity) - 1);
+      }
 
       state.transactions.unshift({
         id: makeId("MOV"),
@@ -2139,9 +2194,9 @@
         type: "reward",
         title: reward.title,
         amount: 0,
-        category: "Premio Club",
+        category: reward.category || "Premio Club",
         multiplier: 1,
-        points: -reward.points,
+        points: -Number(reward.points),
         note: reward.desc,
         date: new Date().toISOString()
       });
@@ -2149,6 +2204,101 @@
       save();
       renderAll();
       toast("Premio riscattato");
+    }
+
+    function saveRewardFromForm(){
+      const id = document.getElementById("rewardEditId").value;
+      const title = document.getElementById("rewardTitle").value.trim();
+      const points = Number(document.getElementById("rewardPoints").value || 0);
+      const category = document.getElementById("rewardCategory").value;
+      const quantityRaw = document.getElementById("rewardQuantity").value;
+      const active = document.getElementById("rewardActive").value === "true";
+      const desc = document.getElementById("rewardDesc").value.trim();
+
+      if(!title){
+        toast("Inserisci il nome premio");
+        return;
+      }
+
+      if(!points || points <= 0){
+        toast("Inserisci i punti necessari");
+        return;
+      }
+
+      const payload = {
+        id: id || makeId("RWD"),
+        title,
+        points,
+        category,
+        quantity: quantityRaw === "" ? "" : Math.max(0, Number(quantityRaw)),
+        active,
+        desc,
+        createdAt: new Date().toISOString()
+      };
+
+      if(id){
+        const index = state.rewards.findIndex(r => r.id === id);
+        if(index >= 0){
+          payload.createdAt = state.rewards[index].createdAt || payload.createdAt;
+          state.rewards[index] = payload;
+        }
+        toast("Premio modificato");
+      }else{
+        state.rewards.unshift(payload);
+        toast("Premio creato");
+      }
+
+      save();
+      clearRewardForm();
+      renderAll();
+    }
+
+    function editReward(id){
+      const reward = state.rewards.find(r => r.id === id);
+      if(!reward) return;
+
+      document.getElementById("rewardEditId").value = reward.id;
+      document.getElementById("rewardTitle").value = reward.title;
+      document.getElementById("rewardPoints").value = reward.points;
+      document.getElementById("rewardCategory").value = reward.category || "Altro";
+      document.getElementById("rewardQuantity").value = reward.quantity === undefined ? "" : reward.quantity;
+      document.getElementById("rewardActive").value = reward.active ? "true" : "false";
+      document.getElementById("rewardDesc").value = reward.desc || "";
+
+      goPage("builder");
+      toast("Premio pronto per modifica");
+    }
+
+    function deleteReward(id){
+      const reward = state.rewards.find(r => r.id === id);
+      if(!reward) return;
+
+      if(!confirm("Eliminare il premio: " + reward.title + "?")) return;
+
+      state.rewards = state.rewards.filter(r => r.id !== id);
+      save();
+      renderAll();
+      toast("Premio eliminato");
+    }
+
+    function toggleReward(id){
+      const reward = state.rewards.find(r => r.id === id);
+      if(!reward) return;
+
+      reward.active = !reward.active;
+      save();
+      renderAll();
+      toast(reward.active ? "Premio attivato" : "Premio disattivato");
+    }
+
+    function clearRewardForm(){
+      document.getElementById("rewardEditId").value = "";
+      document.getElementById("rewardTitle").value = "";
+      document.getElementById("rewardPoints").value = "";
+      document.getElementById("rewardCategory").value = "Oggetto";
+      document.getElementById("rewardQuantity").value = "";
+      document.getElementById("rewardActive").value = "true";
+      document.getElementById("rewardDesc").value = "";
     }
 
     function deleteClient(id){
@@ -2231,9 +2381,11 @@
 
     function progressHTML(client){
       const info = nextRewardInfo(Number(client.points || 0));
-      const label = info.missing > 0
-        ? "Mancano " + info.missing + " punti per " + info.next.title
-        : "Reward raggiunto: " + info.next.title;
+      const label = info.next.points === 0
+        ? "Nessun premio attivo"
+        : info.missing > 0
+          ? "Mancano " + info.missing + " punti per " + info.next.title
+          : "Reward raggiunto: " + info.next.title;
 
       return `
         <div class="progress-box">
@@ -2355,7 +2507,7 @@
 
         <div class="button-row" style="margin-top:14px;">
           <button class="btn" onclick="goPage('cash')">Cassa</button>
-          <button class="btn-gold" onclick="goPage('rewards')">Rewards</button>
+          <button class="btn-gold" onclick="goPage('rewards')">Premi</button>
           <button class="btn-soft" onclick="goPage('profile')">Scheda</button>
         </div>
       `;
@@ -2392,18 +2544,17 @@
     }
 
     function renderHome(){
-      const sales = state.transactions.filter(t => t.type === "sale");
       const pointsTotal = state.clients.reduce((sum,c) => sum + Number(c.points || 0), 0);
       const client = getClient();
 
       document.getElementById("mClients").textContent = state.clients.length;
       document.getElementById("mPoints").textContent = pointsTotal;
-      document.getElementById("mSales").textContent = sales.length;
+      document.getElementById("mRewards").textContent = activeRewards().length;
       document.getElementById("homeCard").innerHTML = memberCardHTML(client);
 
       if(!client){
         document.getElementById("homeQuick").innerHTML = `
-          <div class="empty">Seleziona o crea un cliente per attivare cassa, rewards e scheda.</div>
+          <div class="empty">Seleziona o crea un cliente per attivare cassa, premi e scheda.</div>
           <div class="button-row" style="margin-top:12px;">
             <button class="btn" onclick="openClientModal()">Nuovo</button>
             <button class="btn-gold" onclick="goPage('clients')">Clienti</button>
@@ -2428,14 +2579,13 @@
 
     function renderDashboard(){
       const sales = state.transactions.filter(t => t.type === "sale");
-      const revenue = sales.reduce((sum,t) => sum + Number(t.amount || 0), 0);
       const pointsTotal = state.clients.reduce((sum,c) => sum + Number(c.points || 0), 0);
       const top = [...state.clients].sort((a,b) => Number(b.points || 0) - Number(a.points || 0))[0];
 
       document.getElementById("dClients").textContent = state.clients.length;
       document.getElementById("dPoints").textContent = pointsTotal;
       document.getElementById("dSales").textContent = sales.length;
-      document.getElementById("dRevenue").textContent = money(revenue);
+      document.getElementById("dRewards").textContent = activeRewards().length;
 
       document.getElementById("topClient").innerHTML = top
         ? clientMiniHTML(top)
@@ -2535,20 +2685,59 @@
 
     function renderRewards(){
       const client = getClient();
+      const rewards = activeRewards();
+
       document.getElementById("rewardClient").innerHTML = clientBoxHTML(client);
 
-      document.getElementById("rewardGrid").innerHTML = rewards.map((r,i) => {
-        const available = client && Number(client.points || 0) >= r.points;
+      document.getElementById("rewardGrid").innerHTML = rewards.length
+        ? rewards.map(r => {
+            const available = client && Number(client.points || 0) >= Number(r.points);
+            const qty = r.quantity === "" ? "Illimitata" : r.quantity;
+
+            return `
+              <div class="reward">
+                <div class="reward-head">
+                  <strong>${Number(r.points)}</strong>
+                  <span class="badge ${available ? "ok" : ""}">${available ? "Disponibile" : "Premio"}</span>
+                </div>
+                <h4>${escapeHtml(r.title)}</h4>
+                <p>${escapeHtml(r.desc || "Premio XA.")}</p>
+                <p><b>Categoria:</b> ${escapeHtml(r.category)} · <b>Quantità:</b> ${escapeHtml(qty)}</p>
+                <button class="${available ? "btn" : "btn-soft"}" onclick="redeemReward('${r.id}')">Riscatta premio</button>
+              </div>
+            `;
+          }).join("")
+        : `<div class="empty">Nessun premio attivo. Vai in Gestione Premi e crea il primo premio.</div>`;
+    }
+
+    function renderRewardBuilder(){
+      const list = document.getElementById("rewardManageList");
+
+      if(!state.rewards.length){
+        list.innerHTML = `<div class="empty">Nessun premio creato.</div>`;
+        return;
+      }
+
+      list.innerHTML = state.rewards.map(r => {
+        const qty = r.quantity === "" ? "Illimitata" : r.quantity;
 
         return `
-          <div class="reward">
-            <div class="reward-head">
-              <strong>${r.points}</strong>
-              <span class="badge ${available ? "ok" : ""}">${available ? "Disponibile" : "Privilegio"}</span>
+          <div class="reward-manage-item ${r.active ? "active" : ""}">
+            <div>
+              <h5>${escapeHtml(r.title)}</h5>
+              <p>${escapeHtml(r.category)} · ${Number(r.points)} punti · Quantità: ${escapeHtml(qty)}</p>
+              <p>${escapeHtml(r.desc || "Nessuna descrizione.")}</p>
+              <p><span class="badge ${r.active ? "ok" : "off"}">${r.active ? "Attivo" : "Non attivo"}</span></p>
             </div>
-            <h4>${escapeHtml(r.title)}</h4>
-            <p>${escapeHtml(r.desc)}</p>
-            <button class="${available ? "btn" : "btn-soft"}" onclick="redeemReward(${i})">Riscatta premio</button>
+            <div class="reward-points">
+              <strong>${Number(r.points)}</strong>
+              <small>punti</small>
+            </div>
+            <div class="button-row" style="grid-column:1/-1;">
+              <button class="btn-small" onclick="editReward('${r.id}')">Modifica</button>
+              <button class="btn-small" onclick="toggleReward('${r.id}')">${r.active ? "Disattiva" : "Attiva"}</button>
+              <button class="btn-small" onclick="deleteReward('${r.id}')">Elimina</button>
+            </div>
           </div>
         `;
       }).join("");
@@ -2603,6 +2792,7 @@
       renderClients();
       renderCash();
       renderRewards();
+      renderRewardBuilder();
       renderHistory();
       renderProfile();
     }
@@ -2623,11 +2813,11 @@
       const payload = {
         exportedAt: new Date().toISOString(),
         app: "XA Member Club",
-        version: "8.4",
+        version: "8.5",
         data: state
       };
 
-      downloadFile("xa-member-club-backup-v8-4.json", JSON.stringify(payload,null,2), "application/json");
+      downloadFile("xa-member-club-backup-v8-5.json", JSON.stringify(payload,null,2), "application/json");
       toast("Backup JSON esportato");
     }
 
@@ -2654,7 +2844,7 @@
       });
 
       const csv = rows.map(row => row.map(csvEscape).join(";")).join("\n");
-      downloadFile("xa-member-club-storico-v8-4.csv", csv, "text/csv;charset=utf-8");
+      downloadFile("xa-member-club-storico-v8-5.csv", csv, "text/csv;charset=utf-8");
       toast("Storico CSV esportato");
     }
 
@@ -2678,8 +2868,28 @@
       });
 
       const csv = rows.map(row => row.map(csvEscape).join(";")).join("\n");
-      downloadFile("xa-member-club-clienti-v8-4.csv", csv, "text/csv;charset=utf-8");
+      downloadFile("xa-member-club-clienti-v8-5.csv", csv, "text/csv;charset=utf-8");
       toast("Clienti CSV esportato");
+    }
+
+    function exportRewardsCSV(){
+      const rows = [["nome","punti","categoria","attivo","quantita","descrizione","creato_il"]];
+
+      state.rewards.forEach(r => {
+        rows.push([
+          r.title,
+          r.points,
+          r.category,
+          r.active ? "si" : "no",
+          r.quantity === "" ? "illimitata" : r.quantity,
+          r.desc,
+          formatDate(r.createdAt)
+        ]);
+      });
+
+      const csv = rows.map(row => row.map(csvEscape).join(";")).join("\n");
+      downloadFile("xa-member-club-premi-v8-5.csv", csv, "text/csv;charset=utf-8");
+      toast("Premi CSV esportato");
     }
 
     function importJSON(event){
@@ -2701,11 +2911,14 @@
           if(!confirm("Importare questo backup? I dati attuali saranno sostituiti.")) return;
 
           state = {
-            version: "8.4",
+            version: "8.5",
             selectedClientId: data.selectedClientId || data.clients[0]?.id || null,
             cashierUnlocked: false,
             clients: data.clients.map(normalizeClient),
-            transactions: data.transactions.map(normalizeTransaction)
+            transactions: data.transactions.map(normalizeTransaction),
+            rewards: Array.isArray(data.rewards) && data.rewards.length
+              ? data.rewards.map(normalizeReward)
+              : structuredClone(defaultRewards)
           };
 
           save();
@@ -2728,11 +2941,12 @@
       localStorage.removeItem(STORAGE_KEY);
 
       state = {
-        version: "8.4",
+        version: "8.5",
         selectedClientId: null,
         cashierUnlocked: false,
         clients: [],
-        transactions: []
+        transactions: [],
+        rewards: structuredClone(defaultRewards)
       };
 
       save();
