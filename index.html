@@ -3,828 +3,492 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>XA Member Club — V8.6 Genera Pass Cliente</title>
+  <title>XA Loyalty Club — V9 Online</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
 
   <style>
     :root{
-      --bg:#140305;
+      --bg:#120305;
+      --bg2:#21070b;
       --cream:#fff4df;
       --ivory:#fffaf0;
+      --paper:#f6e0b8;
       --gold:#d5a443;
       --gold2:#f5d57e;
-      --gold3:#8e611c;
+      --gold3:#8f611b;
       --bord:#5b101b;
-      --bord2:#851d2d;
+      --bord2:#861d2d;
       --bord3:#31060b;
-      --ink:#2b1110;
-      --muted:#785f4c;
-      --green:#397349;
-      --red:#9e2537;
-      --panel:rgba(255,246,226,.96);
-      --soft:0 12px 30px rgba(0,0,0,.25);
-      --deep:0 18px 55px rgba(0,0,0,.40);
-      --line2:rgba(255,244,223,.18);
-      --radius:22px;
+      --ink:#27100d;
+      --muted:#7b5b49;
+      --green:#43a15a;
+      --red:#b53045;
+      --blue:#315c8a;
+      --panel:rgba(255,246,226,.97);
+      --line:rgba(245,213,126,.28);
+      --line2:rgba(255,244,223,.16);
+      --shadow:0 16px 40px rgba(0,0,0,.35);
+      --deep:0 22px 70px rgba(0,0,0,.55);
+      --font:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      --serif:Georgia,"Times New Roman",serif;
     }
 
-    *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+    *{
+      box-sizing:border-box;
+      -webkit-tap-highlight-color:transparent;
+    }
 
     html,body{
       margin:0;
       min-height:100%;
       background:
-        radial-gradient(circle at top left,rgba(245,213,126,.20),transparent 34%),
-        radial-gradient(circle at bottom right,rgba(133,29,45,.34),transparent 44%),
-        linear-gradient(145deg,var(--bg),#070102 78%);
+        radial-gradient(circle at 10% 0%,rgba(245,213,126,.20),transparent 34%),
+        radial-gradient(circle at 100% 30%,rgba(134,29,45,.40),transparent 45%),
+        linear-gradient(145deg,#090102,var(--bg) 48%,#050101);
       color:var(--cream);
-      font-family:Georgia,"Times New Roman",serif;
+      font-family:var(--font);
       overflow-x:hidden;
     }
 
-    body{padding-bottom:94px;}
-
-    button,input,select,textarea{font-family:inherit;}
-    button{border:0;cursor:pointer;touch-action:manipulation;}
-
-    input,select,textarea{
-      width:100%;
-      border:1px solid rgba(91,16,27,.22);
-      border-radius:15px;
-      padding:13px;
-      background:rgba(255,255,255,.78);
-      color:var(--ink);
-      font-size:16px;
-      outline:none;
+    body{
+      padding-bottom:126px;
     }
 
-    textarea{min-height:90px;resize:vertical;}
-
-    label{
-      display:block;
-      margin:0 0 7px;
-      color:var(--bord);
-      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-      font-size:11px;
-      font-weight:950;
-      letter-spacing:.7px;
-      text-transform:uppercase;
+    button,input,textarea,select{
+      font-family:var(--font);
     }
 
-    .app{width:min(1180px,100%);margin:0 auto;padding:8px;}
+    button{
+      border:0;
+      cursor:pointer;
+      touch-action:manipulation;
+    }
+
+    .app{
+      width:min(960px,100%);
+      margin:0 auto;
+      padding:10px;
+    }
 
     .top{
       position:sticky;
       top:0;
-      z-index:50;
-      margin:0 -8px 10px;
-      padding:8px 8px 10px;
-      background:
-        linear-gradient(180deg,rgba(20,3,5,.98),rgba(20,3,5,.90)),
-        radial-gradient(circle at top center,rgba(245,213,126,.15),transparent 55%);
+      z-index:70;
+      margin:0 -10px 10px;
+      padding:8px 10px 9px;
+      background:linear-gradient(180deg,rgba(18,3,5,.98),rgba(18,3,5,.88));
       border-bottom:1px solid var(--line2);
       backdrop-filter:blur(14px);
-      box-shadow:0 12px 30px rgba(0,0,0,.28);
+      box-shadow:0 12px 30px rgba(0,0,0,.34);
     }
 
     .top-card{
-      width:min(1180px,100%);
-      margin:0 auto;
-      border-radius:22px;
-      padding:10px 11px 11px;
-      background:
-        radial-gradient(circle at 12% 12%,rgba(245,213,126,.32),transparent 34%),
-        linear-gradient(145deg,#fff4df,#dec397);
-      color:var(--ink);
-      border:1px solid rgba(255,244,223,.66);
-      box-shadow:var(--deep);
       position:relative;
       overflow:hidden;
+      border-radius:24px;
+      padding:12px;
+      background:
+        radial-gradient(circle at 14% 8%,rgba(245,213,126,.32),transparent 35%),
+        linear-gradient(145deg,#fff4df,#dfc396);
+      color:var(--ink);
+      border:1px solid rgba(255,244,223,.72);
+      box-shadow:var(--deep);
     }
 
     .top-card::after{
       content:"XA";
       position:absolute;
-      right:-12px;
-      bottom:-31px;
-      font-size:92px;
+      right:-10px;
+      bottom:-38px;
+      font-family:var(--serif);
+      font-size:116px;
       line-height:1;
       font-weight:950;
-      letter-spacing:-8px;
-      color:rgba(91,16,27,.065);
+      letter-spacing:-10px;
+      color:rgba(91,16,27,.075);
       pointer-events:none;
     }
 
     .brand-row{
       display:grid;
       grid-template-columns:auto 1fr;
-      gap:10px;
+      gap:11px;
       align-items:center;
       position:relative;
       z-index:1;
     }
 
     .seal{
-      width:46px;
-      height:46px;
-      border-radius:16px;
+      width:54px;
+      height:54px;
+      border-radius:18px;
       display:grid;
       place-items:center;
       background:
-        radial-gradient(circle at 28% 18%,rgba(255,255,255,.25),transparent 27%),
-        linear-gradient(145deg,#8a1d2e,#410910);
+        radial-gradient(circle at 26% 16%,rgba(255,255,255,.26),transparent 28%),
+        linear-gradient(145deg,#8d1e30,#3a080e);
       color:var(--cream);
-      border:1px solid rgba(245,213,126,.62);
-      box-shadow:inset 0 0 0 2px rgba(255,244,223,.08),0 8px 20px rgba(0,0,0,.25);
-      font-size:22px;
+      border:1px solid rgba(245,213,126,.70);
+      box-shadow:inset 0 0 0 2px rgba(255,244,223,.08),0 10px 24px rgba(0,0,0,.28);
+      font-family:var(--serif);
+      font-size:27px;
       font-weight:950;
-      letter-spacing:-2px;
+      letter-spacing:-3px;
     }
-
-    .brand{min-width:0;}
 
     .brand small{
       display:block;
       margin:0 0 3px;
       color:var(--bord2);
-      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
       font-size:10px;
       font-weight:950;
-      letter-spacing:1.7px;
+      letter-spacing:1.8px;
       text-transform:uppercase;
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
     }
 
     .brand h1{
       margin:0;
       color:var(--bord);
-      font-size:clamp(26px,7vw,43px);
-      line-height:.96;
-      letter-spacing:-1.6px;
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
-    }
-
-    .active-pill{
-      position:relative;
-      z-index:1;
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      max-width:100%;
-      margin-top:10px;
-      padding:8px 11px;
-      border-radius:999px;
-      background:linear-gradient(145deg,rgba(91,16,27,.86),rgba(48,6,12,.92));
-      color:var(--cream);
-      border:1px solid rgba(245,213,126,.26);
-      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-      font-size:12px;
-      font-weight:850;
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
-    }
-
-    .active-pill b{
-      width:9px;
-      height:9px;
-      flex:0 0 9px;
-      border-radius:50%;
-      background:var(--gold2);
-      box-shadow:0 0 14px rgba(245,213,126,.72);
+      font-family:var(--serif);
+      font-size:31px;
+      line-height:.94;
+      letter-spacing:-1.7px;
     }
 
     .top-copy{
       position:relative;
       z-index:1;
-      margin:10px 0 0;
+      margin:9px 0 0;
       color:#70402f;
-      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
       font-size:13px;
       line-height:1.32;
-    }
-
-    .top-copy strong{color:var(--bord);}
-
-    .mini-console{
-      position:relative;
-      z-index:1;
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:8px;
-      margin-top:11px;
-    }
-
-    .console-btn{
-      min-height:42px;
-      border-radius:16px;
-      background:linear-gradient(145deg,#3a0610,#130105);
-      color:var(--cream);
-      border:1px solid rgba(245,213,126,.22);
-      box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 8px 18px rgba(0,0,0,.25);
-      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-      font-size:15px;
-      font-weight:950;
-      letter-spacing:1.7px;
-    }
-
-    .console-btn.rec{color:#ffb2b9;}
-    .console-btn.play{color:#bdffbc;}
-    .console-btn.stop{color:var(--gold2);}
-
-    .tabs{
-      display:flex;
-      gap:7px;
-      overflow-x:auto;
-      padding:10px 0 0;
-      scrollbar-width:none;
-    }
-
-    .tabs::-webkit-scrollbar{display:none;}
-
-    .tab{
-      flex:0 0 auto;
-      min-height:38px;
-      padding:8px 11px;
-      border-radius:999px;
-      background:rgba(255,244,223,.10);
-      color:rgba(255,244,223,.80);
-      border:1px solid rgba(255,244,223,.14);
-      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-      font-size:12px;
-      font-weight:900;
-      white-space:nowrap;
-    }
-
-    .tab.active{
-      background:linear-gradient(145deg,var(--gold2),var(--gold));
-      color:#33110c;
-      box-shadow:0 8px 18px rgba(213,164,67,.20);
-    }
-
-    .page{display:none;animation:fade .2s ease both;}
-    .page.active{display:block;}
-
-    @keyframes fade{
-      from{opacity:0;transform:translateY(6px);}
-      to{opacity:1;transform:translateY(0);}
+      font-weight:650;
     }
 
     .hero{
       border-radius:26px;
-      padding:20px;
+      padding:15px;
       background:
-        radial-gradient(circle at top left,rgba(245,213,126,.12),transparent 36%),
-        linear-gradient(145deg,rgba(91,16,27,.82),rgba(28,3,8,.92));
-      border:1px solid rgba(245,213,126,.22);
+        radial-gradient(circle at top left,rgba(245,213,126,.16),transparent 38%),
+        linear-gradient(145deg,rgba(91,16,27,.92),rgba(34,4,9,.96));
+      border:1px solid rgba(245,213,126,.24);
       box-shadow:var(--deep);
     }
 
     .hero h2{
-      margin:0 0 10px;
+      margin:0 0 7px;
       color:var(--gold2);
-      font-size:clamp(34px,10vw,58px);
-      line-height:.95;
-      letter-spacing:-1.7px;
+      font-family:var(--serif);
+      font-size:clamp(33px,9vw,58px);
+      line-height:.91;
+      letter-spacing:-2px;
     }
 
     .hero p{
       margin:0;
-      max-width:760px;
       color:rgba(255,244,223,.86);
-      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-      font-size:16px;
-      line-height:1.45;
+      font-size:14px;
+      line-height:1.38;
     }
 
-    .home-actions{
+    .status-row{
+      margin-top:12px;
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+    }
+
+    .status{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      min-height:38px;
+      padding:9px 11px;
+      border-radius:999px;
+      background:rgba(255,244,223,.10);
+      border:1px solid rgba(255,244,223,.16);
+      color:rgba(255,244,223,.86);
+      font-size:12px;
+      font-weight:950;
+    }
+
+    .dot{
+      width:9px;
+      height:9px;
+      border-radius:50%;
+      background:var(--gold2);
+      box-shadow:0 0 14px rgba(245,213,126,.7);
+    }
+
+    .status.ok .dot{
+      background:#73ec8b;
+    }
+
+    .status.err .dot{
+      background:#ff6478;
+    }
+
+    .tabs{
+      margin-top:11px;
       display:grid;
-      grid-template-columns:1fr;
-      gap:10px;
-      margin-top:16px;
+      grid-template-columns:repeat(5,1fr);
+      gap:7px;
     }
 
-    .section-title{margin:20px 0 11px;}
-
-    .section-title h3{
-      margin:0;
-      color:var(--gold2);
-      font-size:clamp(26px,7vw,38px);
-      line-height:1;
-      letter-spacing:-1.1px;
+    .tab{
+      min-height:48px;
+      border-radius:17px;
+      padding:8px 5px;
+      background:rgba(255,244,223,.10);
+      color:rgba(255,244,223,.84);
+      border:1px solid rgba(255,244,223,.14);
+      font-size:11px;
+      font-weight:950;
+      text-transform:uppercase;
+      letter-spacing:.4px;
+      box-shadow:0 9px 22px rgba(0,0,0,.18);
     }
 
-    .section-title p{
-      margin:5px 0 0;
-      color:rgba(255,244,223,.68);
-      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-      font-size:13px;
-      line-height:1.35;
+    .tab.active{
+      background:linear-gradient(145deg,var(--gold2),var(--gold));
+      color:#35120d;
+      border-color:rgba(255,244,223,.38);
     }
 
-    .grid{
-      display:grid;
-      grid-template-columns:repeat(12,1fr);
-      gap:12px;
+    .view{
+      display:none;
+      margin-top:12px;
     }
 
-    .col-3{grid-column:span 3;}
-    .col-4{grid-column:span 4;}
-    .col-5{grid-column:span 5;}
-    .col-6{grid-column:span 6;}
-    .col-7{grid-column:span 7;}
-    .col-8{grid-column:span 8;}
-    .col-12{grid-column:span 12;}
+    .view.active{
+      display:block;
+    }
 
     .panel{
-      border-radius:var(--radius);
-      padding:16px;
+      margin-top:12px;
+      border-radius:24px;
+      padding:15px;
       background:var(--panel);
       color:var(--ink);
       border:1px solid rgba(255,244,223,.58);
-      box-shadow:var(--soft);
+      box-shadow:var(--shadow);
       overflow:hidden;
     }
 
     .panel.dark{
       background:
-        radial-gradient(circle at top left,rgba(245,213,126,.13),transparent 38%),
-        linear-gradient(145deg,rgba(91,16,27,.55),rgba(26,3,8,.85));
+        radial-gradient(circle at top left,rgba(245,213,126,.11),transparent 34%),
+        linear-gradient(145deg,#671525,#27050b);
       color:var(--cream);
-      border:1px solid rgba(245,213,126,.18);
-      box-shadow:var(--deep);
+      border-color:rgba(245,213,126,.24);
     }
 
     .panel-title{
       display:flex;
+      align-items:flex-start;
       justify-content:space-between;
-      align-items:start;
       gap:12px;
-      margin-bottom:12px;
+      margin-bottom:13px;
     }
 
     .panel-title small{
       display:block;
       color:var(--muted);
-      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
       font-size:11px;
       font-weight:950;
-      letter-spacing:1.1px;
-      text-transform:uppercase;
-    }
-
-    .panel-title h4{
-      margin:3px 0 0;
-      color:var(--bord);
-      font-size:23px;
-      line-height:1;
-    }
-
-    .panel.dark .panel-title small{color:rgba(255,244,223,.60);}
-    .panel.dark .panel-title h4{color:var(--gold2);}
-
-    .btn,.btn-gold,.btn-soft,.btn-danger,.btn-ghost,.btn-small,.btn-light{
-      min-height:48px;
-      border-radius:16px;
-      padding:12px 14px;
-      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-      font-size:14px;
-      font-weight:950;
-      box-shadow:var(--soft);
-    }
-
-    .btn{
-      background:linear-gradient(145deg,var(--bord2),var(--bord3));
-      color:var(--cream);
-      border:1px solid rgba(255,244,223,.18);
-    }
-
-    .btn-gold{
-      background:linear-gradient(145deg,var(--gold2),var(--gold));
-      color:#37120d;
-      border:1px solid rgba(91,16,27,.12);
-    }
-
-    .btn-soft{
-      background:rgba(91,16,27,.10);
-      color:var(--bord);
-      border:1px solid rgba(91,16,27,.18);
-      box-shadow:none;
-    }
-
-    .btn-light{
-      background:linear-gradient(145deg,#fff7e5,#d9c6ae);
-      color:var(--bord);
-      border:1px solid rgba(245,213,126,.35);
-      box-shadow:0 10px 22px rgba(0,0,0,.18);
-    }
-
-    .btn-danger{
-      background:linear-gradient(145deg,#b43749,#71111e);
-      color:var(--cream);
-      border:1px solid rgba(255,244,223,.18);
-    }
-
-    .btn-ghost{
-      background:rgba(255,244,223,.10);
-      color:var(--cream);
-      border:1px solid rgba(255,244,223,.18);
-      box-shadow:none;
-    }
-
-    .btn-small{
-      min-height:39px;
-      padding:9px 11px;
-      border-radius:13px;
-      font-size:12px;
-      background:rgba(91,16,27,.10);
-      color:var(--bord);
-      border:1px solid rgba(91,16,27,.15);
-      box-shadow:none;
-    }
-
-    .button-row{display:flex;gap:8px;flex-wrap:wrap;}
-    .button-row button{flex:1 1 auto;}
-
-    .metric{
-      min-height:112px;
-      border-radius:20px;
-      padding:15px;
-      background:linear-gradient(145deg,rgba(255,250,240,.98),rgba(238,212,166,.94));
-      border:1px solid rgba(213,164,67,.28);
-      color:var(--ink);
-      box-shadow:var(--soft);
-    }
-
-    .metric small{
-      display:block;
-      color:var(--muted);
-      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-      font-size:10px;
-      font-weight:950;
-      letter-spacing:1px;
-      text-transform:uppercase;
-    }
-
-    .metric strong{
-      display:block;
-      margin-top:8px;
-      color:var(--bord);
-      font-size:36px;
-      line-height:.9;
-      letter-spacing:-1.5px;
-    }
-
-    .metric span{
-      display:block;
-      margin-top:8px;
-      color:#67483a;
-      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-      font-size:12px;
-      line-height:1.3;
-    }
-
-    .member-card{
-      position:relative;
-      overflow:hidden;
-      border-radius:27px;
-      padding:19px;
-      min-height:270px;
-      background:
-        radial-gradient(circle at 16% 12%,rgba(255,255,255,.17),transparent 27%),
-        radial-gradient(circle at 95% 100%,rgba(245,213,126,.22),transparent 38%),
-        linear-gradient(145deg,#751827,#2b060c 72%);
-      border:1px solid rgba(245,213,126,.62);
-      box-shadow:var(--deep);
-      color:var(--cream);
-    }
-
-    .member-card::before{
-      content:"";
-      position:absolute;
-      inset:11px;
-      border:1px solid rgba(245,213,126,.28);
-      border-radius:20px;
-      pointer-events:none;
-    }
-
-    .member-card::after{
-      content:"XA";
-      position:absolute;
-      right:-7px;
-      bottom:-29px;
-      font-size:112px;
-      line-height:1;
-      letter-spacing:-9px;
-      font-weight:950;
-      color:rgba(245,213,126,.10);
-      pointer-events:none;
-    }
-
-    .member-card>*{position:relative;z-index:1;}
-
-    .member-top{
-      display:flex;
-      justify-content:space-between;
-      gap:12px;
-      align-items:center;
-    }
-
-    .chip{
-      width:45px;
-      height:34px;
-      border-radius:10px;
-      background:linear-gradient(145deg,#f8dc92,#9d681e);
-      border:1px solid rgba(255,244,223,.28);
-      box-shadow:inset 0 0 0 4px rgba(91,16,27,.09);
-    }
-
-    .level{
-      display:inline-flex;
-      max-width:62%;
-      padding:8px 11px;
-      border-radius:999px;
-      background:rgba(255,244,223,.10);
-      color:var(--gold2);
-      border:1px solid rgba(245,213,126,.30);
-      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-      font-size:11px;
-      font-weight:950;
-      letter-spacing:.8px;
-      text-transform:uppercase;
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
-    }
-
-    .member-name{margin-top:24px;}
-
-    .member-name small{
-      display:block;
-      color:rgba(255,244,223,.60);
-      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-      font-size:11px;
-      font-weight:850;
-      letter-spacing:1.4px;
-      text-transform:uppercase;
-    }
-
-    .member-name h3{
-      margin:5px 0 0;
-      color:var(--cream);
-      font-size:clamp(30px,8vw,45px);
-      line-height:.95;
-      letter-spacing:-1.7px;
-    }
-
-    .member-bottom{
-      display:grid;
-      grid-template-columns:1fr auto;
-      gap:15px;
-      align-items:end;
-      margin-top:22px;
-    }
-
-    .points small{
-      display:block;
-      color:rgba(255,244,223,.60);
-      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-      font-size:11px;
-      font-weight:850;
       letter-spacing:1.2px;
       text-transform:uppercase;
     }
 
-    .points strong{
-      display:block;
+    .panel.dark .panel-title small{
+      color:rgba(255,244,223,.58);
+    }
+
+    .panel-title h3{
+      margin:3px 0 0;
+      color:var(--bord);
+      font-family:var(--serif);
+      font-size:28px;
+      line-height:.96;
+      letter-spacing:-1px;
+    }
+
+    .panel.dark .panel-title h3{
       color:var(--gold2);
-      font-size:49px;
-      line-height:.88;
-      letter-spacing:-2px;
     }
 
-    .member-code{
-      text-align:right;
-      color:rgba(255,244,223,.75);
-      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-      font-size:11px;
-      font-weight:850;
-      word-break:break-word;
-    }
-
-    .qr{
+    .grid{
       display:grid;
-      place-items:center;
-      width:118px;
-      height:118px;
-      border-radius:18px;
-      background:var(--ivory);
-      border:1px solid rgba(213,164,67,.45);
-      box-shadow:var(--soft);
-      overflow:hidden;
-    }
-
-    .qr svg{width:102px;height:102px;display:block;}
-
-    .progress-box{
-      margin-top:16px;
-      padding:12px;
-      border-radius:18px;
-      background:rgba(255,244,223,.08);
-      border:1px solid rgba(245,213,126,.20);
-    }
-
-    .progress-copy{
-      display:flex;
-      justify-content:space-between;
-      gap:8px;
-      margin-bottom:8px;
-      color:rgba(255,244,223,.80);
-      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-      font-size:12px;
-      font-weight:850;
-    }
-
-    .bar{
-      height:12px;
-      border-radius:999px;
-      background:rgba(0,0,0,.30);
-      border:1px solid rgba(255,244,223,.09);
-      overflow:hidden;
-    }
-
-    .fill{
-      height:100%;
-      width:0%;
-      border-radius:inherit;
-      background:linear-gradient(90deg,var(--gold3),var(--gold2));
-    }
-
-    .client-list,.history-list,.reward-manage-list{display:grid;gap:9px;}
-
-    .client-item,.history-item,.reward-manage-item{
-      display:grid;
-      grid-template-columns:1fr auto;
       gap:10px;
-      align-items:center;
-      padding:12px;
-      border-radius:17px;
-      background:rgba(255,255,255,.58);
-      border:1px solid rgba(91,16,27,.12);
     }
 
-    .client-item.active,.reward-manage-item.active{
-      background:rgba(245,213,126,.27);
-      border-color:rgba(91,16,27,.25);
+    .grid.two{
+      grid-template-columns:1fr 1fr;
     }
 
-    .client-item h5,.history-item h5,.reward-manage-item h5{
+    .grid.three{
+      grid-template-columns:repeat(3,1fr);
+    }
+
+    label{
+      display:block;
+      margin-bottom:5px;
+      color:#694232;
+      font-size:11px;
+      font-weight:950;
+      text-transform:uppercase;
+      letter-spacing:.8px;
+    }
+
+    input,textarea,select{
+      width:100%;
+      min-height:48px;
+      border-radius:16px;
+      border:1px solid rgba(91,16,27,.16);
+      background:#fffaf0;
+      color:var(--ink);
+      padding:11px 12px;
+      outline:none;
+      font-size:15px;
+      font-weight:750;
+      box-shadow:inset 0 2px 8px rgba(0,0,0,.05);
+    }
+
+    textarea{
+      min-height:84px;
+      resize:vertical;
+    }
+
+    input:focus,textarea:focus,select:focus{
+      border-color:rgba(213,164,67,.75);
+      box-shadow:0 0 0 3px rgba(245,213,126,.25);
+    }
+
+    .btn{
+      min-height:52px;
+      border-radius:18px;
+      padding:12px 14px;
+      background:linear-gradient(145deg,var(--bord2),var(--bord3));
+      color:var(--cream);
+      border:1px solid rgba(255,244,223,.17);
+      box-shadow:var(--shadow);
+      font-size:14px;
+      font-weight:950;
+    }
+
+    .btn.gold{
+      background:linear-gradient(145deg,var(--gold2),var(--gold));
+      color:#34110d;
+      border-color:rgba(255,244,223,.32);
+    }
+
+    .btn.light{
+      background:linear-gradient(145deg,#fff9eb,#d8c1a0);
+      color:var(--bord);
+      border-color:rgba(213,164,67,.32);
+    }
+
+    .btn.green{
+      background:linear-gradient(145deg,#65c477,#2c7c42);
+      color:#061a0c;
+      border-color:rgba(255,255,255,.22);
+    }
+
+    .btn.red{
+      background:linear-gradient(145deg,#b53045,#5a101c);
+      color:var(--cream);
+    }
+
+    .btn.full{
+      width:100%;
+    }
+
+    .btn:disabled{
+      opacity:.55;
+      cursor:not-allowed;
+    }
+
+    .mini-row{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+    }
+
+    .mini-row .btn{
+      flex:1;
+      min-width:120px;
+    }
+
+    .cards{
+      display:grid;
+      gap:10px;
+    }
+
+    .customer-card,.reward-card,.tx-card{
+      border-radius:21px;
+      padding:13px;
+      background:linear-gradient(145deg,rgba(255,250,240,.98),rgba(235,209,165,.94));
+      border:1px solid rgba(213,164,67,.31);
+      color:var(--ink);
+      box-shadow:0 8px 22px rgba(0,0,0,.12);
+    }
+
+    .customer-card.active{
+      outline:3px solid rgba(245,213,126,.65);
+      background:linear-gradient(145deg,#fffaf0,#f0c96f);
+    }
+
+    .customer-head,.reward-head,.tx-head{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:10px;
+    }
+
+    .customer-card h4,.reward-card h4,.tx-card h4{
       margin:0;
       color:var(--bord);
-      font-size:17px;
-      line-height:1.1;
+      font-family:var(--serif);
+      font-size:22px;
+      line-height:.98;
     }
 
-    .client-item p,.history-item p,.reward-manage-item p{
-      margin:5px 0 0;
-      color:#67483a;
-      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-      font-size:12px;
-      line-height:1.3;
-    }
-
-    .client-points,.history-points,.reward-points{
-      text-align:right;
-      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-      font-weight:950;
-      color:var(--bord);
-      white-space:nowrap;
-    }
-
-    .client-points strong,.reward-points strong{
-      display:block;
-      font-size:25px;
-      line-height:.9;
-    }
-
-    .client-points small,.reward-points small{
-      display:block;
-      color:var(--muted);
-      font-size:10px;
-      text-transform:uppercase;
-      letter-spacing:.7px;
-    }
-
-    .history-points.positive{color:var(--green);}
-    .history-points.negative{color:var(--red);}
-
-    .form-grid{
-      display:grid;
-      grid-template-columns:repeat(2,1fr);
-      gap:12px;
-    }
-
-    .full{grid-column:1/-1;}
-
-    .notice,.sale-preview,.pass-box{
-      padding:13px;
-      border-radius:18px;
-      background:rgba(245,213,126,.22);
-      border:1px solid rgba(213,164,67,.34);
-      color:#4e2c1f;
-      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    .customer-card p,.reward-card p,.tx-card p{
+      margin:7px 0 0;
+      color:#6a483b;
       font-size:13px;
-      font-weight:750;
       line-height:1.35;
-      margin-bottom:12px;
+      font-weight:650;
     }
 
-    .pass-link{
-      margin-top:10px;
-      padding:12px;
-      border-radius:16px;
-      background:rgba(255,250,240,.82);
+    .points-pill{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-width:66px;
+      min-height:42px;
+      padding:7px 10px;
+      border-radius:15px;
+      background:rgba(91,16,27,.11);
       color:var(--bord);
       border:1px solid rgba(91,16,27,.16);
-      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-      font-size:12px;
-      font-weight:800;
-      line-height:1.35;
-      word-break:break-all;
-      user-select:all;
-    }
-
-    .empty{
-      padding:18px;
-      border-radius:18px;
-      background:rgba(91,16,27,.07);
-      border:1px dashed rgba(91,16,27,.20);
-      color:#67483a;
-      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-      line-height:1.4;
-    }
-
-    .panel.dark .empty{
-      color:rgba(255,244,223,.72);
-      background:rgba(255,244,223,.07);
-      border-color:rgba(255,244,223,.18);
-    }
-
-    .search-row{
-      display:grid;
-      grid-template-columns:1fr auto;
-      gap:9px;
-      margin-bottom:12px;
-    }
-
-    .quick-amounts{
-      display:grid;
-      grid-template-columns:repeat(4,1fr);
-      gap:8px;
-      margin:8px 0 12px;
-    }
-
-    .reward-grid{
-      display:grid;
-      grid-template-columns:repeat(2,1fr);
-      gap:12px;
-    }
-
-    .reward{
-      border-radius:21px;
-      padding:16px;
-      background:linear-gradient(145deg,rgba(255,250,240,.98),rgba(238,212,166,.94));
-      border:1px solid rgba(213,164,67,.30);
-      box-shadow:var(--soft);
-      color:var(--ink);
-    }
-
-    .reward-head{
-      display:flex;
-      justify-content:space-between;
-      gap:10px;
-      align-items:center;
-      margin-bottom:10px;
-    }
-
-    .reward-head strong{
-      color:var(--bord);
-      font-size:31px;
-      line-height:1;
+      font-size:20px;
+      font-weight:950;
+      white-space:nowrap;
     }
 
     .badge{
       display:inline-flex;
+      align-items:center;
+      justify-content:center;
       padding:7px 10px;
       border-radius:999px;
       background:rgba(91,16,27,.10);
-      border:1px solid rgba(91,16,27,.15);
       color:var(--bord);
-      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-      font-size:11px;
+      border:1px solid rgba(91,16,27,.14);
+      font-size:10px;
       font-weight:950;
       text-transform:uppercase;
       letter-spacing:.7px;
@@ -832,108 +496,123 @@
     }
 
     .badge.ok{
-      background:rgba(57,115,73,.13);
-      color:var(--green);
-      border-color:rgba(57,115,73,.22);
+      background:rgba(67,161,90,.13);
+      color:#236234;
+      border-color:rgba(67,161,90,.24);
     }
 
-    .badge.off{
-      background:rgba(158,37,55,.12);
+    .badge.red{
+      background:rgba(181,48,69,.12);
       color:var(--red);
-      border-color:rgba(158,37,55,.22);
+      border-color:rgba(181,48,69,.22);
     }
 
-    .reward h4{
-      margin:0;
-      color:var(--bord);
-      font-size:22px;
-      line-height:1;
-    }
-
-    .reward p{
-      margin:8px 0 14px;
-      color:#67483a;
-      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-      font-size:13px;
-      line-height:1.35;
-    }
-
-    .profile-head{
+    .summary-grid{
       display:grid;
-      grid-template-columns:1fr auto;
-      gap:14px;
-      align-items:center;
+      grid-template-columns:repeat(3,1fr);
+      gap:8px;
     }
 
-    .profile-head h3{
-      margin:0;
-      color:var(--bord);
-      font-size:clamp(30px,8vw,45px);
-      line-height:.95;
-      letter-spacing:-1.6px;
+    .metric{
+      border-radius:19px;
+      padding:13px;
+      background:rgba(255,244,223,.09);
+      border:1px solid rgba(255,244,223,.13);
+      color:var(--cream);
     }
 
-    .profile-head p{
-      margin:6px 0 0;
-      color:#67483a;
-      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-      font-size:13px;
-      line-height:1.35;
-    }
-
-    .data-grid{
-      display:grid;
-      grid-template-columns:repeat(2,1fr);
-      gap:9px;
-      margin-top:14px;
-    }
-
-    .data{
-      border-radius:16px;
-      padding:12px;
-      background:rgba(91,16,27,.07);
-      border:1px solid rgba(91,16,27,.12);
-    }
-
-    .data small{
+    .metric small{
       display:block;
-      color:var(--muted);
-      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      color:rgba(255,244,223,.58);
       font-size:10px;
       font-weight:950;
-      letter-spacing:.8px;
       text-transform:uppercase;
+      letter-spacing:.8px;
     }
 
-    .data strong{
+    .metric strong{
       display:block;
-      margin-top:5px;
-      color:var(--bord);
-      font-size:19px;
-      line-height:1.08;
+      margin-top:4px;
+      color:var(--gold2);
+      font-family:var(--serif);
+      font-size:32px;
+      line-height:.9;
+    }
+
+    .selected-pass{
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:12px;
+      align-items:center;
+      border-radius:22px;
+      padding:13px;
+      background:
+        radial-gradient(circle at top left,rgba(245,213,126,.14),transparent 38%),
+        linear-gradient(145deg,#681625,#28050b);
+      border:1px solid rgba(245,213,126,.28);
+      color:var(--cream);
+    }
+
+    .selected-pass h4{
+      margin:0;
+      color:var(--gold2);
+      font-family:var(--serif);
+      font-size:26px;
+      line-height:.95;
+    }
+
+    .selected-pass p{
+      margin:7px 0 0;
+      color:rgba(255,244,223,.74);
+      font-size:13px;
+      line-height:1.35;
       word-break:break-word;
     }
 
-    .pin{
-      display:inline-flex;
-      align-items:center;
-      padding:8px 10px;
-      border-radius:999px;
-      background:rgba(255,244,223,.10);
-      border:1px solid rgba(255,244,223,.16);
-      color:rgba(255,244,223,.78);
-      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-      font-size:11px;
-      font-weight:950;
-      letter-spacing:.7px;
-      text-transform:uppercase;
-      white-space:nowrap;
+    .qr-box{
+      width:118px;
+      height:118px;
+      border-radius:18px;
+      background:var(--ivory);
+      border:1px solid rgba(245,213,126,.60);
+      display:grid;
+      place-items:center;
+      overflow:hidden;
+      box-shadow:0 10px 28px rgba(0,0,0,.28);
     }
 
-    .pin.ok{
-      background:rgba(57,115,73,.20);
-      border-color:rgba(57,115,73,.34);
-      color:#daf8df;
+    .qr-box canvas,.qr-box img{
+      width:104px !important;
+      height:104px !important;
+    }
+
+    .notice{
+      border-radius:18px;
+      padding:13px;
+      background:rgba(245,213,126,.19);
+      border:1px solid rgba(213,164,67,.30);
+      color:#533126;
+      font-size:13px;
+      font-weight:750;
+      line-height:1.36;
+    }
+
+    .empty{
+      border-radius:18px;
+      padding:16px;
+      background:rgba(91,16,27,.07);
+      border:1px dashed rgba(91,16,27,.22);
+      color:#67483a;
+      font-size:14px;
+      line-height:1.4;
+      font-weight:700;
+    }
+
+    .searchbar{
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:8px;
+      margin-bottom:10px;
     }
 
     .bottom{
@@ -941,143 +620,107 @@
       left:0;
       right:0;
       bottom:0;
-      z-index:60;
+      z-index:80;
       padding:10px 12px calc(10px + env(safe-area-inset-bottom));
-      background:linear-gradient(0deg,rgba(7,1,2,.98),rgba(20,3,5,.86));
+      background:linear-gradient(0deg,rgba(7,1,2,.98),rgba(18,3,5,.90));
       border-top:1px solid var(--line2);
       backdrop-filter:blur(14px);
     }
 
     .bottom-inner{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:8px;
-      width:min(680px,100%);
+      width:min(760px,100%);
       margin:0 auto;
+      display:grid;
+      grid-template-columns:repeat(5,1fr);
+      gap:7px;
     }
 
     .bottom-inner button{
-      min-height:52px;
-      border-radius:18px;
-      font-size:12px;
-      padding-left:7px;
-      padding-right:7px;
-    }
-
-    .modal-bg{
-      position:fixed;
-      inset:0;
-      z-index:100;
-      display:none;
-      place-items:end center;
-      padding:14px;
-      background:rgba(0,0,0,.64);
-      backdrop-filter:blur(8px);
-    }
-
-    .modal-bg.show{display:grid;}
-
-    .modal{
-      width:min(680px,100%);
-      max-height:88vh;
-      overflow:auto;
-      border-radius:27px;
-      padding:18px;
-      background:
-        radial-gradient(circle at top left,rgba(245,213,126,.26),transparent 38%),
-        linear-gradient(145deg,#fff6e3,#e3c79a);
-      color:var(--ink);
-      border:1px solid rgba(255,244,223,.64);
-      box-shadow:var(--deep);
-    }
-
-    .modal-head{
-      display:flex;
-      justify-content:space-between;
-      align-items:start;
-      gap:12px;
-      margin-bottom:14px;
-    }
-
-    .modal-head h3{
-      margin:0;
-      color:var(--bord);
-      font-size:32px;
-      line-height:.95;
-      letter-spacing:-1.3px;
-    }
-
-    .modal-head p{
-      margin:6px 0 0;
-      color:#67483a;
-      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-      font-size:13px;
-      line-height:1.35;
-    }
-
-    .close{
-      width:42px;
-      height:42px;
-      border-radius:14px;
-      background:rgba(91,16,27,.12);
-      color:var(--bord);
-      font-size:23px;
+      min-height:51px;
+      border-radius:17px;
+      padding:8px 4px;
+      font-size:10px;
       font-weight:950;
+      text-transform:uppercase;
+      letter-spacing:.2px;
+      background:rgba(255,244,223,.10);
+      color:rgba(255,244,223,.82);
+      border:1px solid rgba(255,244,223,.13);
+    }
+
+    .bottom-inner button.active{
+      background:linear-gradient(145deg,var(--gold2),var(--gold));
+      color:#35120d;
     }
 
     .toast{
       position:fixed;
-      left:50%;
-      bottom:94px;
-      z-index:220;
-      width:min(520px,calc(100% - 26px));
-      padding:13px 15px;
-      transform:translateX(-50%) translateY(18px);
-      opacity:0;
-      pointer-events:none;
-      transition:.22s ease;
+      left:12px;
+      right:12px;
+      bottom:98px;
+      z-index:200;
+      display:none;
+      width:min(740px,calc(100% - 24px));
+      margin:0 auto;
+      padding:13px 14px;
       border-radius:18px;
-      background:linear-gradient(145deg,#fff6e3,#e4c79a);
+      background:linear-gradient(145deg,#fff4df,#e7c783);
       color:var(--bord);
-      border:1px solid rgba(245,213,126,.62);
       box-shadow:var(--deep);
-      text-align:center;
-      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-      font-weight:850;
+      border:1px solid rgba(255,244,223,.65);
+      font-size:14px;
+      font-weight:900;
+      line-height:1.32;
     }
 
     .toast.show{
-      opacity:1;
-      transform:translateX(-50%) translateY(0);
+      display:block;
     }
 
     .version{
-      margin:25px 0 10px;
       text-align:center;
-      color:rgba(255,244,223,.46);
-      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-      font-size:11px;
-      font-weight:850;
-      letter-spacing:1px;
+      margin:22px 0 8px;
+      color:rgba(255,244,223,.42);
+      font-size:10px;
+      font-weight:950;
       text-transform:uppercase;
+      letter-spacing:1px;
     }
 
-    @media(max-width:880px){
-      .col-3,.col-4,.col-5,.col-6,.col-7,.col-8{grid-column:span 12;}
-      .reward-grid{grid-template-columns:1fr;}
+    .hidden{
+      display:none !important;
     }
 
-    @media(max-width:560px){
-      .app{padding:8px;}
-      .top{margin:0 -8px 10px;}
-      .brand h1{font-size:29px;}
-      .top-copy{font-size:13px;}
-      .form-grid,.data-grid{grid-template-columns:1fr;}
-      .quick-amounts{grid-template-columns:repeat(2,1fr);}
-      .profile-head,.member-bottom{grid-template-columns:1fr;}
-      .member-code{text-align:left;}
-      .qr{width:112px;height:112px;}
-      .qr svg{width:98px;height:98px;}
+    @media(max-width:680px){
+      .grid.two,.grid.three{
+        grid-template-columns:1fr;
+      }
+
+      .summary-grid{
+        grid-template-columns:repeat(3,1fr);
+      }
+
+      .brand h1{
+        font-size:29px;
+      }
+
+      .hero h2{
+        font-size:42px;
+      }
+
+      .selected-pass{
+        grid-template-columns:1fr;
+      }
+
+      .qr-box{
+        width:132px;
+        height:132px;
+      }
+
+      .qr-box canvas,.qr-box img{
+        width:116px !important;
+        height:116px !important;
+      }
     }
   </style>
 </head>
@@ -1090,829 +733,308 @@
           <div class="seal">XA</div>
           <div class="brand">
             <small>Fermented Redrinks</small>
-            <h1>XA Member Club</h1>
+            <h1>XA Loyalty Club</h1>
           </div>
         </div>
-
-        <div class="active-pill" id="activePill">
-          <b></b>
-          <span>Nessun cliente attivo</span>
-        </div>
-
         <p class="top-copy">
-          Club premium per clienti, punti, cassa, premi e pass cliente.
+          App negozio online: clienti, punti, premi e QR reali collegati a Supabase.
           <strong>Not a drink. An experience.</strong>
         </p>
-
-        <div class="mini-console">
-          <button class="console-btn rec" onclick="openClientModal()">REC</button>
-          <button class="console-btn play" onclick="playOpenClient()">PLAY</button>
-          <button class="console-btn stop" onclick="stopReset()">STOP</button>
-        </div>
       </div>
-
-      <nav class="tabs">
-        <button class="tab active" data-page="home" onclick="goPage('home')">Home</button>
-        <button class="tab" data-page="dashboard" onclick="goPage('dashboard')">Dash</button>
-        <button class="tab" data-page="clients" onclick="goPage('clients')">Clienti</button>
-        <button class="tab" data-page="cash" onclick="goPage('cash')">Cassa</button>
-        <button class="tab" data-page="rewards" onclick="goPage('rewards')">Premi</button>
-        <button class="tab" data-page="builder" onclick="goPage('builder')">Gestione</button>
-        <button class="tab" data-page="pass" onclick="goPage('pass')">Pass</button>
-        <button class="tab" data-page="history" onclick="goPage('history')">Storico</button>
-        <button class="tab" data-page="profile" onclick="goPage('profile')">Profilo</button>
-        <button class="tab" data-page="backup" onclick="goPage('backup')">Backup</button>
-      </nav>
     </header>
 
+    <section class="hero">
+      <h2>Store Console</h2>
+      <p>Gestione reale del Member Club XA. Ogni cliente ha un pass personale e un QR collegato al database.</p>
+
+      <div class="status-row">
+        <span class="status" id="statusOnline"><span class="dot"></span><span>Connessione...</span></span>
+        <span class="status" id="statusPin"><span class="dot"></span><span>PIN negozio</span></span>
+        <span class="status ok"><span class="dot"></span><span>V9 Online</span></span>
+      </div>
+
+      <div class="tabs">
+        <button class="tab active" onclick="setView('dashboard')">Home</button>
+        <button class="tab" onclick="setView('customers')">Clienti</button>
+        <button class="tab" onclick="setView('points')">Punti</button>
+        <button class="tab" onclick="setView('rewards')">Premi</button>
+        <button class="tab" onclick="setView('pass')">Pass</button>
+      </div>
+    </section>
+
     <main>
-      <section class="page active" id="page-home">
-        <div class="hero">
-          <h2>XA Club Console</h2>
-          <p>
-            La base operativa del club: clienti, saldo punti, vendite, premi,
-            storico, backup e generazione del pass cliente.
-          </p>
-
-          <div class="home-actions">
-            <button class="btn-gold" onclick="openClientModal()">Nuovo cliente</button>
-            <button class="btn-light" onclick="goPage('clients')">Cerca cliente</button>
-            <button class="btn-light" onclick="goPage('cash')">Vai alla cassa</button>
-            <button class="btn-light" onclick="goPage('pass')">Genera pass cliente</button>
+      <section class="view active" id="view-dashboard">
+        <div class="panel dark">
+          <div class="panel-title">
+            <div>
+              <small>Console live</small>
+              <h3>Dashboard</h3>
+            </div>
           </div>
-        </div>
 
-        <div class="section-title">
-          <h3>Vista rapida</h3>
-          <p>Cliente attivo, punti, premi e pass personale.</p>
-        </div>
-
-        <div class="grid">
-          <div class="col-4">
+          <div class="summary-grid">
             <div class="metric">
               <small>Clienti</small>
-              <strong id="mClients">0</strong>
-              <span>Membri iscritti al club.</span>
+              <strong id="metricCustomers">0</strong>
             </div>
-          </div>
-
-          <div class="col-4">
-            <div class="metric">
-              <small>Punti attivi</small>
-              <strong id="mPoints">0</strong>
-              <span>Totale punti disponibili.</span>
-            </div>
-          </div>
-
-          <div class="col-4">
-            <div class="metric">
-              <small>Premi attivi</small>
-              <strong id="mRewards">0</strong>
-              <span>Premi disponibili nel club.</span>
-            </div>
-          </div>
-
-          <div class="col-7">
-            <div id="homeCard"></div>
-          </div>
-
-          <div class="col-5">
-            <div class="panel">
-              <div class="panel-title">
-                <div>
-                  <small>Operazione rapida</small>
-                  <h4>Club e pass</h4>
-                </div>
-              </div>
-              <div id="homeQuick"></div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="page" id="page-dashboard">
-        <div class="section-title">
-          <h3>Dashboard negozio</h3>
-          <p>Controllo rapido del club e dell’attività demo.</p>
-        </div>
-
-        <div class="grid">
-          <div class="col-3">
-            <div class="metric">
-              <small>Clienti XA</small>
-              <strong id="dClients">0</strong>
-              <span>Clienti registrati.</span>
-            </div>
-          </div>
-
-          <div class="col-3">
-            <div class="metric">
-              <small>Punti club</small>
-              <strong id="dPoints">0</strong>
-              <span>Saldo punti totale.</span>
-            </div>
-          </div>
-
-          <div class="col-3">
-            <div class="metric">
-              <small>Vendite</small>
-              <strong id="dSales">0</strong>
-              <span>Vendite salvate.</span>
-            </div>
-          </div>
-
-          <div class="col-3">
             <div class="metric">
               <small>Premi</small>
-              <strong id="dRewards">0</strong>
-              <span>Premi attivi.</span>
+              <strong id="metricRewards">0</strong>
+            </div>
+            <div class="metric">
+              <small>Movimenti</small>
+              <strong id="metricTx">0</strong>
             </div>
           </div>
-
-          <div class="col-6">
-            <div class="panel">
-              <div class="panel-title">
-                <div>
-                  <small>Top cliente</small>
-                  <h4>Cliente più attivo</h4>
-                </div>
-                <span class="pin" id="pinDash">Cassa bloccata</span>
-              </div>
-              <div id="topClient"></div>
-            </div>
-          </div>
-
-          <div class="col-6">
-            <div class="panel">
-              <div class="panel-title">
-                <div>
-                  <small>Movimenti</small>
-                  <h4>Ultimi eventi</h4>
-                </div>
-              </div>
-              <div id="dashHistory"></div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="page" id="page-clients">
-        <div class="section-title">
-          <h3>Clienti XA</h3>
-          <p>Cerca, apri, manda in cassa, genera pass o elimina un cliente.</p>
-        </div>
-
-        <div class="grid">
-          <div class="col-5">
-            <div class="panel">
-              <div class="panel-title">
-                <div>
-                  <small>Archivio</small>
-                  <h4>Clienti</h4>
-                </div>
-              </div>
-
-              <div class="search-row">
-                <input id="clientSearch" type="search" placeholder="Cerca cliente..." oninput="renderClients()" />
-                <button class="btn-gold" onclick="openClientModal()">+</button>
-              </div>
-
-              <div id="clientsList" class="client-list"></div>
-            </div>
-          </div>
-
-          <div class="col-7">
-            <div id="clientsPreview"></div>
-          </div>
-        </div>
-      </section>
-
-      <section class="page" id="page-cash">
-        <div class="section-title">
-          <h3>Cassa XA</h3>
-          <p>Registra una vendita e assegna punti al cliente.</p>
-        </div>
-
-        <div class="grid">
-          <div class="col-5">
-            <div class="panel">
-              <div class="panel-title">
-                <div>
-                  <small>Cliente selezionato</small>
-                  <h4>In cassa</h4>
-                </div>
-                <span class="pin" id="pinCash">Cassa bloccata</span>
-              </div>
-              <div id="cashClient"></div>
-            </div>
-          </div>
-
-          <div class="col-7">
-            <div class="panel">
-              <div class="panel-title">
-                <div>
-                  <small>Scontrino</small>
-                  <h4>Aggiungi vendita</h4>
-                </div>
-              </div>
-
-              <div class="notice">
-                PIN demo cassa: <b>2026</b>.
-              </div>
-
-              <label>Importi rapidi</label>
-              <div class="quick-amounts">
-                <button class="btn-small" onclick="setAmount(10)">€10</button>
-                <button class="btn-small" onclick="setAmount(25)">€25</button>
-                <button class="btn-small" onclick="setAmount(50)">€50</button>
-                <button class="btn-small" onclick="setAmount(100)">€100</button>
-              </div>
-
-              <div class="form-grid">
-                <div>
-                  <label>Importo vendita</label>
-                  <input id="saleAmount" type="number" min="0" step="0.01" placeholder="28.50" oninput="updateSalePreview()" />
-                </div>
-
-                <div>
-                  <label>Categoria prodotto</label>
-                  <select id="saleCategory" onchange="updateSalePreview()">
-                    <option value="Fermented Redrinks">Fermented Redrinks · x2</option>
-                    <option value="Sidro XA">Sidro XA · x1.5</option>
-                    <option value="Degustazione">Degustazione · x3</option>
-                    <option value="Premium Selection">Premium Selection · x2</option>
-                    <option value="Shop XA">Shop XA · x1</option>
-                    <option value="Gift">Gift · x1</option>
-                  </select>
-                </div>
-
-                <div class="full">
-                  <label>Nota scontrino</label>
-                  <input id="saleNote" type="text" placeholder="Esempio: bottiglia + degustazione" />
-                </div>
-              </div>
-
-              <div class="sale-preview" id="salePreview">
-                Inserisci importo e categoria: qui vedi i punti prima di salvare.
-              </div>
-
-              <div class="button-row">
-                <button class="btn" onclick="addSale()">Salva vendita</button>
-                <button class="btn-gold" onclick="addBonus()">Bonus +50</button>
-                <button class="btn-soft" onclick="unlockCashier()">Sblocca</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="page" id="page-rewards">
-        <div class="section-title">
-          <h3>Premi Club</h3>
-          <p>Premi, esperienze e oggetti riscattabili dal cliente.</p>
-        </div>
-
-        <div class="grid">
-          <div class="col-5">
-            <div class="panel">
-              <div class="panel-title">
-                <div>
-                  <small>Cliente selezionato</small>
-                  <h4>Saldo premi</h4>
-                </div>
-              </div>
-              <div id="rewardClient"></div>
-            </div>
-          </div>
-
-          <div class="col-7">
-            <div class="reward-grid" id="rewardGrid"></div>
-          </div>
-        </div>
-      </section>
-
-      <section class="page" id="page-builder">
-        <div class="section-title">
-          <h3>Gestione Premi</h3>
-          <p>Crea i premi del negozio: bicchieri, bottiglie, degustazioni, eventi o premi personalizzati.</p>
-        </div>
-
-        <div class="grid">
-          <div class="col-5">
-            <div class="panel">
-              <div class="panel-title">
-                <div>
-                  <small>Nuovo / modifica</small>
-                  <h4>Premio</h4>
-                </div>
-              </div>
-
-              <input type="hidden" id="rewardEditId" />
-
-              <div class="form-grid">
-                <div class="full">
-                  <label>Nome premio</label>
-                  <input id="rewardTitle" type="text" placeholder="Esempio: Bicchiere XA" />
-                </div>
-
-                <div>
-                  <label>Punti necessari</label>
-                  <input id="rewardPoints" type="number" min="1" step="1" placeholder="250" />
-                </div>
-
-                <div>
-                  <label>Categoria</label>
-                  <select id="rewardCategory">
-                    <option value="Oggetto">Oggetto</option>
-                    <option value="Degustazione">Degustazione</option>
-                    <option value="Bottiglia">Bottiglia</option>
-                    <option value="Esperienza">Esperienza</option>
-                    <option value="Evento">Evento</option>
-                    <option value="Sconto">Sconto</option>
-                    <option value="Altro">Altro</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label>Quantità disponibile</label>
-                  <input id="rewardQuantity" type="number" min="0" step="1" placeholder="Vuoto = illimitata" />
-                </div>
-
-                <div>
-                  <label>Stato</label>
-                  <select id="rewardActive">
-                    <option value="true">Attivo</option>
-                    <option value="false">Non attivo</option>
-                  </select>
-                </div>
-
-                <div class="full">
-                  <label>Descrizione premio</label>
-                  <textarea id="rewardDesc" placeholder="Descrivi il premio, quando si ritira, condizioni, dettagli..."></textarea>
-                </div>
-              </div>
-
-              <div class="button-row" style="margin-top:14px;">
-                <button class="btn" onclick="saveRewardFromForm()">Salva premio</button>
-                <button class="btn-gold" onclick="clearRewardForm()">Nuovo</button>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-7">
-            <div class="panel">
-              <div class="panel-title">
-                <div>
-                  <small>Catalogo negozio</small>
-                  <h4>Premi creati</h4>
-                </div>
-              </div>
-
-              <div class="notice">
-                I premi attivi appaiono nella pagina “Premi Club” e possono essere riscattati dal cliente selezionato.
-              </div>
-
-              <div id="rewardManageList" class="reward-manage-list"></div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="page" id="page-pass">
-        <div class="section-title">
-          <h3>Genera Pass Cliente</h3>
-          <p>Crea il link personale da mandare al cliente per installare il suo XA Member Pass.</p>
-        </div>
-
-        <div class="grid">
-          <div class="col-5">
-            <div class="panel">
-              <div class="panel-title">
-                <div>
-                  <small>Cliente selezionato</small>
-                  <h4>Pass personale</h4>
-                </div>
-              </div>
-              <div id="passClientBox"></div>
-            </div>
-          </div>
-
-          <div class="col-7">
-            <div class="panel">
-              <div class="panel-title">
-                <div>
-                  <small>Link cliente</small>
-                  <h4>XA Member Pass</h4>
-                </div>
-              </div>
-
-              <div class="pass-box">
-                Questo link apre l’app cliente già compilata con nome, codice, livello e punti attuali.
-                Il cliente può poi salvarla sul telefono.
-              </div>
-
-              <div id="passLinkBox"></div>
-
-              <div class="button-row" style="margin-top:12px;">
-                <button class="btn" onclick="copyPassLink()">Copia link pass</button>
-                <button class="btn-gold" onclick="openPassLink()">Apri pass</button>
-                <button class="btn-light" onclick="sharePassLink()">Condividi</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="page" id="page-history">
-        <div class="section-title">
-          <h3>Storico Club</h3>
-          <p>Vendite, bonus e premi riscattati.</p>
         </div>
 
         <div class="panel">
-          <div class="search-row">
-            <select id="historyFilter" onchange="renderHistory()">
-              <option value="all">Tutti i movimenti</option>
-              <option value="sale">Solo vendite</option>
-              <option value="bonus">Solo bonus</option>
-              <option value="reward">Solo premi</option>
-            </select>
-            <button class="btn-small" onclick="resetHistoryFilter()">Reset</button>
+          <div class="panel-title">
+            <div>
+              <small>Accesso negozio</small>
+              <h3>PIN operativo</h3>
+            </div>
           </div>
 
-          <div id="historyList" class="history-list"></div>
+          <div class="grid">
+            <div>
+              <label>PIN negozio</label>
+              <input id="pinInput" type="password" value="XA2026" autocomplete="off" />
+            </div>
+            <button class="btn gold full" onclick="savePinAndReload()">Entra / Aggiorna dati</button>
+          </div>
+
+          <div class="notice" style="margin-top:10px;">
+            PIN iniziale demo: <b>XA2026</b>. Serve solo per questa prima versione online.
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-title">
+            <div>
+              <small>Ultimi clienti</small>
+              <h3>Member List</h3>
+            </div>
+          </div>
+          <div class="cards" id="latestCustomers"></div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-title">
+            <div>
+              <small>Movimenti recenti</small>
+              <h3>Timeline</h3>
+            </div>
+          </div>
+          <div class="cards" id="latestTransactions"></div>
         </div>
       </section>
 
-      <section class="page" id="page-profile">
-        <div class="section-title">
-          <h3>Profilo Cliente</h3>
-          <p>Card, QR, preferenze, punti, storico personale e link pass cliente.</p>
+      <section class="view" id="view-customers">
+        <div class="panel">
+          <div class="panel-title">
+            <div>
+              <small>Nuovo membro</small>
+              <h3>Registra cliente</h3>
+            </div>
+          </div>
+
+          <div class="grid">
+            <div>
+              <label>Nome cliente</label>
+              <input id="newName" placeholder="Es. Maria Rossi" />
+            </div>
+
+            <div class="grid two">
+              <div>
+                <label>Telefono</label>
+                <input id="newPhone" placeholder="Opzionale" />
+              </div>
+              <div>
+                <label>Email</label>
+                <input id="newEmail" placeholder="Opzionale" />
+              </div>
+            </div>
+
+            <div class="grid two">
+              <div>
+                <label>Preferenza</label>
+                <input id="newFavorite" placeholder="Sidro, tonic, tasting..." />
+              </div>
+              <div>
+                <label>Profilo gusto</label>
+                <input id="newTaste" placeholder="Secco, aromatico, sperimentale..." />
+              </div>
+            </div>
+
+            <div>
+              <label>Note</label>
+              <textarea id="newNote" placeholder="Note interne negozio"></textarea>
+            </div>
+
+            <button class="btn gold full" onclick="createCustomer()">Crea cliente e pass QR</button>
+          </div>
         </div>
 
-        <div class="grid">
-          <div class="col-7">
-            <div id="profileCard"></div>
-          </div>
-
-          <div class="col-5">
-            <div class="panel">
-              <div class="panel-title">
-                <div>
-                  <small>Dettagli</small>
-                  <h4>Scheda cliente</h4>
-                </div>
-              </div>
-              <div id="profileDetails"></div>
+        <div class="panel">
+          <div class="panel-title">
+            <div>
+              <small>Clienti attivi</small>
+              <h3>Archivio</h3>
             </div>
           </div>
 
-          <div class="col-12">
-            <div class="panel">
-              <div class="panel-title">
-                <div>
-                  <small>Pass cliente</small>
-                  <h4>Link personale</h4>
-                </div>
-              </div>
-              <div id="profilePassBox"></div>
+          <div class="searchbar">
+            <input id="customerSearch" placeholder="Cerca cliente, codice, telefono..." oninput="renderCustomers()" />
+            <button class="btn light" onclick="reloadDashboard()">Aggiorna</button>
+          </div>
+
+          <div class="cards" id="customerList"></div>
+        </div>
+      </section>
+
+      <section class="view" id="view-points">
+        <div class="panel dark">
+          <div class="panel-title">
+            <div>
+              <small>Cliente selezionato</small>
+              <h3 id="selectedCustomerTitle">Nessun cliente</h3>
+            </div>
+          </div>
+          <div id="selectedCustomerBox" class="notice">Seleziona un cliente dalla lista.</div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-title">
+            <div>
+              <small>Aggiungi punti</small>
+              <h3>Vendita / Bonus</h3>
             </div>
           </div>
 
-          <div class="col-12">
-            <div class="panel">
-              <div class="panel-title">
-                <div>
-                  <small>Storico personale</small>
-                  <h4>Movimenti cliente</h4>
-                </div>
-              </div>
-              <div id="profileHistory" class="history-list"></div>
+          <div class="grid">
+            <div>
+              <label>Titolo movimento</label>
+              <input id="pointsTitle" value="Acquisto XA" />
             </div>
+
+            <div class="grid three">
+              <div>
+                <label>Importo €</label>
+                <input id="pointsAmount" type="number" value="0" step="0.01" />
+              </div>
+              <div>
+                <label>Categoria</label>
+                <input id="pointsCategory" value="Vendita" />
+              </div>
+              <div>
+                <label>Punti</label>
+                <input id="pointsValue" type="number" value="10" />
+              </div>
+            </div>
+
+            <div>
+              <label>Note</label>
+              <input id="pointsNote" placeholder="Opzionale" />
+            </div>
+
+            <div class="mini-row">
+              <button class="btn gold" onclick="quickPoints(10)">+10</button>
+              <button class="btn gold" onclick="quickPoints(25)">+25</button>
+              <button class="btn gold" onclick="quickPoints(50)">+50</button>
+              <button class="btn red" onclick="quickPoints(-50)">-50</button>
+            </div>
+
+            <button class="btn green full" onclick="addPoints()">Salva movimento punti</button>
           </div>
         </div>
       </section>
 
-      <section class="page" id="page-backup">
-        <div class="section-title">
-          <h3>Backup</h3>
-          <p>Esporta JSON, CSV o importa un backup. Il JSON salva anche i premi creati.</p>
+      <section class="view" id="view-rewards">
+        <div class="panel">
+          <div class="panel-title">
+            <div>
+              <small>Premi reali</small>
+              <h3>Rewards</h3>
+            </div>
+          </div>
+          <div class="cards" id="rewardList"></div>
         </div>
 
-        <div class="grid">
-          <div class="col-6">
-            <div class="panel">
-              <div class="panel-title">
-                <div>
-                  <small>Esporta</small>
-                  <h4>Backup dati</h4>
-                </div>
-              </div>
+        <div class="panel">
+          <div class="panel-title">
+            <div>
+              <small>Riscatto</small>
+              <h3>Assegna premio</h3>
+            </div>
+          </div>
+          <div class="notice" id="redeemNotice">Seleziona un cliente, poi premi “Riscatta” su un premio disponibile.</div>
+        </div>
+      </section>
 
-              <div class="notice">
-                I dati sono salvati nel browser del telefono. Esporta spesso un backup JSON.
-              </div>
-
-              <div class="button-row">
-                <button class="btn" onclick="exportJSON()">Backup JSON</button>
-                <button class="btn-gold" onclick="exportHistoryCSV()">Storico CSV</button>
-                <button class="btn-soft" onclick="exportClientsCSV()">Clienti CSV</button>
-                <button class="btn-soft" onclick="exportRewardsCSV()">Premi CSV</button>
-              </div>
+      <section class="view" id="view-pass">
+        <div class="panel dark">
+          <div class="panel-title">
+            <div>
+              <small>Pass cliente</small>
+              <h3>QR reale</h3>
             </div>
           </div>
 
-          <div class="col-6">
-            <div class="panel">
-              <div class="panel-title">
-                <div>
-                  <small>Importa</small>
-                  <h4>Ripristina</h4>
-                </div>
-              </div>
+          <div id="passBox" class="notice">Seleziona un cliente dalla lista per generare il pass.</div>
+        </div>
 
-              <input type="file" accept="application/json,.json" onchange="importJSON(event)" />
-
-              <div class="button-row" style="margin-top:12px;">
-                <button class="btn-danger" onclick="clearAllData()">Cancella dati demo</button>
-              </div>
+        <div class="panel">
+          <div class="panel-title">
+            <div>
+              <small>Azioni</small>
+              <h3>Link cliente</h3>
             </div>
+          </div>
+
+          <div class="mini-row">
+            <button class="btn gold" onclick="copyPassLink()">Copia link pass</button>
+            <button class="btn light" onclick="openPassLink()">Apri pass</button>
+            <button class="btn" onclick="sharePassLink()">Condividi</button>
           </div>
         </div>
       </section>
     </main>
 
-    <div class="version">V8.6 — XA Member Club Genera Pass Cliente</div>
+    <div class="version">V9 — XA Loyalty Club Online Supabase</div>
   </div>
 
   <div class="bottom">
     <div class="bottom-inner">
-      <button class="btn" onclick="openClientModal()">Nuovo</button>
-      <button class="btn-gold" onclick="goPage('cash')">Cassa</button>
-      <button class="btn-ghost" onclick="goPage('pass')">Pass</button>
-    </div>
-  </div>
-
-  <div class="modal-bg" id="clientModal">
-    <div class="modal">
-      <div class="modal-head">
-        <div>
-          <h3>Nuovo cliente</h3>
-          <p>Crea una card XA Member Club.</p>
-        </div>
-        <button class="close" onclick="closeClientModal()">×</button>
-      </div>
-
-      <div class="form-grid">
-        <div class="full">
-          <label>Nome cliente</label>
-          <input id="newName" type="text" placeholder="Nome e cognome" />
-        </div>
-
-        <div>
-          <label>Telefono</label>
-          <input id="newPhone" type="tel" placeholder="+39..." />
-        </div>
-
-        <div>
-          <label>Email</label>
-          <input id="newEmail" type="email" placeholder="cliente@email.com" />
-        </div>
-
-        <div>
-          <label>Compleanno</label>
-          <input id="newBirthday" type="date" />
-        </div>
-
-        <div>
-          <label>Livello card</label>
-          <select id="newLevel">
-            <option value="Founding Member">Founding Member</option>
-            <option value="Private Member">Private Member</option>
-            <option value="Gold Member">Gold Member</option>
-            <option value="Ambassador">Ambassador</option>
-          </select>
-        </div>
-
-        <div>
-          <label>Punti iniziali</label>
-          <input id="newPoints" type="number" min="0" step="1" value="0" />
-        </div>
-
-        <div>
-          <label>Prodotto preferito</label>
-          <input id="newFavorite" type="text" placeholder="Sidro secco, tasting, limited batch..." />
-        </div>
-
-        <div>
-          <label>Profilo gusto</label>
-          <select id="newTaste">
-            <option value="Non definito">Non definito</option>
-            <option value="Secco">Secco</option>
-            <option value="Fruttato">Fruttato</option>
-            <option value="Tannico">Tannico</option>
-            <option value="Speziato">Speziato</option>
-            <option value="Dolce equilibrato">Dolce equilibrato</option>
-            <option value="Sperimentale">Sperimentale</option>
-          </select>
-        </div>
-
-        <div class="full">
-          <label>Nota cliente</label>
-          <textarea id="newNote" placeholder="Preferenze, prodotti amati, premi promessi..."></textarea>
-        </div>
-      </div>
-
-      <div class="button-row" style="margin-top:14px;">
-        <button class="btn" onclick="createClient()">Crea card</button>
-        <button class="btn-soft" onclick="closeClientModal()">Annulla</button>
-      </div>
+      <button class="active" onclick="setView('dashboard')">Home</button>
+      <button onclick="setView('customers')">Clienti</button>
+      <button onclick="setView('points')">Punti</button>
+      <button onclick="setView('rewards')">Premi</button>
+      <button onclick="setView('pass')">Pass</button>
     </div>
   </div>
 
   <div class="toast" id="toast"></div>
 
   <script>
-    const STORAGE_KEY = "xa_member_club_v86";
-    const OLD_KEYS = [
-      "xa_member_club_v85",
-      "xa_member_club_v84",
-      "xa_member_club_v83",
-      "xa_member_club_v82",
-      "xa_member_club_v81",
-      "xa_member_club_v8",
-      "xa_loyalty_club_v8",
-      "xa_club_console_v8"
-    ];
+    const SUPABASE_URL = "https://vwfgenrjpsnpxombectu.supabase.co";
+    const SUPABASE_KEY = "sb_publishable_YjgxWuLEA4vbEPeelpWzcg_qnVVOuuH";
+    const CLIENT_PASS_BASE = "https://essenzadiluna1-oss.github.io/xa-member-pass/index.html";
+    const PIN_KEY = "xa_store_pin_v9";
+    const SELECTED_KEY = "xa_selected_customer_v9";
 
-    const MEMBER_PASS_BASE = "https://essenzadiluna1-oss.github.io/xa-member-pass/";
-
-    const defaultRewards = [
-      {
-        id: "RWD-SECRET-BOTTLE",
-        title: "Secret Bottle Preview",
-        points: 250,
-        desc: "Anteprima riservata di una bottiglia, ricetta o micro lotto XA.",
-        category: "Bottiglia",
-        active: true,
-        quantity: "",
-        createdAt: new Date().toISOString()
-      },
-      {
-        id: "RWD-TASTING",
-        title: "Private Fermentation Tasting",
-        points: 350,
-        desc: "Degustazione privata dedicata ai fermentati XA e alle nuove prove.",
-        category: "Degustazione",
-        active: true,
-        quantity: "",
-        createdAt: new Date().toISOString()
-      },
-      {
-        id: "RWD-GLASS",
-        title: "Bicchiere XA",
-        points: 450,
-        desc: "Bicchiere speciale XA, disponibile in negozio.",
-        category: "Oggetto",
-        active: true,
-        quantity: "",
-        createdAt: new Date().toISOString()
-      },
-      {
-        id: "RWD-BATCH",
-        title: "Limited Batch Reservation",
-        points: 500,
-        desc: "Riserva prioritaria su una selezione limitata.",
-        category: "Bottiglia",
-        active: true,
-        quantity: "",
-        createdAt: new Date().toISOString()
-      }
-    ];
-
-    const categoryMultipliers = {
-      "Fermented Redrinks": 2,
-      "Sidro XA": 1.5,
-      "Degustazione": 3,
-      "Premium Selection": 2,
-      "Shop XA": 1,
-      "Gift": 1
-    };
+    const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
     let state = {
-      version: "8.6",
-      selectedClientId: null,
-      cashierUnlocked: false,
-      clients: [],
+      pin: localStorage.getItem(PIN_KEY) || "XA2026",
+      customers: [],
+      rewards: [],
       transactions: [],
-      rewards: structuredClone(defaultRewards)
+      selectedId: localStorage.getItem(SELECTED_KEY) || "",
+      loading: false
     };
 
-    function save(){
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-    }
-
-    function makeId(prefix){
-      const now = Date.now().toString(36).toUpperCase();
-      const rnd = Math.random().toString(36).slice(2,6).toUpperCase();
-      return prefix + "-" + now + "-" + rnd;
-    }
-
-    function normalizeClient(c){
-      return {
-        id: c.id || c.code || makeId("XA"),
-        name: c.name || c.nome || "Cliente XA",
-        phone: c.phone || c.telefono || "",
-        email: c.email || "",
-        birthday: c.birthday || c.compleanno || "",
-        level: c.level || c.livello || "Private Member",
-        favorite: c.favorite || c.favoriteProduct || c.prodottoPreferito || "",
-        taste: c.taste || c.preference || c.profiloGusto || "Non definito",
-        note: c.note || c.notes || c.nota || "",
-        points: Number(c.points || c.punti || 0),
-        createdAt: c.createdAt || c.created_at || new Date().toISOString()
-      };
-    }
-
-    function normalizeTransaction(t){
-      return {
-        id: t.id || makeId("MOV"),
-        clientId: t.clientId || t.customerId || t.clienteId || "",
-        type: t.type || t.tipo || "sale",
-        title: t.title || t.titolo || "Movimento XA",
-        amount: Number(t.amount || t.importo || 0),
-        category: t.category || t.categoria || "",
-        multiplier: Number(t.multiplier || t.moltiplicatore || 1),
-        points: Number(t.points || t.punti || 0),
-        note: t.note || t.nota || "",
-        date: t.date || t.data || new Date().toISOString()
-      };
-    }
-
-    function normalizeReward(r){
-      return {
-        id: r.id || makeId("RWD"),
-        title: r.title || r.name || r.nome || "Premio XA",
-        points: Number(r.points || r.punti || 100),
-        desc: r.desc || r.description || r.descrizione || "",
-        category: r.category || r.categoria || "Altro",
-        active: r.active === false || r.active === "false" ? false : true,
-        quantity: r.quantity === undefined || r.quantity === null ? "" : r.quantity,
-        createdAt: r.createdAt || new Date().toISOString()
-      };
-    }
-
-    function load(){
-      let raw = localStorage.getItem(STORAGE_KEY);
-
-      if(!raw){
-        for(const key of OLD_KEYS){
-          raw = localStorage.getItem(key);
-          if(raw) break;
-        }
-      }
-
-      if(!raw){
-        save();
-        return;
-      }
-
-      try{
-        const parsed = JSON.parse(raw);
-        const data = parsed.data || parsed;
-
-        const clients = Array.isArray(data.clients) ? data.clients.map(normalizeClient) : [];
-        const transactions = Array.isArray(data.transactions) ? data.transactions.map(normalizeTransaction) : [];
-        const rewards = Array.isArray(data.rewards) && data.rewards.length
-          ? data.rewards.map(normalizeReward)
-          : structuredClone(defaultRewards);
-
-        state = {
-          version: "8.6",
-          selectedClientId: data.selectedClientId || data.activeClientId || clients[0]?.id || null,
-          cashierUnlocked: false,
-          clients,
-          transactions,
-          rewards
-        };
-
-        if(state.selectedClientId && !state.clients.some(c => c.id === state.selectedClientId)){
-          state.selectedClientId = state.clients[0]?.id || null;
-        }
-
-        save();
-      }catch(err){
-        state = {
-          version: "8.6",
-          selectedClientId: null,
-          cashierUnlocked: false,
-          clients: [],
-          transactions: [],
-          rewards: structuredClone(defaultRewards)
-        };
-        save();
-      }
-    }
+    document.getElementById("pinInput").value = state.pin;
 
     function escapeHtml(value){
       return String(value ?? "")
@@ -1924,1235 +1046,493 @@
     }
 
     function money(value){
-      return "€" + Number(value || 0).toLocaleString("it-IT", {
-        minimumFractionDigits: 0,
-        maximumFractionDigits: 2
-      });
+      const n = Number(value || 0);
+      return n.toLocaleString("it-IT",{minimumFractionDigits:2,maximumFractionDigits:2}) + " €";
     }
 
-    function formatDate(iso){
-      if(!iso) return "-";
+    function fmtDate(value){
+      if(!value) return "";
       try{
-        return new Date(iso).toLocaleString("it-IT", {
-          day: "2-digit",
-          month: "2-digit",
-          year: "numeric",
-          hour: "2-digit",
-          minute: "2-digit"
+        return new Date(value).toLocaleString("it-IT",{
+          day:"2-digit",
+          month:"2-digit",
+          year:"numeric",
+          hour:"2-digit",
+          minute:"2-digit"
         });
       }catch(err){
-        return iso;
+        return value;
       }
     }
 
-    function activeRewards(){
-      return state.rewards
-        .filter(r => r.active)
-        .sort((a,b) => Number(a.points) - Number(b.points));
-    }
-
-    function getClient(id = state.selectedClientId){
-      return state.clients.find(c => c.id === id) || null;
-    }
-
-    function getClientTransactions(clientId){
-      return state.transactions
-        .filter(t => t.clientId === clientId)
-        .sort((a,b) => new Date(b.date) - new Date(a.date));
-    }
-
-    function clientStats(clientId){
-      const tx = getClientTransactions(clientId);
-      const sales = tx.filter(t => t.type === "sale");
-      const rewardsUsed = tx.filter(t => t.type === "reward");
-
-      return {
-        salesCount: sales.length,
-        rewardsCount: rewardsUsed.length,
-        revenue: sales.reduce((sum,t) => sum + Number(t.amount || 0), 0),
-        earned: tx.filter(t => Number(t.points) > 0).reduce((sum,t) => sum + Number(t.points || 0), 0),
-        spent: rewardsUsed.reduce((sum,t) => sum + Math.abs(Number(t.points || 0)), 0),
-        lastVisit: sales[0]?.date || ""
-      };
-    }
-
-    function nextRewardInfo(points){
-      const sorted = activeRewards();
-      if(!sorted.length){
-        return {
-          next: { title: "Nessun premio attivo", points: 0 },
-          progress: 0,
-          missing: 0
-        };
-      }
-
-      const next = sorted.find(r => r.points > points) || sorted[sorted.length - 1];
-      const previous = [...sorted].reverse().find(r => r.points <= points);
-      const base = previous && previous.points !== next.points ? previous.points : 0;
-      const span = Math.max(1, next.points - base);
-      const progress = Math.min(100, Math.max(0, ((points - base) / span) * 100));
-      const missing = Math.max(0, next.points - points);
-      return { next, previous, progress, missing };
-    }
-
-    function toast(message){
+    function toast(text){
       const el = document.getElementById("toast");
-      el.textContent = message;
+      el.textContent = text;
       el.classList.add("show");
-      clearTimeout(window.__toastTimer);
-      window.__toastTimer = setTimeout(() => el.classList.remove("show"), 2200);
+      setTimeout(() => el.classList.remove("show"), 2800);
     }
 
-    function goPage(page){
-      document.querySelectorAll(".page").forEach(el => el.classList.remove("active"));
-      document.querySelectorAll(".tab").forEach(el => el.classList.remove("active"));
+    function setOnlineStatus(type,text){
+      const el = document.getElementById("statusOnline");
+      el.classList.remove("ok","err");
+      if(type) el.classList.add(type);
+      el.querySelector("span:last-child").textContent = text;
+    }
 
-      document.getElementById("page-" + page)?.classList.add("active");
-      document.querySelector('.tab[data-page="' + page + '"]')?.classList.add("active");
+    function setPinStatus(type,text){
+      const el = document.getElementById("statusPin");
+      el.classList.remove("ok","err");
+      if(type) el.classList.add(type);
+      el.querySelector("span:last-child").textContent = text;
+    }
 
-      window.scrollTo({ top: 0, behavior: "smooth" });
+    function setView(name){
+      document.querySelectorAll(".view").forEach(v => v.classList.remove("active"));
+      document.getElementById("view-" + name).classList.add("active");
+
+      const labels = ["dashboard","customers","points","rewards","pass"];
+      document.querySelectorAll(".tab").forEach((b,i) => b.classList.toggle("active", labels[i] === name));
+      document.querySelectorAll(".bottom-inner button").forEach((b,i) => b.classList.toggle("active", labels[i] === name));
+
+      window.scrollTo({top:0,behavior:"smooth"});
       renderAll();
     }
 
-    function stopReset(){
-      goPage("home");
-      toast("Home / reset operazione");
+    function getPin(){
+      return document.getElementById("pinInput").value.trim() || state.pin || "XA2026";
     }
 
-    function playOpenClient(){
-      if(!getClient()){
-        goPage("clients");
-        toast("Seleziona prima un cliente");
-        return;
+    function savePinAndReload(){
+      state.pin = getPin();
+      localStorage.setItem(PIN_KEY,state.pin);
+      reloadDashboard();
+    }
+
+    async function reloadDashboard(){
+      state.loading = true;
+      setOnlineStatus("", "Connessione...");
+      setPinStatus("", "Verifica PIN...");
+
+      try{
+        const { data, error } = await supabaseClient.rpc("xa_store_dashboard", {
+          p_pin: getPin()
+        });
+
+        if(error) throw error;
+
+        state.pin = getPin();
+        localStorage.setItem(PIN_KEY,state.pin);
+
+        state.customers = Array.isArray(data?.customers) ? data.customers : [];
+        state.rewards = Array.isArray(data?.rewards) ? data.rewards : [];
+        state.transactions = Array.isArray(data?.transactions) ? data.transactions : [];
+
+        if(!getSelectedCustomer() && state.customers.length){
+          selectCustomer(state.customers[0].id, false);
+        }
+
+        setOnlineStatus("ok","Online Supabase");
+        setPinStatus("ok","PIN attivo");
+        renderAll();
+      }catch(err){
+        setOnlineStatus("err","Errore online");
+        setPinStatus("err","PIN o funzione non valida");
+        toast(err.message || "Errore collegamento Supabase");
+        renderAll();
+      }finally{
+        state.loading = false;
       }
-
-      goPage("profile");
-      toast("Scheda cliente aperta");
     }
 
-    function openClientModal(){
-      document.getElementById("clientModal").classList.add("show");
-      setTimeout(() => document.getElementById("newName").focus(), 120);
+    function getSelectedCustomer(){
+      return state.customers.find(c => c.id === state.selectedId) || null;
     }
 
-    function closeClientModal(){
-      document.getElementById("clientModal").classList.remove("show");
-    }
-
-    function selectClient(id){
-      state.selectedClientId = id;
-      save();
+    function selectCustomer(id, notify = true){
+      state.selectedId = id;
+      localStorage.setItem(SELECTED_KEY,id);
+      if(notify) toast("Cliente selezionato");
       renderAll();
-      toast("Cliente selezionato");
     }
 
-    function createClient(){
+    async function createCustomer(){
       const name = document.getElementById("newName").value.trim();
-
       if(!name){
         toast("Inserisci il nome cliente");
         return;
       }
 
-      const client = {
-        id: makeId("XA"),
-        name,
-        phone: document.getElementById("newPhone").value.trim(),
-        email: document.getElementById("newEmail").value.trim(),
-        birthday: document.getElementById("newBirthday").value,
-        level: document.getElementById("newLevel").value,
-        points: Math.max(0, parseInt(document.getElementById("newPoints").value || "0", 10)),
-        favorite: document.getElementById("newFavorite").value.trim(),
-        taste: document.getElementById("newTaste").value,
-        note: document.getElementById("newNote").value.trim(),
-        createdAt: new Date().toISOString()
-      };
-
-      state.clients.unshift(client);
-      state.selectedClientId = client.id;
-
-      if(client.points > 0){
-        state.transactions.unshift({
-          id: makeId("MOV"),
-          clientId: client.id,
-          type: "bonus",
-          title: "Punti iniziali",
-          amount: 0,
-          category: "Apertura card",
-          multiplier: 1,
-          points: client.points,
-          note: "Punti iniziali card",
-          date: new Date().toISOString()
+      try{
+        const { data, error } = await supabaseClient.rpc("xa_store_create_customer", {
+          p_pin: getPin(),
+          p_name: name,
+          p_phone: document.getElementById("newPhone").value.trim(),
+          p_email: document.getElementById("newEmail").value.trim(),
+          p_favorite: document.getElementById("newFavorite").value.trim(),
+          p_taste: document.getElementById("newTaste").value.trim(),
+          p_note: document.getElementById("newNote").value.trim()
         });
-      }
 
-      save();
-      closeClientModal();
-      clearClientForm();
-      renderAll();
-      goPage("profile");
-      toast("Card cliente creata");
-    }
+        if(error) throw error;
 
-    function clearClientForm(){
-      document.getElementById("newName").value = "";
-      document.getElementById("newPhone").value = "";
-      document.getElementById("newEmail").value = "";
-      document.getElementById("newBirthday").value = "";
-      document.getElementById("newLevel").value = "Founding Member";
-      document.getElementById("newPoints").value = "0";
-      document.getElementById("newFavorite").value = "";
-      document.getElementById("newTaste").value = "Non definito";
-      document.getElementById("newNote").value = "";
-    }
+        document.getElementById("newName").value = "";
+        document.getElementById("newPhone").value = "";
+        document.getElementById("newEmail").value = "";
+        document.getElementById("newFavorite").value = "";
+        document.getElementById("newTaste").value = "";
+        document.getElementById("newNote").value = "";
 
-    function unlockCashier(){
-      const pin = prompt("Inserisci PIN demo cassa");
+        await reloadDashboard();
 
-      if(pin === "2026"){
-        state.cashierUnlocked = true;
-        renderAll();
-        toast("Cassa sbloccata");
-      }else if(pin !== null){
-        toast("PIN non corretto");
-      }
-    }
-
-    function requireCashier(){
-      if(state.cashierUnlocked) return true;
-      unlockCashier();
-      return state.cashierUnlocked;
-    }
-
-    function setAmount(value){
-      document.getElementById("saleAmount").value = value;
-      updateSalePreview();
-    }
-
-    function getSaleData(){
-      const amount = Number(document.getElementById("saleAmount")?.value || 0);
-      const category = document.getElementById("saleCategory")?.value || "Shop XA";
-      const multiplier = categoryMultipliers[category] || 1;
-      const points = Math.round(amount * multiplier);
-      return { amount, category, multiplier, points };
-    }
-
-    function updateSalePreview(){
-      const box = document.getElementById("salePreview");
-      if(!box) return;
-
-      const data = getSaleData();
-
-      if(!data.amount || data.amount <= 0){
-        box.textContent = "Inserisci importo e categoria: qui vedi i punti prima di salvare.";
-        return;
-      }
-
-      box.innerHTML = `
-        Questa vendita assegnerà <b>${data.points} punti</b>.
-        Categoria: <b>${escapeHtml(data.category)}</b> · Moltiplicatore: <b>x${data.multiplier}</b>.
-      `;
-    }
-
-    function addSale(){
-      const client = getClient();
-
-      if(!client){
-        goPage("clients");
-        toast("Seleziona un cliente");
-        return;
-      }
-
-      if(!requireCashier()) return;
-
-      const data = getSaleData();
-
-      if(!data.amount || data.amount <= 0){
-        toast("Inserisci un importo valido");
-        return;
-      }
-
-      client.points = Number(client.points || 0) + data.points;
-
-      state.transactions.unshift({
-        id: makeId("MOV"),
-        clientId: client.id,
-        type: "sale",
-        title: "Vendita XA",
-        amount: data.amount,
-        category: data.category,
-        multiplier: data.multiplier,
-        points: data.points,
-        note: document.getElementById("saleNote").value.trim(),
-        date: new Date().toISOString()
-      });
-
-      document.getElementById("saleAmount").value = "";
-      document.getElementById("saleNote").value = "";
-
-      save();
-      renderAll();
-      updateSalePreview();
-      toast("Vendita salvata: +" + data.points + " punti");
-    }
-
-    function addBonus(){
-      const client = getClient();
-
-      if(!client){
-        goPage("clients");
-        toast("Seleziona un cliente");
-        return;
-      }
-
-      if(!requireCashier()) return;
-
-      client.points = Number(client.points || 0) + 50;
-
-      state.transactions.unshift({
-        id: makeId("MOV"),
-        clientId: client.id,
-        type: "bonus",
-        title: "Bonus Club",
-        amount: 0,
-        category: "Bonus",
-        multiplier: 1,
-        points: 50,
-        note: "Bonus manuale +50 punti",
-        date: new Date().toISOString()
-      });
-
-      save();
-      renderAll();
-      toast("Bonus +50 punti aggiunto");
-    }
-
-    function redeemReward(id){
-      const client = getClient();
-
-      if(!client){
-        goPage("clients");
-        toast("Seleziona un cliente");
-        return;
-      }
-
-      if(!requireCashier()) return;
-
-      const reward = state.rewards.find(r => r.id === id);
-      if(!reward) return;
-
-      if(!reward.active){
-        toast("Premio non attivo");
-        return;
-      }
-
-      if(Number(client.points || 0) < Number(reward.points)){
-        toast("Punti insufficienti");
-        return;
-      }
-
-      if(reward.quantity !== "" && Number(reward.quantity) <= 0){
-        toast("Premio esaurito");
-        return;
-      }
-
-      if(!confirm("Riscattare premio: " + reward.title + " per " + reward.points + " punti?")) return;
-
-      client.points = Number(client.points || 0) - Number(reward.points);
-
-      if(reward.quantity !== ""){
-        reward.quantity = Math.max(0, Number(reward.quantity) - 1);
-      }
-
-      state.transactions.unshift({
-        id: makeId("MOV"),
-        clientId: client.id,
-        type: "reward",
-        title: reward.title,
-        amount: 0,
-        category: reward.category || "Premio Club",
-        multiplier: 1,
-        points: -Number(reward.points),
-        note: reward.desc,
-        date: new Date().toISOString()
-      });
-
-      save();
-      renderAll();
-      toast("Premio riscattato");
-    }
-
-    function saveRewardFromForm(){
-      const id = document.getElementById("rewardEditId").value;
-      const title = document.getElementById("rewardTitle").value.trim();
-      const points = Number(document.getElementById("rewardPoints").value || 0);
-      const category = document.getElementById("rewardCategory").value;
-      const quantityRaw = document.getElementById("rewardQuantity").value;
-      const active = document.getElementById("rewardActive").value === "true";
-      const desc = document.getElementById("rewardDesc").value.trim();
-
-      if(!title){
-        toast("Inserisci il nome premio");
-        return;
-      }
-
-      if(!points || points <= 0){
-        toast("Inserisci i punti necessari");
-        return;
-      }
-
-      const payload = {
-        id: id || makeId("RWD"),
-        title,
-        points,
-        category,
-        quantity: quantityRaw === "" ? "" : Math.max(0, Number(quantityRaw)),
-        active,
-        desc,
-        createdAt: new Date().toISOString()
-      };
-
-      if(id){
-        const index = state.rewards.findIndex(r => r.id === id);
-        if(index >= 0){
-          payload.createdAt = state.rewards[index].createdAt || payload.createdAt;
-          state.rewards[index] = payload;
+        const created = data?.customer;
+        if(created?.id){
+          selectCustomer(created.id, false);
         }
-        toast("Premio modificato");
-      }else{
-        state.rewards.unshift(payload);
-        toast("Premio creato");
+
+        setView("pass");
+        toast("Cliente creato. Pass QR pronto.");
+      }catch(err){
+        toast(err.message || "Errore creazione cliente");
+      }
+    }
+
+    function quickPoints(value){
+      document.getElementById("pointsValue").value = value;
+    }
+
+    async function addPoints(){
+      const selected = getSelectedCustomer();
+      if(!selected){
+        toast("Seleziona un cliente");
+        return;
       }
 
-      save();
-      clearRewardForm();
-      renderAll();
-    }
+      const pts = Number(document.getElementById("pointsValue").value || 0);
 
-    function editReward(id){
-      const reward = state.rewards.find(r => r.id === id);
-      if(!reward) return;
-
-      document.getElementById("rewardEditId").value = reward.id;
-      document.getElementById("rewardTitle").value = reward.title;
-      document.getElementById("rewardPoints").value = reward.points;
-      document.getElementById("rewardCategory").value = reward.category || "Altro";
-      document.getElementById("rewardQuantity").value = reward.quantity === undefined ? "" : reward.quantity;
-      document.getElementById("rewardActive").value = reward.active ? "true" : "false";
-      document.getElementById("rewardDesc").value = reward.desc || "";
-
-      goPage("builder");
-      toast("Premio pronto per modifica");
-    }
-
-    function deleteReward(id){
-      const reward = state.rewards.find(r => r.id === id);
-      if(!reward) return;
-
-      if(!confirm("Eliminare il premio: " + reward.title + "?")) return;
-
-      state.rewards = state.rewards.filter(r => r.id !== id);
-      save();
-      renderAll();
-      toast("Premio eliminato");
-    }
-
-    function toggleReward(id){
-      const reward = state.rewards.find(r => r.id === id);
-      if(!reward) return;
-
-      reward.active = !reward.active;
-      save();
-      renderAll();
-      toast(reward.active ? "Premio attivato" : "Premio disattivato");
-    }
-
-    function clearRewardForm(){
-      document.getElementById("rewardEditId").value = "";
-      document.getElementById("rewardTitle").value = "";
-      document.getElementById("rewardPoints").value = "";
-      document.getElementById("rewardCategory").value = "Oggetto";
-      document.getElementById("rewardQuantity").value = "";
-      document.getElementById("rewardActive").value = "true";
-      document.getElementById("rewardDesc").value = "";
-    }
-
-    function deleteClient(id){
-      const client = getClient(id);
-      if(!client) return;
-
-      if(!confirm("Eliminare il cliente " + client.name + "? Verrà eliminato anche il suo storico.")) return;
-
-      state.clients = state.clients.filter(c => c.id !== id);
-      state.transactions = state.transactions.filter(t => t.clientId !== id);
-
-      if(state.selectedClientId === id){
-        state.selectedClientId = state.clients[0]?.id || null;
-      }
-
-      save();
-      renderAll();
-      toast("Cliente eliminato");
-    }
-
-    function sendClientToCash(id){
-      state.selectedClientId = id;
-      save();
-      goPage("cash");
-      toast("Cliente mandato in cassa");
-    }
-
-    function sendClientToPass(id){
-      state.selectedClientId = id;
-      save();
-      goPage("pass");
-      toast("Pass cliente pronto");
-    }
-
-    function buildPassUrl(client = getClient()){
-      if(!client) return "";
-
-      const params = new URLSearchParams();
-      params.set("v", "1.23");
-      params.set("id", client.id);
-      params.set("name", client.name);
-      params.set("points", Number(client.points || 0));
-      params.set("level", client.level || "Private Member");
-      params.set("favorite", client.favorite || "XA Fermented Redrinks");
-
-      return MEMBER_PASS_BASE + "?" + params.toString();
-    }
-
-    async function copyText(text){
-      if(!text){
-        toast("Nessun link da copiare");
+      if(!pts){
+        toast("Inserisci punti validi");
         return;
       }
 
       try{
-        await navigator.clipboard.writeText(text);
-        toast("Link copiato");
+        const { data, error } = await supabaseClient.rpc("xa_store_add_points", {
+          p_pin: getPin(),
+          p_customer_ref: selected.public_code,
+          p_title: document.getElementById("pointsTitle").value.trim(),
+          p_amount: Number(document.getElementById("pointsAmount").value || 0),
+          p_category: document.getElementById("pointsCategory").value.trim(),
+          p_points: pts,
+          p_note: document.getElementById("pointsNote").value.trim()
+        });
+
+        if(error) throw error;
+
+        state.customers = Array.isArray(data?.customers) ? data.customers : [];
+        state.rewards = Array.isArray(data?.rewards) ? data.rewards : [];
+        state.transactions = Array.isArray(data?.transactions) ? data.transactions : [];
+
+        renderAll();
+        toast("Movimento punti salvato");
       }catch(err){
-        prompt("Copia questo link:", text);
+        toast(err.message || "Errore punti");
+      }
+    }
+
+    async function redeemReward(rewardId){
+      const selected = getSelectedCustomer();
+      if(!selected){
+        toast("Seleziona un cliente");
+        return;
+      }
+
+      const reward = state.rewards.find(r => r.id === rewardId);
+      if(!reward){
+        toast("Premio non trovato");
+        return;
+      }
+
+      if(Number(selected.points || 0) < Number(reward.points || 0)){
+        toast("Punti insufficienti");
+        return;
+      }
+
+      try{
+        const { data, error } = await supabaseClient.rpc("xa_store_redeem_reward", {
+          p_pin: getPin(),
+          p_customer_ref: selected.public_code,
+          p_reward_id: rewardId,
+          p_note: "Riscatto da XA Loyalty Club V9"
+        });
+
+        if(error) throw error;
+
+        state.customers = Array.isArray(data?.customers) ? data.customers : [];
+        state.rewards = Array.isArray(data?.rewards) ? data.rewards : [];
+        state.transactions = Array.isArray(data?.transactions) ? data.transactions : [];
+
+        renderAll();
+        toast("Premio riscattato");
+      }catch(err){
+        toast(err.message || "Errore riscatto premio");
+      }
+    }
+
+    function passUrl(customer){
+      if(!customer) return "";
+      return CLIENT_PASS_BASE + "?v=client-real&token=" + encodeURIComponent(customer.public_token);
+    }
+
+    function makeQr(id, text){
+      const el = document.getElementById(id);
+      if(!el) return;
+      el.innerHTML = "";
+
+      if(!window.QRCode){
+        el.textContent = "QR";
+        return;
+      }
+
+      new QRCode(el,{
+        text:text,
+        width:104,
+        height:104,
+        colorDark:"#4b1018",
+        colorLight:"#fffaf0",
+        correctLevel:QRCode.CorrectLevel.M
+      });
+    }
+
+    async function copyText(text){
+      try{
+        await navigator.clipboard.writeText(text);
+        toast("Copiato");
+      }catch(err){
+        const temp = document.createElement("textarea");
+        temp.value = text;
+        document.body.appendChild(temp);
+        temp.select();
+        document.execCommand("copy");
+        temp.remove();
+        toast("Copiato");
       }
     }
 
     function copyPassLink(){
-      copyText(buildPassUrl());
+      const selected = getSelectedCustomer();
+      if(!selected){
+        toast("Seleziona un cliente");
+        return;
+      }
+      copyText(passUrl(selected));
     }
 
     function openPassLink(){
-      const url = buildPassUrl();
-      if(!url){
+      const selected = getSelectedCustomer();
+      if(!selected){
         toast("Seleziona un cliente");
         return;
       }
-      window.open(url, "_blank");
+      window.open(passUrl(selected), "_blank");
     }
 
     async function sharePassLink(){
-      const client = getClient();
-      const url = buildPassUrl(client);
-
-      if(!client || !url){
+      const selected = getSelectedCustomer();
+      if(!selected){
         toast("Seleziona un cliente");
         return;
       }
 
-      const text = "Ciao " + client.name + ", questo è il tuo XA Member Pass: " + url;
+      const url = passUrl(selected);
 
       if(navigator.share){
         try{
           await navigator.share({
-            title: "XA Member Pass",
-            text,
-            url
+            title:"XA Member Pass",
+            text:"Il tuo XA Member Pass",
+            url:url
           });
-          return;
         }catch(err){}
-      }
-
-      copyText(text);
-    }
-
-    function buildQr(client){
-      if(!client) return "";
-
-      const size = 15;
-      let hash = 0;
-      const text = client.id + client.name;
-
-      for(let i = 0; i < text.length; i++){
-        hash = ((hash << 5) - hash + text.charCodeAt(i)) | 0;
-      }
-
-      function finder(x,y){
-        const zones = [[0,0],[10,0],[0,10]];
-        for(const [zx,zy] of zones){
-          if(x >= zx && x <= zx + 4 && y >= zy && y <= zy + 4){
-            const bx = x - zx;
-            const by = y - zy;
-            if(bx === 0 || bx === 4 || by === 0 || by === 4) return true;
-            if(bx === 2 && by === 2) return true;
-            return false;
-          }
-        }
-        return null;
-      }
-
-      let rects = "";
-
-      for(let y = 0; y < size; y++){
-        for(let x = 0; x < size; x++){
-          const f = finder(x,y);
-          let fill = false;
-
-          if(f !== null){
-            fill = f;
-          }else{
-            const v = Math.abs(Math.sin((x + 1) * 17.13 + (y + 1) * 9.91 + hash) * 10000);
-            fill = Math.floor(v) % 3 === 0 || ((x * y + hash) % 11 === 0);
-          }
-
-          if(fill){
-            rects += '<rect x="' + x + '" y="' + y + '" width="1" height="1" rx=".12" />';
-          }
-        }
-      }
-
-      return `
-        <svg viewBox="0 0 15 15" xmlns="http://www.w3.org/2000/svg">
-          <rect width="15" height="15" fill="#fffaf0"/>
-          <g fill="#4b1018">${rects}</g>
-        </svg>
-      `;
-    }
-
-    function progressHTML(client){
-      const info = nextRewardInfo(Number(client.points || 0));
-      const label = info.next.points === 0
-        ? "Nessun premio attivo"
-        : info.missing > 0
-          ? "Mancano " + info.missing + " punti per " + info.next.title
-          : "Reward raggiunto: " + info.next.title;
-
-      return `
-        <div class="progress-box">
-          <div class="progress-copy">
-            <span>${escapeHtml(label)}</span>
-            <span>${Math.round(info.progress)}%</span>
-          </div>
-          <div class="bar">
-            <div class="fill" style="width:${info.progress}%"></div>
-          </div>
-        </div>
-      `;
-    }
-
-    function memberCardHTML(client){
-      if(!client){
-        return `
-          <div class="panel dark">
-            <div class="panel-title">
-              <div>
-                <small>Nessun cliente</small>
-                <h4>Card cliente</h4>
-              </div>
-            </div>
-            <div class="empty">Crea o seleziona un cliente per visualizzare la card XA.</div>
-            <div class="button-row" style="margin-top:12px;">
-              <button class="btn" onclick="openClientModal()">Nuovo cliente</button>
-              <button class="btn-gold" onclick="goPage('clients')">Clienti</button>
-            </div>
-          </div>
-        `;
-      }
-
-      return `
-        <div class="member-card">
-          <div class="member-top">
-            <div class="chip"></div>
-            <div class="level">${escapeHtml(client.level)}</div>
-          </div>
-
-          <div class="member-name">
-            <small>XA Member Club</small>
-            <h3>${escapeHtml(client.name)}</h3>
-          </div>
-
-          <div class="member-bottom">
-            <div class="points">
-              <small>Saldo punti</small>
-              <strong>${Number(client.points || 0)}</strong>
-            </div>
-
-            <div class="member-code">
-              <div class="qr">${buildQr(client)}</div>
-              <div style="margin-top:7px;">${escapeHtml(client.id)}</div>
-            </div>
-          </div>
-
-          ${progressHTML(client)}
-        </div>
-      `;
-    }
-
-    function passBoxHTML(client){
-      if(!client){
-        return `
-          <div class="empty">Seleziona un cliente per generare il suo pass.</div>
-          <div class="button-row" style="margin-top:12px;">
-            <button class="btn-gold" onclick="goPage('clients')">Vai ai clienti</button>
-          </div>
-        `;
-      }
-
-      const url = buildPassUrl(client);
-
-      return `
-        <div class="pass-box">
-          <b>${escapeHtml(client.name)}</b><br>
-          Codice: <b>${escapeHtml(client.id)}</b><br>
-          Livello: <b>${escapeHtml(client.level)}</b><br>
-          Punti attuali: <b>${Number(client.points || 0)}</b>
-          <div class="pass-link">${escapeHtml(url)}</div>
-        </div>
-
-        <div class="button-row">
-          <button class="btn" onclick="copyPassLink()">Copia link</button>
-          <button class="btn-gold" onclick="openPassLink()">Apri</button>
-          <button class="btn-light" onclick="sharePassLink()">Condividi</button>
-        </div>
-      `;
-    }
-
-    function clientBoxHTML(client){
-      if(!client){
-        return `
-          <div class="empty">Nessun cliente selezionato.</div>
-          <div class="button-row" style="margin-top:12px;">
-            <button class="btn" onclick="openClientModal()">Nuovo cliente</button>
-            <button class="btn-gold" onclick="goPage('clients')">Cerca cliente</button>
-          </div>
-        `;
-      }
-
-      const stats = clientStats(client.id);
-
-      return `
-        <div class="profile-head">
-          <div>
-            <h3>${escapeHtml(client.name)}</h3>
-            <p>${escapeHtml(client.level)} · ${escapeHtml(client.id)}</p>
-          </div>
-          <div class="qr">${buildQr(client)}</div>
-        </div>
-
-        <div class="data-grid">
-          <div class="data">
-            <small>Punti</small>
-            <strong>${Number(client.points || 0)}</strong>
-          </div>
-          <div class="data">
-            <small>Totale speso</small>
-            <strong>${money(stats.revenue)}</strong>
-          </div>
-          <div class="data">
-            <small>Acquisti</small>
-            <strong>${stats.salesCount}</strong>
-          </div>
-          <div class="data">
-            <small>Ultima visita</small>
-            <strong>${stats.lastVisit ? formatDate(stats.lastVisit).split(",")[0] : "-"}</strong>
-          </div>
-          <div class="data">
-            <small>Telefono</small>
-            <strong>${escapeHtml(client.phone || "-")}</strong>
-          </div>
-          <div class="data">
-            <small>Email</small>
-            <strong>${escapeHtml(client.email || "-")}</strong>
-          </div>
-          <div class="data">
-            <small>Preferito</small>
-            <strong>${escapeHtml(client.favorite || "-")}</strong>
-          </div>
-          <div class="data">
-            <small>Gusto</small>
-            <strong>${escapeHtml(client.taste || "-")}</strong>
-          </div>
-        </div>
-
-        <div class="button-row" style="margin-top:14px;">
-          <button class="btn" onclick="goPage('cash')">Cassa</button>
-          <button class="btn-gold" onclick="goPage('pass')">Pass cliente</button>
-          <button class="btn-soft" onclick="goPage('rewards')">Premi</button>
-        </div>
-      `;
-    }
-
-    function transactionHTML(t){
-      const client = getClient(t.clientId);
-      const name = client ? client.name : "Cliente eliminato";
-      const points = Number(t.points || 0);
-      const sign = points > 0 ? "+" : "";
-      const cls = points < 0 ? "negative" : "positive";
-
-      let subtitle = formatDate(t.date) + " · " + escapeHtml(name);
-      if(t.type === "sale") subtitle += " · " + escapeHtml(t.category) + " · " + money(t.amount);
-      if(t.type === "reward") subtitle += " · Premio riscattato";
-      if(t.type === "bonus") subtitle += " · Bonus";
-
-      return `
-        <div class="history-item">
-          <div>
-            <h5>${escapeHtml(t.title || "Movimento XA")}</h5>
-            <p>${subtitle}${t.note ? " · " + escapeHtml(t.note) : ""}</p>
-          </div>
-          <div class="history-points ${cls}">${sign}${points} pt</div>
-        </div>
-      `;
-    }
-
-    function renderTop(){
-      const client = getClient();
-      document.getElementById("activePill").innerHTML = client
-        ? `<b></b><span>Cliente attivo: ${escapeHtml(client.name)}</span>`
-        : `<b></b><span>Nessun cliente attivo</span>`;
-    }
-
-    function renderHome(){
-      const pointsTotal = state.clients.reduce((sum,c) => sum + Number(c.points || 0), 0);
-      const client = getClient();
-
-      document.getElementById("mClients").textContent = state.clients.length;
-      document.getElementById("mPoints").textContent = pointsTotal;
-      document.getElementById("mRewards").textContent = activeRewards().length;
-      document.getElementById("homeCard").innerHTML = memberCardHTML(client);
-
-      if(!client){
-        document.getElementById("homeQuick").innerHTML = `
-          <div class="empty">Seleziona o crea un cliente per attivare cassa, premi, pass e scheda.</div>
-          <div class="button-row" style="margin-top:12px;">
-            <button class="btn" onclick="openClientModal()">Nuovo</button>
-            <button class="btn-gold" onclick="goPage('clients')">Clienti</button>
-          </div>
-        `;
       }else{
-        const info = nextRewardInfo(Number(client.points || 0));
-        document.getElementById("homeQuick").innerHTML = `
-          <div class="notice">
-            <b>${escapeHtml(client.name)}</b><br>
-            Saldo: <b>${Number(client.points || 0)} punti</b><br>
-            Prossimo premio: <b>${escapeHtml(info.next.title)}</b>
-          </div>
-          <div class="button-row">
-            <button class="btn" onclick="goPage('cash')">Cassa XA</button>
-            <button class="btn-gold" onclick="goPage('pass')">Pass</button>
-            <button class="btn-soft" onclick="goPage('profile')">Scheda</button>
-          </div>
-        `;
+        copyText(url);
       }
+    }
+
+    function customerHtml(c){
+      const active = c.id === state.selectedId ? "active" : "";
+      return `
+        <div class="customer-card ${active}" onclick="selectCustomer('${escapeHtml(c.id)}')">
+          <div class="customer-head">
+            <div>
+              <h4>${escapeHtml(c.name)}</h4>
+              <p>
+                <b>${escapeHtml(c.public_code)}</b><br>
+                ${escapeHtml(c.phone || "")}
+                ${c.phone && c.email ? " · " : ""}
+                ${escapeHtml(c.email || "")}
+              </p>
+            </div>
+            <div class="points-pill">${Number(c.points || 0)} pt</div>
+          </div>
+          <p>
+            ${escapeHtml(c.favorite || "Nessuna preferenza")} ·
+            ${escapeHtml(c.level || "Private Member")}
+          </p>
+          <div class="mini-row" style="margin-top:10px;">
+            <button class="btn gold" onclick="event.stopPropagation();selectCustomer('${escapeHtml(c.id)}');setView('points');">Punti</button>
+            <button class="btn light" onclick="event.stopPropagation();selectCustomer('${escapeHtml(c.id)}');setView('pass');">Pass</button>
+          </div>
+        </div>
+      `;
     }
 
     function renderDashboard(){
-      const sales = state.transactions.filter(t => t.type === "sale");
-      const pointsTotal = state.clients.reduce((sum,c) => sum + Number(c.points || 0), 0);
-      const top = [...state.clients].sort((a,b) => Number(b.points || 0) - Number(a.points || 0))[0];
+      document.getElementById("metricCustomers").textContent = state.customers.length;
+      document.getElementById("metricRewards").textContent = state.rewards.length;
+      document.getElementById("metricTx").textContent = state.transactions.length;
 
-      document.getElementById("dClients").textContent = state.clients.length;
-      document.getElementById("dPoints").textContent = pointsTotal;
-      document.getElementById("dSales").textContent = sales.length;
-      document.getElementById("dRewards").textContent = activeRewards().length;
+      document.getElementById("latestCustomers").innerHTML = state.customers.length
+        ? state.customers.slice(0,5).map(customerHtml).join("")
+        : `<div class="empty">Nessun cliente ancora caricato.</div>`;
 
-      document.getElementById("topClient").innerHTML = top
-        ? clientMiniHTML(top)
-        : `<div class="empty">Nessun cliente ancora registrato.</div>`;
-
-      const recent = state.transactions.slice(0,5);
-      document.getElementById("dashHistory").innerHTML = recent.length
-        ? `<div class="history-list">${recent.map(transactionHTML).join("")}</div>`
-        : `<div class="empty">Nessun movimento salvato.</div>`;
-
-      renderPins();
+      document.getElementById("latestTransactions").innerHTML = state.transactions.length
+        ? state.transactions.slice(0,8).map(txHtml).join("")
+        : `<div class="empty">Nessun movimento ancora presente.</div>`;
     }
 
-    function clientMiniHTML(client){
-      return `
-        <div class="client-item active">
-          <div>
-            <h5>${escapeHtml(client.name)}</h5>
-            <p>${escapeHtml(client.level)} · ${escapeHtml(client.id)}</p>
-          </div>
-          <div class="client-points">
-            <strong>${Number(client.points || 0)}</strong>
-            <small>punti</small>
-          </div>
-        </div>
+    function renderCustomers(){
+      const q = document.getElementById("customerSearch")?.value?.toLowerCase().trim() || "";
 
-        <div class="button-row" style="margin-top:12px;">
-          <button class="btn" onclick="selectClient('${client.id}'); goPage('profile');">Scheda</button>
-          <button class="btn-gold" onclick="sendClientToPass('${client.id}')">Pass</button>
-          <button class="btn-soft" onclick="sendClientToCash('${client.id}')">Cassa</button>
-        </div>
-      `;
-    }
+      const list = state.customers.filter(c => {
+        const hay = [
+          c.name,
+          c.public_code,
+          c.phone,
+          c.email,
+          c.favorite,
+          c.taste
+        ].join(" ").toLowerCase();
 
-    function renderClients(){
-      const q = (document.getElementById("clientSearch")?.value || "").toLowerCase().trim();
-
-      const filtered = state.clients.filter(c => {
-        const text = [c.name,c.phone,c.email,c.id,c.level,c.favorite,c.taste,c.note].join(" ").toLowerCase();
-        return !q || text.includes(q);
+        return hay.includes(q);
       });
 
-      const list = document.getElementById("clientsList");
-
-      if(!filtered.length){
-        list.innerHTML = `<div class="empty">Nessun cliente trovato.</div>`;
-      }else{
-        list.innerHTML = filtered.map(c => `
-          <div class="client-item ${c.id === state.selectedClientId ? "active" : ""}">
-            <div onclick="selectClient('${c.id}')">
-              <h5>${escapeHtml(c.name)}</h5>
-              <p>${escapeHtml(c.level)} · ${escapeHtml(c.id)}</p>
-              <p>${escapeHtml(c.phone || "")} ${c.phone && c.email ? "·" : ""} ${escapeHtml(c.email || "")}</p>
-            </div>
-            <div class="client-points" onclick="selectClient('${c.id}')">
-              <strong>${Number(c.points || 0)}</strong>
-              <small>punti</small>
-            </div>
-            <div class="button-row" style="grid-column:1/-1;">
-              <button class="btn-small" onclick="selectClient('${c.id}'); goPage('profile');">Scheda</button>
-              <button class="btn-small" onclick="sendClientToCash('${c.id}')">Cassa</button>
-              <button class="btn-small" onclick="sendClientToPass('${c.id}')">Pass</button>
-              <button class="btn-small" onclick="deleteClient('${c.id}')">Elimina</button>
-            </div>
-          </div>
-        `).join("");
-      }
-
-      document.getElementById("clientsPreview").innerHTML = `
-        ${memberCardHTML(getClient())}
-        <div class="panel" style="margin-top:12px;">
-          <div class="panel-title">
-            <div>
-              <small>Anteprima</small>
-              <h4>Cliente selezionato</h4>
-            </div>
-          </div>
-          ${clientBoxHTML(getClient())}
-        </div>
-      `;
+      document.getElementById("customerList").innerHTML = list.length
+        ? list.map(customerHtml).join("")
+        : `<div class="empty">Nessun cliente trovato.</div>`;
     }
 
-    function renderCash(){
-      document.getElementById("cashClient").innerHTML = clientBoxHTML(getClient());
-      renderPins();
-      updateSalePreview();
-    }
+    function renderSelectedCustomer(){
+      const selected = getSelectedCustomer();
 
-    function renderPins(){
-      const text = state.cashierUnlocked ? "Cassa sbloccata" : "Cassa bloccata";
-
-      ["pinDash","pinCash"].forEach(id => {
-        const el = document.getElementById(id);
-        if(!el) return;
-        el.textContent = text;
-        el.classList.toggle("ok", state.cashierUnlocked);
-      });
-    }
-
-    function renderRewards(){
-      const client = getClient();
-      const rewards = activeRewards();
-
-      document.getElementById("rewardClient").innerHTML = clientBoxHTML(client);
-
-      document.getElementById("rewardGrid").innerHTML = rewards.length
-        ? rewards.map(r => {
-            const available = client && Number(client.points || 0) >= Number(r.points);
-            const qty = r.quantity === "" ? "Illimitata" : r.quantity;
-
-            return `
-              <div class="reward">
-                <div class="reward-head">
-                  <strong>${Number(r.points)}</strong>
-                  <span class="badge ${available ? "ok" : ""}">${available ? "Disponibile" : "Premio"}</span>
-                </div>
-                <h4>${escapeHtml(r.title)}</h4>
-                <p>${escapeHtml(r.desc || "Premio XA.")}</p>
-                <p><b>Categoria:</b> ${escapeHtml(r.category)} · <b>Quantità:</b> ${escapeHtml(qty)}</p>
-                <button class="${available ? "btn" : "btn-soft"}" onclick="redeemReward('${r.id}')">Riscatta premio</button>
-              </div>
-            `;
-          }).join("")
-        : `<div class="empty">Nessun premio attivo. Vai in Gestione Premi e crea il primo premio.</div>`;
-    }
-
-    function renderRewardBuilder(){
-      const list = document.getElementById("rewardManageList");
-
-      if(!state.rewards.length){
-        list.innerHTML = `<div class="empty">Nessun premio creato.</div>`;
+      if(!selected){
+        document.getElementById("selectedCustomerTitle").textContent = "Nessun cliente";
+        document.getElementById("selectedCustomerBox").innerHTML = "Seleziona un cliente dalla lista.";
+        document.getElementById("redeemNotice").innerHTML = "Seleziona un cliente, poi premi “Riscatta” su un premio disponibile.";
         return;
       }
 
-      list.innerHTML = state.rewards.map(r => {
-        const qty = r.quantity === "" ? "Illimitata" : r.quantity;
+      document.getElementById("selectedCustomerTitle").textContent = selected.name;
 
-        return `
-          <div class="reward-manage-item ${r.active ? "active" : ""}">
+      document.getElementById("selectedCustomerBox").innerHTML = `
+        <b>${escapeHtml(selected.public_code)}</b><br>
+        Saldo attuale: <b>${Number(selected.points || 0)} punti</b><br>
+        ${escapeHtml(selected.favorite || "Preferenza non indicata")}
+      `;
+
+      document.getElementById("redeemNotice").innerHTML = `
+        Cliente selezionato: <b>${escapeHtml(selected.name)}</b> —
+        saldo <b>${Number(selected.points || 0)} punti</b>.
+      `;
+    }
+
+    function renderRewards(){
+      const selected = getSelectedCustomer();
+      const points = Number(selected?.points || 0);
+
+      document.getElementById("rewardList").innerHTML = state.rewards.length
+        ? state.rewards.map(r => {
+            const ok = selected && points >= Number(r.points || 0);
+            const qty = r.quantity === null || r.quantity === undefined ? "Illimitato" : String(r.quantity);
+
+            return `
+              <div class="reward-card">
+                <div class="reward-head">
+                  <div>
+                    <h4>${escapeHtml(r.title)}</h4>
+                    <p>${escapeHtml(r.description || "Premio XA")}</p>
+                    <p><b>${escapeHtml(r.category || "Premio")}</b> · Quantità: ${escapeHtml(qty)}</p>
+                  </div>
+                  <div class="points-pill">${Number(r.points || 0)} pt</div>
+                </div>
+                <div class="mini-row" style="margin-top:10px;">
+                  <span class="badge ${ok ? "ok" : "red"}">${ok ? "Disponibile" : "Non raggiunto"}</span>
+                  <button class="btn gold" ${ok ? "" : "disabled"} onclick="redeemReward('${escapeHtml(r.id)}')">Riscatta</button>
+                </div>
+              </div>
+            `;
+          }).join("")
+        : `<div class="empty">Nessun premio attivo.</div>`;
+    }
+
+    function txHtml(t){
+      const pts = Number(t.points || 0);
+      const sign = pts > 0 ? "+" : "";
+      const cls = pts >= 0 ? "ok" : "red";
+
+      return `
+        <div class="tx-card">
+          <div class="tx-head">
             <div>
-              <h5>${escapeHtml(r.title)}</h5>
-              <p>${escapeHtml(r.category)} · ${Number(r.points)} punti · Quantità: ${escapeHtml(qty)}</p>
-              <p>${escapeHtml(r.desc || "Nessuna descrizione.")}</p>
-              <p><span class="badge ${r.active ? "ok" : "off"}">${r.active ? "Attivo" : "Non attivo"}</span></p>
+              <h4>${escapeHtml(t.title || "Movimento XA")}</h4>
+              <p>
+                ${escapeHtml(t.customer_name || "")}
+                ${t.customer_name ? " · " : ""}
+                ${escapeHtml(t.public_code || "")}<br>
+                ${fmtDate(t.created_at)} · ${escapeHtml(t.category || "")}
+              </p>
             </div>
-            <div class="reward-points">
-              <strong>${Number(r.points)}</strong>
-              <small>punti</small>
-            </div>
-            <div class="button-row" style="grid-column:1/-1;">
-              <button class="btn-small" onclick="editReward('${r.id}')">Modifica</button>
-              <button class="btn-small" onclick="toggleReward('${r.id}')">${r.active ? "Disattiva" : "Attiva"}</button>
-              <button class="btn-small" onclick="deleteReward('${r.id}')">Elimina</button>
-            </div>
+            <span class="badge ${cls}">${sign}${pts} pt</span>
           </div>
-        `;
-      }).join("");
+          <p>${escapeHtml(t.note || "")} ${Number(t.amount || 0) ? " · " + money(t.amount) : ""}</p>
+        </div>
+      `;
     }
 
     function renderPass(){
-      const client = getClient();
-      document.getElementById("passClientBox").innerHTML = clientBoxHTML(client);
-      document.getElementById("passLinkBox").innerHTML = passBoxHTML(client);
-    }
+      const selected = getSelectedCustomer();
 
-    function renderHistory(){
-      const type = document.getElementById("historyFilter")?.value || "all";
-      let tx = [...state.transactions];
+      if(!selected){
+        document.getElementById("passBox").innerHTML = "Seleziona un cliente dalla lista per generare il pass.";
+        return;
+      }
 
-      if(type !== "all") tx = tx.filter(t => t.type === type);
+      const url = passUrl(selected);
 
-      document.getElementById("historyList").innerHTML = tx.length
-        ? tx.map(transactionHTML).join("")
-        : `<div class="empty">Nessun movimento da mostrare.</div>`;
-    }
-
-    function resetHistoryFilter(){
-      document.getElementById("historyFilter").value = "all";
-      renderHistory();
-    }
-
-    function renderProfile(){
-      const client = getClient();
-
-      document.getElementById("profileCard").innerHTML = memberCardHTML(client);
-
-      document.getElementById("profileDetails").innerHTML = client ? `
-        ${clientBoxHTML(client)}
-        <div class="notice" style="margin-top:14px;">
-          <b>Compleanno:</b> ${escapeHtml(client.birthday || "-")}<br>
-          <b>Nota cliente:</b><br>
-          ${escapeHtml(client.note || "Nessuna nota inserita.")}
-        </div>
-      ` : `
-        <div class="empty">Nessun cliente selezionato.</div>
-        <div class="button-row" style="margin-top:12px;">
-          <button class="btn" onclick="openClientModal()">Nuovo cliente</button>
-          <button class="btn-gold" onclick="goPage('clients')">Clienti</button>
+      document.getElementById("passBox").innerHTML = `
+        <div class="selected-pass">
+          <div>
+            <h4>${escapeHtml(selected.name)}</h4>
+            <p>
+              Codice: <b>${escapeHtml(selected.public_code)}</b><br>
+              Punti: <b>${Number(selected.points || 0)}</b><br>
+              Link pass:<br>${escapeHtml(url)}
+            </p>
+          </div>
+          <div class="qr-box" id="passQr"></div>
         </div>
       `;
 
-      document.getElementById("profilePassBox").innerHTML = passBoxHTML(client);
-
-      const personal = client ? getClientTransactions(client.id) : [];
-      document.getElementById("profileHistory").innerHTML = personal.length
-        ? personal.map(transactionHTML).join("")
-        : `<div class="empty">Nessun movimento personale da mostrare.</div>`;
+      setTimeout(() => makeQr("passQr", url), 100);
     }
 
     function renderAll(){
-      renderTop();
-      renderHome();
       renderDashboard();
-      renderClients();
-      renderCash();
+      renderCustomers();
+      renderSelectedCustomer();
       renderRewards();
-      renderRewardBuilder();
       renderPass();
-      renderHistory();
-      renderProfile();
     }
 
-    function downloadFile(filename, content, type){
-      const blob = new Blob([content], { type });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = filename;
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      URL.revokeObjectURL(url);
-    }
-
-    function exportJSON(){
-      const payload = {
-        exportedAt: new Date().toISOString(),
-        app: "XA Member Club",
-        version: "8.6",
-        data: state
-      };
-
-      downloadFile("xa-member-club-backup-v8-6.json", JSON.stringify(payload,null,2), "application/json");
-      toast("Backup JSON esportato");
-    }
-
-    function csvEscape(value){
-      return '"' + String(value ?? "").replaceAll('"','""') + '"';
-    }
-
-    function exportHistoryCSV(){
-      const rows = [["data","cliente","codice_cliente","tipo","titolo","categoria","importo","punti","nota"]];
-
-      state.transactions.forEach(t => {
-        const client = getClient(t.clientId);
-        rows.push([
-          formatDate(t.date),
-          client ? client.name : "Cliente eliminato",
-          client ? client.id : t.clientId,
-          t.type,
-          t.title,
-          t.category,
-          t.amount || 0,
-          t.points || 0,
-          t.note || ""
-        ]);
-      });
-
-      const csv = rows.map(row => row.map(csvEscape).join(";")).join("\n");
-      downloadFile("xa-member-club-storico-v8-6.csv", csv, "text/csv;charset=utf-8");
-      toast("Storico CSV esportato");
-    }
-
-    function exportClientsCSV(){
-      const rows = [["nome","telefono","email","compleanno","codice","livello","punti","preferito","gusto","nota","pass_link","creato_il"]];
-
-      state.clients.forEach(c => {
-        rows.push([
-          c.name,
-          c.phone,
-          c.email,
-          c.birthday,
-          c.id,
-          c.level,
-          c.points,
-          c.favorite,
-          c.taste,
-          c.note,
-          buildPassUrl(c),
-          formatDate(c.createdAt)
-        ]);
-      });
-
-      const csv = rows.map(row => row.map(csvEscape).join(";")).join("\n");
-      downloadFile("xa-member-club-clienti-v8-6.csv", csv, "text/csv;charset=utf-8");
-      toast("Clienti CSV esportato");
-    }
-
-    function exportRewardsCSV(){
-      const rows = [["nome","punti","categoria","attivo","quantita","descrizione","creato_il"]];
-
-      state.rewards.forEach(r => {
-        rows.push([
-          r.title,
-          r.points,
-          r.category,
-          r.active ? "si" : "no",
-          r.quantity === "" ? "illimitata" : r.quantity,
-          r.desc,
-          formatDate(r.createdAt)
-        ]);
-      });
-
-      const csv = rows.map(row => row.map(csvEscape).join(";")).join("\n");
-      downloadFile("xa-member-club-premi-v8-6.csv", csv, "text/csv;charset=utf-8");
-      toast("Premi CSV esportato");
-    }
-
-    function importJSON(event){
-      const file = event.target.files[0];
-      if(!file) return;
-
-      const reader = new FileReader();
-
-      reader.onload = function(e){
-        try{
-          const parsed = JSON.parse(e.target.result);
-          const data = parsed.data || parsed;
-
-          if(!Array.isArray(data.clients) || !Array.isArray(data.transactions)){
-            toast("Backup non valido");
-            return;
-          }
-
-          if(!confirm("Importare questo backup? I dati attuali saranno sostituiti.")) return;
-
-          state = {
-            version: "8.6",
-            selectedClientId: data.selectedClientId || data.clients[0]?.id || null,
-            cashierUnlocked: false,
-            clients: data.clients.map(normalizeClient),
-            transactions: data.transactions.map(normalizeTransaction),
-            rewards: Array.isArray(data.rewards) && data.rewards.length
-              ? data.rewards.map(normalizeReward)
-              : structuredClone(defaultRewards)
-          };
-
-          save();
-          renderAll();
-          goPage("home");
-          toast("Backup importato");
-        }catch(err){
-          toast("Errore importazione JSON");
-        }finally{
-          event.target.value = "";
-        }
-      };
-
-      reader.readAsText(file);
-    }
-
-    function clearAllData(){
-      if(!confirm("Cancellare tutti i dati demo salvati su questo dispositivo?")) return;
-
-      localStorage.removeItem(STORAGE_KEY);
-
-      state = {
-        version: "8.6",
-        selectedClientId: null,
-        cashierUnlocked: false,
-        clients: [],
-        transactions: [],
-        rewards: structuredClone(defaultRewards)
-      };
-
-      save();
-      renderAll();
-      goPage("home");
-      toast("Dati demo cancellati");
-    }
-
-    document.addEventListener("click", function(e){
-      const modal = document.getElementById("clientModal");
-      if(e.target === modal) closeClientModal();
-    });
-
-    load();
-    renderAll();
-    updateSalePreview();
+    reloadDashboard();
   </script>
 </body>
 </html>
