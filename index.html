@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>XA Member Club — V8.5 Rewards Builder</title>
+  <title>XA Member Club — V8.6 Genera Pass Cliente</title>
 
   <style>
     :root{
@@ -41,7 +41,7 @@
       overflow-x:hidden;
     }
 
-    body{padding-bottom:92px;}
+    body{padding-bottom:94px;}
 
     button,input,select,textarea{font-family:inherit;}
     button{border:0;cursor:pointer;touch-action:manipulation;}
@@ -57,7 +57,7 @@
       outline:none;
     }
 
-    textarea{min-height:88px;resize:vertical;}
+    textarea{min-height:90px;resize:vertical;}
 
     label{
       display:block;
@@ -729,7 +729,7 @@
 
     .full{grid-column:1/-1;}
 
-    .notice,.sale-preview{
+    .notice,.sale-preview,.pass-box{
       padding:13px;
       border-radius:18px;
       background:rgba(245,213,126,.22);
@@ -740,6 +740,21 @@
       font-weight:750;
       line-height:1.35;
       margin-bottom:12px;
+    }
+
+    .pass-link{
+      margin-top:10px;
+      padding:12px;
+      border-radius:16px;
+      background:rgba(255,250,240,.82);
+      color:var(--bord);
+      border:1px solid rgba(91,16,27,.16);
+      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      font-size:12px;
+      font-weight:800;
+      line-height:1.35;
+      word-break:break-all;
+      user-select:all;
     }
 
     .empty{
@@ -1085,7 +1100,7 @@
         </div>
 
         <p class="top-copy">
-          Club premium per clienti, punti, cassa e premi.
+          Club premium per clienti, punti, cassa, premi e pass cliente.
           <strong>Not a drink. An experience.</strong>
         </p>
 
@@ -1103,6 +1118,7 @@
         <button class="tab" data-page="cash" onclick="goPage('cash')">Cassa</button>
         <button class="tab" data-page="rewards" onclick="goPage('rewards')">Premi</button>
         <button class="tab" data-page="builder" onclick="goPage('builder')">Gestione</button>
+        <button class="tab" data-page="pass" onclick="goPage('pass')">Pass</button>
         <button class="tab" data-page="history" onclick="goPage('history')">Storico</button>
         <button class="tab" data-page="profile" onclick="goPage('profile')">Profilo</button>
         <button class="tab" data-page="backup" onclick="goPage('backup')">Backup</button>
@@ -1115,20 +1131,20 @@
           <h2>XA Club Console</h2>
           <p>
             La base operativa del club: clienti, saldo punti, vendite, premi,
-            storico e backup. Ora puoi creare anche i premi del negozio.
+            storico, backup e generazione del pass cliente.
           </p>
 
           <div class="home-actions">
             <button class="btn-gold" onclick="openClientModal()">Nuovo cliente</button>
             <button class="btn-light" onclick="goPage('clients')">Cerca cliente</button>
             <button class="btn-light" onclick="goPage('cash')">Vai alla cassa</button>
-            <button class="btn-light" onclick="goPage('builder')">Gestione premi</button>
+            <button class="btn-light" onclick="goPage('pass')">Genera pass cliente</button>
           </div>
         </div>
 
         <div class="section-title">
           <h3>Vista rapida</h3>
-          <p>Cliente attivo, punti e prossima esperienza disponibile.</p>
+          <p>Cliente attivo, punti, premi e pass personale.</p>
         </div>
 
         <div class="grid">
@@ -1165,7 +1181,7 @@
               <div class="panel-title">
                 <div>
                   <small>Operazione rapida</small>
-                  <h4>Club e cassa</h4>
+                  <h4>Club e pass</h4>
                 </div>
               </div>
               <div id="homeQuick"></div>
@@ -1243,7 +1259,7 @@
       <section class="page" id="page-clients">
         <div class="section-title">
           <h3>Clienti XA</h3>
-          <p>Cerca, apri, manda in cassa o elimina un cliente.</p>
+          <p>Cerca, apri, manda in cassa, genera pass o elimina un cliente.</p>
         </div>
 
         <div class="grid">
@@ -1462,6 +1478,51 @@
         </div>
       </section>
 
+      <section class="page" id="page-pass">
+        <div class="section-title">
+          <h3>Genera Pass Cliente</h3>
+          <p>Crea il link personale da mandare al cliente per installare il suo XA Member Pass.</p>
+        </div>
+
+        <div class="grid">
+          <div class="col-5">
+            <div class="panel">
+              <div class="panel-title">
+                <div>
+                  <small>Cliente selezionato</small>
+                  <h4>Pass personale</h4>
+                </div>
+              </div>
+              <div id="passClientBox"></div>
+            </div>
+          </div>
+
+          <div class="col-7">
+            <div class="panel">
+              <div class="panel-title">
+                <div>
+                  <small>Link cliente</small>
+                  <h4>XA Member Pass</h4>
+                </div>
+              </div>
+
+              <div class="pass-box">
+                Questo link apre l’app cliente già compilata con nome, codice, livello e punti attuali.
+                Il cliente può poi salvarla sul telefono.
+              </div>
+
+              <div id="passLinkBox"></div>
+
+              <div class="button-row" style="margin-top:12px;">
+                <button class="btn" onclick="copyPassLink()">Copia link pass</button>
+                <button class="btn-gold" onclick="openPassLink()">Apri pass</button>
+                <button class="btn-light" onclick="sharePassLink()">Condividi</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section class="page" id="page-history">
         <div class="section-title">
           <h3>Storico Club</h3>
@@ -1486,7 +1547,7 @@
       <section class="page" id="page-profile">
         <div class="section-title">
           <h3>Profilo Cliente</h3>
-          <p>Card, QR, preferenze, punti e storico personale.</p>
+          <p>Card, QR, preferenze, punti, storico personale e link pass cliente.</p>
         </div>
 
         <div class="grid">
@@ -1503,6 +1564,18 @@
                 </div>
               </div>
               <div id="profileDetails"></div>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <div class="panel">
+              <div class="panel-title">
+                <div>
+                  <small>Pass cliente</small>
+                  <h4>Link personale</h4>
+                </div>
+              </div>
+              <div id="profilePassBox"></div>
             </div>
           </div>
 
@@ -1569,14 +1642,14 @@
       </section>
     </main>
 
-    <div class="version">V8.5 — XA Member Club Rewards Builder</div>
+    <div class="version">V8.6 — XA Member Club Genera Pass Cliente</div>
   </div>
 
   <div class="bottom">
     <div class="bottom-inner">
       <button class="btn" onclick="openClientModal()">Nuovo</button>
       <button class="btn-gold" onclick="goPage('cash')">Cassa</button>
-      <button class="btn-ghost" onclick="goPage('profile')">Scheda</button>
+      <button class="btn-ghost" onclick="goPage('pass')">Pass</button>
     </div>
   </div>
 
@@ -1660,8 +1733,9 @@
   <div class="toast" id="toast"></div>
 
   <script>
-    const STORAGE_KEY = "xa_member_club_v85";
+    const STORAGE_KEY = "xa_member_club_v86";
     const OLD_KEYS = [
+      "xa_member_club_v85",
       "xa_member_club_v84",
       "xa_member_club_v83",
       "xa_member_club_v82",
@@ -1670,6 +1744,8 @@
       "xa_loyalty_club_v8",
       "xa_club_console_v8"
     ];
+
+    const MEMBER_PASS_BASE = "https://essenzadiluna1-oss.github.io/xa-member-pass/";
 
     const defaultRewards = [
       {
@@ -1693,21 +1769,21 @@
         createdAt: new Date().toISOString()
       },
       {
-        id: "RWD-BATCH",
-        title: "Limited Batch Reservation",
-        points: 500,
-        desc: "Riserva prioritaria su una selezione limitata.",
-        category: "Bottiglia",
+        id: "RWD-GLASS",
+        title: "Bicchiere XA",
+        points: 450,
+        desc: "Bicchiere speciale XA, disponibile in negozio.",
+        category: "Oggetto",
         active: true,
         quantity: "",
         createdAt: new Date().toISOString()
       },
       {
-        id: "RWD-CELLAR",
-        title: "XA Cellar Access",
-        points: 650,
-        desc: "Accesso speciale ad assaggi, prove e note di cantina XA.",
-        category: "Esperienza",
+        id: "RWD-BATCH",
+        title: "Limited Batch Reservation",
+        points: 500,
+        desc: "Riserva prioritaria su una selezione limitata.",
+        category: "Bottiglia",
         active: true,
         quantity: "",
         createdAt: new Date().toISOString()
@@ -1724,7 +1800,7 @@
     };
 
     let state = {
-      version: "8.5",
+      version: "8.6",
       selectedClientId: null,
       cashierUnlocked: false,
       clients: [],
@@ -1812,7 +1888,7 @@
           : structuredClone(defaultRewards);
 
         state = {
-          version: "8.5",
+          version: "8.6",
           selectedClientId: data.selectedClientId || data.activeClientId || clients[0]?.id || null,
           cashierUnlocked: false,
           clients,
@@ -1827,7 +1903,7 @@
         save();
       }catch(err){
         state = {
-          version: "8.5",
+          version: "8.6",
           selectedClientId: null,
           cashierUnlocked: false,
           clients: [],
@@ -2326,6 +2402,79 @@
       toast("Cliente mandato in cassa");
     }
 
+    function sendClientToPass(id){
+      state.selectedClientId = id;
+      save();
+      goPage("pass");
+      toast("Pass cliente pronto");
+    }
+
+    function buildPassUrl(client = getClient()){
+      if(!client) return "";
+
+      const params = new URLSearchParams();
+      params.set("v", "1.23");
+      params.set("id", client.id);
+      params.set("name", client.name);
+      params.set("points", Number(client.points || 0));
+      params.set("level", client.level || "Private Member");
+      params.set("favorite", client.favorite || "XA Fermented Redrinks");
+
+      return MEMBER_PASS_BASE + "?" + params.toString();
+    }
+
+    async function copyText(text){
+      if(!text){
+        toast("Nessun link da copiare");
+        return;
+      }
+
+      try{
+        await navigator.clipboard.writeText(text);
+        toast("Link copiato");
+      }catch(err){
+        prompt("Copia questo link:", text);
+      }
+    }
+
+    function copyPassLink(){
+      copyText(buildPassUrl());
+    }
+
+    function openPassLink(){
+      const url = buildPassUrl();
+      if(!url){
+        toast("Seleziona un cliente");
+        return;
+      }
+      window.open(url, "_blank");
+    }
+
+    async function sharePassLink(){
+      const client = getClient();
+      const url = buildPassUrl(client);
+
+      if(!client || !url){
+        toast("Seleziona un cliente");
+        return;
+      }
+
+      const text = "Ciao " + client.name + ", questo è il tuo XA Member Pass: " + url;
+
+      if(navigator.share){
+        try{
+          await navigator.share({
+            title: "XA Member Pass",
+            text,
+            url
+          });
+          return;
+        }catch(err){}
+      }
+
+      copyText(text);
+    }
+
     function buildQr(client){
       if(!client) return "";
 
@@ -2448,6 +2597,35 @@
       `;
     }
 
+    function passBoxHTML(client){
+      if(!client){
+        return `
+          <div class="empty">Seleziona un cliente per generare il suo pass.</div>
+          <div class="button-row" style="margin-top:12px;">
+            <button class="btn-gold" onclick="goPage('clients')">Vai ai clienti</button>
+          </div>
+        `;
+      }
+
+      const url = buildPassUrl(client);
+
+      return `
+        <div class="pass-box">
+          <b>${escapeHtml(client.name)}</b><br>
+          Codice: <b>${escapeHtml(client.id)}</b><br>
+          Livello: <b>${escapeHtml(client.level)}</b><br>
+          Punti attuali: <b>${Number(client.points || 0)}</b>
+          <div class="pass-link">${escapeHtml(url)}</div>
+        </div>
+
+        <div class="button-row">
+          <button class="btn" onclick="copyPassLink()">Copia link</button>
+          <button class="btn-gold" onclick="openPassLink()">Apri</button>
+          <button class="btn-light" onclick="sharePassLink()">Condividi</button>
+        </div>
+      `;
+    }
+
     function clientBoxHTML(client){
       if(!client){
         return `
@@ -2507,8 +2685,8 @@
 
         <div class="button-row" style="margin-top:14px;">
           <button class="btn" onclick="goPage('cash')">Cassa</button>
-          <button class="btn-gold" onclick="goPage('rewards')">Premi</button>
-          <button class="btn-soft" onclick="goPage('profile')">Scheda</button>
+          <button class="btn-gold" onclick="goPage('pass')">Pass cliente</button>
+          <button class="btn-soft" onclick="goPage('rewards')">Premi</button>
         </div>
       `;
     }
@@ -2554,7 +2732,7 @@
 
       if(!client){
         document.getElementById("homeQuick").innerHTML = `
-          <div class="empty">Seleziona o crea un cliente per attivare cassa, premi e scheda.</div>
+          <div class="empty">Seleziona o crea un cliente per attivare cassa, premi, pass e scheda.</div>
           <div class="button-row" style="margin-top:12px;">
             <button class="btn" onclick="openClientModal()">Nuovo</button>
             <button class="btn-gold" onclick="goPage('clients')">Clienti</button>
@@ -2570,7 +2748,7 @@
           </div>
           <div class="button-row">
             <button class="btn" onclick="goPage('cash')">Cassa XA</button>
-            <button class="btn-gold" onclick="goPage('rewards')">Premi</button>
+            <button class="btn-gold" onclick="goPage('pass')">Pass</button>
             <button class="btn-soft" onclick="goPage('profile')">Scheda</button>
           </div>
         `;
@@ -2614,7 +2792,8 @@
 
         <div class="button-row" style="margin-top:12px;">
           <button class="btn" onclick="selectClient('${client.id}'); goPage('profile');">Scheda</button>
-          <button class="btn-gold" onclick="sendClientToCash('${client.id}')">Cassa</button>
+          <button class="btn-gold" onclick="sendClientToPass('${client.id}')">Pass</button>
+          <button class="btn-soft" onclick="sendClientToCash('${client.id}')">Cassa</button>
         </div>
       `;
     }
@@ -2646,6 +2825,7 @@
             <div class="button-row" style="grid-column:1/-1;">
               <button class="btn-small" onclick="selectClient('${c.id}'); goPage('profile');">Scheda</button>
               <button class="btn-small" onclick="sendClientToCash('${c.id}')">Cassa</button>
+              <button class="btn-small" onclick="sendClientToPass('${c.id}')">Pass</button>
               <button class="btn-small" onclick="deleteClient('${c.id}')">Elimina</button>
             </div>
           </div>
@@ -2743,6 +2923,12 @@
       }).join("");
     }
 
+    function renderPass(){
+      const client = getClient();
+      document.getElementById("passClientBox").innerHTML = clientBoxHTML(client);
+      document.getElementById("passLinkBox").innerHTML = passBoxHTML(client);
+    }
+
     function renderHistory(){
       const type = document.getElementById("historyFilter")?.value || "all";
       let tx = [...state.transactions];
@@ -2779,6 +2965,8 @@
         </div>
       `;
 
+      document.getElementById("profilePassBox").innerHTML = passBoxHTML(client);
+
       const personal = client ? getClientTransactions(client.id) : [];
       document.getElementById("profileHistory").innerHTML = personal.length
         ? personal.map(transactionHTML).join("")
@@ -2793,6 +2981,7 @@
       renderCash();
       renderRewards();
       renderRewardBuilder();
+      renderPass();
       renderHistory();
       renderProfile();
     }
@@ -2813,11 +3002,11 @@
       const payload = {
         exportedAt: new Date().toISOString(),
         app: "XA Member Club",
-        version: "8.5",
+        version: "8.6",
         data: state
       };
 
-      downloadFile("xa-member-club-backup-v8-5.json", JSON.stringify(payload,null,2), "application/json");
+      downloadFile("xa-member-club-backup-v8-6.json", JSON.stringify(payload,null,2), "application/json");
       toast("Backup JSON esportato");
     }
 
@@ -2844,12 +3033,12 @@
       });
 
       const csv = rows.map(row => row.map(csvEscape).join(";")).join("\n");
-      downloadFile("xa-member-club-storico-v8-5.csv", csv, "text/csv;charset=utf-8");
+      downloadFile("xa-member-club-storico-v8-6.csv", csv, "text/csv;charset=utf-8");
       toast("Storico CSV esportato");
     }
 
     function exportClientsCSV(){
-      const rows = [["nome","telefono","email","compleanno","codice","livello","punti","preferito","gusto","nota","creato_il"]];
+      const rows = [["nome","telefono","email","compleanno","codice","livello","punti","preferito","gusto","nota","pass_link","creato_il"]];
 
       state.clients.forEach(c => {
         rows.push([
@@ -2863,12 +3052,13 @@
           c.favorite,
           c.taste,
           c.note,
+          buildPassUrl(c),
           formatDate(c.createdAt)
         ]);
       });
 
       const csv = rows.map(row => row.map(csvEscape).join(";")).join("\n");
-      downloadFile("xa-member-club-clienti-v8-5.csv", csv, "text/csv;charset=utf-8");
+      downloadFile("xa-member-club-clienti-v8-6.csv", csv, "text/csv;charset=utf-8");
       toast("Clienti CSV esportato");
     }
 
@@ -2888,7 +3078,7 @@
       });
 
       const csv = rows.map(row => row.map(csvEscape).join(";")).join("\n");
-      downloadFile("xa-member-club-premi-v8-5.csv", csv, "text/csv;charset=utf-8");
+      downloadFile("xa-member-club-premi-v8-6.csv", csv, "text/csv;charset=utf-8");
       toast("Premi CSV esportato");
     }
 
@@ -2911,7 +3101,7 @@
           if(!confirm("Importare questo backup? I dati attuali saranno sostituiti.")) return;
 
           state = {
-            version: "8.5",
+            version: "8.6",
             selectedClientId: data.selectedClientId || data.clients[0]?.id || null,
             cashierUnlocked: false,
             clients: data.clients.map(normalizeClient),
@@ -2941,7 +3131,7 @@
       localStorage.removeItem(STORAGE_KEY);
 
       state = {
-        version: "8.5",
+        version: "8.6",
         selectedClientId: null,
         cashierUnlocked: false,
         clients: [],
