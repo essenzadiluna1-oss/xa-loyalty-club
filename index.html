@@ -1,10 +1,10 @@
-<!-- XA LOYALTY CLUB V9.2.1 CLEAN CLIENT SHEET -->
+<!-- XA LOYALTY CLUB V9.1 ONLINE CLEAN FIX -->
 <!DOCTYPE html>
 <html lang="it">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>XA Loyalty Club — V9.2.1</title>
+  <title>XA Loyalty Club — V9.1 Online</title>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
@@ -20,11 +20,10 @@
       --bord2:#861d2d;
       --bord3:#31060b;
       --ink:#27100d;
-      --muted:#73513f;
+      --muted:#7b5b49;
       --green:#65dd7b;
       --red:#b53045;
-      --panel:#fff4df;
-      --panel2:#ead2aa;
+      --panel:rgba(255,246,226,.97);
       --shadow:0 16px 40px rgba(0,0,0,.35);
       --deep:0 22px 70px rgba(0,0,0,.55);
       --font:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
@@ -49,7 +48,7 @@
     }
 
     body{
-      padding-bottom:130px;
+      padding-bottom:126px;
     }
 
     button,input,textarea{
@@ -218,8 +217,13 @@
       box-shadow:0 0 14px rgba(245,213,126,.7);
     }
 
-    .status.ok .dot{background:#73ec8b;}
-    .status.err .dot{background:#ff6478;}
+    .status.ok .dot{
+      background:#73ec8b;
+    }
+
+    .status.err .dot{
+      background:#ff6478;
+    }
 
     .tabs{
       margin-top:13px;
@@ -261,7 +265,7 @@
       margin-top:12px;
       border-radius:24px;
       padding:15px;
-      background:linear-gradient(145deg,var(--panel),var(--panel2));
+      background:var(--panel);
       color:var(--ink);
       border:1px solid rgba(255,244,223,.58);
       box-shadow:var(--shadow);
@@ -408,10 +412,10 @@
       gap:10px;
     }
 
-    .customer-card,.reward-card,.tx-card,.detail-card{
+    .customer-card,.reward-card,.tx-card{
       border-radius:21px;
       padding:13px;
-      background:linear-gradient(145deg,#fffaf0,#ead2aa);
+      background:linear-gradient(145deg,rgba(255,250,240,.98),rgba(235,209,165,.94));
       border:1px solid rgba(213,164,67,.31);
       color:var(--ink);
       box-shadow:0 8px 22px rgba(0,0,0,.12);
@@ -429,22 +433,20 @@
       gap:10px;
     }
 
-    .customer-card h4,.reward-card h4,.tx-card h4,.detail-card h4{
+    .customer-card h4,.reward-card h4,.tx-card h4{
       margin:0;
       color:var(--bord);
       font-family:var(--serif);
       font-size:23px;
       line-height:.98;
-      text-shadow:none;
     }
 
-    .customer-card p,.reward-card p,.tx-card p,.detail-card p{
+    .customer-card p,.reward-card p,.tx-card p{
       margin:7px 0 0;
-      color:#4d2b20;
+      color:#6a483b;
       font-size:13px;
       line-height:1.35;
-      font-weight:750;
-      text-shadow:none;
+      font-weight:700;
     }
 
     .points-pill{
@@ -536,9 +538,9 @@
 
     .panel.dark .notice,
     #selectedCustomerBox{
-      background:rgba(255,244,223,.18);
-      color:#fff4df;
-      border-color:rgba(245,213,126,.48);
+      background:rgba(255,244,223,.18) !important;
+      color:#fff4df !important;
+      border-color:rgba(245,213,126,.48) !important;
       text-shadow:0 1px 2px rgba(0,0,0,.35);
       font-size:15px;
       line-height:1.48;
@@ -546,7 +548,7 @@
 
     .panel.dark .notice b,
     #selectedCustomerBox b{
-      color:#f5d57e;
+      color:#f5d57e !important;
     }
 
     .empty{
@@ -565,66 +567,6 @@
       grid-template-columns:1fr auto;
       gap:8px;
       margin-bottom:10px;
-    }
-
-    .detail-grid{
-      display:grid;
-      grid-template-columns:repeat(2,1fr);
-      gap:8px;
-      margin-top:10px;
-    }
-
-    .field-box{
-      border-radius:17px;
-      padding:11px;
-      background:#fff8e8;
-      border:1px solid rgba(91,16,27,.18);
-      color:#27100d;
-      text-shadow:none;
-    }
-
-    .field-box small{
-      display:block;
-      color:#6b4636;
-      font-size:10px;
-      font-weight:950;
-      text-transform:uppercase;
-      letter-spacing:.8px;
-      margin-bottom:4px;
-      text-shadow:none;
-    }
-
-    .field-box b{
-      display:block;
-      color:#2b1110;
-      font-size:14px;
-      line-height:1.25;
-      word-break:break-word;
-      text-shadow:none;
-    }
-
-    #customerDetailBox{
-      background:transparent;
-      border:0;
-      padding:0;
-      color:#27100d;
-      text-shadow:none;
-    }
-
-    #customerDetailBox *{
-      text-shadow:none;
-    }
-
-    #customerDetailBox .detail-card h4{
-      color:#5b101b;
-    }
-
-    #customerDetailBox .detail-card p,
-    #customerDetailBox .field-box,
-    #customerDetailBox .field-box small,
-    #customerDetailBox .field-box b{
-      color:#2b1110;
-      text-shadow:none;
     }
 
     .selected-pass{
@@ -752,10 +694,6 @@
         grid-template-columns:1fr;
       }
 
-      .detail-grid{
-        grid-template-columns:1fr;
-      }
-
       .hero h2{
         font-size:44px;
       }
@@ -783,7 +721,7 @@
           </div>
         </div>
         <p class="top-copy">
-          App negozio online: clienti, punti, premi, storico e QR reali collegati a Supabase.
+          App negozio online: clienti, punti, premi e QR reali collegati a Supabase.
           <strong>Not a drink. An experience.</strong>
         </p>
       </div>
@@ -791,12 +729,12 @@
 
     <section class="hero">
       <h2>Store Console</h2>
-      <p>Gestione reale del Member Club XA. Ogni cliente ha una scheda completa, un pass personale e un QR collegato al database.</p>
+      <p>Gestione reale del Member Club XA. Ogni cliente ha un pass personale e un QR collegato al database.</p>
 
       <div class="status-row">
         <span class="status" id="statusOnline"><span class="dot"></span><span>Connessione...</span></span>
         <span class="status" id="statusPin"><span class="dot"></span><span>PIN negozio</span></span>
-        <span class="status ok"><span class="dot"></span><span>V9.2.1</span></span>
+        <span class="status ok"><span class="dot"></span><span>V9.1 Online</span></span>
       </div>
 
       <div class="tabs">
@@ -914,14 +852,6 @@
 
         <div class="panel">
           <div class="panel-title">
-            <small>Scheda cliente completa</small>
-            <h3 id="detailTitle">Cliente selezionato</h3>
-          </div>
-          <div id="customerDetailBox">Seleziona un cliente dall’archivio.</div>
-        </div>
-
-        <div class="panel">
-          <div class="panel-title">
             <small>Clienti attivi</small>
             <h3>Archivio</h3>
           </div>
@@ -986,14 +916,6 @@
             <button class="btn green full" onclick="addPoints()">Salva movimento punti</button>
           </div>
         </div>
-
-        <div class="panel">
-          <div class="panel-title">
-            <small>Storico cliente</small>
-            <h3>Movimenti personali</h3>
-          </div>
-          <div class="cards" id="customerTransactions"></div>
-        </div>
       </section>
 
       <section class="view" id="view-rewards">
@@ -1039,7 +961,7 @@
       </section>
     </main>
 
-    <div class="version">V9.2.1 — XA Loyalty Club Clean Client Sheet</div>
+    <div class="version">V9.1 — XA Loyalty Club Online Supabase Clean Fix</div>
   </div>
 
   <div class="bottom">
@@ -1058,8 +980,8 @@
     const SUPABASE_URL = "https://vwfgenrjpsnpxombectu.supabase.co";
     const SUPABASE_KEY = "sb_publishable_YjgxWuLEA4vbEPeelpWzcg_qnVVOuuH";
     const CLIENT_PASS_BASE = "https://essenzadiluna1-oss.github.io/xa-member-pass/index.html";
-    const PIN_KEY = "xa_store_pin_v921";
-    const SELECTED_KEY = "xa_selected_customer_v921";
+    const PIN_KEY = "xa_store_pin_v91";
+    const SELECTED_KEY = "xa_selected_customer_v91";
 
     const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
@@ -1299,7 +1221,7 @@
           p_pin: getPin(),
           p_customer_ref: selected.public_code,
           p_reward_id: rewardId,
-          p_note: "Riscatto da XA Loyalty Club V9.2.1"
+          p_note: "Riscatto da XA Loyalty Club V9.1"
         });
 
         if(error) throw error;
@@ -1416,7 +1338,6 @@
 
           <div class="mini-row" style="margin-top:10px;">
             <button class="btn gold" onclick="event.stopPropagation();selectCustomer('${escapeHtml(c.id)}');setView('points');">Punti</button>
-            <button class="btn light" onclick="event.stopPropagation();selectCustomer('${escapeHtml(c.id)}');setView('customers');">Scheda</button>
             <button class="btn light" onclick="event.stopPropagation();selectCustomer('${escapeHtml(c.id)}');setView('pass');">Pass</button>
           </div>
         </div>
@@ -1471,8 +1392,7 @@
           c.phone,
           c.email,
           c.favorite,
-          c.taste,
-          c.note
+          c.taste
         ].join(" ").toLowerCase();
 
         return hay.includes(q);
@@ -1481,63 +1401,6 @@
       document.getElementById("customerList").innerHTML = list.length
         ? list.map(customerHtml).join("")
         : `<div class="empty">Nessun cliente trovato.</div>`;
-    }
-
-    function renderClientDetail(){
-      const selected = getSelectedCustomer();
-
-      if(!selected){
-        document.getElementById("detailTitle").textContent = "Cliente selezionato";
-        document.getElementById("customerDetailBox").innerHTML = `<div class="empty">Seleziona un cliente dall’archivio.</div>`;
-        return;
-      }
-
-      document.getElementById("detailTitle").textContent = selected.name;
-
-      document.getElementById("customerDetailBox").innerHTML = `
-        <div class="detail-card">
-          <h4>${escapeHtml(selected.name)}</h4>
-          <p><b>${escapeHtml(selected.public_code)}</b> · ${Number(selected.points || 0)} punti</p>
-
-          <div class="detail-grid">
-            <div class="field-box">
-              <small>Telefono</small>
-              <b>${escapeHtml(selected.phone || "Non indicato")}</b>
-            </div>
-            <div class="field-box">
-              <small>Email</small>
-              <b>${escapeHtml(selected.email || "Non indicata")}</b>
-            </div>
-            <div class="field-box">
-              <small>Preferenza</small>
-              <b>${escapeHtml(selected.favorite || "Non indicata")}</b>
-            </div>
-            <div class="field-box">
-              <small>Profilo gusto</small>
-              <b>${escapeHtml(selected.taste || "Non indicato")}</b>
-            </div>
-            <div class="field-box">
-              <small>Livello</small>
-              <b>${escapeHtml(selected.level || "Private Member")}</b>
-            </div>
-            <div class="field-box">
-              <small>Ultimo aggiornamento</small>
-              <b>${escapeHtml(fmtDate(selected.updated_at) || "—")}</b>
-            </div>
-          </div>
-
-          <div class="field-box" style="margin-top:8px;">
-            <small>Note interne</small>
-            <b>${escapeHtml(selected.note || "Nessuna nota")}</b>
-          </div>
-
-          <div class="mini-row" style="margin-top:10px;">
-            <button class="btn gold" onclick="setView('points')">Aggiungi punti</button>
-            <button class="btn light" onclick="copyPassLink()">Copia pass</button>
-            <button class="btn light" onclick="openPassLink()">Apri pass</button>
-          </div>
-        </div>
-      `;
     }
 
     function renderSelectedCustomer(){
@@ -1562,22 +1425,6 @@
         Cliente selezionato: <b>${escapeHtml(selected.name)}</b> —
         saldo <b>${Number(selected.points || 0)} punti</b>.
       `;
-    }
-
-    function renderCustomerTransactions(){
-      const selected = getSelectedCustomer();
-      const box = document.getElementById("customerTransactions");
-
-      if(!selected){
-        box.innerHTML = `<div class="empty">Seleziona un cliente per vedere lo storico.</div>`;
-        return;
-      }
-
-      const list = state.transactions.filter(t => t.customer_id === selected.id);
-
-      box.innerHTML = list.length
-        ? list.slice(0,20).map(txHtml).join("")
-        : `<div class="empty">Nessun movimento per questo cliente.</div>`;
     }
 
     function renderRewards(){
@@ -1640,9 +1487,7 @@
     function renderAll(){
       renderDashboard();
       renderCustomers();
-      renderClientDetail();
       renderSelectedCustomer();
-      renderCustomerTransactions();
       renderRewards();
       renderPass();
     }
