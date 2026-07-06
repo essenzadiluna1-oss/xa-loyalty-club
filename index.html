@@ -1,64 +1,15 @@
-<!-- XA LOYALTY CLUB V9.2 CLIENT SHEET ONLINE -->
+<!-- XA LOYALTY CLUB V9.2.1 CLEAN CLIENT SHEET -->
 <!DOCTYPE html>
 <html lang="it">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>XA Loyalty Club — V9.2 Online</title>
+  <title>XA Loyalty Club — V9.2.1</title>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
-<style>
+
   <style>
-   /* XA V9.2 HARD READABILITY FIX */
-#customerDetailBox,
-#customerDetailBox *,
-#customerDetailBox .detail-card,
-#customerDetailBox .detail-card *,
-#customerDetailBox .field-box,
-#customerDetailBox .field-box *,
-#customerDetailBox b,
-#customerDetailBox p,
-#customerDetailBox small,
-#customerDetailBox h4{
-  color:#2b1110 !important;
-  text-shadow:none !important;
-}
-
-#customerDetailBox .detail-card{
-  background:linear-gradient(145deg,#fffaf0,#ead2aa) !important;
-  border:1px solid rgba(91,16,27,.20) !important;
-}
-
-#customerDetailBox .field-box{
-  background:#fff8e8 !important;
-  border:1px solid rgba(91,16,27,.20) !important;
-}
-
-#customerDetailBox h4{
-  color:#5b101b !important;
-}
-
-#customerDetailBox .btn.gold{
-  background:linear-gradient(145deg,#f5d57e,#d5a443) !important;
-  color:#2b1110 !important;
-}
-
-#customerDetailBox .btn.light{
-  background:linear-gradient(145deg,#fffaf0,#dfc396) !important;
-  color:#5b101b !important;
-} 
-/* XA V9.2 client sheet readability fix */
-#customerDetailBox .detail-card{
-  background:linear-gradient(145deg,#fffaf0,#ead2aa) !important;
-  color:#27100d !important;
-  text-shadow:none !important;
-}
-
-/* resto del blocco */
-</style>
-
-</head>
     :root{
       --bg:#120305;
       --cream:#fff4df;
@@ -69,10 +20,11 @@
       --bord2:#861d2d;
       --bord3:#31060b;
       --ink:#27100d;
-      --muted:#7b5b49;
+      --muted:#73513f;
       --green:#65dd7b;
       --red:#b53045;
-      --panel:rgba(255,246,226,.97);
+      --panel:#fff4df;
+      --panel2:#ead2aa;
       --shadow:0 16px 40px rgba(0,0,0,.35);
       --deep:0 22px 70px rgba(0,0,0,.55);
       --font:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
@@ -97,7 +49,7 @@
     }
 
     body{
-      padding-bottom:128px;
+      padding-bottom:130px;
     }
 
     button,input,textarea{
@@ -266,13 +218,8 @@
       box-shadow:0 0 14px rgba(245,213,126,.7);
     }
 
-    .status.ok .dot{
-      background:#73ec8b;
-    }
-
-    .status.err .dot{
-      background:#ff6478;
-    }
+    .status.ok .dot{background:#73ec8b;}
+    .status.err .dot{background:#ff6478;}
 
     .tabs{
       margin-top:13px;
@@ -314,7 +261,7 @@
       margin-top:12px;
       border-radius:24px;
       padding:15px;
-      background:var(--panel);
+      background:linear-gradient(145deg,var(--panel),var(--panel2));
       color:var(--ink);
       border:1px solid rgba(255,244,223,.58);
       box-shadow:var(--shadow);
@@ -464,7 +411,7 @@
     .customer-card,.reward-card,.tx-card,.detail-card{
       border-radius:21px;
       padding:13px;
-      background:linear-gradient(145deg,rgba(255,250,240,.98),rgba(235,209,165,.94));
+      background:linear-gradient(145deg,#fffaf0,#ead2aa);
       border:1px solid rgba(213,164,67,.31);
       color:var(--ink);
       box-shadow:0 8px 22px rgba(0,0,0,.12);
@@ -488,14 +435,16 @@
       font-family:var(--serif);
       font-size:23px;
       line-height:.98;
+      text-shadow:none;
     }
 
     .customer-card p,.reward-card p,.tx-card p,.detail-card p{
       margin:7px 0 0;
-      color:#6a483b;
+      color:#4d2b20;
       font-size:13px;
       line-height:1.35;
-      font-weight:700;
+      font-weight:750;
+      text-shadow:none;
     }
 
     .points-pill{
@@ -587,9 +536,9 @@
 
     .panel.dark .notice,
     #selectedCustomerBox{
-      background:rgba(255,244,223,.18) !important;
-      color:#fff4df !important;
-      border-color:rgba(245,213,126,.48) !important;
+      background:rgba(255,244,223,.18);
+      color:#fff4df;
+      border-color:rgba(245,213,126,.48);
       text-shadow:0 1px 2px rgba(0,0,0,.35);
       font-size:15px;
       line-height:1.48;
@@ -597,7 +546,7 @@
 
     .panel.dark .notice b,
     #selectedCustomerBox b{
-      color:#f5d57e !important;
+      color:#f5d57e;
     }
 
     .empty{
@@ -628,26 +577,54 @@
     .field-box{
       border-radius:17px;
       padding:11px;
-      background:rgba(91,16,27,.07);
-      border:1px solid rgba(91,16,27,.12);
-      color:#4d2b20;
+      background:#fff8e8;
+      border:1px solid rgba(91,16,27,.18);
+      color:#27100d;
+      text-shadow:none;
     }
 
     .field-box small{
       display:block;
-      color:#84614d;
+      color:#6b4636;
       font-size:10px;
       font-weight:950;
       text-transform:uppercase;
       letter-spacing:.8px;
       margin-bottom:4px;
+      text-shadow:none;
     }
 
     .field-box b{
       display:block;
+      color:#2b1110;
       font-size:14px;
       line-height:1.25;
       word-break:break-word;
+      text-shadow:none;
+    }
+
+    #customerDetailBox{
+      background:transparent;
+      border:0;
+      padding:0;
+      color:#27100d;
+      text-shadow:none;
+    }
+
+    #customerDetailBox *{
+      text-shadow:none;
+    }
+
+    #customerDetailBox .detail-card h4{
+      color:#5b101b;
+    }
+
+    #customerDetailBox .detail-card p,
+    #customerDetailBox .field-box,
+    #customerDetailBox .field-box small,
+    #customerDetailBox .field-box b{
+      color:#2b1110;
+      text-shadow:none;
     }
 
     .selected-pass{
@@ -819,7 +796,7 @@
       <div class="status-row">
         <span class="status" id="statusOnline"><span class="dot"></span><span>Connessione...</span></span>
         <span class="status" id="statusPin"><span class="dot"></span><span>PIN negozio</span></span>
-        <span class="status ok"><span class="dot"></span><span>V9.2 Online</span></span>
+        <span class="status ok"><span class="dot"></span><span>V9.2.1</span></span>
       </div>
 
       <div class="tabs">
@@ -935,12 +912,12 @@
           </div>
         </div>
 
-        <div class="panel dark">
+        <div class="panel">
           <div class="panel-title">
             <small>Scheda cliente completa</small>
             <h3 id="detailTitle">Cliente selezionato</h3>
           </div>
-          <div id="customerDetailBox" class="notice">Seleziona un cliente dall’archivio.</div>
+          <div id="customerDetailBox">Seleziona un cliente dall’archivio.</div>
         </div>
 
         <div class="panel">
@@ -1062,7 +1039,7 @@
       </section>
     </main>
 
-    <div class="version">V9.2 — XA Loyalty Club Client Sheet Online Supabase</div>
+    <div class="version">V9.2.1 — XA Loyalty Club Clean Client Sheet</div>
   </div>
 
   <div class="bottom">
@@ -1081,8 +1058,8 @@
     const SUPABASE_URL = "https://vwfgenrjpsnpxombectu.supabase.co";
     const SUPABASE_KEY = "sb_publishable_YjgxWuLEA4vbEPeelpWzcg_qnVVOuuH";
     const CLIENT_PASS_BASE = "https://essenzadiluna1-oss.github.io/xa-member-pass/index.html";
-    const PIN_KEY = "xa_store_pin_v92";
-    const SELECTED_KEY = "xa_selected_customer_v92";
+    const PIN_KEY = "xa_store_pin_v921";
+    const SELECTED_KEY = "xa_selected_customer_v921";
 
     const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
@@ -1322,7 +1299,7 @@
           p_pin: getPin(),
           p_customer_ref: selected.public_code,
           p_reward_id: rewardId,
-          p_note: "Riscatto da XA Loyalty Club V9.2"
+          p_note: "Riscatto da XA Loyalty Club V9.2.1"
         });
 
         if(error) throw error;
@@ -1511,7 +1488,7 @@
 
       if(!selected){
         document.getElementById("detailTitle").textContent = "Cliente selezionato";
-        document.getElementById("customerDetailBox").innerHTML = "Seleziona un cliente dall’archivio.";
+        document.getElementById("customerDetailBox").innerHTML = `<div class="empty">Seleziona un cliente dall’archivio.</div>`;
         return;
       }
 
